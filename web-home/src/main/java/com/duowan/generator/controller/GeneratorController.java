@@ -25,6 +25,7 @@ import cn.org.rapid_framework.generator.GeneratorFacade;
 
 import com.duowan.generator.common.util.SqlHelper;
 import com.duowan.generator.common.util.ZipHelper;
+import com.github.rapid.common.util.holder.PropertiesHolder;
 
 
 @Controller
@@ -80,10 +81,10 @@ public class GeneratorController {
 		// mysql database: 
 		// GRANT ALL PRIVILEGES ON *.* TO 'generator'@'%' IDENTIFIED BY '!2dF9~ZPo8*w' WITH GRANT OPTION;
 		// CREATE DATABASE IF NOT EXISTS tmp_generator default charset=utf8;
-		private String jdbcUsername = "root";
-		private String jdbcPassword = "93SDglKViyB9oYeq";
+		private String jdbcUsername = PropertiesHolder.getProperty("mysql_webgenerator.jdbc.username");
+		private String jdbcPassword = PropertiesHolder.getProperty("mysql_webgenerator.jdbc.password");
 		private String jdbcDriver = "com.mysql.jdbc.Driver";
-		private String jdbcUrl = "jdbc:mysql://42.62.96.66:3306/tmp_generator?useUnicode=true&characterEncoding=utf8";
+		private String jdbcUrl = PropertiesHolder.getProperty("mysql_webgenerator.jdbc.url");
 		
 		public void setSqls(String sqls) {
 			this.sqls = sqls;
