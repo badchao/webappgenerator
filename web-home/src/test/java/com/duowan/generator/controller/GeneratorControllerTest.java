@@ -3,7 +3,6 @@ package com.duowan.generator.controller;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.mock.web.MockServletContext;
 
 import com.duowan.generator.controller.GeneratorController.GenCmdExecutor;
 
