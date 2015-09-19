@@ -22,7 +22,7 @@
  		<tr>
  			<td>create table SQL(用分号；分隔多条SQL)</td>
  			<td><textarea id="sqls" name="sqls" cols="80" rows="20" onchange="saveCookie()"></textarea>
- 				<br />示例值: create table demo_table (username varchar(20) primary key,age int);
+ 				<br />示例值: create table demo_table (id int AUTO_INCREMENT primary key, username varchar(20) ,age int,birth_date datetime);
  			</td>
  		</tr>
  		<tr>

@@ -7,22 +7,18 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/commons/taglibs.jsp" %>
 
-<duowan:override name="head">
+<rapid:override name="head">
 	<title>${table.tableAlias} 信息</title>
-</duowan:override>
+</rapid:override>
 
-<duowan:override name="content">
-	<form:form modelAttribute="${classNameLowerCase}"  >
-		<input type="button" value="返回列表" onclick="window.location='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>
-		<input type="button" value="后退" onclick="history.back();"/>
-		
-	<#list table.columns as column>
-	<#if column.pk>
-		<input type="hidden" id="${column.columnNameLower}" name="${column.columnNameLower}" value="<@jspEl classNameLower+"."+column.columnNameLower/>"/>
-	</#if>
-	</#list>
+<rapid:override name="content">
+	<h2 id="title" class="text-center">查看 ${table.tableAlias}</h2>
 	
-		<table class="formTable">
+	<form:form modelAttribute="${classNameLowerCase}" cssClass="form-horizontal"  >
+		<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>&nbsp;&nbsp;&nbsp;
+		<input type="button" class="btn btn-primary" value="后退" onclick="history.back();"/>
+			
+		<table class="table table-bordered table-hover table-condensed  scrolltable">
 		<#list table.columns as column>
 		<#if !column.htmlHidden>
 			<tr>	
@@ -40,8 +36,9 @@
 		</#if>
 		</#list>
 		</table>
+
 	</form:form>
-</duowan:override>
+</rapid:override>
 
 <%-- jsp模板继承,具体使用请查看: http://code.google.com/p/rapid-framework/wiki/rapid_jsp_extends --%>
 <%@ include file="base.jsp" %>

@@ -9,8 +9,8 @@
 <%@ taglib tagdir="/WEB-INF/tags/simpletable" prefix="simpletable"%>
 <%@ include file="/commons/taglibs.jsp" %>
 
-<duowan:override name="head">
-	<title>${table.tableAlias} 维护</title>
+<rapid:override name="head">
+	<title>${table.tableAlias} 列表</title>
 	
 	<script src="<@jspEl 'ctx'/>/js/rest.js" ></script>
 	<link href="<c:url value="/widgets/simpletable/simpletable.css"/>" type="text/css" rel="stylesheet">
@@ -22,14 +22,14 @@
 			window.simpleTable = new SimpleTable('queryForm',<@jspEl 'page.paginator.page'/>,<@jspEl 'page.paginator.pageSize'/>,'<@jspEl 'pageRequest.sortColumns'/>');
 		});
 	</script>
-</duowan:override>
+</rapid:override>
 
-<duowan:override name="content">
+<rapid:override name="content">
 	<form id="queryForm" name="queryForm" method="get" style="display: inline;">
 	<div class="queryPanel">
 		<fieldset>
 			<legend>搜索</legend>
-			<table>
+			<table class="table table-striped table-bordered table-hover table-condensed  scrolltable sortable">
 				<#list table.notPkColumns?chunk(4) as row>
 				<tr>	
 					<#list row as column>
@@ -50,8 +50,8 @@
 			</table>
 		</fieldset>
 		<div class="handleControl">
-			<input type="submit" class="stdButton" style="width:80px" value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>
-			<input type="button" class="stdButton" style="width:80px" value="新增" onclick="window.location = '<@jspEl 'ctx'/>/${classNameLowerCase}/add.do'"/>
+			<input type="submit" class="btn btn-primary btn-sm"  value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>
+			<input type="button" class="btn btn-primary btn-sm"  value="新增" onclick="window.location = '<@jspEl 'ctx'/>/${classNameLowerCase}/add.do'"/>
 		<div>
 	
 	</div>
@@ -62,7 +62,7 @@
 		显示在这里是为了提示你如何自定义表头,可修改模板删除此行
 		</simpletable:pageToolbar>
 	
-		<table width="100%"  border="0" cellspacing="0" class="gridBody">
+		<table width="100%"  border="0" cellspacing="0" class="table table-striped table-bordered table-hover table-condensed  scrolltable sortable">
 		  <thead>
 			  
 			  <tr>
@@ -82,7 +82,7 @@
 		  <tbody>
 		  	  <c:forEach items="<@jspEl 'page.itemList'/>" var="item" varStatus="status">
 		  	  
-			  <tr class="<@jspEl "status.count % 2 == 0 ? 'odd' : 'even'"/>">
+			  <tr>
 				<td><@jspEl 'page.paginator.startRow + status.index'/></td>
 				
 				<#list table.columns as column>
@@ -116,7 +116,7 @@
 		
 	</div>
 	</form>
-</duowan:override>
+</rapid:override>
 
 <%-- jsp模板继承,具体使用请查看: http://code.google.com/p/rapid-framework/wiki/rapid_jsp_extends --%>
 <%@ include file="base.jsp" %>

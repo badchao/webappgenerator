@@ -13,19 +13,17 @@
 
 <#list table.columns as column>
 	<#if !column.htmlHidden>	
-	<tr>	
-		<td class="tdLabel">
-			<#if !column.nullable><span class="required">*</span></#if>${column.columnAlias}:
-		</td>		
-		<td>
-	<#if column.isDateTimeColumn>
-		<input value='<fmt:formatDate value="<@jspEl classNameLower+"."+column.columnNameLower/>" pattern="yyyy-MM-dd"/>' onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}" name="${column.columnNameLower}"  maxlength="0" class="${column.validateString}" />
-	<#else>
-		<form:input path="${column.columnNameLower}" id="${column.columnNameLower}" cssClass="${column.validateString}" maxlength="${column.size}" />
-	</#if>
-		<font color='red'><form:errors path="${column.columnNameLower}"/></font>
-		</td>
-	</tr>	
+	<div class="form-group">
+		<label for="${column.columnNameLower}" class="col-sm-2 control-label"><#if !column.nullable><span class="required">*</span></#if>${column.columnAlias}:</label>
+		<div class="col-sm-10">
+		<#if column.isDateTimeColumn>
+			<input value='<fmt:formatDate value="<@jspEl classNameLower+"."+column.columnNameLower/>" pattern="yyyy-MM-dd"/>' class="form-control"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}" name="${column.columnNameLower}"  maxlength="0" class="${column.validateString}" />
+		<#else>
+			<form:input path="${column.columnNameLower}" id="${column.columnNameLower}" cssClass="form-control ${column.validateString}" maxlength="${column.size}" placeholder="${column.columnNameLower}"/>
+		</#if>
+			<font color='red'><form:errors path="${column.columnNameLower}"/></font>
+		</div>
+	 </div>
 	
 	</#if>
 </#list>		
