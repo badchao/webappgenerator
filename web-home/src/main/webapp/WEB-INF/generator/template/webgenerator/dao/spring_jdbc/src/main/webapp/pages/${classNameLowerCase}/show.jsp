@@ -15,9 +15,6 @@
 	<h2 id="title" class="text-center">查看 ${table.tableAlias}</h2>
 	
 	<form:form modelAttribute="${classNameLowerCase}" cssClass="form-horizontal"  >
-		<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>&nbsp;&nbsp;&nbsp;
-		<input type="button" class="btn btn-primary" value="后退" onclick="history.back();"/>
-			
 		<table class="table table-bordered table-hover table-condensed  scrolltable">
 		<#list table.columns as column>
 		<#if !column.htmlHidden>
@@ -36,6 +33,11 @@
 		</#if>
 		</#list>
 		</table>
+		
+		<div class="text-center">
+			<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn btn-primary" value="后退" onclick="history.back();"/>
+		</div>
 
 	</form:form>
 </rapid:override>

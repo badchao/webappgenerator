@@ -37,13 +37,6 @@
  			<td>namespace</td>
  			<td><input type="text" id="namespace" name="namespace" size="40" onchange="saveCookie()"/> JSP页面划分的子模块,影响如/{namespace}/{className}/list.jsp</td>
  		</tr>
-		<tr>
- 			<td>appModule</td>
- 			<td><input type="text" id="appModule" name="appModule" size="40" onchange="saveCookie()"/> 应用模块</td>
- 		</tr> 		  		
- 		<tr>
- 			<td colspan="2" align="center"><input type="submit" value="生成代码"/> <input type="reset" value="清空表单" onclick="$('#consoleOutput').html('');setTimeout(function() {saveCookie()} ,500 );"/></td>
- 		</tr>
  	</table>
  	</form>
  	

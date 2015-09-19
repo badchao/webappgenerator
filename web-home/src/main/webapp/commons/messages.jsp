@@ -2,14 +2,14 @@
 
 <%-- Error Messages --%>
 <c:if test="${flash.success != null}">
-	<div class="flash_success">
+	<div class="alert alert-success">
 		${flash.success}<br/>
 	</div>    
 </c:if>
 
 <%-- Info Messages --%>
 <c:if test="${flash.error != null}">
-	<div class="flash_error">
+	<div class="alert alert-danger">
 		${flash.error}<br/>
 	</div> 
 </c:if>

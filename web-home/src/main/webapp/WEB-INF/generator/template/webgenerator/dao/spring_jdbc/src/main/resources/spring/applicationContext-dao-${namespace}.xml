@@ -11,5 +11,5 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
     default-autowire="byName" default-lazy-init="false">
 
-	<bean id="${classNameFirstLower}Dao" class="${basepackage}.dao.impl.${className}DaoImpl" parent="${appModule}DaoParent" />
+	<bean id="${classNameFirstLower}Dao" class="${basepackage}.dao.impl.${className}DaoImpl" parent="${namespace}DaoParent" />
 </beans>

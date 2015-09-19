@@ -8,11 +8,17 @@ package ${basepackage}.controller;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
+import org.apache.commons.collections.MapUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,9 +27,13 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.github.rapid.common.beanutils.BeanUtils;
 import com.github.rapid.common.exception.MessageException;
 import com.github.rapid.common.web.scope.Flash;
+import com.github.rapid.common.util.CsvFileUtil;
 import com.github.rapid.common.util.ValidationErrorsUtil;
 import com.github.rapid.common.util.page.Page;
 
@@ -38,6 +48,8 @@ import com.github.rapid.common.util.page.Page;
 @Controller
 @RequestMapping("/${classNameLowerCase}")
 public class ${className}Controller {
+	
+	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
 	private ${className}Service ${classNameFirstLower}Service;
 	
@@ -140,6 +152,30 @@ public class ${className}Controller {
 		return LIST_ACTION;
 	}
 	
+	
+	/** 上传csv文件保存  */
+	@RequestMapping
+	public String upload(@RequestParam("file")  CommonsMultipartFile file)  throws Exception {
+		int skipLines = 1;
+		List<Map> rows = CsvFileUtil.readCsv2Maps(file.getInputStream(),"UTF-8","<#list table.columns as c>${c.columnNameFirstLower}<#if c_has_next>,</#if></#list>",skipLines);
+		List<${className}> items = ${className}Util.to${className}List(rows);
+		
+		int successCount = 0;
+		int errorCount = 0;
+		for(${className} item : items) {
+			try {
+				${classNameFirstLower}Service.create(item);
+				successCount++;
+			}catch(Exception e) {
+				errorCount++;
+				logger.info("create_${className}_error",e);
+			}
+		}
+		
+		Flash.current().success("上传成功,创建成功条数:"+successCount+",失败条数:"+errorCount);
+		return LIST_ACTION;
+	}
+
 }
 
 <#macro generateRequestParamArguments columns>

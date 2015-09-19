@@ -62,8 +62,7 @@ public class GeneratorController {
 		public String sqls;
 		public String basepackage;
 		public String tableRemovePrefixes = "";
-		public String namespace = "shared";
-		public String appModule = "shared";
+		public String namespace = "admin";
 		
 		public ServletContext context;
 		public HttpServletRequest request;
@@ -102,9 +101,6 @@ public class GeneratorController {
 			this.namespace = namespace;
 		}
 
-		public void setAppModule(String appModule) {
-			this.appModule = appModule;
-		}
 
 		public void execute() throws Exception {
 			GeneratorFacade g = null;
@@ -187,7 +183,6 @@ public class GeneratorController {
 
 			props.setProperty("outRoot", outRoot);
 			props.setProperty("namespace", namespace);
-			props.setProperty("appModule", appModule);
 			props.setProperty("basepackage",basepackage);
 			props.setProperty("tableRemovePrefixes",tableRemovePrefixes);
 			

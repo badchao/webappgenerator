@@ -92,7 +92,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 </#list>
     
 	/**
-	 * 为创建时初始化相关默认值 
+	 * 创建对象时初始化相关默认值 
 	 **/
     public void initDefaultValuesForCreate(${className} ${classNameLower}) {
     }

@@ -24,39 +24,44 @@
 	</script>
 </rapid:override>
 
+
 <rapid:override name="content">
-	<form id="queryForm" name="queryForm" method="get" style="display: inline;">
-	<div class="queryPanel">
-		<fieldset>
-			<legend>搜索</legend>
-			<table class="table table-striped table-bordered table-hover table-condensed  scrolltable sortable">
-				<#list table.notPkColumns?chunk(4) as row>
-				<tr>	
-					<#list row as column>
-					<#if !column.htmlHidden>	
-					<td class="tdLabel">${column.columnAlias}</td>		
-					<td>
-						<#if column.isDateTimeColumn>
-						<input value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'Begin'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}Begin" name="${column.columnNameLower}Begin"   />
-						<input value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'End'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}End" name="${column.columnNameLower}End"   />
-						<#else>
-						<input value="<@jspEl "query."+column.columnNameLower/>" id="${column.columnNameLower}" name="${column.columnNameLower}" maxlength="${column.size}"  class="${column.noRequiredValidateString}"/>
-						</#if>
-					</td>
-					</#if>
-					</#list>
-				</tr>	
-				</#list>			
-			</table>
-		</fieldset>
-		<div class="handleControl">
-			<input type="submit" class="btn btn-primary btn-sm"  value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>
-			<input type="button" class="btn btn-primary btn-sm"  value="新增" onclick="window.location = '<@jspEl 'ctx'/>/${classNameLowerCase}/add.do'"/>
-		<div>
+	<form id="queryForm" name="queryForm" method="get" >
 	
+	<div class="panel panel-default">
+		<table border="0" class="table  table-condensed">
+			<#list table.notPkColumns?chunk(4) as row>
+			<tr>	
+				<td>
+				<#list row as column>
+				<#if !column.htmlHidden>	
+					<div class="col-xs-4">
+						<div class="input-group">
+							<#if column.isDateTimeColumn>
+							<div class="input-group-addon">开始${column.columnAlias}</div>
+							<input class="form-control input-from-control" placeholder="结束${column.columnAlias}" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'Begin'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}Begin" name="${column.columnNameLower}Begin"   />
+							<div class="input-group-addon">结束${column.columnAlias}</div>
+							<input class="form-control input-from-control" placeholder="结束${column.columnAlias}" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'End'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}End" name="${column.columnNameLower}End"   />
+							<#else>
+							<div class="input-group-addon">${column.columnAlias}</div>
+							<input class="form-control input-from-control" placeholder="${column.columnAlias}" value="<@jspEl "query."+column.columnNameLower/>" id="${column.columnNameLower}" name="${column.columnNameLower}" maxlength="${column.size}"  class="${column.noRequiredValidateString}"/>
+							</#if>
+						</div>
+					</div>
+				</#if>
+				</#list>
+				</td>		
+			</tr>	
+			</#list>			
+		</table>
+		<div >
+			<input type="submit" class="btn btn-primary btn-sm text-left"  value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>
+			<input type="button" class="btn btn-primary btn-sm text-left"  value="新增" onclick="window.location = '<@jspEl 'ctx'/>/${classNameLowerCase}/add.do'"/>
+			<input type="button" class="btn btn-primary btn-sm text-left"  value="上传文件" onclick="window.location = '<@jspEl 'ctx'/>/pages/${classNameLowerCase}/upload.jsp'"/>
+		</div>
 	</div>
 	
-	<div class="gridTable">
+	<div class="panel panel-default">
 	
 		<simpletable:pageToolbar paginator="<@jspEl 'page.paginator'/>">
 		显示在这里是为了提示你如何自定义表头,可修改模板删除此行
@@ -64,20 +69,16 @@
 	
 		<table width="100%"  border="0" cellspacing="0" class="table table-striped table-bordered table-hover table-condensed  scrolltable sortable">
 		  <thead>
-			  
 			  <tr>
 				<th style="width:1px;"> </th>
-				
 				<!-- 排序时为th增加sortColumn即可,new SimpleTable('sortColumns')会为tableHeader自动增加排序功能; -->
 				<#list table.columns as column>
 				<#if !column.htmlHidden>
 				<th sortColumn="${column.sqlName}" >${column.columnAlias}</th>
 				</#if>
 				</#list>
-	
 				<th>操作</th>
 			  </tr>
-			  
 		  </thead>
 		  <tbody>
 		  	  <c:forEach items="<@jspEl 'page.itemList'/>" var="item" varStatus="status">
@@ -115,6 +116,7 @@
 		</simpletable:pageToolbar>
 		
 	</div>
+	
 	</form>
 </rapid:override>
 
