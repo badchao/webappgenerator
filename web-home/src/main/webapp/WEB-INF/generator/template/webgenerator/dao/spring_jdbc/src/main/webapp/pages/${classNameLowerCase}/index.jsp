@@ -98,6 +98,7 @@
 				<#lt></td>
 				</#if>
 				</#list>
+				
 				<td>
 					<a href="<@jspEl 'ctx'/>/${classNameLowerCase}/show.do?<@generateHtmlLinkArguments table.pkColumns/>">查看</a>&nbsp;&nbsp;
 					<a href="<@jspEl 'ctx'/>/${classNameLowerCase}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>">修改</a>&nbsp;&nbsp;

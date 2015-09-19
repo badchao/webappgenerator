@@ -17,7 +17,6 @@ public class GeneratorControllerTest {
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		new GeneratorController().gen(cmd,request,response);
-		new GeneratorController().gen(cmd,request,response);
 	}
 	
 }

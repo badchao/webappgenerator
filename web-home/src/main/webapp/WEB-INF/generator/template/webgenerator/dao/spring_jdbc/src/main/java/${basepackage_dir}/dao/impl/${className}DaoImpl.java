@@ -6,6 +6,9 @@ package ${basepackage}.dao.impl;
 <#include "/java_imports.include">
 
 import ${basepackage}.dao.${className}Dao;
+
+
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,7 +18,9 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Component;
 
-import static com.github.rapid.common.util.ObjectUtils.*;
+import com.github.rapid.common.util.page.Page;
+import com.github.rapid.common.util.ObjectUtil;
+import com.github.rapid.common.jdbc.dao.support.BaseSpringJdbcDao;
 
 /**
  * tableName: ${table.sqlName}
@@ -71,19 +76,19 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 	
 	public int deleteById(<@generateArguments table.pkColumns/>) {
 		String sql = "delete from ${table.sqlName} where <#list table.pkColumns as column> ${column.sqlName} = ? <#if column_has_next>and</#if></#list>";
-		return  getSimpleJdbcTemplate().update(sql,  <@generatePassingParameters table.pkColumns/>);
+		return  getJdbcTemplate().update(sql,  <@generatePassingParameters table.pkColumns/>);
 	}
 
 	public ${className} getById(<@generateArguments table.pkColumns/>) {
 		String sql = SELECT_FROM + " where <#list table.pkColumns as column> ${column.sqlName} = ? <#if column_has_next>and</#if></#list>";
-		return (${className})DataAccessUtils.singleResult(getSimpleJdbcTemplate().query(sql, getEntityRowMapper(),<@generatePassingParameters table.pkColumns/>));
+		return (${className})DataAccessUtils.singleResult(getJdbcTemplate().query(sql, getEntityRowMapper(),<@generatePassingParameters table.pkColumns/>));
 	}
 	
 	<#list table.columns as column>
 	<#if column.unique && !column.pk>
 	public ${className} getBy${column.columnName}(${column.primitiveJavaType} ${column.columnNameFirstLower}) {
 		String sql =  SELECT_FROM + " where ${column.sqlName}=?";
-		return (${className})DataAccessUtils.singleResult(getSimpleJdbcTemplate().query(sql, getEntityRowMapper(), ${column.columnNameFirstLower}));
+		return (${className})DataAccessUtils.singleResult(getJdbcTemplate().query(sql, getEntityRowMapper(), ${column.columnNameFirstLower}));
 	}	
 	
 	</#if>
@@ -94,14 +99,14 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		StringBuilder sql = new StringBuilder("select "+ COLUMNS + " from ${table.sqlName} where 1=1 ");
 		<#list table.columns as column>
 		<#if column.isDateTimeColumn>
-		if(isNotEmpty(query.get${column.columnName}Begin())) {
+		if(ObjectUtil.isNotEmpty(query.get${column.columnName}Begin())) {
 		    sql.append(" and ${column.sqlName} >= :${column.columnNameLower}Begin ");
 		}
-		if(isNotEmpty(query.get${column.columnName}End())) {
+		if(ObjectUtil.isNotEmpty(query.get${column.columnName}End())) {
             sql.append(" and ${column.sqlName} <= :${column.columnNameLower}End ");
         }
 		<#else>
-		if(isNotEmpty(query.get${column.columnName}())) {
+		if(ObjectUtil.isNotEmpty(query.get${column.columnName}())) {
             sql.append(" and ${column.sqlName} = :${column.columnNameLower} ");
         }
 		</#if>

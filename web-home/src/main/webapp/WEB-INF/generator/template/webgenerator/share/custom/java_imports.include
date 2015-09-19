@@ -1,29 +1,6 @@
-import java.io.*;
-import java.net.*;
 import java.util.*;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
-import com.duowan.badqiu.gg.common.base.*;
-
-import static com.github.rapid.common.util.DateFormats.*;
-import static com.duowan.badqiu.gg.common.message.GlobalMessages.*;
-import static com.duowan.badqiu.gg.common.util.SpringMVCUtils.toModelMap;
-
-import static com.github.rapid.common.util.ValidationErrorsUtils.convert;
-import static com.github.rapid.common.beanutils.BeanUtils.copyProperties;
-import static com.github.rapid.common.util.holder.BeanValidatorHolder.validateWithException;
-
-import com.github.rapid.common.util.DateConvertUtils;
-import com.github.rapid.common.util.DateConvertUtils;
-import com.github.rapid.common.util.page.Page;
-import com.github.rapid.common.util.page.PageQuery;
-import com.github.rapid.common.web.scope.Flash;
 
 import ${basepackage}.model.*;
 import ${basepackage}.dao.*;
 import ${basepackage}.service.*;
 import ${basepackage}.query.*;
-import ${basepackage}.*;
-

@@ -6,31 +6,26 @@
 
 package ${basepackage}.controller;
 
-import java.util.Map;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.rapid.common.exception.MessageException;
 import com.github.rapid.common.web.scope.Flash;
+import com.github.rapid.common.util.ValidationErrorsUtil;
+import com.github.rapid.common.util.page.Page;
 
 <#include "/java_imports.include">
 
@@ -47,6 +42,10 @@ public class ${className}Controller {
 	private ${className}Service ${classNameFirstLower}Service;
 	
 	private final String LIST_ACTION = "redirect:/${classNameLowerCase}/index.do";
+	
+	private static String CREATED_SUCCESS = "创建成功";
+	private static String UPDATE_SUCCESS = "更新成功";
+	private static String DELETE_SUCCESS = "删除成功";
 	
 	/** 
 	 * 增加setXXXX()方法,spring就可以通过autowire自动设置对象属性,注意大小写
@@ -69,16 +68,17 @@ public class ${className}Controller {
 	}
 	
 	/** 列表 */
-	@RequestMapping(value="/index")
+	@RequestMapping
 	public String index(ModelMap model,${className}Query query,HttpServletRequest request) {
 		Page<${className}> page = this.${classNameFirstLower}Service.findPage(query);
 		
-		model.addAllAttributes(toModelMap(page, query));
+		model.addAttribute("page",page);
+		model.addAttribute("query",query);
 		return "/${classNameLowerCase}/index";
 	}
 	
 	/** 显示 */
-	@RequestMapping(value="/show")
+	@RequestMapping
 	public String show(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) throws Exception {
 		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
@@ -86,19 +86,19 @@ public class ${className}Controller {
 	}
 
 	/** 进入新增 */
-	@RequestMapping(value="/add")
+	@RequestMapping
 	public String add(ModelMap model,${className} ${classNameFirstLower}) throws Exception {
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
 		return "/${classNameLowerCase}/add";
 	}
 	
 	/** 保存新增,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
-	@RequestMapping(value="/create")
+	@RequestMapping
 	public String create(ModelMap model,${className} ${classNameFirstLower},BindingResult errors) throws Exception {
 		try {
 			${classNameFirstLower}Service.create(${classNameFirstLower});
 		}catch(ConstraintViolationException e) {
-			convert(e, errors);
+			ValidationErrorsUtil.convert(e, errors);
 			return  "/${classNameLowerCase}/add";
 		}catch(MessageException e) {
 			Flash.current().error(e.getMessage());
@@ -109,7 +109,7 @@ public class ${className}Controller {
 	}
 	
 	/** 编辑 */
-	@RequestMapping(value="/edit")
+	@RequestMapping
 	public String edit(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) throws Exception {
 		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
@@ -117,12 +117,12 @@ public class ${className}Controller {
 	}
 	
 	/** 保存更新,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
-	@RequestMapping(value="/update")
+	@RequestMapping
 	public String update(ModelMap model,<@generateRequestParamArguments table.pkColumns/>,${className} ${classNameFirstLower},BindingResult errors) throws Exception {
 		try {
 			${classNameFirstLower}Service.update(${classNameFirstLower});
 		}catch(ConstraintViolationException e) {
-			convert(e, errors);
+			ValidationErrorsUtil.convert(e, errors);
 			return  "/${classNameLowerCase}/edit";
 		}catch(MessageException e) {
 			Flash.current().error(e.getMessage());
@@ -133,7 +133,7 @@ public class ${className}Controller {
 	}
 	
 	/** 批量删除 */
-	@RequestMapping(value="/delete")
+	@RequestMapping
 	public String delete(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) {
 		${classNameFirstLower}Service.removeById(<@generatePassingParameters table.pkColumns/>);
 		Flash.current().success(DELETE_SUCCESS);
@@ -144,6 +144,6 @@ public class ${className}Controller {
 
 <#macro generateRequestParamArguments columns>
 <#compress>
-<#list table.pkColumns as column> @RequestParam("${column.columnNameFirstLower}") ${column.primitiveJavaType} ${column.columnNameFirstLower}<#if column_has_next>,</#if></#list>
+<#list table.pkColumns as column> ${column.primitiveJavaType} ${column.columnNameFirstLower}<#if column_has_next>,</#if></#list>
 </#compress>
 </#macro>

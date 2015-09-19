@@ -7,11 +7,11 @@ package ${basepackage}.query;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 import java.io.Serializable;
 
 <#include "/java_imports.include">
+import com.github.rapid.common.util.page.PageQuery;
 
 /**
 <#include "/java_description.include">

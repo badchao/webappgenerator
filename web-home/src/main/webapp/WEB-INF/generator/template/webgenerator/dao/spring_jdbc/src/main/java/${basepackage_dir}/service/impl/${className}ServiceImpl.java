@@ -10,6 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import ${basepackage}.service.${className}Service;
+
+import com.github.rapid.common.util.holder.BeanValidatorHolder;
+import com.github.rapid.common.util.page.Page;
+
 <#include "/java_imports.include">
 
 /**
@@ -110,7 +114,7 @@ public class ${className}ServiceImpl implements ${className}Service {
         /** 检查到有错误请直接抛异常，不要使用 return errorCode的方式 */
         public void check${className}(${className} ${classNameLower}) {
         	// Bean Validator检查,属性检查失败将抛异常
-            validateWithException(${classNameLower});
+        	BeanValidatorHolder.validateWithException(${classNameLower});
             
         	//复杂的属性的检查一般需要分开写几个方法，如 checkProperty1(v),checkProperty2(v)
         }

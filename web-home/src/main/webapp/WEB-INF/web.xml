@@ -72,12 +72,6 @@
 		<filter-class>com.github.rapid.common.web.scope.FlashFilter</filter-class>
 	</filter>
 
-	<!-- LoggerMDCFilter,存放在MDC中的数据，log4j可以直接引用并作为日志信息打印出来. -->
-	<filter>
-		<filter-name>LoggerMDCFilter</filter-name>
-		<filter-class>com.duowan.generator.common.web.filter.LoggerMDCFilter</filter-class>
-	</filter>
-
 	<filter-mapping>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -88,10 +82,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<filter-mapping>
-		<filter-name>LoggerMDCFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 
 	<!-- Log4J 配置 -->
 	<!-- 

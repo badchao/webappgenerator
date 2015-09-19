@@ -125,10 +125,12 @@ public class GeneratorController {
 					g.generateByTable(tableName);
 				}
 				
-				response.setHeader("Content-Disposition", "attachment; filename=\"" + "generator_output.zip" + "\"");
 				FileUtils.writeStringToFile(new File(outRoot,"generator.log"), memoryConsole.toString());
 				
-				ZipHelper.zip(outRoot,response.getOutputStream());
+//				response.setHeader("Content-Disposition", "attachment; filename=\"" + "generator_output.zip" + "\"");
+//				ZipHelper.zip(outRoot,response.getOutputStream());
+				
+				FileUtils.copyDirectory(new File(outRoot), new File("E:/scm/xsj/dataanalyse/web_app_report"));
 			}finally {
 				if(g != null) 
 					g.deleteOutRootDir();

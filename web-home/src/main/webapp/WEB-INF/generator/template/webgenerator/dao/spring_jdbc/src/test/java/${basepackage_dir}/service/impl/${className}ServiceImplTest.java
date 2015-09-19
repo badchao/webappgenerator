@@ -9,11 +9,7 @@ package ${basepackage}.service.impl;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.duowan.badqiu.gg.shared.${className}DataFactory;
-import com.duowan.badqiu.gg.shared.dao.${className}Dao;
-import com.duowan.badqiu.gg.shared.model.${className};
-import com.duowan.badqiu.gg.shared.model.${className};
-import com.duowan.badqiu.gg.shared.service.impl.${className}ServiceImpl;
+import ${basepackage}.${className}DataFactory;
 
 import static junit.framework.Assert.*;
 import static org.mockito.Mockito.*;
@@ -23,7 +19,7 @@ import static org.mockito.Mockito.*;
 /**
 <#include "/java_description.include">
  */
-public class ${className}ServiceImplTest extends BaseServiceTestCase{
+public class ${className}ServiceImplTest {
 
 	//mock框架使用Mockito 具体使用请查看: http://code.google.com/p/mockito/wiki/MockitoVSEasyMock
 	

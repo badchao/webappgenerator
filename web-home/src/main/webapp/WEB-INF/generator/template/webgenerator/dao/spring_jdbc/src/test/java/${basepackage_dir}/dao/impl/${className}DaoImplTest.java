@@ -3,6 +3,10 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.dao.impl;
 
+import ${basepackage}.${className}DataFactory;
+
+import com.github.rapid.common.util.page.Page;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +21,7 @@ import static junit.framework.Assert.*;
 /**
 <#include "/java_description.include">
  */
-public class ${className}DaoImplTest extends BaseDaoTestCase{
+public class ${className}DaoImplTest {
 	
 	@Rule public TestName testName = new TestName();
 	
@@ -28,7 +32,6 @@ public class ${className}DaoImplTest extends BaseDaoTestCase{
 		this.dao = dao;
 	}
 
-	@Override 
 	protected String[] getDbUnitDataFiles() {
 	    //通过testName.getMethodName() 可以得到当前正在运行的测试方法名称
 //		return new String[]{"classpath:testdata/common.xml","classpath:testdata/${className}.xml",

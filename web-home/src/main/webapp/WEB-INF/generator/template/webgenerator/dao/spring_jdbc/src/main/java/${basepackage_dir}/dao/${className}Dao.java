@@ -5,15 +5,8 @@ package ${basepackage}.dao;
 
 <#include "/java_imports.include">
 
-import java.io.Serializable;
 import java.util.List;
-
-import org.springframework.dao.support.DataAccessUtils;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
-import org.springframework.stereotype.Component;
-
-import static com.github.rapid.common.util.ObjectUtils.*;
+import com.github.rapid.common.util.page.Page;
 
 /**
  * tableName: ${table.sqlName}

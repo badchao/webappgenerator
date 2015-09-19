@@ -3,6 +3,8 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.service;
 
+import com.github.rapid.common.util.page.Page;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;

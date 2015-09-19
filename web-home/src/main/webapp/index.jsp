@@ -21,7 +21,9 @@
  	<table>
  		<tr>
  			<td>create table SQL(用分号；分隔多条SQL)</td>
- 			<td><textarea id="sqls" name="sqls" cols="80" rows="20" onchange="saveCookie()"></textarea></td>
+ 			<td><textarea id="sqls" name="sqls" cols="80" rows="20" onchange="saveCookie()"></textarea>
+ 				<br />示例值: create table demo_table (username varchar(20) primary key,age int);
+ 			</td>
  		</tr>
  		<tr>
  			<td>java package</td>

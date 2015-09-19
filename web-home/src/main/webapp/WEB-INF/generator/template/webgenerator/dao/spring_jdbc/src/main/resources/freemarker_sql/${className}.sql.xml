@@ -3,7 +3,8 @@
 
 <#assign className = table.className>   
 <#assign classNameFirstLower = className?uncap_first>   
-<#assign classNameLowerCase = className?lower_case>  
+<#assign classNameLowerCase = className?lower_case> 
+<#assign star = '#'> 
 <#macro namespace>${classNameFirstLower}.</#macro>
 
 <properties>
@@ -27,7 +28,7 @@
         </#list>        
         )
     ]]>
-    </insert>
+    </entry>
 
     <entry key="<@namespace/>update" >
     <![CDATA[
@@ -51,8 +52,8 @@
     ]]>
     </entry>
     
-    <entry key="<@namespace/>getById" resultMap="RM.${className}">
-	    SELECT <#noparse><#include</entry>#noparse> "<@namespace/>column">
+    <entry key="<@namespace/>getById">
+	    SELECT <#noparse><#include </#noparse> "<@namespace/>column">
 	    <![CDATA[
 	        FROM ${table.sqlName} 
 	        WHERE 
@@ -63,27 +64,34 @@
     </entry>
 
 	<entry key="<@namespace/>findPage.where">
-		where 1=1
+		<![CDATA[
        <#list table.columns as column>
-	       <#if column.isDateTimeColumn>
+		<#if column.isDateTimeColumn>
 	       
-	       <#if ${column.columnNameLower}Begin? >
+	       <${star}if ${column.columnNameLower}Begin?? >
 	            and ${column.sqlName} >= ${column.columnNameLower}Begin
-	       </#if>
-	       <#if ${column.columnNameLower}End? >
-	            and ${column.sqlName} &lt;= :${column.columnNameLower}End
-	       </#if>
-		   <#else>
-	       <#if ${column.columnNameLower}? >
-	            and ${column.sqlName} = :${column.columnNameLower}
-	       </#if>
+	       </${star}if>
+	       <${star}if ${column.columnNameLower}End?? >
+	            and ${column.sqlName} <= :${column.columnNameLower}End
+	       </${star}if>
 	       
-		   </#if>
+		<#else>
+	       <${star}if ${column.columnNameLower}?? >
+	            and ${column.sqlName} = :${column.columnNameLower}
+	       </${star}if>
+	       
+		</#if>
        </#list>
+     	]]>
 	</entry>
 	 
     <entry key="<@namespace/>findPage.count">
-        SELECT count(*) FROM ${table.sqlName} <#noparse><#include "</#noparse><@namespace/>findPage.where">    
+    <![CDATA[
+        SELECT count(*) 
+        FROM ${table.sqlName} 
+        WHERE 1=1
+        <#noparse><#include "</#noparse><@namespace/>findPage.where">
+    ]]>    
     </entry>
     
     <!--
@@ -91,19 +99,28 @@
     	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
     -->
     <entry key="<@namespace/>findPage">
-    	SELECT <#noparse><#include</#noparse> "<@namespace/>column"> FROM ${table.sqlName} 
-		<include refid=""/> <#noparse><#include</#noparse> "<@namespace/>findPage.where">
-		<isNotEmpty property="sortColumns">
-			ORDER BY $sortColumns$
-		</isNotEmpty>
+    	<![CDATA[
+    	SELECT 
+    		<#noparse><#include</#noparse> "<@namespace/>column"> 
+    	FROM ${table.sqlName} 
+    	WHERE 1=1
+		<#noparse><#include</#noparse> "<@namespace/>findPage.where">
+		
+		<${star}if sortColumns?? >
+			ORDER BY :sortColumns
+		</${star}if>
+		
+		]]>
     </entry>
 
     <#list table.columns as column>
     <#if column.unique && !column.pk>
     <entry key="<@namespace/>getBy${column.columnName}" >
-	    SELECT <#noparse><#include</#noparse> "<@namespace/>column">
 	    <![CDATA[
-	        FROM ${table.sqlName} WHERE ${column.sqlName} = :${column.columnNameLower}
+	    SELECT 
+	    	<#noparse><#include</#noparse> "<@namespace/>column">
+	    FROM ${table.sqlName} 
+	    WHERE ${column.sqlName} = :${column.columnNameLower}
 	    ]]>
     </entry>
     
