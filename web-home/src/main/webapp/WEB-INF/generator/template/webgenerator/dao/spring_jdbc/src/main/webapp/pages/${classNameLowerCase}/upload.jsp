@@ -17,15 +17,15 @@
 	<form class="form-horizontal" action="${dollor}{ctx}/${classNameLowerCase}/upload.do" method="post"  enctype="multipart/form-data" >
 		  
 	  <div class="form-group">
-		<label for="username" class="col-sm-2 control-label">文件</label>
-		<div class="col-sm-10">
+		<label for="username" class="col-sm-4 control-label">文件</label>
+		<div class="col-sm-4">
 			<input id="file" type="file" name="file" class="form-control " placeholder="选择上传文件"/>
 			<a href="${dollor}{ctx}/pages/${classNameLowerCase}/upload_${className}.csv" >下载数据上传模板</a>
 		</div>
 	 </div>
 	 
 		<div class="form-group">
-		    <div class="col-sm-offset-2 col-sm-10 text-center">
+		    <div class="text-center">
 				<input id="submitButton" class="btn btn-success" name="submitButton" type="submit" value="上传" />&nbsp;&nbsp;&nbsp;
 				<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='${dollor}{ctx}/${classNameLowerCase}/index.do'"/>&nbsp;&nbsp;&nbsp;
 				<input type="button" class="btn btn-primary" value="后退" onclick="history.back();"/>

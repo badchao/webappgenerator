@@ -14,8 +14,8 @@
 <#list table.columns as column>
 	<#if !column.htmlHidden>	
 	<div class="form-group">
-		<label for="${column.columnNameLower}" class="col-sm-2 control-label"><#if !column.nullable><span class="required">*</span></#if>${column.columnAlias}:</label>
-		<div class="col-sm-10">
+		<label for="${column.columnNameLower}" class="col-sm-4 control-label"><#if !column.nullable><span class="required">*</span></#if>${column.columnAlias}:</label>
+		<div class="col-sm-4">
 		<#if column.isDateTimeColumn>
 			<input value='<fmt:formatDate value="<@jspEl classNameLower+"."+column.columnNameLower/>" pattern="yyyy-MM-dd"/>' class="form-control"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}" name="${column.columnNameLower}"  maxlength="0" class="${column.validateString}" />
 		<#else>
