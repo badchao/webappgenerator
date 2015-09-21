@@ -157,7 +157,7 @@ public class ${className}Controller {
 	@RequestMapping
 	public String upload(@RequestParam("file")  CommonsMultipartFile file)  throws Exception {
 		int skipLines = 1;
-		List<Map> rows = CsvFileUtil.readCsv2Maps(file.getInputStream(),"UTF-8","<#list table.columns as c>${c.columnNameFirstLower}<#if c_has_next>,</#if></#list>",skipLines);
+		List<Map> rows = CsvFileUtil.readCsv2Maps(file.getInputStream(),"UTF-8","<#list table.notPkColumns as c>${c.columnNameFirstLower}<#if c_has_next>,</#if></#list>",skipLines);
 		List<${className}> items = ${className}Util.to${className}List(rows);
 		
 		int successCount = 0;
