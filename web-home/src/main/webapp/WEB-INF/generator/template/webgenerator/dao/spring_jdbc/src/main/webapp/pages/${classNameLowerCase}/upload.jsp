@@ -17,9 +17,9 @@
 	<form class="form-horizontal" action="${dollor}{ctx}/${classNameLowerCase}/upload.do" method="post"  enctype="multipart/form-data" >
 		  
 	  <div class="form-group">
-		<label for="username" class="col-sm-4 control-label">文件</label>
-		<div class="col-sm-4">
-			<input id="file" type="file" name="file" class="form-control " placeholder="选择上传文件"/>
+		<label for="username" class="col-md-4 control-label">文件</label>
+		<div class="col-md-4">
+			<input type="file" name="file" class="file" placeholder="选择上传文件"/>
 			<a href="${dollor}{ctx}/pages/${classNameLowerCase}/upload_${className}.csv" >下载数据上传模板</a>
 		</div>
 	 </div>
