@@ -11,13 +11,13 @@
 	
 	<!-- 用于select查询公用抽取的列 -->
 	<entry key="<@namespace/>columns">
-	    <![CDATA[
+		<![CDATA[
         <#list table.columns as column>${column.sqlName} <#if column_has_next>,</#if></#list>
-	    ]]>
+		]]>
 	</entry>
 	
     <entry key="<@namespace/>insert" >
-    <![CDATA[
+    	<![CDATA[
         INSERT INTO ${table.sqlName} (
         <#list table.columns as column>
         	${column.sqlName} <#if column_has_next>,</#if>
@@ -27,11 +27,11 @@
         	:${column.columnNameLower} <#if column_has_next>,</#if>
         </#list>        
         )
-    ]]>
+    	]]>
     </entry>
 
     <entry key="<@namespace/>update" >
-    <![CDATA[
+    	<![CDATA[
         UPDATE ${table.sqlName} SET
 	        <#list table.notPkColumns as column>
 	        ${column.sqlName} = :${column.columnNameLower} <#if column_has_next>,</#if>
@@ -40,27 +40,27 @@
         	<#list table.compositeIdColumns as column>
 	        ${column.sqlName} = :${column.columnNameLower} <#if column_has_next> AND </#if>
 	        </#list>
-    ]]>
+    	]]>
     </entry>
 
     <entry key="<@namespace/>delete">
-    <![CDATA[
+    	<![CDATA[
         DELETE FROM ${table.sqlName} WHERE
         <#list table.compositeIdColumns as column>
         ${column.sqlName} = :${column.columnNameLower} <#if column_has_next> AND </#if>
 		</#list>
-    ]]>
+    	]]>
     </entry>
     
     <entry key="<@namespace/>getById">
-	    SELECT <#noparse><#include </#noparse> "<@namespace/>column">
-	    <![CDATA[
+		<![CDATA[
+	    SELECT <#noparse><#include </#noparse> "<@namespace/>columns">
 	        FROM ${table.sqlName} 
 	        WHERE 
 				<#list table.compositeIdColumns as column>
 		        ${column.sqlName} = :${column.columnNameLower} <#if column_has_next> AND </#if>
 		        </#list>
-	    ]]>
+		]]>
     </entry>
 
 	<entry key="<@namespace/>findPage.where">
@@ -86,12 +86,12 @@
 	</entry>
 	 
     <entry key="<@namespace/>findPage.count">
-    <![CDATA[
+    	<![CDATA[
         SELECT count(*) 
         FROM ${table.sqlName} 
         WHERE 1=1
         <#noparse><#include "</#noparse><@namespace/>findPage.where">
-    ]]>    
+    	]]>    
     </entry>
     
     <!--
@@ -99,9 +99,9 @@
     	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
     -->
     <entry key="<@namespace/>findPage">
-    	<![CDATA[
+		<![CDATA[
     	SELECT 
-    		<#noparse><#include</#noparse> "<@namespace/>column"> 
+    		<#noparse><#include</#noparse> "<@namespace/>columns"> 
     	FROM ${table.sqlName} 
     	WHERE 1=1
 		<#noparse><#include</#noparse> "<@namespace/>findPage.where">
@@ -116,9 +116,9 @@
     <#list table.columns as column>
     <#if column.unique && !column.pk>
     <entry key="<@namespace/>getBy${column.columnName}" >
-	    <![CDATA[
+		<![CDATA[
 	    SELECT 
-	    	<#noparse><#include</#noparse> "<@namespace/>column">
+	    	<#noparse><#include</#noparse> "<@namespace/>columns">
 	    FROM ${table.sqlName} 
 	    WHERE ${column.sqlName} = :${column.columnNameLower}
 	    ]]>

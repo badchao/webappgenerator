@@ -100,9 +100,9 @@
 				</#list>
 				
 				<td>
-					<a href="<@jspEl 'ctx'/>/${classNameLowerCase}/show.do?<@generateHtmlLinkArguments table.pkColumns/>">查看</a>&nbsp;&nbsp;
-					<a href="<@jspEl 'ctx'/>/${classNameLowerCase}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>">修改</a>&nbsp;&nbsp;
-					<a href="<@jspEl 'ctx'/>/${classNameLowerCase}/delete.do?<@generateHtmlLinkArguments table.pkColumns/>" onclick="doRestDelete(this,'你确认删除?');return false;">删除</a>
+					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>/${classNameLowerCase}/show.do?<@generateHtmlLinkArguments table.pkColumns/>">查看</a>&nbsp;&nbsp;
+					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>/${classNameLowerCase}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>">修改</a>&nbsp;&nbsp;
+					<a class="btn btn-danger btn-xs" href="<@jspEl 'ctx'/>/${classNameLowerCase}/delete.do?<@generateHtmlLinkArguments table.pkColumns/>" onclick="doRestDelete(this,'你确认删除?');return false;">删除</a>
 				</td>
 			  </tr>
 			  
