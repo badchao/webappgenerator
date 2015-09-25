@@ -160,8 +160,8 @@ public class ${className}Controller {
 		Assert.isTrue(file.getOriginalFilename().endsWith(".csv"),"只能上传.csv文件");
 		
 		int skipLines = 1;
-		List<Map> rows = CsvFileUtil.readCsv2Maps(file.getInputStream(),"UTF-8","<#list table.notPkColumns as c>${c.columnNameFirstLower}<#if c_has_next>,</#if></#list>",skipLines);
-		List<${className}> items = ${className}Util.to${className}List(rows);
+		List<Map> maps = CsvFileUtil.readCsv2Maps(file.getInputStream(),"UTF-8","<#list table.notPkColumns as c>${c.columnNameFirstLower}<#if c_has_next>,</#if></#list>",skipLines);
+		List<${className}> items = ${className}Util.to${className}List(maps);
 		
 		int successCount = 0;
 		int errorCount = 0;
