@@ -13,7 +13,7 @@
 <rapid:override name="content">
 	<h2 id="title" class="text-center">创建${table.tableAlias}</h2>
 	
-	<form:form method="post" cssClass="form-horizontal" action="<@jspEl "ctx"/>/${classNameLowerCase}/create.do" modelAttribute="${classNameFirstLower}" >
+	<form:form id="inputForm" method="post" cssClass="form-horizontal" action="<@jspEl "ctx"/>/${classNameLowerCase}/create.do" modelAttribute="${classNameFirstLower}" >
 		  
 		<%@ include file="form_include.jsp" %>
 		
@@ -28,14 +28,7 @@
 	</form:form>
 	
 	<script>
-		
-		new Validation(document.forms[0],{onSubmit:true,onFormValidate : function(result,form) {
-			var finalResult = result;
-			
-			//在这里添加自定义验证
-			
-			return disableSubmit(finalResult,'submitButton');
-		}});
+		$("#inputForm").validate();
 	</script>
 </rapid:override>
 

@@ -30,7 +30,7 @@
 	<h3>
 	对不起,发生系统内部错误,不能处理你的请求<br />
 	</h3>
-	<b>错误信息:</b> <%=exception.getMessage()%>
+	<h3><b>错误信息:</b><font color="red"><%=exception.getMessage()%></font></h3>
 	<br>
 
 	<button onclick="history.back();">返回</button>

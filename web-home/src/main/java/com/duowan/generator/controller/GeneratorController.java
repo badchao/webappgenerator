@@ -17,6 +17,7 @@ import org.apache.commons.io.output.TeeOutputStream;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.org.rapid_framework.generator.GeneratorConstants;
@@ -103,6 +104,9 @@ public class GeneratorController {
 
 
 		public void execute() throws Exception {
+			Assert.hasText(basepackage,"'basepackage' must be not blank");
+			Assert.hasText(sqls,"'sqls' must be not blank");
+			
 			GeneratorFacade g = null;
 			try {
 				
@@ -123,10 +127,10 @@ public class GeneratorController {
 				
 				FileUtils.writeStringToFile(new File(outRoot,"generator.log"), memoryConsole.toString());
 				
-				response.setHeader("Content-Disposition", "attachment; filename=\"" + "generator_output.zip" + "\"");
-				ZipHelper.zip(outRoot,response.getOutputStream());
+//				response.setHeader("Content-Disposition", "attachment; filename=\"" + "generator_output.zip" + "\"");
+//				ZipHelper.zip(outRoot,response.getOutputStream());
 				
-//				FileUtils.copyDirectory(new File(outRoot), new File("E:/scm/xsj/dataanalyse/web_app_report"));
+				FileUtils.copyDirectory(new File(outRoot), new File("E:/scm/xsj/dataanalyse/web_app_report"));
 			}finally {
 				if(g != null) 
 					g.deleteOutRootDir();
@@ -178,13 +182,14 @@ public class GeneratorController {
 			props.setProperty("java_typemapping.java.sql.Time", "java.util.Date");
 			props.setProperty("java_typemapping.java.lang.Byte", "Integer");
 			props.setProperty("java_typemapping.java.lang.Short", "Integer");
-//			props.setProperty("java_typemapping.java.math.BigDecimal", "Long");
+			props.setProperty("java_typemapping.java.math.BigDecimal", "Double");
 			props.setProperty("java_typemapping.java.sql.Clob", "String");
-
+			
 			props.setProperty("outRoot", outRoot);
 			props.setProperty("namespace", namespace);
 			props.setProperty("basepackage",basepackage);
 			props.setProperty("tableRemovePrefixes",tableRemovePrefixes);
+			props.setProperty("generator_tools_class","cn.org.rapid_framework.generator.util.StringHelper,org.apache.commons.lang.StringUtils,com.duowan.generator.common.util.GeneratorColumnUtil,");
 			
 			GeneratorContext.setGeneratorProperties(props);
 		}		

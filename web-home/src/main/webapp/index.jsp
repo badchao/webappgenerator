@@ -29,7 +29,7 @@
 		 		</tr>
 		 		<tr>
 		 			<td><b>java package</b></td>
-		 			<td><input class="form-control" type="text" id="basepackage" name="basepackage" placeholder="com.company.projectname" size="40" onchange="saveCookie()"/> 示例值:com.company.projectname</td>
+		 			<td><input class="form-control" type="text" id="basepackage" name="basepackage" placeholder="java包名" size="40" onchange="saveCookie()"/> 示例值:com.company.projectname</td>
 		 		</tr>
 		 		<tr>
 		 			<td><b>需要删除表名的前缀</b></td>

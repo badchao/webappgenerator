@@ -157,7 +157,7 @@ public class ${className}Controller {
 	/** 上传csv文件保存  */
 	@RequestMapping
 	public String upload(@RequestParam("file")  CommonsMultipartFile file)  throws Exception {
-		Assert.isTrue(file.getOriginalFilename().endsWith(".csv"),"只能上传.csv文件")
+		Assert.isTrue(file.getOriginalFilename().endsWith(".csv"),"只能上传.csv文件");
 		
 		int skipLines = 1;
 		List<Map> rows = CsvFileUtil.readCsv2Maps(file.getInputStream(),"UTF-8","<#list table.notPkColumns as c>${c.columnNameFirstLower}<#if c_has_next>,</#if></#list>",skipLines);
