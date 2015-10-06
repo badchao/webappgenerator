@@ -145,7 +145,7 @@ public class ${className}Controller {
 		return LIST_ACTION;
 	}
 	
-	/** 批量删除 */
+	/** 删除 */
 	@RequestMapping
 	public String delete(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) {
 		${classNameFirstLower}Service.removeById(<@generatePassingParameters table.pkColumns/>);
