@@ -185,6 +185,10 @@ public class GeneratorController {
 			props.setProperty("java_typemapping.java.math.BigDecimal", "Double");
 			props.setProperty("java_typemapping.java.sql.Clob", "String");
 			
+			props.setProperty("java_typemapping.java.lang.Integer", "Integer");
+			props.setProperty("java_typemapping.java.lang.Long", "Long");
+			props.setProperty("java_typemapping.java.lang.String", "String");
+			
 			props.setProperty("outRoot", outRoot);
 			props.setProperty("namespace", namespace);
 			props.setProperty("basepackage",basepackage);
