@@ -16,13 +16,13 @@
 	
 	<form class="form-horizontal" action="${dollor}{ctx}/${classNameLowerCase}/upload.do" method="post"  enctype="multipart/form-data" >
 		  
-	  <div class="form-group">
-		<label for="username" class="col-md-4 control-label">文件</label>
-		<div class="col-md-4">
-			<input type="file" name="file" class="file" placeholder="选择上传文件"/>
-			<span class="help-block"><a href="${dollor}{ctx}/pages/${classNameLowerCase}/upload_${className}.csv" >下载数据上传模板</a></span>
+		<div class="form-group">
+			<label for="username" class="col-md-4 control-label">文件</label>
+			<div class="col-md-4">
+				<input type="file" name="file" class="file" placeholder="选择上传文件"/>
+				<span class="help-block"><a href="${dollor}{ctx}/pages/${classNameLowerCase}/upload_${className}.csv" >下载数据上传模板</a></span>
+			</div>
 		</div>
-	 </div>
 	 
 		<div class="form-group">
 		    <div class="text-center">
@@ -32,6 +32,7 @@
 		    </div>
 		</div>
 	</form>
+	
 </rapid:override>
 
 <%-- jsp模板继承,具体使用请查看: http://code.google.com/p/rapid-framework/wiki/rapid_jsp_extends --%>

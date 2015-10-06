@@ -56,7 +56,7 @@
 
 		</#list>	
 				
-			<div style="margin-top:20px"  class="row col-sm-6 text-left">
+			<div style="margin-top:20px"  class="row col-sm-12 text-left">
 				<input type="submit" class="btn btn-primary btn-sm"  value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>
 				<input type="button" class="btn btn-primary btn-sm"  value="新增" onclick="window.location = '<@jspEl 'ctx'/>/${classNameLowerCase}/add.do'"/>
 				<input type="button" class="btn btn-primary btn-sm"  value="上传文件" onclick="window.location = '<@jspEl 'ctx'/>/pages/${classNameLowerCase}/upload.jsp'"/>

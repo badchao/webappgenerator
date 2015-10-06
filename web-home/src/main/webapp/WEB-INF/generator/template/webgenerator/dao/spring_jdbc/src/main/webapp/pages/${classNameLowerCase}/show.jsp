@@ -21,15 +21,11 @@
 			<div class="row col-xs-12">
 				<div class="col-xs-4 text-right"><b>${column.columnAlias}:</b></div>	
 				<div class="col-xs-4">
-				<#rt>
-				<#compress>
 				<#if column.isDateTimeColumn>
-				<fmt:formatDate value='<@jspEl classNameLower+"."+column.columnNameLower/>' pattern="yyyy-MM-dd"/>
+					<fmt:formatDate value='<@jspEl classNameLower+"."+column.columnNameLower/>' pattern="yyyy-MM-dd"/>
 				<#else>
-				<c:out value='<@jspEl classNameLower+"."+column.columnNameLower/>'/>
+					<c:out value='<@jspEl classNameLower+"."+column.columnNameLower/>'/>
 				</#if>
-				</#compress>
-				<#lt>
 				</div>
 			</div>
 		</#if>
