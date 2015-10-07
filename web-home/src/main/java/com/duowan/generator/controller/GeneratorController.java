@@ -156,13 +156,16 @@ public class GeneratorController {
 			ds.setPassword(jdbcPassword);
 			
 			Connection conn = ds.getConnection();
-			Statement stat = conn.createStatement();
-			for(String sql : sqls.split(";")) {
-				if(StringUtils.isNotBlank(sql)) {
-					stat.execute(sql);
+			try {
+				Statement stat = conn.createStatement();
+				for(String sql : sqls.split(";")) {
+					if(StringUtils.isNotBlank(sql)) {
+						stat.execute(sql);
+					}
 				}
+			}finally {
+				conn.close();
 			}
-			conn.close();
 		}
 
 		private void setGeneratorProperties() {
