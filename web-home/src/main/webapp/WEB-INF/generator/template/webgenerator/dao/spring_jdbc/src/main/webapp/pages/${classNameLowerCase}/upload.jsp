@@ -14,12 +14,12 @@
 <rapid:override name="content">
 	<h2 id="title" class="text-center">上传${table.tableAlias}</h2>
 	
-	<form class="form-horizontal" action="${dollor}{ctx}/${classNameLowerCase}/upload.do" method="post"  enctype="multipart/form-data" >
+	<form id="inputForm" class="form-horizontal" action="${dollor}{ctx}/${classNameLowerCase}/upload.do" method="post"  enctype="multipart/form-data" >
 		  
 		<div class="form-group">
 			<label for="username" class="col-md-4 control-label">文件</label>
 			<div class="col-md-4">
-				<input type="file" name="file" class="file" placeholder="选择上传文件"/>
+				<input type="file" name="file" class="file" placeholder="选择上传文件" required="true" extension="csv"/>
 				<span class="help-block"><a href="${dollor}{ctx}/pages/${classNameLowerCase}/upload_${className}.csv" >下载数据上传模板</a></span>
 			</div>
 		</div>
@@ -32,6 +32,10 @@
 		    </div>
 		</div>
 	</form>
+	
+	<script>
+		$("#inputForm").validate();
+	</script>
 	
 </rapid:override>
 
