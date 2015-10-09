@@ -2,10 +2,12 @@ package com.duowan.generator.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
 import java.util.Properties;
 
 import javax.servlet.ServletContext;
@@ -13,16 +15,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.output.TeeOutputStream;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.org.rapid_framework.generator.GeneratorConstants;
 import cn.org.rapid_framework.generator.GeneratorContext;
 import cn.org.rapid_framework.generator.GeneratorFacade;
+import cn.org.rapid_framework.generator.util.FileHelper;
 
 import com.duowan.generator.common.util.SqlHelper;
 import com.duowan.generator.common.util.ZipHelper;
@@ -125,6 +130,8 @@ public class GeneratorController {
 					g.generateByTable(tableName);
 				}
 				
+				copy2MutiProjectDirLayout(outRoot,"multi_project_dir_layout");
+				
 				FileUtils.writeStringToFile(new File(outRoot,"generator.log"), memoryConsole.toString());
 				
 				response.setHeader("Content-Disposition", "attachment; filename=\"" + "generator_output.zip" + "\"");
@@ -136,9 +143,48 @@ public class GeneratorController {
 					g.deleteOutRootDir();
 				executeSqlsNoError("DROP DATABASE IF EXISTS tmp_generator; " +
 						"CREATE DATABASE IF NOT EXISTS tmp_generator default charset=utf8;");
+				
+				memoryConsole.reset();
 			}
 		}
 		
+		/**
+		 * 将生成的文件，另外拷贝成别一套目录结构的数据
+		 **/
+		public static void copy2MutiProjectDirLayout(String outRoot, String newDirName) throws IOException {
+			String[][] mappings = new String[][]{
+					new String[]{"**/main/**/query/**","model"},
+					new String[]{"**/main/**/model/**","model"},
+					
+					new String[]{"**/main/**/dao/**","dao"},
+					new String[]{"**/main/**/util/**","dao"},
+					new String[]{"**/main/resources/freemarker_sql/**","dao"},
+					new String[]{"**/test/**/dao/**","dao"},
+					new String[]{"**/test/**/*DataFactory.java","dao"},
+					
+					new String[]{"**/test/**/service/**","service"},
+					new String[]{"**/test/**/*DataFactory.java","service"},
+					new String[]{"**/main/**/service/**","service"},
+					
+					new String[]{"**/main/**/controller/**","web-admin"},
+					new String[]{"**/main/**/webapp/**","web-admin"},
+				};
+			
+			AntPathMatcher pathMatcher = new AntPathMatcher();
+			Collection<File> files = FileUtils.listFiles(new File(outRoot), null, true);
+			for(File f : files) {
+				for(String[] mapping : mappings) {
+					String pattern = mapping[0];
+					String targetDir = mapping[1];
+					if(pathMatcher.match(pattern, f.getPath().replace('\\', '/'))) {
+						String relativePath = FileHelper.getRelativePath(new File(outRoot),f);
+						FileUtils.copyFile(f, new File(outRoot,newDirName+"/"+targetDir+"/"+relativePath));
+					}
+				}
+			}
+			
+		}
+
 		private void executeSqlsNoError(String sqls)  {
 			try {
 				executeSqls(sqls);
