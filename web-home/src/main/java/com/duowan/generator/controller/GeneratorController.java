@@ -182,7 +182,9 @@ public class GeneratorController {
 				for(String[] mapping : mappings) {
 					String pattern = mapping[0];
 					String targetDir = mapping[1];
-					if(pathMatcher.match(pattern, f.getPath().replace('\\', '/'))) {
+					boolean match = pathMatcher.match(pattern, f.getPath().replace('\\', '/'));
+					System.out.println("match,file:"+f.getPath()+" pattern:"+pattern+" result:"+match);
+					if(match) {
 						String relativePath = FileHelper.getRelativePath(new File(outRoot),f);
 						FileUtils.copyFile(f, new File(outRoot,newDirName+"/"+targetDir+"/"+relativePath));
 					}
