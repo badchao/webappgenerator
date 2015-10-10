@@ -153,19 +153,24 @@ public class GeneratorController {
 		 **/
 		public static void copy2MutiProjectDirLayout(String outRoot, String newDirName) throws IOException {
 			String[][] mappings = new String[][]{
+					//model
 					new String[]{"**/main/**/query/**","model"},
 					new String[]{"**/main/**/model/**","model"},
 					
+					//dao
 					new String[]{"**/main/**/dao/**","dao"},
 					new String[]{"**/main/**/util/**","dao"},
 					new String[]{"**/main/resources/freemarker_sql/**","dao"},
+					new String[]{"**/test/resources/testdata/**","dao"},
 					new String[]{"**/test/**/dao/**","dao"},
 					new String[]{"**/test/**/*DataFactory.java","dao"},
 					
+					//service
 					new String[]{"**/test/**/service/**","service"},
 					new String[]{"**/test/**/*DataFactory.java","service"},
 					new String[]{"**/main/**/service/**","service"},
 					
+					//web-admin
 					new String[]{"**/main/**/controller/**","web-admin"},
 					new String[]{"**/main/**/webapp/**","web-admin"},
 				};
