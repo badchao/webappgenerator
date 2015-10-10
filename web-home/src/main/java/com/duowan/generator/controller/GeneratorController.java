@@ -178,6 +178,7 @@ public class GeneratorController {
 			AntPathMatcher pathMatcher = new AntPathMatcher();
 			Collection<File> files = FileUtils.listFiles(new File(outRoot), null, true);
 			for(File f : files) {
+				System.out.println("copy2MutiProjectDirLayout,file:"+f);
 				for(String[] mapping : mappings) {
 					String pattern = mapping[0];
 					String targetDir = mapping[1];
