@@ -14,6 +14,8 @@ import java.io.Serializable;
 import com.github.rapid.common.util.page.PageQuery;
 
 /**
+ * [${table.tableAlias}] 查询对象
+ * 
 <#include "/java_description.include">
  */
 public class ${className}Query extends PageQuery implements Serializable {

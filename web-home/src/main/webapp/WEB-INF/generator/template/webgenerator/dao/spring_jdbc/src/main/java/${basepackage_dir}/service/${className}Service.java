@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 <#include "/java_imports.include">
 
 /**
- * [${table.tableAlias}] 的业务操作
+ * [${table.tableAlias}] 的Service接口
  * 
 <#include "/java_description.include">
  */

@@ -41,7 +41,7 @@ import com.github.rapid.common.util.page.Page;
 <#include "/java_imports.include">
 
 /**
- * [${table.tableAlias}] 的业务操作
+ * [${table.tableAlias}] 的Controller
  * 
 <#include "/java_description.include">
  *

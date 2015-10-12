@@ -17,7 +17,7 @@ import com.github.rapid.common.util.page.Page;
 <#include "/java_imports.include">
 
 /**
- * [${table.tableAlias}] 的业务操作实现类
+ * [${table.tableAlias}] 的Service接口实现
  * 
 <#include "/java_description.include">
  */
