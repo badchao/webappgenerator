@@ -14,7 +14,9 @@ import ${basepackage}.${className}DataFactory;
 import static junit.framework.Assert.*;
 import static org.mockito.Mockito.*;
 
-<#include "/java_imports.include">
+import ${basepackage}.model.*;
+import ${basepackage}.query.*;
+import ${basepackage}.dao.*;
 
 /**
 <#include "/java_description.include">

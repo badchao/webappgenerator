@@ -5,6 +5,7 @@ package ${basepackage}.util;
 
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 import org.apache.commons.collections.MapUtils;
 

@@ -16,7 +16,9 @@ import org.junit.rules.TestName;
 
 import static junit.framework.Assert.*;
 
-<#include "/java_imports.include">
+import ${basepackage}.model.*;
+import ${basepackage}.query.*;
+
 
 /**
 <#include "/java_description.include">
