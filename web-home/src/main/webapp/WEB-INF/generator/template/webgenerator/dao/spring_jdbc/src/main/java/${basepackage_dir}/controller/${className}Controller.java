@@ -49,6 +49,10 @@ import com.github.rapid.common.util.page.Page;
 @Controller
 @RequestMapping("/${classNameLowerCase}")
 public class ${className}Controller {
+
+	/*
+	* 请删除无用的方法，本代码生成器的理念是: 1. 一次生成，后期手工修改代码 2. 删除代码比手写重复代码快捷，所以请删除无用代码
+	*/
 	
 	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
