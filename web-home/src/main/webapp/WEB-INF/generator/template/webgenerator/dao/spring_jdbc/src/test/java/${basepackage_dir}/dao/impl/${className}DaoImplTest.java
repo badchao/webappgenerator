@@ -18,6 +18,7 @@ import static junit.framework.Assert.*;
 
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;
+import ${basepackage}.dao.*;
 
 
 /**
