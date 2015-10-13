@@ -11,7 +11,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-<#include "/java_imports.include">
+
 
 /**
  * tableName: ${table.sqlName} [${table.tableAlias}] 

@@ -3,7 +3,8 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.dao.impl;
 
-<#include "/java_imports.include">
+import ${basepackage}.model.*;
+import ${basepackage}.query.*;
 
 import ${basepackage}.dao.${className}Dao;
 

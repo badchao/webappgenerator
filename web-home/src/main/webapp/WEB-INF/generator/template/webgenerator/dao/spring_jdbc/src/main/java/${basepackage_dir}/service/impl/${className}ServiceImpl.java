@@ -14,7 +14,9 @@ import ${basepackage}.service.${className}Service;
 import com.github.rapid.common.util.holder.BeanValidatorHolder;
 import com.github.rapid.common.util.page.Page;
 
-<#include "/java_imports.include">
+import ${basepackage}.model.*;
+import ${basepackage}.dao.*;
+import ${basepackage}.query.*;
 
 /**
  * [${table.tableAlias}] 的Service接口实现

@@ -10,7 +10,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
-<#include "/java_imports.include">
 import com.github.rapid.common.util.page.PageQuery;
 
 /**

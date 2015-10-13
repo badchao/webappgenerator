@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-<#include "/java_imports.include">
+import ${basepackage}.model.*;
+import ${basepackage}.dao.*;
+import ${basepackage}.query.*;
+
 
 /**
  * [${table.tableAlias}] 的Service接口

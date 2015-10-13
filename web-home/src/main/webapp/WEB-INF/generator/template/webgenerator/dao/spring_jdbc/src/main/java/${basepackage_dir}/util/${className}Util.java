@@ -10,7 +10,7 @@ import org.apache.commons.collections.MapUtils;
 
 import com.github.rapid.common.beanutils.BeanUtils;
 
-<#include "/java_imports.include">
+import ${basepackage}.model.*;
 
 
 /**
