@@ -91,7 +91,7 @@ public class ${className}Controller {
 		
 		model.addAttribute("page",page);
 		model.addAttribute("query",query);
-		return "pages/${classNameLowerCase}/index";
+		return "/${classNameLowerCase}/index";
 	}
 	
 	/** 显示 */
@@ -99,14 +99,14 @@ public class ${className}Controller {
 	public String show(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) throws Exception {
 		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
-		return "pages/${classNameLowerCase}/show";
+		return "/${classNameLowerCase}/show";
 	}
 
 	/** 进入新增 */
 	@RequestMapping
 	public String add(ModelMap model,${className} ${classNameFirstLower}) throws Exception {
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
-		return "pages/${classNameLowerCase}/add";
+		return "/${classNameLowerCase}/add";
 	}
 	
 	/** 保存新增,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
@@ -116,10 +116,10 @@ public class ${className}Controller {
 			${classNameFirstLower}Service.create(${classNameFirstLower});
 		}catch(ConstraintViolationException e) {
 			ValidationErrorsUtil.convert(e, errors);
-			return  "pages/${classNameLowerCase}/add";
+			return  "/${classNameLowerCase}/add";
 		}catch(MessageException e) {
 			Flash.current().error(e.getMessage());
-			return  "pages/${classNameLowerCase}/add";
+			return  "/${classNameLowerCase}/add";
 		}
 		Flash.current().success(CREATED_SUCCESS); //存放在Flash中的数据,在下一次http请求中仍然可以读取数据,error()用于显示错误消息
 		return LIST_ACTION;
@@ -130,7 +130,7 @@ public class ${className}Controller {
 	public String edit(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) throws Exception {
 		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
-		return "pages/${classNameLowerCase}/edit";
+		return "/${classNameLowerCase}/edit";
 	}
 	
 	/** 保存更新,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
@@ -140,10 +140,10 @@ public class ${className}Controller {
 			${classNameFirstLower}Service.update(${classNameFirstLower});
 		}catch(ConstraintViolationException e) {
 			ValidationErrorsUtil.convert(e, errors);
-			return  "pages/${classNameLowerCase}/edit";
+			return  "/${classNameLowerCase}/edit";
 		}catch(MessageException e) {
 			Flash.current().error(e.getMessage());
-			return  "pages/${classNameLowerCase}/edit";
+			return  "/${classNameLowerCase}/edit";
 		}
 		Flash.current().success(UPDATE_SUCCESS);
 		return LIST_ACTION;
