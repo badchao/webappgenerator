@@ -30,6 +30,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -112,7 +113,7 @@ public class ${className}Controller {
 	}
 	
 	/** 保存新增,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
-	@RequestMapping
+	@RequestMapping(method=RequestMethod.POST)
 	public String create(ModelMap model,${className} ${classNameFirstLower},BindingResult errors) throws Exception {
 		try {
 			${classNameFirstLower}Service.create(${classNameFirstLower});
@@ -136,7 +137,7 @@ public class ${className}Controller {
 	}
 	
 	/** 保存更新,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
-	@RequestMapping
+	@RequestMapping(method=RequestMethod.POST)
 	public String update(ModelMap model,<@generateRequestParamArguments table.pkColumns/>,${className} ${classNameFirstLower},BindingResult errors) throws Exception {
 		try {
 			${classNameFirstLower}Service.update(${classNameFirstLower});
@@ -161,7 +162,7 @@ public class ${className}Controller {
 	
 	
 	/** 上传csv文件保存  */
-	@RequestMapping
+	@RequestMapping(method=RequestMethod.POST)
 	public String upload(@RequestParam("file")  CommonsMultipartFile file)  throws Exception {
 		Assert.isTrue(file.getOriginalFilename().endsWith(".csv"),"只能上传.csv文件");
 		
