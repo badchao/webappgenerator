@@ -7,7 +7,7 @@
 <!-- 生成html select标签，应用场景：表之前有外键关联，如主从表，用于生成主从select标签输入,需配合 jsp:include 标签使用 -->
 <select class="form-control" id="select_${dollor}{selectName}" name="${dollor}{selectName}">
 	<c:forEach	var="item" items="${dollor}{dataList}">
-		<option value="${dollor}{item.${table.pkColumn.columnNameFirstLower}">${dollor}{item.${table.pkColumn.columnNameFirstLower}}</option>
+		<option value="${dollor}{item.${table.pkColumn.columnNameFirstLower}}">${dollor}{item.${table.pkColumn.columnNameFirstLower}}</option>
 	</c:forEach>
 </select>
 <script>
