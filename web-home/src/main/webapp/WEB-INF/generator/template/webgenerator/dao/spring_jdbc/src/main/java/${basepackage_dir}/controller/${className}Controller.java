@@ -198,7 +198,7 @@ public class ${className}Controller {
 		${className}Query query = new ${className}Query();
 		query.setPageSize(Integer.MAX_VALUE);
 		Page<${className}> page = ${classNameFirstLower}Service.findPage(query);
-		model.put("dataList", page.getItemList());
+		model.put("itemList", page.getItemList());
 		model.put("selectName", StringUtils.defaultIfEmpty(selectName,"${classNameFirstLower}Id"));
 		return "/${classNameLowerCase}/htmlSelectTag";
 	}
