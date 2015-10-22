@@ -187,7 +187,7 @@ public class ${className}Controller {
 	
 	/**
 	 * 生成HTML: <select></select> 标签，生成的标签配合 jsp:include标签一起使用
-	 * 应用场景：表之前有外键关联，如主从表，用于生成主从select标签输入
+	 * 应用场景：表之前有外键关联，如主从表，用于生成主从select标签,用于form表单的输入
 	 * 
 	 * <jsp:include page="${dollor}{ctx}/${classNameLowerCase}/htmlSelectTag.do?selectId=someForeignKeyId"/>
 	 * @param selectName select标签的name
