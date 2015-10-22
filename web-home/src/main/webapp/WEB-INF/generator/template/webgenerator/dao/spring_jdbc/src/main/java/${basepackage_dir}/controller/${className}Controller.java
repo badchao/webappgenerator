@@ -3,6 +3,7 @@
 <#assign className = table.className>   
 <#assign classNameFirstLower = className?uncap_first>   
 <#assign classNameLowerCase = className?lower_case>   
+<#assign dollor = '$'>   
 
 package ${basepackage}.controller;
 
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -181,6 +183,23 @@ public class ${className}Controller {
 		
 		Flash.current().success("上传成功,创建成功条数:"+successCount+",失败条数:"+errorCount);
 		return LIST_ACTION;
+	}
+	
+	/**
+	 * 生成HTML: <select></select> 标签，生成的标签配合 jsp:include标签一起使用
+	 * 应用场景：表之前有外键关联，如主从表，用于生成主从select标签输入
+	 * 
+	 * <jsp:include page="${dollor}{ctx}/${classNameLowerCase}/htmlSelectTag.do?selectId=someForeignKeyId"/>
+	 * @param selectName select标签的name
+	 */
+	@RequestMapping
+	public String htmlSelectTag(String selectName,ModelMap model) throws Exception {
+		${className}Query query = new ${className}Query();
+		query.setPageSize(Integer.MAX_VALUE);
+		Page<${className}> page = ${classNameFirstLower}Service.findPage(query);
+		model.put("dataList", page.getItemList());
+		model.put("selectName", StringUtils.defaultIfEmpty(selectName,"${classNameFirstLower}Id"));
+		return "/${classNameLowerCase}/htmlSelectTag";
 	}
 
 }
