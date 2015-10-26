@@ -3,6 +3,9 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage};
 
+import java.util.*;
+import java.sql.*;
+
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;
 
