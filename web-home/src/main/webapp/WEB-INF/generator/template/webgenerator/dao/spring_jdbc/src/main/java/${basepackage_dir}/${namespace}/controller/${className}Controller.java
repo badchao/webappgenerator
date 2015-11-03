@@ -5,8 +5,11 @@
 <#assign classNameLowerCase = className?lower_case>   
 <#assign dollor = '$'>   
 
+<#if namespace?has_content>
+package ${basepackage}.${namespace}.controller;
+<#else>
 package ${basepackage}.controller;
-
+</#if>
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
