@@ -57,9 +57,9 @@
 		</#list>	
 				
 			<div style="margin-top:20px"  class="row col-sm-12 text-left">
-				<input type="submit" class="btn btn-primary btn-sm"  value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>
-				<input type="button" class="btn btn-primary btn-sm"  value="新增" onclick="window.location = '<@jspEl 'ctx'/>/${classNameLowerCase}/add.do'"/>
-				<input type="button" class="btn btn-primary btn-sm"  value="上传文件" onclick="window.location = '<@jspEl 'ctx'/>/pages/${classNameLowerCase}/upload.jsp'"/>
+				<input type="submit" class="btn btn-primary btn-sm"  value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'"/>
+				<input type="button" class="btn btn-primary btn-sm"  value="新增" onclick="window.location = '<@jspEl 'ctx'/>${classWebBasePath}/add.do'"/>
+				<input type="button" class="btn btn-primary btn-sm"  value="上传文件" onclick="window.location = '<@jspEl 'ctx'/>/pages${classWebBasePath}/upload.jsp'"/>
 			</div>
 		</div>
 	</div>
@@ -100,9 +100,9 @@
 				</#list>
 				
 				<td>
-					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>/${classNameLowerCase}/show.do?<@generateHtmlLinkArguments table.pkColumns/>">查看</a>&nbsp;&nbsp;
-					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>/${classNameLowerCase}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>">修改</a>&nbsp;&nbsp;
-					<a class="btn btn-danger btn-xs" href="<@jspEl 'ctx'/>/${classNameLowerCase}/delete.do?<@generateHtmlLinkArguments table.pkColumns/>" onclick="doRestDelete(this,'你确认删除?');return false;">删除</a>
+					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/show.do?<@generateHtmlLinkArguments table.pkColumns/>">查看</a>&nbsp;&nbsp;
+					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>">修改</a>&nbsp;&nbsp;
+					<a class="btn btn-danger btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/delete.do?<@generateHtmlLinkArguments table.pkColumns/>" onclick="doRestDelete(this,'你确认删除?');return false;">删除</a>
 				</td>
 			  </tr>
 			  

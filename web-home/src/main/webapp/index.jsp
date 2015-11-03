@@ -36,8 +36,8 @@
 		 			<td><input class="form-control" type="text" id="tableRemovePrefixes" name="tableRemovePrefixes" size="40" onchange="saveCookie()"/> 示例值: t_,v_</td>
 		 		</tr> 		
 				<tr>
-		 			<td><b>namespace</b></td>
-		 			<td><input class="form-control" type="text" id="namespace" name="namespace" placeholder="示例值:monitor,security" size="40" onchange="saveCookie()"/> JSP页面划分的子模块,影响如/{namespace}/{className}/list.jsp,示例值:monitor,security</td>
+		 			<td><b>web namespace</b></td>
+		 			<td><input class="form-control" type="text" id="namespace" name="namespace" placeholder="示例值:monitor,security" size="40" onchange="saveCookie()"/> JSP页面子模块,用于web分模块,会影响jsp存放位置,如/{namespace}/{className}/list.jsp,示例值:monitor,security</td>
 		 		</tr>
 		 	</table>
 		 	<div class="text-center"><input class="btn btn-primary btn-lg" type="submit" value="生成代码" /></div>

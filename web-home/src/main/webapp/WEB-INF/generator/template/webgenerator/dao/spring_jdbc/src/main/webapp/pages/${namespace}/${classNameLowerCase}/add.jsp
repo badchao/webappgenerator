@@ -7,20 +7,20 @@
 <%@ include file="/commons/taglibs.jsp" %>
 
 <rapid:override name="head">
-	<title>${table.tableAlias}编辑</title>
+	<title>创建${table.tableAlias}</title>
 </rapid:override>
 
 <rapid:override name="content">
-	<h2 id="title" class="text-center">编辑${table.tableAlias}</h2>
+	<h2 id="title" class="text-center">创建${table.tableAlias}</h2>
 	
-	<form:form id="inputForm" method="put" cssClass="form-horizontal" action="<@jspEl 'ctx'/>/${classNameLowerCase}/update.do" modelAttribute="${classNameFirstLower}">
-			
+	<form:form id="inputForm" method="post" cssClass="form-horizontal" action="<@jspEl "ctx"/>${classWebBasePath}/create.do" modelAttribute="${classNameFirstLower}" >
+		  
 		<%@ include file="form_include.jsp" %>
 		
 		<div class="form-group">
 		    <div class="text-center">
 				<input id="submitButton" class="btn btn-success" name="submitButton" type="submit" value="提交" />&nbsp;&nbsp;&nbsp;
-				<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='<@jspEl "ctx"/>/${classNameLowerCase}/index.do'"/>&nbsp;&nbsp;&nbsp;
+				<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='<@jspEl "ctx"/>${classWebBasePath}/index.do'"/>&nbsp;&nbsp;&nbsp;
 				<input type="button" class="btn btn-primary" value="后退" onclick="history.back();"/>
 		    </div>
 		</div>

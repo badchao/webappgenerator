@@ -50,7 +50,7 @@ import com.github.rapid.common.util.page.Page;
  *
  */
 @Controller
-@RequestMapping("/${classNameLowerCase}")
+@RequestMapping("${classWebBasePath}")
 public class ${className}Controller {
 
 	/*
@@ -61,7 +61,7 @@ public class ${className}Controller {
 	
 	private ${className}Service ${classNameFirstLower}Service;
 	
-	private final String LIST_ACTION = "redirect:/${classNameLowerCase}/index.do";
+	private final String LIST_ACTION = "redirect:${classWebBasePath}/index.do";
 	
 	private static String CREATED_SUCCESS = "创建成功";
 	private static String UPDATE_SUCCESS = "更新成功";
@@ -94,7 +94,7 @@ public class ${className}Controller {
 		
 		model.addAttribute("page",page);
 		model.addAttribute("query",query);
-		return "/${classNameLowerCase}/index";
+		return "${classWebBasePath}/index";
 	}
 	
 	/** 显示 */
@@ -102,14 +102,14 @@ public class ${className}Controller {
 	public String show(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) throws Exception {
 		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
-		return "/${classNameLowerCase}/show";
+		return "${classWebBasePath}/show";
 	}
 
 	/** 进入新增 */
 	@RequestMapping
 	public String add(ModelMap model,${className} ${classNameFirstLower}) throws Exception {
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
-		return "/${classNameLowerCase}/add";
+		return "${classWebBasePath}/add";
 	}
 	
 	/** 保存新增,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
@@ -119,10 +119,10 @@ public class ${className}Controller {
 			${classNameFirstLower}Service.create(${classNameFirstLower});
 		}catch(ConstraintViolationException e) {
 			ValidationErrorsUtil.convert(e, errors);
-			return  "/${classNameLowerCase}/add";
+			return  "${classWebBasePath}/add";
 		}catch(MessageException e) {
 			Flash.current().error(e.getMessage());
-			return  "/${classNameLowerCase}/add";
+			return  "${classWebBasePath}/add";
 		}
 		Flash.current().success(CREATED_SUCCESS); //存放在Flash中的数据,在下一次http请求中仍然可以读取数据,error()用于显示错误消息
 		return LIST_ACTION;
@@ -133,7 +133,7 @@ public class ${className}Controller {
 	public String edit(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) throws Exception {
 		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
-		return "/${classNameLowerCase}/edit";
+		return "${classWebBasePath}/edit";
 	}
 	
 	/** 保存更新,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
@@ -143,10 +143,10 @@ public class ${className}Controller {
 			${classNameFirstLower}Service.update(${classNameFirstLower});
 		}catch(ConstraintViolationException e) {
 			ValidationErrorsUtil.convert(e, errors);
-			return  "/${classNameLowerCase}/edit";
+			return  "${classWebBasePath}/edit";
 		}catch(MessageException e) {
 			Flash.current().error(e.getMessage());
-			return  "/${classNameLowerCase}/edit";
+			return  "${classWebBasePath}/edit";
 		}
 		Flash.current().success(UPDATE_SUCCESS);
 		return LIST_ACTION;
@@ -190,7 +190,7 @@ public class ${className}Controller {
 	 * 生成HTML: <select></select> 标签，生成的标签配合 jsp:include标签一起使用
 	 * 应用场景：表之前有外键关联，如主从表，用于生成主从select标签,用于form表单的输入
 	 * 
-	 * <jsp:include page="${dollor}{ctx}/${classNameLowerCase}/htmlSelectTag.do?selectId=someForeignKeyId"/>
+	 * <jsp:include page="${dollor}{ctx}${classWebBasePath}/htmlSelectTag.do?selectId=someForeignKeyId"/>
 	 * @param selectName select标签的name
 	 */
 	@RequestMapping
@@ -200,7 +200,7 @@ public class ${className}Controller {
 		Page<${className}> page = ${classNameFirstLower}Service.findPage(query);
 		model.put("itemList", page.getItemList());
 		model.put("selectName", StringUtils.defaultIfEmpty(selectName,"${classNameFirstLower}Id"));
-		return "/${classNameLowerCase}/htmlSelectTag";
+		return "${classWebBasePath}/htmlSelectTag";
 	}
 
 }

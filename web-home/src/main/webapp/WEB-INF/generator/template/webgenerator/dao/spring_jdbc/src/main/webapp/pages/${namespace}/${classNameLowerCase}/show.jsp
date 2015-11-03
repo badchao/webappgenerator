@@ -32,7 +32,7 @@
 		</#list>
 		
 		<div class="text-center">
-			<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='<@jspEl 'ctx'/>/${classNameLowerCase}/index.do'"/>&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='<@jspEl 'ctx'/>${classWebBasePath}/index.do'"/>&nbsp;&nbsp;&nbsp;
 			<input type="button" class="btn btn-primary" value="后退" onclick="history.back();"/>
 		</div>
 

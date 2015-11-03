@@ -14,20 +14,20 @@
 <rapid:override name="content">
 	<h2 id="title" class="text-center">上传${table.tableAlias}</h2>
 	
-	<form id="inputForm" class="form-horizontal" action="${dollor}{ctx}/${classNameLowerCase}/upload.do" method="post"  enctype="multipart/form-data" >
+	<form id="inputForm" class="form-horizontal" action="${dollor}{ctx}${classWebBasePath}/upload.do" method="post"  enctype="multipart/form-data" >
 		  
 		<div class="form-group">
 			<label for="username" class="col-md-4 control-label">文件</label>
 			<div class="col-md-4">
 				<input type="file" name="file" class="file" placeholder="选择上传文件" required="true" extension="csv"/>
-				<span class="help-block"><a href="${dollor}{ctx}/pages/${classNameLowerCase}/upload_${className}.csv" >下载数据上传模板</a></span>
+				<span class="help-block"><a href="${dollor}{ctx}/pages${classWebBasePath}/upload_${className}.csv" >下载数据上传模板</a></span>
 			</div>
 		</div>
 	 
 		<div class="form-group">
 		    <div class="text-center">
 				<input id="submitButton" class="btn btn-success" name="submitButton" type="submit" value="上传" />&nbsp;&nbsp;&nbsp;
-				<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='${dollor}{ctx}/${classNameLowerCase}/index.do'"/>&nbsp;&nbsp;&nbsp;
+				<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='${dollor}{ctx}${classWebBasePath}/index.do'"/>&nbsp;&nbsp;&nbsp;
 				<input type="button" class="btn btn-primary" value="后退" onclick="history.back();"/>
 		    </div>
 		</div>
