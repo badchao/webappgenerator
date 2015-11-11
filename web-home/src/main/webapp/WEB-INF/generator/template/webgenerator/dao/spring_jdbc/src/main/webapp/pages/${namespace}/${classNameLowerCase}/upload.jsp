@@ -8,11 +8,11 @@
 <%@ include file="/commons/taglibs.jsp" %>
 
 <rapid:override name="head">
-	<title>上传${table.tableAlias}</title>
+	<title>导入${table.tableAlias}</title>
 </rapid:override>
 
 <rapid:override name="content">
-	<h2 id="title" class="text-center">上传${table.tableAlias}</h2>
+	<h2 id="title" class="text-center">导入${table.tableAlias}</h2>
 	
 	<form id="inputForm" class="form-horizontal" action="${dollor}{ctx}${classWebBasePath}/upload.do" method="post"  enctype="multipart/form-data" >
 		  

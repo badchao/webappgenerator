@@ -25,8 +25,8 @@ public class ${className}DataFactory {
 		<#list table.columns as column>
 	  		<#if column.isNotIdOrVersionField>
 	  		<#if column.isDateTimeColumn && !column.contains("begin,start,end")>
-		query.set${column.columnName}Begin(new ${column.simpleJavaType}(System.currentTimeMillis()));
-		query.set${column.columnName}End(new ${column.simpleJavaType}(System.currentTimeMillis()));
+		query.set${column.columnName}Begin(new ${column.javaType}(System.currentTimeMillis()));
+		query.set${column.columnName}End(new ${column.javaType}(System.currentTimeMillis()));
 			<#else>
 	  	query.set${column.columnName}(new ${column.simpleJavaType}("1"));
 			</#if>
