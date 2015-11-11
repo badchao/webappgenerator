@@ -43,6 +43,7 @@ import com.github.rapid.common.web.scope.Flash;
 import com.github.rapid.common.util.CsvFileUtil;
 import com.github.rapid.common.util.ValidationErrorsUtil;
 import com.github.rapid.common.util.page.Page;
+import com.github.rapid.common.util.CollectionUtil;
 
 <#include "/java_imports.include">
 
@@ -171,7 +172,7 @@ public class ${className}Controller {
 		
 		int skipLines = 1;
 		List<Map> maps = CsvFileUtil.readCsv2Maps(file.getInputStream(),"UTF-8","<#list table.notPkColumns as c>${c.columnNameFirstLower}<#if c_has_next>,</#if></#list>",skipLines);
-		List<${className}> items = ${className}Util.to${className}List(maps);
+		List<${className}> items = CollectionUtil.toBeanList(maps,${className}.class);
 		
 		int successCount = 0;
 		int errorCount = 0;
