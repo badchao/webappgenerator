@@ -8,7 +8,6 @@ import ${basepackage}.${className}DataFactory;
 import com.github.rapid.common.util.page.Page;
 
 import java.util.*;
-import java.sql.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;

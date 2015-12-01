@@ -14,7 +14,6 @@ import ${basepackage}.${className}DataFactory;
 import static junit.framework.Assert.*;
 import static org.mockito.Mockito.*;
 import java.util.*;
-import java.sql.*;
 
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;

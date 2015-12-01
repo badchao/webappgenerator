@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 import ${basepackage}.model.*;
 import ${basepackage}.dao.*;
 import ${basepackage}.query.*;
-
+import java.util.Date;
 
 /**
  * [${table.tableAlias}] 的Service接口
