@@ -12,6 +12,7 @@ import ${basepackage}.dao.${className}Dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
