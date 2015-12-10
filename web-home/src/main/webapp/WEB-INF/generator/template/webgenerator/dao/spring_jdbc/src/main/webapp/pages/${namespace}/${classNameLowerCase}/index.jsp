@@ -64,7 +64,7 @@
 		</div>
 	</div>
 	
-	<div class="panel panel-default">
+	<div class="panel panel-default table-responsive">
 		
 		<table class="table table-striped table-bordered table-hover table-condensed  scrolltable sortable">
 		  <thead>
