@@ -58,8 +58,8 @@
 				
 			<div style="margin-top:20px"  class="row col-sm-12 text-left">
 				<input type="submit" class="btn btn-primary btn-sm"  value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'"/>
-				<a class="btn btn-primary btn-sm" href="'<@jspEl 'ctx'/>${classWebBasePath}/add.do''">新增</a>
-				<a class="btn btn-primary btn-sm" href="'<@jspEl 'ctx'/>/pages${classWebBasePath}/upload.jsp'">批量导入</a>
+				<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>${classWebBasePath}/add.do">新增</a>
+				<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>/pages${classWebBasePath}/upload.jsp">批量导入</a>
 			</div>
 		</div>
 	</div>

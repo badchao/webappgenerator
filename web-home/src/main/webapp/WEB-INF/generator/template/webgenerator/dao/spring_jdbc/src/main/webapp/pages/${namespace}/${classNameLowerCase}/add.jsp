@@ -20,7 +20,7 @@
 		<div class="form-group">
 		    <div class="text-center">
 				<input id="submitButton" class="btn btn-success" name="submitButton" type="submit" value="提交" />&nbsp;&nbsp;&nbsp;
-				<input type="button" class="btn btn-primary" value="返回列表" onclick="window.location='<@jspEl "ctx"/>${classWebBasePath}/index.do'"/>&nbsp;&nbsp;&nbsp;
+				<a class="btn btn-primary" href="<@jspEl "ctx"/>${classWebBasePath}/index.do">返回列表</a>&nbsp;&nbsp;&nbsp;
 				<input type="button" class="btn btn-primary" value="后退" onclick="history.back();"/>
 		    </div>
 		</div>
