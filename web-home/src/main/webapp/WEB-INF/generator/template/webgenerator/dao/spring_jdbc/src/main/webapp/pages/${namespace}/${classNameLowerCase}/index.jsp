@@ -32,7 +32,7 @@
 	
 		<div class="panel-heading">${table.tableAlias} 列表</div>
 		<div class="panel-body">
-		<#list table.notPkColumns?chunk(4) as row>
+		<#list table.columns?chunk(4) as row>
 			
 			<div class="row">
 			<#list row as column>
@@ -58,7 +58,7 @@
 				
 			<div style="margin-top:20px"  class="row text-left">
 				<div class="col-sm-4">
-					<input type="submit" class="btn btn-primary btn-sm"  value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'"/>
+					<a href="#" class="btn btn-primary btn-sm"  onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'; $(getReferenceForm(this)).submit();return false;"><span class="glyphicon glyphicon-search" aria-hidden="true"> 搜索</a>
 					<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>${classWebBasePath}/add.do"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</a>
 					<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>/pages${classWebBasePath}/upload.jsp"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> 批量导入</a>
 				</div>
