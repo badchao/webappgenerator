@@ -171,7 +171,7 @@ public class ${className}Controller {
 		Assert.isTrue(file.getOriginalFilename().endsWith(".csv"),"只能上传.csv文件");
 		
 		int skipLines = 1;
-		List<Map> maps = CsvFileUtil.readCsv2Maps(file.getInputStream(),"UTF-8","<#list table.notPkColumns as c>${c.columnNameFirstLower}<#if c_has_next>,</#if></#list>",skipLines);
+		List<Map> maps = CsvFileUtil.readCsv2Maps(file.getInputStream(),"UTF-8","<#list table.columns as c>${c.columnNameFirstLower}<#if c_has_next>,</#if></#list>",skipLines);
 		List<${className}> items = CollectionUtil.toBeanList(maps,${className}.class);
 		
 		int successCount = 0;
