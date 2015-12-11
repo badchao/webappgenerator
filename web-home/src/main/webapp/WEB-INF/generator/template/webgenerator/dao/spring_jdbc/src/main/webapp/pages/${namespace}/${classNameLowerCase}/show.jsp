@@ -18,7 +18,7 @@
 		
 		<#list table.columns as column>
 		<#if !column.htmlHidden>
-			<div class="row col-xs-12">
+			<div class="row">
 				<div class="col-xs-4 text-right"><b>${column.columnAlias}:</b></div>	
 				<div class="col-xs-4">
 				<#if column.isDateTimeColumn>
