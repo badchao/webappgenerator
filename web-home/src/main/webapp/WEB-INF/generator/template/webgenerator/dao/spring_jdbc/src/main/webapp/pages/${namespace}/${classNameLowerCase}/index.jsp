@@ -56,10 +56,12 @@
 
 		</#list>	
 				
-			<div style="margin-top:20px"  class="row col-sm-12 text-left">
-				<input type="submit" class="btn btn-primary btn-sm"  value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'"/>
-				<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>${classWebBasePath}/add.do">新增</a>
-				<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>/pages${classWebBasePath}/upload.jsp">批量导入</a>
+			<div style="margin-top:20px"  class="row text-left">
+				<div class="col-sm-4">
+					<input type="submit" class="btn btn-primary btn-sm"  value="查询" onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'"/>
+					<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>${classWebBasePath}/add.do"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</a>
+					<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>/pages${classWebBasePath}/upload.jsp"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> 批量导入</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -72,9 +74,7 @@
 				<th style="width:1px;"> </th>
 				<!-- 排序时为th增加sortColumn即可,new SimpleTable('sortColumns')会为tableHeader自动增加排序功能; -->
 				<#list table.columns as column>
-				<#if !column.htmlHidden>
 				<th sortColumn="${column.sqlName}" >${column.columnAlias}</th>
-				</#if>
 				</#list>
 				<th>操作</th>
 			  </tr>
@@ -86,7 +86,6 @@
 				<td><@jspEl 'page.paginator.startRow + status.index'/></td>
 				
 				<#list table.columns as column>
-				<#if !column.htmlHidden>
 				<td><#rt>
 					<#compress>
 					<#if column.isDateTimeColumn>
@@ -96,13 +95,12 @@
 					</#if>
 					</#compress>
 				<#lt></td>
-				</#if>
 				</#list>
 				
 				<td>
 					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/show.do?<@generateHtmlLinkArguments table.pkColumns/>">查看</a>&nbsp;&nbsp;
-					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>">修改</a>&nbsp;&nbsp;
-					<a class="btn btn-danger btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/delete.do?<@generateHtmlLinkArguments table.pkColumns/>" onclick="doRestDelete(this,'你确认删除?');return false;">删除</a>
+					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 修改</a>&nbsp;&nbsp;
+					<a class="btn btn-danger btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/delete.do?<@generateHtmlLinkArguments table.pkColumns/>" onclick="doRestDelete(this,'你确认删除?');return false;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>
 				</td>
 			  </tr>
 			  
