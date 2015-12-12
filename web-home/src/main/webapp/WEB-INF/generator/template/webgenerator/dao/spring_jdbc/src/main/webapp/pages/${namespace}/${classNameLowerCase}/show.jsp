@@ -17,9 +17,9 @@
 	<form:form modelAttribute="${classNameLowerCase}" cssClass="form-horizontal"  >
 		
 		<#list table.columns as column>
-			<div class="row">
-				<div class="col-xs-4 text-right"><b>${column.columnAlias}:</b></div>	
-				<div class="col-xs-4">
+			<div class="row form-group">
+				<label class="col-sm-4 control-label">${column.columnAlias}:</label>	
+				<div class="col-sm-4">
 				<#if column.isDateTimeColumn>
 					<fmt:formatDate value='<@jspEl classNameLower+"."+column.columnNameLower/>' pattern="yyyy-MM-dd"/>
 				<#else>
