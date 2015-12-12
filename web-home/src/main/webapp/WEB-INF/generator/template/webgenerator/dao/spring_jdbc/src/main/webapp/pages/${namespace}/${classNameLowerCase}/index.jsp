@@ -57,8 +57,8 @@
 		</#list>	
 				
 			<div style="margin-top:20px"  class="row text-left">
-				<div class="col-sm-4">
-					<a href="#" class="btn btn-primary btn-sm"  onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'; $(getReferenceForm(this)).submit();return false;"><span class="glyphicon glyphicon-search" aria-hidden="true"> 搜索</a>
+				<div class="col-sm-5">
+					<a href="#" class="btn btn-primary btn-sm"  onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'; $(getReferenceForm(this)).submit();return false;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</a>
 					<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>${classWebBasePath}/add.do"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</a>
 					<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>/pages${classWebBasePath}/upload.jsp"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> 批量导入</a>
 				</div>
@@ -98,7 +98,7 @@
 				</#list>
 				
 				<td>
-					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/show.do?<@generateHtmlLinkArguments table.pkColumns/>">查看</a>&nbsp;&nbsp;
+					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/show.do?<@generateHtmlLinkArguments table.pkColumns/>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 查看</a>&nbsp;&nbsp;
 					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 修改</a>&nbsp;&nbsp;
 					<a class="btn btn-danger btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/delete.do?<@generateHtmlLinkArguments table.pkColumns/>" onclick="doRestDelete(this,'你确认删除?');return false;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>
 				</td>
