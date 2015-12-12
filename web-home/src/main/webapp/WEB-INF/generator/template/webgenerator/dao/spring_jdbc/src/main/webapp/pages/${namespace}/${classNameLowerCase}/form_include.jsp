@@ -21,7 +21,7 @@
 		<#if column.isDateTimeColumn>
 			<input value='<fmt:formatDate value="<@jspEl classNameLower+"."+column.columnNameLower/>" pattern="yyyy-MM-dd"/>' class="form-control"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}" name="${column.columnNameLower}"  maxlength="0" />
 		<#else>
-			<input value="${dollar}{${classNameLower}.${column.columnNameLower}}" name="${column.columnNameLower}" id="${column.columnNameLower}" class="form-control" maxlength="${column.size}" placeholder="${column.columnNameLower}" ${GeneratorColumnUtil.getJqueryValidation(column)}/>
+			<input value="${dollar}{${classNameLower}.${column.columnNameLower}}" name="${column.columnNameLower}" id="${column.columnNameLower}" class="form-control" maxlength="${column.size}" placeholder="${column.columnAlias}" ${GeneratorColumnUtil.getJqueryValidation(column)}/>
 		</#if>
 			<span class="help-block"></span>
 			<span class="error"><form:errors path="${column.columnNameLower}"/></span>
