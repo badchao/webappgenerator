@@ -20,11 +20,13 @@
 			<div class="row form-group">
 				<label class="col-sm-4 control-label">${column.columnAlias}:</label>	
 				<div class="col-sm-4">
-				<#if column.isDateTimeColumn>
-					<fmt:formatDate value='<@jspEl classNameLower+"."+column.columnNameLower/>' pattern="yyyy-MM-dd"/>
-				<#else>
-					<c:out value='<@jspEl classNameLower+"."+column.columnNameLower/>'/>
-				</#if>
+					<div class="form-control">
+					<#if column.isDateTimeColumn>
+						<fmt:formatDate value='<@jspEl classNameLower+"."+column.columnNameLower/>' pattern="yyyy-MM-dd"/>
+					<#else>
+						<c:out value='<@jspEl classNameLower+"."+column.columnNameLower/>'/>
+					</#if>
+					</div>
 				</div>
 			</div>
 		</#list>
