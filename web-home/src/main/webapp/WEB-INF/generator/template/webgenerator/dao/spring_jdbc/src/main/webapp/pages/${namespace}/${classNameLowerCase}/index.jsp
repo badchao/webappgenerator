@@ -38,14 +38,14 @@
 			<#list row as column>
 			<#if !column.htmlHidden>
 				<div class="col-sm-3">
-					<div class="input-group">
+					<div class="form-group">
 						<#if column.isDateTimeColumn>
-						<div class="input-group-addon">开始${column.columnAlias}</div>
+						<label>开始${column.columnAlias}</label>
 						<input class="form-control input-from-control" placeholder="开始时间" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'Begin'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}Begin" name="${column.columnNameLower}Begin"   />
-						<div class="input-group-addon">结束${column.columnAlias}</div>
+						<label>结束${column.columnAlias}</label>
 						<input class="form-control input-from-control" placeholder="结束时间" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'End'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}End" name="${column.columnNameLower}End"   />
 						<#else>
-						<div class="input-group-addon">${column.columnAlias}</div>
+						<label>${column.columnAlias}</label>
 						<input class="form-control input-from-control" placeholder="${column.columnAlias}" value="<@jspEl "query."+column.columnNameLower/>" id="${column.columnNameLower}" name="${column.columnNameLower}" maxlength="${column.size}"  class="${column.noRequiredValidateString}"/>
 						</#if>
 					</div>
