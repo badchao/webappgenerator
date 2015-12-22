@@ -76,7 +76,7 @@
 	
 	<div class="panel panel-default table-responsive">
 		
-		<table class="table table-striped table-bordered table-hover table-condensed  scrolltable sortable">
+		<table class="table table-hover scrolltable sortable">
 		  <thead>
 			  <tr>
 				<th style="width:1px;"> </th>
