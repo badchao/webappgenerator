@@ -40,21 +40,21 @@
 				<#if column.isDateTimeColumn>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label>开始${column.columnAlias}</label>
-						<input class="form-control input-from-control" placeholder="开始时间" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'Begin'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}Begin" name="${column.columnNameLower}Begin"   />
+						<label for="${column.columnNameLower}Begin">开始${column.columnAlias}</label>
+						<input name="${column.columnNameLower}Begin" id="${column.columnNameLower}Begin" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'Begin'/>' pattern='yyyy-MM-dd'/>"  placeholder="开始时间"   class="form-control input-from-control"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"   />
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label>结束${column.columnAlias}</label>
-						<input class="form-control input-from-control" placeholder="结束时间" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'End'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}End" name="${column.columnNameLower}End"   />
+						<label for="${column.columnNameLower}End">结束${column.columnAlias}</label>
+						<input name="${column.columnNameLower}End" id="${column.columnNameLower}End" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'End'/>' pattern='yyyy-MM-dd'/>" placeholder="结束时间" class="form-control input-from-control"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"    />
 					</div>
 				</div>
 				<#else>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label>${column.columnAlias}</label>
-						<input class="form-control input-from-control" placeholder="${column.columnAlias}" value="<@jspEl "query."+column.columnNameLower/>" id="${column.columnNameLower}" name="${column.columnNameLower}" maxlength="${column.size}"  class="${column.noRequiredValidateString}"/>
+						<label for="${column.columnNameLower}">${column.columnAlias}</label>
+						<input name="${column.columnNameLower}" id="${column.columnNameLower}" value="<@jspEl "query."+column.columnNameLower/>" placeholder=""  class="form-control input-from-control"   maxlength="${column.size}"  class="${column.noRequiredValidateString}"/>
 					</div>
 				</div>
 				</#if>

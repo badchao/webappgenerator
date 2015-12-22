@@ -9,7 +9,7 @@
 
 <#list table.columns as column>
 <#if column.htmlHidden>
-	<input type="hidden" id="${column.columnNameLower}" name="${column.columnNameLower}" value="<@jspEl classNameLower+"."+column.columnNameLower/>"/>
+	<input name="${column.columnNameLower}" id="${column.columnNameLower}" type="hidden" value="<@jspEl classNameLower+"."+column.columnNameLower/>"/>
 </#if>
 </#list>
 
@@ -19,9 +19,9 @@
 		<label for="${column.columnNameLower}" class="col-sm-4 control-label"><#if !column.nullable><span class="required">*</span></#if>${column.columnAlias}:</label>
 		<div class="col-sm-4">
 		<#if column.isDateTimeColumn>
-			<input value='<fmt:formatDate value="<@jspEl classNameLower+"."+column.columnNameLower/>" pattern="yyyy-MM-dd"/>' class="form-control"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}" name="${column.columnNameLower}"  maxlength="0" />
+			<input name="${column.columnNameLower}" id="${column.columnNameLower}" value='<fmt:formatDate value="<@jspEl classNameLower+"."+column.columnNameLower/>" pattern="yyyy-MM-dd"/>' class="form-control"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"   maxlength="0" />
 		<#else>
-			<input value="${dollar}{${classNameLower}.${column.columnNameLower}}" name="${column.columnNameLower}" id="${column.columnNameLower}" class="form-control" maxlength="${column.size}" placeholder="${column.columnAlias}" ${GeneratorColumnUtil.getJqueryValidation(column)}/>
+			<input name="${column.columnNameLower}" id="${column.columnNameLower}" value="${dollar}{${classNameLower}.${column.columnNameLower}}" placeholder="${column.columnAlias}"  maxlength="${column.size}"  class="form-control" ${GeneratorColumnUtil.getJqueryValidation(column)}/>
 		</#if>
 			<span class="help-block"></span>
 			<span class="error"><form:errors path="${column.columnNameLower}"/></span>
