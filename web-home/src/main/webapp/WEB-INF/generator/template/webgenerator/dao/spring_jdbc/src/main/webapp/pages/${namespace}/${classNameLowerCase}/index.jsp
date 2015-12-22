@@ -37,19 +37,27 @@
 			<div class="row">
 			<#list row as column>
 			<#if !column.htmlHidden>
+				<#if column.isDateTimeColumn>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<#if column.isDateTimeColumn>
 						<label>开始${column.columnAlias}</label>
 						<input class="form-control input-from-control" placeholder="开始时间" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'Begin'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}Begin" name="${column.columnNameLower}Begin"   />
-						<label>结束${column.columnAlias}</label>
-						<input class="form-control input-from-control" placeholder="结束时间" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'End'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}End" name="${column.columnNameLower}End"   />
-						<#else>
-						<label>${column.columnAlias}</label>
-						<input class="form-control input-from-control" placeholder="${column.columnAlias}" value="<@jspEl "query."+column.columnNameLower/>" id="${column.columnNameLower}" name="${column.columnNameLower}" maxlength="${column.size}"  class="${column.noRequiredValidateString}"/>
-						</#if>
 					</div>
 				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label>结束${column.columnAlias}</label>
+						<input class="form-control input-from-control" placeholder="结束时间" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'End'/>' pattern='yyyy-MM-dd'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="${column.columnNameLower}End" name="${column.columnNameLower}End"   />
+					</div>
+				</div>
+				<#else>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label>${column.columnAlias}</label>
+						<input class="form-control input-from-control" placeholder="${column.columnAlias}" value="<@jspEl "query."+column.columnNameLower/>" id="${column.columnNameLower}" name="${column.columnNameLower}" maxlength="${column.size}"  class="${column.noRequiredValidateString}"/>
+					</div>
+				</div>
+				</#if>
 			</#if>
 			</#list>
 			</div>
@@ -99,7 +107,7 @@
 				
 				<td>
 					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/show.do?<@generateHtmlLinkArguments table.pkColumns/>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 查看</a>&nbsp;&nbsp;
-					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 修改</a>&nbsp;&nbsp;
+					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>&nbsp;&nbsp;
 					<a class="btn btn-danger btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/delete.do?<@generateHtmlLinkArguments table.pkColumns/>" onclick="doRestDelete(this,'你确认删除?');return false;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>
 				</td>
 			  </tr>
