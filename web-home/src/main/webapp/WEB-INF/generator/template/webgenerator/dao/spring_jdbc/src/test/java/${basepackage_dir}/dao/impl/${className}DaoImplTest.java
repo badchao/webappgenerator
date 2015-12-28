@@ -12,11 +12,12 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import org.springframework.transaction.annotation.Transactional;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
+
 
 
 import static junit.framework.Assert.*;
@@ -30,6 +31,7 @@ import ${basepackage}.dao.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/spring/*.xml" })
+@Transactional
 public class ${className}DaoImplTest {
 	
 	@Rule public TestName testName = new TestName();
