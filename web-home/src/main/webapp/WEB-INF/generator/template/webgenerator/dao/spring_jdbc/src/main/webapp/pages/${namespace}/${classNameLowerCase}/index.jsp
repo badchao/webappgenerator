@@ -88,7 +88,7 @@
 			  </tr>
 		  </thead>
 		  <tbody>
-		  	  <c:forEach items="<@jspEl 'page.itemList'/>" var="item" varStatus="status">
+		  	  <c:forEach items="<@jspEl 'page.itemList'/>" var="row" varStatus="status">
 		  	  
 			  <tr>
 				<td><@jspEl 'page.paginator.startRow + status.index'/></td>
@@ -97,9 +97,9 @@
 				<td><#rt>
 					<#compress>
 					<#if column.isDateTimeColumn>
-					<fmt:formatDate value='<@jspEl "item."+column.columnNameLower/>' pattern='yyyy-MM-dd'/>&nbsp;
+					<fmt:formatDate value='<@jspEl "row."+column.columnNameLower/>' pattern='yyyy-MM-dd'/>&nbsp;
 					<#else>
-					<c:out value='<@jspEl "item."+column.columnNameLower/>'/>&nbsp;
+					<c:out value='<@jspEl "row."+column.columnNameLower/>'/>&nbsp;
 					</#if>
 					</#compress>
 				<#lt></td>
@@ -130,6 +130,6 @@
 
 <#macro generateHtmlLinkArguments columns>
 <#compress>
-<#list columns as column>${column.columnNameFirstLower}=<@jspEl 'item.'+column.columnNameFirstLower/><#if column_has_next>&</#if></#list>
+<#list columns as column>${column.columnNameFirstLower}=<@jspEl 'row.'+column.columnNameFirstLower/><#if column_has_next>&</#if></#list>
 </#compress>
 </#macro>
