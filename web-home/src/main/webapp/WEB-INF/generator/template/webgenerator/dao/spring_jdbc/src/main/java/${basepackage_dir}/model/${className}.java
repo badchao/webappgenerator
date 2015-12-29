@@ -7,6 +7,9 @@ package ${basepackage}.model;
 import javax.validation.constraints.*;
 import java.util.*;
 import org.hibernate.validator.constraints.*;
+
+import com.zh.zhgc.model.Car;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -78,8 +81,17 @@ public class ${className}  implements java.io.Serializable{
 		return this.${column.columnNameLower};
 	}
 	
-	public void set${column.columnName}(${column.javaType} value) {
-		this.${column.columnNameLower} = value;
+	public void set${column.columnName}(${column.javaType} ${column.columnNameLower}) {
+		this.${column.columnNameLower} = ${column.columnNameLower};
+	}
+	
+	public ${column.javaType} ${column.columnName}() {
+		return this.${column.columnName};
+	}
+
+	public ${className} ${column.columnName}(${column.javaType} ${column.columnNameLower}) {
+		this.${column.columnNameLower} = ${column.columnNameLower};
+		return this;
 	}
 	
 	</#list>

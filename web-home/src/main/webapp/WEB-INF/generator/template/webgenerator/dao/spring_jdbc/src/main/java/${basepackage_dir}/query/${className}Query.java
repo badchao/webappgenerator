@@ -67,8 +67,17 @@ public class ${className}Query extends PageQuery implements Serializable {
 		return this.${column.columnNameLower};
 	}
 	
-	public void set${column.columnName}(${column.javaType} value) {
-		this.${column.columnNameLower} = value;
+	public void set${column.columnName}(${column.javaType} ${column.columnNameLower}) {
+		this.${column.columnNameLower} = ${column.columnNameLower};
+	}
+	
+	public ${column.javaType} ${column.columnName}() {
+		return this.${column.columnName};
+	}
+
+	public ${className}Query ${column.columnName}(${column.javaType} ${column.columnNameLower}) {
+		this.${column.columnNameLower} = ${column.columnNameLower};
+		return this;
 	}
 	
 	</#if>	
