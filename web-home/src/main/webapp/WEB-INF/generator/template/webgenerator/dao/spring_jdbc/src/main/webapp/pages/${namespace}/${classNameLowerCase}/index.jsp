@@ -107,7 +107,7 @@
 				
 				<td>
 					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/show.do?<@generateHtmlLinkArguments table.pkColumns/>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 查看</a>&nbsp;&nbsp;
-					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>&nbsp;&nbsp;
+					<a class="btn btn-primary btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/edit.do?<@generateHtmlLinkArguments table.pkColumns/>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 修改</a>&nbsp;&nbsp;
 					<a class="btn btn-danger btn-xs" href="<@jspEl 'ctx'/>${classWebBasePath}/delete.do?<@generateHtmlLinkArguments table.pkColumns/>" onclick="doRestDelete(this,'你确认删除?');return false;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a>
 				</td>
 			  </tr>
