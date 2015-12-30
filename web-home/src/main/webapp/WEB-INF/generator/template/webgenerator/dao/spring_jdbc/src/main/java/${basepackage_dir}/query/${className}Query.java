@@ -50,16 +50,18 @@ public class ${className}Query extends PageQuery implements Serializable {
 		return this.${column.columnNameLower}Begin;
 	}
 	
-	public void set${column.columnName}Begin(${column.javaType} value) {
+	public ${className} set${column.columnName}Begin(${column.javaType} value) {
 		this.${column.columnNameLower}Begin = value;
+		return this;
 	}	
 	
 	public ${column.javaType} get${column.columnName}End() {
 		return this.${column.columnNameLower}End;
 	}
 	
-	public void set${column.columnName}End(${column.javaType} value) {
+	public ${className} set${column.columnName}End(${column.javaType} value) {
 		this.${column.columnNameLower}End = value;
+		return this;
 	}
 	
 	<#else>
@@ -67,8 +69,9 @@ public class ${className}Query extends PageQuery implements Serializable {
 		return this.${column.columnNameLower};
 	}
 	
-	public void set${column.columnName}(${column.javaType} ${column.columnNameLower}) {
+	public ${className} set${column.columnName}(${column.javaType} ${column.columnNameLower}) {
 		this.${column.columnNameLower} = ${column.columnNameLower};
+		return this;
 	}
 	
 	public ${column.javaType} ${column.columnNameLower}() {
