@@ -85,11 +85,11 @@ public class ${className}  implements java.io.Serializable{
 		this.${column.columnNameLower} = ${column.columnNameLower};
 	}
 	
-	public ${column.javaType} ${column.columnName}() {
-		return this.${column.columnName};
+	public ${column.javaType} ${column.columnNameLower}() {
+		return this.${column.columnNameLower};
 	}
 
-	public ${className} ${column.columnName}(${column.javaType} ${column.columnNameLower}) {
+	public ${className} ${column.columnNameLower}(${column.javaType} ${column.columnNameLower}) {
 		this.${column.columnNameLower} = ${column.columnNameLower};
 		return this;
 	}
