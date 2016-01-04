@@ -198,11 +198,12 @@ public class ${className}Controller {
 	 * @param selectName select标签的name
 	 */
 	@RequestMapping
-	public String htmlSelectTag(String selectName,ModelMap model) throws Exception {
+	public String htmlSelectTag(String selectName,String selected,ModelMap model) throws Exception {
 		${className}Query query = new ${className}Query();
 		query.setPageSize(Integer.MAX_VALUE);
 		Page<${className}> page = ${classNameFirstLower}Service.findPage(query);
 		model.put("itemList", page.getItemList());
+		model.put("selected", selected);
 		model.put("selectName", StringUtils.defaultIfEmpty(selectName,"${classNameFirstLower}Id"));
 		return "${classWebBasePath}/htmlSelectTag";
 	}
