@@ -31,6 +31,11 @@ public interface ${className}Service {
 	 **/	
     public ${className} update(${className} ${classNameLower});
     
+    /**
+     *  join取回${className}的关联信息,如一对多，多对一等的关联信息
+     */
+    public ${className} join(${className} ${classNameLower});
+    
 	/** 
 	 * 删除${className}
 	 **/

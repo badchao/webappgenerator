@@ -110,8 +110,9 @@ public class ${className}  implements java.io.Serializable{
 	public Set<${fkPojoClass}> get${fkPojoClass}s() {
 		return ${fkPojoClassVar}s;
 	}	
-	public void set${fkPojoClass}s(Set<${fkPojoClass}> ${fkPojoClassVar}){
+	public ${className} set${fkPojoClass}s(Set<${fkPojoClass}> ${fkPojoClassVar}){
 		this.${fkPojoClassVar}s = ${fkPojoClassVar};
+		return this;
 	}
 	</#list>
 </#macro>
@@ -127,8 +128,9 @@ public class ${className}  implements java.io.Serializable{
 	public ${fkPojoClass} get${fkPojoClass}() {
 		return ${fkPojoClassVar};
 	}	
-	public void set${fkPojoClass}(${fkPojoClass} ${fkPojoClassVar}){
+	public ${className} set${fkPojoClass}(${fkPojoClass} ${fkPojoClassVar}){
 		this.${fkPojoClassVar} = ${fkPojoClassVar};
+		return this;
 	}
 	</#list>
 </#macro>

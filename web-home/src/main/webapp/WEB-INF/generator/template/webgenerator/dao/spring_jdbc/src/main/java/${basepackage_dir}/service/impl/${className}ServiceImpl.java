@@ -61,6 +61,10 @@ public class ${className}ServiceImpl implements ${className}Service {
         return ${classNameLower};
     }	
     
+    public ${className} join(${className} ${classNameLower}) {
+    	return ${classNameLower};
+    }
+    
 	/** 
 	 * 删除${className}
 	 **/
