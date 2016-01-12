@@ -13,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
+
 
 
 
@@ -37,6 +39,11 @@ public class ${className}DaoImplTest {
 	@Rule public TestName testName = new TestName();
 	
 	private ${className}Dao dao;
+	
+	@Before
+	public void before() {
+		System.out.println("\n\n------------------ "+testName.getMethodName()+" ----------------------");
+	}
 	
 	@Autowired
 	public void set${className}Dao(${className}Dao dao) {
