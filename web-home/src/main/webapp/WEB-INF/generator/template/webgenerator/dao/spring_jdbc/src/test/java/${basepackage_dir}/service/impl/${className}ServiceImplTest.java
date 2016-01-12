@@ -35,7 +35,7 @@ public class ${className}ServiceImplTest {
 	
 	@Before
 	public void before() {
-		System.out.println("\n\n------------------ "+testName.getMethodName()+" ----------------------");
+		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
 		service.set${className}Dao(${classNameLower}Dao);
 	}
 	

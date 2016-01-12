@@ -42,7 +42,7 @@ public class ${className}DaoImplTest {
 	
 	@Before
 	public void before() {
-		System.out.println("\n\n------------------ "+testName.getMethodName()+" ----------------------");
+		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
 	}
 	
 	@Autowired
