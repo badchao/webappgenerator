@@ -41,13 +41,13 @@
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="${column.columnNameLower}Begin">开始${column.columnAlias}</label>
-						<input name="${column.columnNameLower}Begin" id="${column.columnNameLower}Begin" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'Begin'/>' pattern='yyyy-MM-dd'/>"  placeholder="开始时间"   class="form-control input-from-control"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"   />
+						<input name="${column.columnNameLower}Begin" id="${column.columnNameLower}Begin" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'Begin'/>' pattern='yyyy-MM-dd'/>"  placeholder="开始时间"   class="form-control input-from-control"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"   />
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="${column.columnNameLower}End">结束${column.columnAlias}</label>
-						<input name="${column.columnNameLower}End" id="${column.columnNameLower}End" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'End'/>' pattern='yyyy-MM-dd'/>" placeholder="结束时间" class="form-control input-from-control"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"    />
+						<input name="${column.columnNameLower}End" id="${column.columnNameLower}End" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'End'/>' pattern='yyyy-MM-dd'/>" placeholder="结束时间" class="form-control input-from-control"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"    />
 					</div>
 				</div>
 				<#else>
