@@ -8,8 +8,6 @@ import javax.validation.constraints.*;
 import java.util.*;
 import org.hibernate.validator.constraints.*;
 
-import com.zh.zhgc.model.Car;
-
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;

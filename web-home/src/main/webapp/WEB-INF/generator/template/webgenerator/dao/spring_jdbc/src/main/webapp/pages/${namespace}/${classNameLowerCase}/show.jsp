@@ -32,8 +32,8 @@
 		</#list>
 		
 		<div class="text-center">
-			<a class="btn btn-primary" href="<@jspEl "ctx"/>${classWebBasePath}/index.do">返回列表</a>&nbsp;&nbsp;&nbsp;
-			<input type="button" class="btn btn-primary" value="后退" onclick="history.back();"/>
+			<a class="btn btn-default" href="<@jspEl "ctx"/>${classWebBasePath}/index.do">返回列表</a>&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn btn-default" value="后退" onclick="history.back();"/>
 		</div>
 
 	</form:form>
