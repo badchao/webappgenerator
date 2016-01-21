@@ -40,20 +40,20 @@
 				<#if column.isDateTimeColumn>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="${column.columnNameLower}Begin">开始${column.columnAlias}</label>
+						<label for="${column.columnNameLower}Begin" class="control-label">开始${column.columnAlias}</label>
 						<input name="${column.columnNameLower}Begin" id="${column.columnNameLower}Begin" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'Begin'/>' pattern='yyyy-MM-dd'/>"  placeholder="开始时间"   class="form-control input-from-control"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"   />
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="${column.columnNameLower}End">结束${column.columnAlias}</label>
+						<label for="${column.columnNameLower}End" class="control-label">结束${column.columnAlias}</label>
 						<input name="${column.columnNameLower}End" id="${column.columnNameLower}End" value="<fmt:formatDate value='<@jspEl "query."+column.columnNameLower+'End'/>' pattern='yyyy-MM-dd'/>" placeholder="结束时间" class="form-control input-from-control"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"    />
 					</div>
 				</div>
 				<#else>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="${column.columnNameLower}">${column.columnAlias}</label>
+						<label for="${column.columnNameLower}" class="control-label">${column.columnAlias}</label>
 						<input name="${column.columnNameLower}" id="${column.columnNameLower}" value="<@jspEl "query."+column.columnNameLower/>" placeholder=""  class="form-control input-from-control"   maxlength="${column.size}"  class="${column.noRequiredValidateString}"/>
 					</div>
 				</div>
