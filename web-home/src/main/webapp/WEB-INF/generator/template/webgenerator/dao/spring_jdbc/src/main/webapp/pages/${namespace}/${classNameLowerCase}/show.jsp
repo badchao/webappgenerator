@@ -17,7 +17,7 @@
 	<form:form modelAttribute="${classNameLowerCase}" cssClass="form-horizontal"  >
 		
 		<#list table.columns as column>
-			<div class="row form-group">
+			<div class="form-group">
 				<label class="col-sm-4 control-label">${column.columnAlias}:</label>	
 				<div class="col-sm-4">
 					<div class="form-control">
@@ -31,10 +31,12 @@
 			</div>
 		</#list>
 		
-		<div class="text-center">
-			<a class="btn btn-default" href="<@jspEl "ctx"/>${classWebBasePath}/index.do">返回列表</a>&nbsp;&nbsp;&nbsp;
-			<input type="button" class="btn btn-default" value="后退" onclick="history.back();"/>
-		</div>
+			<div class="form-group">
+				<div class="text-center">
+					<a class="btn btn-default" href="<@jspEl "ctx"/>${classWebBasePath}/index.do">返回列表</a>&nbsp;&nbsp;&nbsp;
+					<input type="button" class="btn btn-default" value="后退" onclick="history.back();"/>
+				</div>
+			</div>
 
 	</form:form>
 </rapid:override>
