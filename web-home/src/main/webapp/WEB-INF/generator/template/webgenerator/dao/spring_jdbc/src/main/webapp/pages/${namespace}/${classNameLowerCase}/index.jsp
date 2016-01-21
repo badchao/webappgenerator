@@ -66,7 +66,7 @@
 				
 			<div style="margin-top:20px"  class="row text-left">
 				<div class="col-sm-5">
-					<a href="#" class="btn btn-primary btn-sm"  onclick="getReferenceForm(this).action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'; $(getReferenceForm(this)).submit();return false;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</a>
+					<a href="#" class="btn btn-primary btn-sm"  onclick="$(this).closest('form').action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'; $(this).closest('form').submit();return false;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</a>
 					<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>${classWebBasePath}/add.do"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</a>
 					<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>/pages${classWebBasePath}/upload.jsp"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> 批量导入</a>
 				</div>
