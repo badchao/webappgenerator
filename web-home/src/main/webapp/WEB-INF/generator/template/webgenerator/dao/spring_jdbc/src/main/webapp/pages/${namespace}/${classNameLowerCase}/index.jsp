@@ -26,7 +26,7 @@
 
 
 <rapid:override name="content">
-	<form id="queryForm" name="queryForm" method="get" >
+	<form id="queryForm" name="queryForm" method="get" action="<@jspEl 'ctx'/>${classWebBasePath}/index.do">
 	
 	<div class="panel panel-default">
 	
@@ -117,7 +117,6 @@
 		</table>
 	
 		<simpletable:pageToolbar paginator="<@jspEl 'page.paginator'/>">
-		显示在这里是为了提示你如何自定义表头,可修改模板删除此行
 		</simpletable:pageToolbar>
 		
 	</div>
