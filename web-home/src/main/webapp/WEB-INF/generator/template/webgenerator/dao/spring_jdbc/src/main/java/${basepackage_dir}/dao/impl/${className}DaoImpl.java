@@ -3,7 +3,8 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.dao.impl;
 
-<#include "/java_imports.include">
+import ${basepackage}.model.*;
+import ${basepackage}.query.*;
 
 import ${basepackage}.dao.${className}Dao;
 
@@ -11,6 +12,10 @@ import ${basepackage}.dao.${className}Dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -29,6 +34,12 @@ import com.github.rapid.common.jdbc.dao.support.BaseSpringJdbcDao;
 <#include "/java_description.include">
 */
 public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${className}Dao{
+
+	protected static final Logger logger = LoggerFactory.getLogger(${className}DaoImpl.class);
+	
+	/*
+	* 请删除无用的方法，本代码生成器的理念是: 1. 一次生成，后期手工修改代码 2. 删除代码比手写重复代码快捷，所以请删除无用代码
+	*/
 	
 	private RowMapper<${className}> entityRowMapper = new BeanPropertyRowMapper<${className}>(getEntityClass());
 	

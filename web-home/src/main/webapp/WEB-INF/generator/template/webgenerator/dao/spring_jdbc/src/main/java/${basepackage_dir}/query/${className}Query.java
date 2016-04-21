@@ -10,10 +10,11 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
-<#include "/java_imports.include">
 import com.github.rapid.common.util.page.PageQuery;
 
 /**
+ * [${table.tableAlias}] 查询对象
+ * 
 <#include "/java_description.include">
  */
 public class ${className}Query extends PageQuery implements Serializable {
@@ -49,16 +50,18 @@ public class ${className}Query extends PageQuery implements Serializable {
 		return this.${column.columnNameLower}Begin;
 	}
 	
-	public void set${column.columnName}Begin(${column.javaType} value) {
+	public ${className}Query set${column.columnName}Begin(${column.javaType} value) {
 		this.${column.columnNameLower}Begin = value;
+		return this;
 	}	
 	
 	public ${column.javaType} get${column.columnName}End() {
 		return this.${column.columnNameLower}End;
 	}
 	
-	public void set${column.columnName}End(${column.javaType} value) {
+	public ${className}Query set${column.columnName}End(${column.javaType} value) {
 		this.${column.columnNameLower}End = value;
+		return this;
 	}
 	
 	<#else>
@@ -66,8 +69,18 @@ public class ${className}Query extends PageQuery implements Serializable {
 		return this.${column.columnNameLower};
 	}
 	
-	public void set${column.columnName}(${column.javaType} value) {
-		this.${column.columnNameLower} = value;
+	public ${className}Query set${column.columnName}(${column.javaType} ${column.columnNameLower}) {
+		this.${column.columnNameLower} = ${column.columnNameLower};
+		return this;
+	}
+	
+	public ${column.javaType} ${column.columnNameLower}() {
+		return this.${column.columnNameLower};
+	}
+
+	public ${className}Query ${column.columnNameLower}(${column.javaType} ${column.columnNameLower}) {
+		this.${column.columnNameLower} = ${column.columnNameLower};
+		return this;
 	}
 	
 	</#if>	

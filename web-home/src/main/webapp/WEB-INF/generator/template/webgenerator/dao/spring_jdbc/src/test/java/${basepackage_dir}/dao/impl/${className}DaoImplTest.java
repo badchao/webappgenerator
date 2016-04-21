@@ -7,25 +7,43 @@ import ${basepackage}.${className}DataFactory;
 
 import com.github.rapid.common.util.page.Page;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
+import org.junit.runner.RunWith;
+
+
+
 
 import static junit.framework.Assert.*;
+import ${basepackage}.model.*;
+import ${basepackage}.query.*;
+import ${basepackage}.dao.*;
 
-<#include "/java_imports.include">
 
 /**
 <#include "/java_description.include">
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "/spring/*.xml" })
+@Transactional
 public class ${className}DaoImplTest {
 	
 	@Rule public TestName testName = new TestName();
 	
 	private ${className}Dao dao;
+	
+	@Before
+	public void before() {
+		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
+	}
 	
 	@Autowired
 	public void set${className}Dao(${className}Dao dao) {

@@ -5,13 +5,15 @@
 package ${basepackage}.model;
 
 import javax.validation.constraints.*;
+import java.util.*;
 import org.hibernate.validator.constraints.*;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-<#include "/java_imports.include">
+
 
 /**
  * tableName: ${table.sqlName} [${table.tableAlias}] 
@@ -77,8 +79,18 @@ public class ${className}  implements java.io.Serializable{
 		return this.${column.columnNameLower};
 	}
 	
-	public void set${column.columnName}(${column.javaType} value) {
-		this.${column.columnNameLower} = value;
+	public ${className} set${column.columnName}(${column.javaType} ${column.columnNameLower}) {
+		this.${column.columnNameLower} = ${column.columnNameLower};
+		return this;
+	}
+	
+	public ${column.javaType} ${column.columnNameLower}() {
+		return this.${column.columnNameLower};
+	}
+
+	public ${className} ${column.columnNameLower}(${column.javaType} ${column.columnNameLower}) {
+		this.${column.columnNameLower} = ${column.columnNameLower};
+		return this;
 	}
 	
 	</#list>
@@ -96,8 +108,9 @@ public class ${className}  implements java.io.Serializable{
 	public Set<${fkPojoClass}> get${fkPojoClass}s() {
 		return ${fkPojoClassVar}s;
 	}	
-	public void set${fkPojoClass}s(Set<${fkPojoClass}> ${fkPojoClassVar}){
+	public ${className} set${fkPojoClass}s(Set<${fkPojoClass}> ${fkPojoClassVar}){
 		this.${fkPojoClassVar}s = ${fkPojoClassVar};
+		return this;
 	}
 	</#list>
 </#macro>
@@ -113,8 +126,9 @@ public class ${className}  implements java.io.Serializable{
 	public ${fkPojoClass} get${fkPojoClass}() {
 		return ${fkPojoClassVar};
 	}	
-	public void set${fkPojoClass}(${fkPojoClass} ${fkPojoClassVar}){
+	public ${className} set${fkPojoClass}(${fkPojoClass} ${fkPojoClassVar}){
 		this.${fkPojoClassVar} = ${fkPojoClassVar};
+		return this;
 	}
 	</#list>
 </#macro>

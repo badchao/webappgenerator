@@ -3,7 +3,8 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.dao;
 
-<#include "/java_imports.include">
+import ${basepackage}.model.*;
+import ${basepackage}.query.*;
 
 import java.util.List;
 import com.github.rapid.common.util.page.Page;

@@ -9,10 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-<#include "/java_imports.include">
+import ${basepackage}.model.*;
+import ${basepackage}.dao.*;
+import ${basepackage}.query.*;
+import java.util.Date;
 
 /**
- * [${table.tableAlias}] 的业务操作
+ * [${table.tableAlias}] 的Service接口
  * 
 <#include "/java_description.include">
  */
@@ -27,6 +30,11 @@ public interface ${className}Service {
 	 * 更新${className}
 	 **/	
     public ${className} update(${className} ${classNameLower});
+    
+    /**
+     *  join取回${className}的关联信息,如一对多，多对一等的关联信息
+     */
+    public ${className} join(${className} ${classNameLower});
     
 	/** 
 	 * 删除${className}

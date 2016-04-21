@@ -7,14 +7,19 @@
 package ${basepackage}.service.impl;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 
 import ${basepackage}.${className}DataFactory;
-
 import static junit.framework.Assert.*;
 import static org.mockito.Mockito.*;
 
-<#include "/java_imports.include">
+import java.util.*;
+
+import ${basepackage}.model.*;
+import ${basepackage}.query.*;
+import ${basepackage}.dao.*;
 
 /**
 <#include "/java_description.include">
@@ -26,8 +31,11 @@ public class ${className}ServiceImplTest {
 	private ${className}ServiceImpl service = new ${className}ServiceImpl();
 	private ${className}Dao ${classNameLower}Dao = mock(${className}Dao.class);
 	
+	@Rule public TestName testName = new TestName();
+	
 	@Before
-	public void setUp() {
+	public void before() {
+		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
 		service.set${className}Dao(${classNameLower}Dao);
 	}
 	

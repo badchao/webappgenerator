@@ -14,10 +14,13 @@ import ${basepackage}.service.${className}Service;
 import com.github.rapid.common.util.holder.BeanValidatorHolder;
 import com.github.rapid.common.util.page.Page;
 
-<#include "/java_imports.include">
+import ${basepackage}.model.*;
+import ${basepackage}.dao.*;
+import ${basepackage}.query.*;
+import java.util.Date;
 
 /**
- * [${table.tableAlias}] 的业务操作实现类
+ * [${table.tableAlias}] 的Service接口实现
  * 
 <#include "/java_description.include">
  */
@@ -25,11 +28,11 @@ import com.github.rapid.common.util.page.Page;
 @Transactional
 public class ${className}ServiceImpl implements ${className}Service {
 
-	protected static final Logger log = LoggerFactory.getLogger(${className}ServiceImpl.class);
+	protected static final Logger logger = LoggerFactory.getLogger(${className}ServiceImpl.class);
 	
-	//
-	// 请删除无用的方法，代码生成器只是为你生成一个架子
-	//
+	/*
+	* 请删除无用的方法，本代码生成器的理念是: 1. 一次生成，后期手工修改代码 2. 删除代码比手写重复代码快捷，所以请删除无用代码
+	*/
 	
 	private ${className}Dao ${classNameLower}Dao;
 	/**增加setXXXX()方法,spring就可以通过autowire自动设置对象属性,请注意大小写*/
@@ -57,6 +60,13 @@ public class ${className}ServiceImpl implements ${className}Service {
         ${classNameLower}Dao.update(${classNameLower});
         return ${classNameLower};
     }	
+    
+    /**
+     *  join取回${className}的关联信息,如一对多，多对一等的关联信息
+     */
+    public ${className} join(${className} ${classNameLower}) {
+    	return ${classNameLower};
+    }
     
 	/** 
 	 * 删除${className}
