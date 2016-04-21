@@ -16,7 +16,7 @@
 				<!-- 本地开发环境配置 -->
 				<value>classpath*:app-local.properties</value>
 				<!-- 服务器生产环境配置 -->
-                 <value>file:/data/app/webappgenerator/config/app.properties</value>
+                 <value>file:/data/app/webgenerator/config/app.properties</value>
 			</list>
 		</property>
     </bean>
