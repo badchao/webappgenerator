@@ -79,9 +79,8 @@ public class ${className}  implements java.io.Serializable{
 		return this.${column.columnNameLower};
 	}
 	
-	public ${className} set${column.columnName}(${column.javaType} ${column.columnNameLower}) {
+	public void set${column.columnName}(${column.javaType} ${column.columnNameLower}) {
 		this.${column.columnNameLower} = ${column.columnNameLower};
-		return this;
 	}
 	
 	public ${column.javaType} ${column.columnNameLower}() {
