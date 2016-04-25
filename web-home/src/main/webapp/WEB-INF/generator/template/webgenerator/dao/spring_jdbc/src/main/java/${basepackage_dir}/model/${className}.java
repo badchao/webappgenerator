@@ -131,4 +131,3 @@ public class ${className}  implements java.io.Serializable{
 	}
 	</#list>
 </#macro>
-
