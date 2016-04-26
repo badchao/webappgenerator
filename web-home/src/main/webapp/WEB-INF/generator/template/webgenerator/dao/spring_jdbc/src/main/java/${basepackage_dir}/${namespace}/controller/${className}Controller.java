@@ -94,6 +94,7 @@ public class ${className}Controller {
 	/** 列表 */
 	@RequestMapping
 	public String index(ModelMap model,${className}Query query,HttpServletRequest request) {
+		Assert.isTrue(query.getPageSize() <= 200,"query.pageSize too large");
 		Page<${className}> page = this.${classNameFirstLower}Service.findPage(query);
 		
 		model.addAttribute("page",page);
@@ -194,7 +195,7 @@ public class ${className}Controller {
 	 * 生成HTML: <select></select> 标签，生成的标签配合 jsp:include标签一起使用
 	 * 应用场景：表之前有外键关联，如主从表，用于生成主从select标签,用于form表单的输入
 	 * 
-	 * <jsp:include page="${dollor}{ctx}${classWebBasePath}/htmlSelectTag.do?selectId=someForeignKeyId"/>
+	 * <jsp:include page="${dollor}{ctx}${classWebBasePath}/htmlSelectTag.do?selected=someForeignKeyId"/>
 	 * @param selectName select标签的name
 	 */
 	@RequestMapping
