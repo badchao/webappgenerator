@@ -6,7 +6,7 @@ package ${basepackage}.dao;
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;
 
-import java.util.List;
+import java.util.*;
 import com.github.rapid.common.util.page.Page;
 
 /**
