@@ -44,6 +44,7 @@ import com.github.rapid.common.util.CsvFileUtil;
 import com.github.rapid.common.util.ValidationErrorsUtil;
 import com.github.rapid.common.util.page.Page;
 import com.github.rapid.common.util.CollectionUtil;
+import com.github.rapid.common.web.util.ServletUtil;
 
 <#include "/java_imports.include">
 
@@ -65,7 +66,7 @@ public class ${className}Controller {
 	
 	private ${className}Service ${classNameFirstLower}Service;
 	
-	private final String LIST_ACTION = "redirect:${classWebBasePath}/index.do";
+	private final String LIST_ACTION = "redirect:${classWebBasePath}/index.do?useSessionParam=true";
 	
 	private static String CREATED_SUCCESS = "创建成功";
 	private static String UPDATE_SUCCESS = "更新成功";
@@ -94,7 +95,9 @@ public class ${className}Controller {
 	/** 列表 */
 	@RequestMapping
 	public String index(ModelMap model,${className}Query query,HttpServletRequest request) {
+		query = ServletUtil.tryGetFromSession(request,query);
 		Assert.isTrue(query.getPageSize() <= 200,"query.pageSize too large");
+		
 		Page<${className}> page = this.${classNameFirstLower}Service.findPage(query);
 		
 		model.addAttribute("page",page);
