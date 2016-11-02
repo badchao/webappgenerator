@@ -92,7 +92,7 @@ public class ${className}Controller {
 	public void init(ModelMap model) {
 	}
 	
-	/** 列表 */
+	/** 列表  */
 	@RequestMapping
 	public String index(ModelMap model,${className}Query query,HttpServletRequest request) {
 		query = ServletUtil.tryGetFromSession(request,query);
