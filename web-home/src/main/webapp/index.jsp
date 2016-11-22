@@ -33,24 +33,30 @@
 		 		</tr>
 		 		<tr>
 		 			<td><b>需要删除表名的前缀</b></td>
-		 			<td><input class="form-control" type="text" id="tableRemovePrefixes" name="tableRemovePrefixes" size="40" onchange="saveCookie()"/> 示例值: t_,v_</td>
+		 			<td><input class="form-control" type="text" id="tableRemovePrefixes" name="tableRemovePrefixes" size="40" onchange="saveCookie()" placeholder="生成的代码会删除该前缀，如t_user => user"/> 示例值: t_,v_</td>
 		 		</tr> 		
 				<tr>
 		 			<td><b>web namespace</b></td>
-		 			<td><input class="form-control" type="text" id="namespace" name="namespace" placeholder="示例值:monitor,security" size="40" onchange="saveCookie()"/> JSP页面子模块,用于web分模块,会影响jsp存放位置,如/{namespace}/{className}/list.jsp,示例值:monitor,security</td>
+		 			<td><input class="form-control" type="text" id="namespace" name="namespace" placeholder="示例值:admin,monitor,security" size="40" onchange="saveCookie()"/> JSP页面子模块,用于web分模块,会影响jsp存放位置,如/{namespace}/{className}/list.jsp,示例值:admin,monitor,security</td>
 		 		</tr>
+		 		<tr>
+		 			<td><b>作者</b></td>
+		 			<td><input class="form-control" type="text" id="author" name="author" size="40" onchange="saveCookie()" placeholder="生成的代码会显示该作者"/></td>
+		 		</tr> 
 		 	</table>
 		 	<div class="text-center"><input class="btn btn-primary btn-lg" type="submit" value="生成代码" /></div>
 	 	</form>
 	</div>
  	
 <script type="text/javascript">
+
 	function saveCookie() {
 		$.cookie('namespace', $('#namespace').val(),{expires:10000000});
 		$.cookie('appModule', $('#appModule').val(),{expires:10000000});
 		$.cookie('basepackage', $('#basepackage').val(),{expires:10000000});
 		$.cookie('tableRemovePrefixes', $('#tableRemovePrefixes').val(),{expires:10000000});
 		$.cookie('sqls', $('#sqls').val(),{expires:10000000});
+		$.cookie('author', $('#author').val(),{expires:10000000});
 	}
 
 	function recoverCookie() {
@@ -59,6 +65,7 @@
 		$("#sqls").val($.cookie('sqls'));
 		$("#basepackage").val($.cookie('basepackage'));
 		$("#tableRemovePrefixes").val($.cookie('tableRemovePrefixes'));
+		$("#author").val($.cookie('author'));
 	}
 
 	recoverCookie();

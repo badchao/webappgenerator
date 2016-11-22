@@ -1,6 +1,6 @@
 /*
- * Copyright [rapid-framework.com]
- * Web Site: http://www.rapid-framework.com
+ * Copyright [rapid-framework]
+ * Web Site: https://github.com/badqiu/rapid-framework
  * Since 2005 <#if now??>- ${now?string('yyyy')}</#if>
+ * author: badqiu email:badqiu(a)gmail.com
  */
-
