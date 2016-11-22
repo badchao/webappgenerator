@@ -1,3 +1,4 @@
  * @author ${author}
  * @version 1.0
- * @since 1.0 <#if now??>- ${now?string('yyyy-MM-dd')}</#if>
+ * @since 1.0 
+ * @created: <#if now??>${now?string('yyyy-MM-dd')}</#if>
