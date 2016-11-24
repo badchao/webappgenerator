@@ -20,7 +20,7 @@
 			<div class="form-group">
 				<label class="col-sm-4 control-label">${column.columnAlias}:</label>	
 				<div class="col-sm-4">
-					<div class="form-control">
+					<div class="form-control-static">
 					<#if column.isDateTimeColumn>
 						<fmt:formatDate value='<@jspEl classNameLower+"."+column.columnNameLower/>' pattern="yyyy-MM-dd"/>
 					<#else>
