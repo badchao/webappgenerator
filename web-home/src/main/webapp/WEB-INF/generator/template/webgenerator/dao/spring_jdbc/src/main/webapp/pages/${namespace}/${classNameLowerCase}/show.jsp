@@ -18,8 +18,8 @@
 		
 		<#list table.columns as column>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">${column.columnAlias}:</label>	
-				<div class="col-sm-4">
+				<label class="col-sm-3 control-label">${column.columnAlias}:</label>	
+				<div class="col-sm-6">
 					<div class="form-control-static">
 					<#if column.isDateTimeColumn>
 						<fmt:formatDate value='<@jspEl classNameLower+"."+column.columnNameLower/>' pattern="yyyy-MM-dd"/>

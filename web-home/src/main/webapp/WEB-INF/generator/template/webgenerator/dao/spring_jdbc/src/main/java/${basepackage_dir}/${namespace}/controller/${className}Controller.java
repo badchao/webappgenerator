@@ -66,7 +66,7 @@ public class ${className}Controller {
 	
 	private ${className}Service ${classNameFirstLower}Service;
 	
-	private final String LIST_ACTION = "redirect:${classWebBasePath}/index.do?useSessionParam=true";
+	public static final String LIST_ACTION = "redirect:${classWebBasePath}/index.do?useSessionParam=true";
 	
 	private static String CREATED_SUCCESS = "创建成功";
 	private static String UPDATE_SUCCESS = "更新成功";

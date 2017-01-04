@@ -65,7 +65,7 @@
 		</#list>	
 				
 			<div style="margin-top:20px"  class="row text-left">
-				<div class="col-sm-5">
+				<div class="col-sm-12">
 					<!-- type=subbmit 为了响应回车事件 -->
 					<input type="submit" value="提交" style="display: none;" />
 					<a href="#" class="btn btn-primary btn-sm"  onclick="$(this).closest('form').action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'; $(this).closest('form').submit();return false;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</a>
