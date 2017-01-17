@@ -12,7 +12,7 @@
 
 <rapid:override name="content">
 	<h2 id="title" class="text-center">编辑${table.tableAlias}</h2>
-	<c:set var="isEditAction" value="true"/>
+	<c:set var="isEditAction" value="${dollar}{true}"/>
 	<form:form id="inputForm" method="post" cssClass="form-horizontal" action="<@jspEl 'ctx'/>${classWebBasePath}/update.do" modelAttribute="${classNameFirstLower}">
 			
 		<%@ include file="form_include.jsp" %>
