@@ -12,7 +12,7 @@
 
 <rapid:override name="content">
 	<h2 id="title" class="text-center">创建${table.tableAlias}</h2>
-	
+	<c:set property="isAddAction" value="true"/>
 	<form:form id="inputForm" method="post" cssClass="form-horizontal" action="<@jspEl "ctx"/>${classWebBasePath}/create.do" modelAttribute="${classNameFirstLower}" >
 		  
 		<%@ include file="form_include.jsp" %>
