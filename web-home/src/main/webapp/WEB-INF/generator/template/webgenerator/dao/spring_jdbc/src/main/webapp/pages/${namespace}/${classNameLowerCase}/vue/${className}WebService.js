@@ -57,6 +57,11 @@ var ${className}WebService = {
 		$.jsonp(baseWsPath+"/${className}WebService/findPage",q,AppUtil.wsCallback(success,error));
 	},
 	
+	getById : function(<@generatePassingParameters table.pkColumns/>,success,error) {
+		var pk = <#compress>{<#list table.pkColumns as column>${column.columnNameLower} : ${column.columnNameLower}<#if column_has_next>,</#if></#list>};</#compress>
+		$.jsonp(baseWsPath+"/${className}WebService/getById",pk,AppUtil.wsCallback(success,error));
+	},
+	
 	removeById : function(<@generatePassingParameters table.pkColumns/>,success,error) {
 		var pk = <#compress>{<#list table.pkColumns as column>${column.columnNameLower} : ${column.columnNameLower}<#if column_has_next>,</#if></#list>};</#compress>
 		$.jsonp(baseWsPath+"/${className}WebService/removeById",pk,AppUtil.wsCallback(success,error));
