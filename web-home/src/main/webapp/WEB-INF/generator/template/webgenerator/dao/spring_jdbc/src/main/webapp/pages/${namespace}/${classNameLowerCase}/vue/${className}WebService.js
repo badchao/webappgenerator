@@ -54,26 +54,22 @@ var ${className}WebService = {
 
 	findPage : function(query,success,error) {
 		var q = ${className}Util.convertQuery(query);
-		$.getJSON(baseWsPath+"/${className}WebService/findPage",q,AppUtil.wsCallback(success,error));
+		$.jsonp(baseWsPath+"/${className}WebService/findPage",q,AppUtil.wsCallback(success,error));
 	},
 	
 	removeById : function(<@generatePassingParameters table.pkColumns/>,success,error) {
-		var pk = {
-		<#list table.pkColumns as column>
-			${column.columnNameLower} : ${column.columnNameLower}<#if column_has_next>,</#if>
-		</#list>
-		};
-		$.post(baseWsPath+"/${className}WebService/removeById",pk,AppUtil.wsCallback(success,error),"json");
+		var pk = <#compress>{<#list table.pkColumns as column>${column.columnNameLower} : ${column.columnNameLower}<#if column_has_next>,</#if></#list>};</#compress>
+		$.jsonp(baseWsPath+"/${className}WebService/removeById",pk,AppUtil.wsCallback(success,error));
 	},
 	
 	create : function(${classNameFirstLower},success,error) {
 		var entity = ${className}Util.convertEntity(${classNameFirstLower});
-		$.post(baseWsPath+"/${className}WebService/create", entity,AppUtil.wsCallback(success,error),"json");
+		$.jsonp(baseWsPath+"/${className}WebService/create", entity,AppUtil.wsCallback(success,error));
 	},
 	
 	update : function(${classNameFirstLower},success,error) {
 		var entity = ${className}Util.convertEntity(${classNameFirstLower});
-		$.post(baseWsPath+"/${className}WebService/update", entity,AppUtil.wsCallback(success,error),"json");
+		$.jsonp(baseWsPath+"/${className}WebService/update", entity,AppUtil.wsCallback(success,error));
 	}
 	
 };
