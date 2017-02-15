@@ -127,7 +127,8 @@ public class GeneratorController {
 //						"classpath:generator/template/webgenerator/dao/spring_jdbc",
 //						"classpath:generator/template/webgenerator/share/custom");
 				context = request.getSession().getServletContext();
-				g.getGenerator().setTemplateRootDirs(context.getRealPath("/WEB-INF/generator/template/webgenerator/dao/spring_jdbc"),
+				g.getGenerator().setTemplateRootDirs(
+						context.getRealPath("/WEB-INF/generator/template/webgenerator/dao/spring_jdbc"),
 						context.getRealPath("/WEB-INF/generator/template/webgenerator/share/custom"));
 				
 				for(String tableName : SqlHelper.findTableOrViewNames(sqls)) {
@@ -176,7 +177,11 @@ public class GeneratorController {
 					
 					//web-admin
 					new String[]{"/**/main/**/controller/**","web-admin"},
-					new String[]{"/**/main/**/webapp/**","web-admin"},
+					new String[]{"/**/main/**/webapp/pages/**","web-admin"},
+					
+					//web-service
+					new String[]{"/**/main/**/webservice/**","web-service"},
+					new String[]{"/**/main/**/webapp/**/*WebService-rpc-servlet.xml","web-service"},
 				};
 			
 			AntPathMatcher pathMatcher = new AntPathMatcher();
