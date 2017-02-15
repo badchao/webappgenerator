@@ -3,12 +3,11 @@
 <#assign className = table.className>   
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
-
+"use strict";
 /**
  * webservice for ${className}
  * author: ${author}
  */
-
 var globalWsUrl = globalWsUrl ? globalWsUrl : '/rpc';
 var ${classNameFirstLower}WsUrl = globalWsUrl + "/${className}WebService";
 var ${className}WebService = {

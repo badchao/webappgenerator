@@ -3,7 +3,7 @@
 <#assign className = table.className>   
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
-
+"use strict";
 /**
  * vue Controller for ${className}
  * author: ${author}
@@ -121,6 +121,6 @@ var ${className}Controler = {
 				  alert("错误信息:"+response.errMsg);
 			  }
 		  }
-	  }// methods() end
+	  }
 	  
 };

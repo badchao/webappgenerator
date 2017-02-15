@@ -3,12 +3,11 @@
 <#assign className = table.className>   
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
-
+"use strict";
 /**
  * vue views component for ${className}
  * author: ${author}
  */
-
 Vue.component('${classNameLowerCase}-table', {
   props: ['rows'],
   methods : {

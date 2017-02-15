@@ -3,11 +3,11 @@
 <#assign className = table.className>   
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
+"use strict";
 /**
  * util for ${className}
  * author: ${author}
  */
-
 var ${className}Util = {
 	
 	convertQuery : function(query) {
