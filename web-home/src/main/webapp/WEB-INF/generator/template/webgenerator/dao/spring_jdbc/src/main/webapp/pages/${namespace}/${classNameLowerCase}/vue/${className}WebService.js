@@ -3,7 +3,6 @@
 <#assign className = table.className>   
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
-var baseWsPath="/rpc"
 
 var ${className}Util = {
 	
@@ -50,31 +49,33 @@ var ${className}Util = {
 	
 }
 
+var globalWsUrl = globalWsUrl ? globalWsUrl : '/rpc';
+var ${classNameFirstLower}WsUrl = globalWsUrl + "/${className}WebService";
 var ${className}WebService = {
 
 	findPage : function(query,success,error) {
 		var q = ${className}Util.convertQuery(query);
-		$.jsonp(baseWsPath+"/${className}WebService/findPage",q,AppUtil.wsCallback(success,error));
+		$.jsonp(${classNameFirstLower}WsUrl+"/findPage",q,AppUtil.wsCallback(success,error));
 	},
 	
 	getById : function(<@generatePassingParameters table.pkColumns/>,success,error) {
 		var pk = <#compress>{<#list table.pkColumns as column>${column.columnNameLower} : ${column.columnNameLower}<#if column_has_next>,</#if></#list>};</#compress>
-		$.jsonp(baseWsPath+"/${className}WebService/getById",pk,AppUtil.wsCallback(success,error));
+		$.jsonp(${classNameFirstLower}WsUrl+"/getById",pk,AppUtil.wsCallback(success,error));
 	},
 	
 	removeById : function(<@generatePassingParameters table.pkColumns/>,success,error) {
 		var pk = <#compress>{<#list table.pkColumns as column>${column.columnNameLower} : ${column.columnNameLower}<#if column_has_next>,</#if></#list>};</#compress>
-		$.jsonp(baseWsPath+"/${className}WebService/removeById",pk,AppUtil.wsCallback(success,error));
+		$.jsonp(${classNameFirstLower}WsUrl+"/removeById",pk,AppUtil.wsCallback(success,error));
 	},
 	
 	create : function(${classNameFirstLower},success,error) {
 		var entity = ${className}Util.convertEntity(${classNameFirstLower});
-		$.jsonp(baseWsPath+"/${className}WebService/create", entity,AppUtil.wsCallback(success,error));
+		$.jsonp(${classNameFirstLower}WsUrl+"/create", entity,AppUtil.wsCallback(success,error));
 	},
 	
 	update : function(${classNameFirstLower},success,error) {
 		var entity = ${className}Util.convertEntity(${classNameFirstLower});
-		$.jsonp(baseWsPath+"/${className}WebService/update", entity,AppUtil.wsCallback(success,error));
+		$.jsonp(${classNameFirstLower}WsUrl+"/update", entity,AppUtil.wsCallback(success,error));
 	}
 	
 };
