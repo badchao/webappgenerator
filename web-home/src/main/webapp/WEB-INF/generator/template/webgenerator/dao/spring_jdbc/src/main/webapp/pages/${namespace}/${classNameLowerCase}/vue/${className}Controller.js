@@ -4,8 +4,12 @@
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
 
-var ${className}Controler = new Vue({
-	  el: '#${classNameFirstLower}-main',
+/**
+ * vue Controller for ${className}
+ * author: ${author}
+ */
+
+var ${className}Controler = {
 	  data: {
 	    query : {
 	    	pageSize : 10,
@@ -77,13 +81,7 @@ var ${className}Controler = new Vue({
 			  ${className}WebService.create(_this.${classNameFirstLower},function(response) {
 				  _this.findPage();
 				  $('#createFormDialog').modal('hide');
-			  },function(response) {
-				  if(response.errCode = 'ConstraintViolationException') {
-					  alert("数据 输入有问题");
-				  }else {
-					  alert("errMsg:"+response.errMsg);
-				  }
-			  });		  
+			  },this._saveErrorHandler);		  
 		  },
 		  
 		  update : function() {
@@ -101,13 +99,7 @@ var ${className}Controler = new Vue({
 			  ${className}WebService.update(_this.${classNameFirstLower},function(response) {
 				  _this.findPage();
 				  $('#editFormDialog').modal('hide');
-			  },function(response) {
-				  if(response.errCode = 'ConstraintViolationException') {
-					  alert("数据 输入有问题");
-				  }else {
-					  alert("errMsg:"+response.errMsg);
-				  }
-			  });		  
+			  },this._saveErrorHandler);		  
 		  },
 		  
 		  remove : function(${classNameFirstLower}) {
@@ -120,7 +112,15 @@ var ${className}Controler = new Vue({
 			 		_this.findPage();
 			 	 });
 			  }
-		  }
+		  },
 		  
-	  }
-	});
+		  _saveErrorHandler : function(response) {
+			  if(response.errCode = 'ConstraintViolationException') {
+				  alert("数据 输入有问题");
+			  }else {
+				  alert("错误信息:"+response.errMsg);
+			  }
+		  }
+	  }// methods() end
+	  
+};

@@ -3,8 +3,6 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.webservice;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;

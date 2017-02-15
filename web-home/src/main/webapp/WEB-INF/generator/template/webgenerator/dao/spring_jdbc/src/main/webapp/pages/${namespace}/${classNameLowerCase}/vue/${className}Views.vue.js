@@ -4,8 +4,21 @@
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
 
-Vue.component('${classNameFirstLower}-table', {
+/**
+ * vue views component for ${className}
+ * author: ${author}
+ */
+
+Vue.component('${classNameLowerCase}-table', {
   props: ['rows'],
+  methods : {
+	  fireEditEvent : function(data) {
+		  this.$emit('edit',data);
+	  },
+	  fireRemoveEvent : function(data) {
+		  this.$emit('remove',data);
+	  }
+  },
   template: multiline(function() {
 	  /*
 	  <table class='table table-hover scrolltable sortable'>
@@ -39,26 +52,18 @@ Vue.component('${classNameFirstLower}-table', {
 		  
 	  </tbody>
 	</table>
-  */}),
-  methods : {
-	  fireEditEvent : function(data) {
-		  this.$emit('edit',data);
-	  },
-	  fireRemoveEvent : function(data) {
-		  this.$emit('remove',data);
-	  }
-  }
+  */})
 });
 		
-Vue.component('${classNameFirstLower}-form', {
-  props: ['id','${classNameFirstLower}','formAction','formErrors'],
+Vue.component('${classNameLowerCase}-form', {
+  props: ['id','${classNameLowerCase}','formAction','formErrors'],
   template: multiline(function() {
 	/*
   	<form :id='id' class='form-horizontal'>
     
 	<#list table.columns as column>
 	<#if column.htmlHidden>
-		<input name="${column.columnNameLower}" id="${column.columnNameLower}" type="hidden" v-model='${classNameFirstLower}.${column.columnNameLower}'/>
+		<input name="${column.columnNameLower}" id="${column.columnNameLower}" type="hidden" v-model='${classNameLowerCase}.${column.columnNameLower}'/>
 	</#if>
 	</#list>
 
@@ -68,9 +73,9 @@ Vue.component('${classNameFirstLower}-form', {
 			<label for="${column.columnNameLower}" class="col-sm-3 control-label"><#if !column.nullable><span class="required">*</span></#if>${column.columnAlias}:</label>
 			<div class="col-sm-6">
 			<#if column.isDateTimeColumn>
-				<input name="${column.columnNameLower}" id="${column.columnNameLower}" v-model.lazy='${classNameFirstLower}.${column.columnNameLower}' class="form-control"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onchange='' />
+				<input name="${column.columnNameLower}" id="${column.columnNameLower}" v-model.lazy='${classNameLowerCase}.${column.columnNameLower}' class="form-control"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onchange='' />
 			<#else>
-				<input name="${column.columnNameLower}" id="${column.columnNameLower}" v-model='${classNameFirstLower}.${column.columnNameLower}' placeholder=""  maxlength="${column.size}"  class="form-control" ${GeneratorColumnUtil.getJqueryValidation(column)}/>
+				<input name="${column.columnNameLower}" id="${column.columnNameLower}" v-model='${classNameLowerCase}.${column.columnNameLower}' placeholder=""  maxlength="${column.size}"  class="form-control" ${GeneratorColumnUtil.getJqueryValidation(column)}/>
 			</#if>
 				<span class="help-block"></span>
 				<span class="error">{{formErrors.${column.columnNameLower}}}</span>
@@ -84,7 +89,7 @@ Vue.component('${classNameFirstLower}-form', {
   */})
 });
 		
-Vue.component('${classNameFirstLower}-query-form',{
+Vue.component('${classNameLowerCase}-query-form',{
 	props : ['query'],
 	template: multiline(function() {
 	/*

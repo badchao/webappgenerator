@@ -3,6 +3,7 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.webservice.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ${basepackage}.model.*;

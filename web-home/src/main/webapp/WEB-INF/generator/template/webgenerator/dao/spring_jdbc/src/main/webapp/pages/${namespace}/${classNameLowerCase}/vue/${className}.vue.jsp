@@ -12,20 +12,22 @@
 <rapid:override name="head">
 	<title>${table.tableAlias} 列表</title>
 
+	<script src="${className}Util.js" type="text/javascript"></script>
 	<script src="${className}Views.vue.js" type="text/javascript"></script>
 	<script src="${className}WebService.js" type="text/javascript"></script>
+	<script src="${className}Controller.js" type="text/javascript"></script>
 	
 </rapid:override>
 
 
 <rapid:override name="content">
-	<div id="${classNameFirstLower}-main">
+	<div id="${classNameLowerCase}-main">
 		<form id="queryForm" name="queryForm" method="get" @submit="findPage" onsubmit="return false;" >
 			
 			<div class="panel panel-default">
 				<div class="panel-heading">${table.tableAlias} 列表</div>
 				<div class="panel-body">
-					<${classNameFirstLower}-query-form :query="query"></${classNameFirstLower}-query-form>
+					<${classNameLowerCase}-query-form :query="query"></${classNameLowerCase}-query-form>
 					<div style="margin-top:20px"  class="row text-left">
 						<div class="col-sm-5">
 							<button type="submit" class="btn btn-primary btn-sm" ><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
@@ -35,24 +37,26 @@
 				</div>
 			</div>
 			
-			<div class="panel panel-default table-responsive">
-				<${classNameFirstLower}-table :rows="itemList" @edit="editForm" @remove="remove"></${classNameFirstLower}-table>
-				<simplepagination @changepage="changePage" @changepagesize="changePageSize" :paginator="paginator"></simplepagination>
-			</div>
-			
 		</form>
+			
+		<div class="panel panel-default table-responsive">
+			<${classNameLowerCase}-table :rows="itemList" @edit="editForm" @remove="remove"></${classNameLowerCase}-table>
+			<simplepagination @changepage="changePage" @changepagesize="changePageSize" :paginator="paginator"></simplepagination>
+		</div>
 		
 		<submit-dialog id="createFormDialog" title="新增${table.tableAlias}" @submit="create" submit-text="保存" >
-			<${classNameFirstLower}-form id="createForm" :${classNameFirstLower}="${classNameFirstLower}" :form-errors="formErrors" form-action="create"   />
+			<${classNameLowerCase}-form id="createForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="create"   />
 		</submit-dialog>
 		
 		<submit-dialog id="editFormDialog" title="编辑${table.tableAlias}" @submit="update" submit-text="保存" >
-			<${classNameFirstLower}-form id="editForm" :${classNameFirstLower}="${classNameFirstLower}" :form-errors="formErrors" form-action="edit"   />
+			<${classNameLowerCase}-form id="editForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="edit"   />
 		</submit-dialog>
 			
 	</div>
 	
-	<script src="${className}Controller.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var ${className}Vue = new Vue($.extend({el:'#${classNameLowerCase}-main'},${className}Controler));
+	</script>
 </rapid:override>
 
 <%-- jsp模板继承,具体使用请查看: http://code.google.com/p/rapid-framework/wiki/rapid_jsp_extends --%>
