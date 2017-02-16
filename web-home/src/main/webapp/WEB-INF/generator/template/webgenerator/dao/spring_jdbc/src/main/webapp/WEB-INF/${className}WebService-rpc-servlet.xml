@@ -9,7 +9,7 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"    default-autowire="byName" default-lazy-init="false">
 	
 	<!-- rpc service -->
-	<bean id="${classNameLower}WebService" class="${basepackage}.webservice.impl.${className}ServiceImpl"/>
+	<bean id="${classNameLower}WebService" class="${basepackage}.webservice.impl.${className}WebServiceImpl"/>
 	
 	<!-- 调用示例: http://localhost:6060/rpc/${className}WebService/getById  -->
 	<bean class="com.github.rapid.common.rpc.server.RPCServiceExporter">
