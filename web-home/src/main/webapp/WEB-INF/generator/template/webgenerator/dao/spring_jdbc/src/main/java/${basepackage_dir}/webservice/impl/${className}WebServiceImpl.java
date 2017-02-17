@@ -5,15 +5,18 @@ package ${basepackage}.webservice.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;
 
 import com.github.rapid.common.util.page.Page;
+
 import java.util.Date;
 
 import ${basepackage}.service.${className}Service;
 import ${basepackage}.webservice.${className}WebService;
+
 import com.github.rapid.common.util.page.Page;
 
 /**
@@ -49,6 +52,7 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 	}
 
 	public Page<${className}> findPage(${className}Query query) {
+		Assert.isTrue(query.getPageSize() <= 200,"query.pageSize too large");
 		return ${classNameLower}Service.findPage(query);
 	}
     
