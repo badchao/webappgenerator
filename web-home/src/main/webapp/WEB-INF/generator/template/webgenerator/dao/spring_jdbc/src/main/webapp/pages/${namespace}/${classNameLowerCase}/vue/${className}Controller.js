@@ -23,7 +23,7 @@ var ${className}Controler = {
 	  },
 	  mounted : function() {
 		  this.query = AppUtil.getJsonFromSessionStorage("${classNameFirstLower}Query",this.query);
-		  this.findPage();
+		  this.index();
 	  },
 	  methods : {
 		  changePageSize : function(pageSize) {
@@ -35,6 +35,11 @@ var ${className}Controler = {
 			  this.query.page = page;
 			  this.findPage();
 		  },
+		  
+		  index : function() {
+			  $('.submit-dialog').modal('hide');
+			  this.findPage();
+		  }
 		  
 		  findPage : function() {
 			  var _this = this;
@@ -79,8 +84,7 @@ var ${className}Controler = {
 			  }
 			  
 			  ${className}WebService.create(_this.${classNameFirstLower},function(response) {
-				  _this.findPage();
-				  $('#createFormDialog').modal('hide');
+				  _this.index();
 			  },this._saveErrorHandler);		  
 		  },
 		  
@@ -97,8 +101,7 @@ var ${className}Controler = {
 			  }
 			  
 			  ${className}WebService.update(_this.${classNameFirstLower},function(response) {
-				  _this.findPage();
-				  $('#editFormDialog').modal('hide');
+				  _this.index();
 			  },this._saveErrorHandler);		  
 		  },
 		  
