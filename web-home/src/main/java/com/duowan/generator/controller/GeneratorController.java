@@ -70,6 +70,7 @@ public class GeneratorController {
 		public String tableRemovePrefixes = "";
 		public String namespace = "admin";
 		public String author = "badqiu";
+		public String projectId;
 		
 		public ServletContext context;
 		public HttpServletRequest request;
@@ -112,6 +113,10 @@ public class GeneratorController {
 			this.author = author;
 		}
 		
+		public void setProjectId(String projectId) {
+			this.projectId = projectId;
+		}
+
 		public void execute() throws Exception {
 			Assert.hasText(basepackage,"'basepackage' must be not blank");
 			Assert.hasText(sqls,"'sqls' must be not blank");
@@ -261,6 +266,7 @@ public class GeneratorController {
 			props.setProperty("outRoot", outRoot);
 			props.setProperty("namespace", namespace);
 			props.setProperty("author", author);
+			props.setProperty("projectId",projectId);
 			props.setProperty("basepackage",basepackage);
 			props.setProperty("tableRemovePrefixes",tableRemovePrefixes);
 			props.setProperty("generator_tools_class","cn.org.rapid_framework.generator.util.StringHelper,org.apache.commons.lang.StringUtils,com.duowan.generator.common.util.GeneratorColumnUtil,");

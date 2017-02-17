@@ -5,8 +5,10 @@ package ${basepackage}.dao.impl;
 
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;
-
 import ${basepackage}.dao.${className}Dao;
+
+
+
 
 
 
@@ -14,14 +16,17 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Date;
 
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.github.rapid.common.util.page.Page;
 import com.github.rapid.common.util.ObjectUtil;
@@ -33,9 +38,13 @@ import com.github.rapid.common.jdbc.dao.support.BaseSpringJdbcDao;
  *  
 <#include "/java_description.include">
 */
+@Repository("${classNameLower}Dao")
 public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${className}Dao{
 
 	protected static final Logger logger = LoggerFactory.getLogger(${className}DaoImpl.class);
+	
+	@Resource(name="${projectId}DataSource")
+	private DataSource dataSource;
 	
 	/*
 	* 请删除无用的方法，本代码生成器的理念是: 1. 一次生成，后期手工修改代码 2. 删除代码比手写重复代码快捷，所以请删除无用代码
@@ -45,6 +54,12 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 	
 	static final private String COLUMNS = "<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>";
 	static final private String SELECT_FROM = "select " + COLUMNS + " from ${table.sqlName}";
+	
+	@Override
+	protected void checkDaoConfig() {
+		setDataSource(dataSource);
+		super.checkDaoConfig();
+	}
 	
 	@Override
 	public Class<${className}> getEntityClass() {
