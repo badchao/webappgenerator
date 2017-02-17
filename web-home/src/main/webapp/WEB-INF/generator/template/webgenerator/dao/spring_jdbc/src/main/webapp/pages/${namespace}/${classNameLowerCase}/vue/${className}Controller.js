@@ -39,7 +39,7 @@ var ${className}Controler = {
 		  index : function() {
 			  $('.submit-dialog').modal('hide');
 			  this.findPage();
-		  }
+		  },
 		  
 		  findPage : function() {
 			  var _this = this;
