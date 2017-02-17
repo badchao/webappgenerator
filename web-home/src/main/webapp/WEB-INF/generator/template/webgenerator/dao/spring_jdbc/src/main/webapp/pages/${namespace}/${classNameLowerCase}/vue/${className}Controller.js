@@ -15,7 +15,7 @@ var ${className}Controler = {
 	    	pageSize : 10,
 	    	page : 1
 	    },
-	    itemList : [],
+	    rows : [],
 	    paginator : {},
 	    
 	    ${classNameFirstLower} : {},
@@ -40,7 +40,7 @@ var ${className}Controler = {
 			  var _this = this;
 			  
 			  ${className}WebService.findPage(_this.query,function(response) {
-				  _this.itemList = response.result.itemList;
+				  _this.rows = response.result.itemList;
 				  _this.paginator = response.result.paginator;
 				  if(sessionStorage) sessionStorage.setItem("${classNameFirstLower}Query", JSON.stringify(_this.query));
 			  });

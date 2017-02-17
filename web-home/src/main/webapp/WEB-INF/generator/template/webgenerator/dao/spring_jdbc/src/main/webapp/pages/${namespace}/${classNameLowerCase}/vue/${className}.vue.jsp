@@ -40,7 +40,7 @@
 		</form>
 			
 		<div class="panel panel-default table-responsive">
-			<${classNameLowerCase}-table :rows="itemList" @edit="editForm" @remove="remove"></${classNameLowerCase}-table>
+			<${classNameLowerCase}-table :rows="rows" @edit="editForm" @remove="remove"></${classNameLowerCase}-table>
 			<simplepagination @changepage="changePage" @changepagesize="changePageSize" :paginator="paginator"></simplepagination>
 		</div>
 		
