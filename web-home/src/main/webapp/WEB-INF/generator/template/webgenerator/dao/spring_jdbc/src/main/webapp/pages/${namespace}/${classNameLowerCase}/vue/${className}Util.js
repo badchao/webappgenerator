@@ -9,7 +9,20 @@
  * author: ${author}
  */
 var ${className}Util = {
-	
+	/** select2 control config options */
+	select2Config : {
+		ajax: {
+			url: globalWsUrl+'/${className}WebService/findPage?page=1&pageSize=999&__format=jsonp',
+			cache: true,
+			dataType: 'jsonp',
+			jsonp: "__jsoncallback",
+			processResults: function (data, params){
+				var r = AppUtil.toSelect2Options(data.result.itemList,'${table.pkColumn.columnNameLower}','${table.pkColumn.columnNameLower}');
+				return {results : r}; 
+			}
+		} 
+	},
+		
 	convertQuery : function(query) {
 		var r = $.extend({},query);
 		<#list table.columns as column>
