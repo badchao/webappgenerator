@@ -12,10 +12,10 @@
 <rapid:override name="head">
 	<title>${table.tableAlias} 列表</title>
 
-	<script src="${className}Util.js" type="text/javascript"></script>
-	<script src="${className}Views.vue.js" type="text/javascript"></script>
-	<script src="${className}WebService.js" type="text/javascript"></script>
-	<script src="${className}Controller.js" type="text/javascript"></script>
+	<script src="${dollar}{ctx}/js/app/${namespace}/${classNameLowerCase}/${className}Util.js" type="text/javascript"></script>
+	<script src="${dollar}{ctx}/js/app/${namespace}/${classNameLowerCase}/${className}Views.vue.js" type="text/javascript"></script>
+	<script src="${dollar}{ctx}/js/app/${namespace}/${classNameLowerCase}/${className}WebService.js" type="text/javascript"></script>
+	<script src="${dollar}{ctx}/js/app/${namespace}/${classNameLowerCase}/${className}Controller.js" type="text/javascript"></script>
 	
 </rapid:override>
 

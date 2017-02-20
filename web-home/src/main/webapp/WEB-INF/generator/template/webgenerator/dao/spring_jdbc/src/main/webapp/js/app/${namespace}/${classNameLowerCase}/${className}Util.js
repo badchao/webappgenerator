@@ -9,7 +9,10 @@
  * author: ${author}
  */
 var ${className}Util = {
-	/** select2 control config options */
+	/** 
+	 * select2 component config
+	 * use example: <select2 v-model='someEntity.${table.pkColumn.columnNameLower}' :config="${className}Util.select2Config" />
+	 **/
 	select2Config : {
 		ajax: {
 			url: globalWsUrl+'/${className}WebService/findPage?page=1&pageSize=999&__format=jsonp',
