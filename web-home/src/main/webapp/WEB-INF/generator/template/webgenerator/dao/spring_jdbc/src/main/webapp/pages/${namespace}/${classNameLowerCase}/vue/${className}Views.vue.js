@@ -74,7 +74,7 @@ Vue.component('${classNameLowerCase}-form', {
 			<#if column.isDateTimeColumn>
 				<input name="${column.columnNameLower}" id="${column.columnNameLower}" v-model.lazy='${classNameLowerCase}.${column.columnNameLower}' class="form-control"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onchange='' />
 			<#else>
-				<input name="${column.columnNameLower}" id="${column.columnNameLower}" v-model='${classNameLowerCase}.${column.columnNameLower}' placeholder=""  maxlength="${column.size}"  class="form-control" ${GeneratorColumnUtil.getJqueryValidation(column)}/>
+				<input name="${column.columnNameLower}" id="${column.columnNameLower}" v-model.trim='${classNameLowerCase}.${column.columnNameLower}' placeholder=""  maxlength="${column.size}"  class="form-control" ${GeneratorColumnUtil.getJqueryValidation(column)}/>
 			</#if>
 				<span class="help-block"></span>
 				<span class="error">{{formErrors.${column.columnNameLower}}}</span>

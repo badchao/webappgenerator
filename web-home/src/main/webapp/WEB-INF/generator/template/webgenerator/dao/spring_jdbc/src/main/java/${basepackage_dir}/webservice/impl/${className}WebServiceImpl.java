@@ -52,7 +52,7 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 	}
 
 	public Page<${className}> findPage(${className}Query query) {
-		Assert.isTrue(query.getPageSize() <= 200,"query.pageSize too large");
+		Assert.isTrue(query.getPageSize() <= 1000,"query.pageSize too large");
 		return ${classNameLower}Service.findPage(query);
 	}
     
