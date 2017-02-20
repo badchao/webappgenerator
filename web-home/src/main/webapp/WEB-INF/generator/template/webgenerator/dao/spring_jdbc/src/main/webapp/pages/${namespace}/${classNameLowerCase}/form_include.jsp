@@ -24,7 +24,7 @@
 			<input name="${column.columnNameLower}" id="${column.columnNameLower}" value="${dollar}{${classNameLower}.${column.columnNameLower}}" placeholder="${column.columnAlias}"  maxlength="${column.size}"  class="form-control" ${GeneratorColumnUtil.getJqueryValidation(column)}/>
 		</#if>
 			<span class="help-block"></span>
-			<span class="error"><form:errors path="${column.columnNameLower}"/></span>
+			<span class="error form-control-feedback"><form:errors path="${column.columnNameLower}"/></span>
 		</div>
 	 </div>
 	 

@@ -77,7 +77,7 @@ Vue.component('${classNameLowerCase}-form', {
 				<input name="${column.columnNameLower}" id="${column.columnNameLower}" v-model.trim='${classNameLowerCase}.${column.columnNameLower}' placeholder=""  maxlength="${column.size}"  class="form-control" ${GeneratorColumnUtil.getJqueryValidation(column)}/>
 			</#if>
 				<span class="help-block"></span>
-				<span class="error">{{formErrors.${column.columnNameLower}}}</span>
+				<span class="error form-control-feedback">{{formErrors.${column.columnNameLower}}}</span>
 			</div>
 		 </div>
 		 
