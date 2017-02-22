@@ -35,12 +35,12 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 		this.${classNameLower}Service = ${classNameLower}Service;
 	}
 
-	public ${className} create(${className} ${classNameLower}) {
-		return ${classNameLower}Service.create(${classNameLower});
+	public void create(${className} ${classNameLower}) {
+		${classNameLower}Service.create(${classNameLower});
 	}
 
-	public ${className} update(${className} ${classNameLower}) {
-		return ${classNameLower}Service.update(${classNameLower});
+	public void update(${className} ${classNameLower}) {
+		${classNameLower}Service.update(${classNameLower});
 	}
 
 	public void removeById(<@generateArguments table.pkColumns/>) {
@@ -53,7 +53,8 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 
 	public Page<${className}> findPage(${className}Query query) {
 		Assert.isTrue(query.getPageSize() <= 1000,"query.pageSize too large");
-		return ${classNameLower}Service.findPage(query);
+		Page<${className}> r = ${classNameLower}Service.findPage(query);
+		return r;
 	}
     
 }

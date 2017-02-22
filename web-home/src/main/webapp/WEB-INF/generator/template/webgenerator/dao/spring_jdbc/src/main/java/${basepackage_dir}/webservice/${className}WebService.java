@@ -22,12 +22,12 @@ public interface ${className}WebService {
 	/** 
 	 * 创建${className}
 	 **/
-	public ${className} create(${className} ${classNameLower});
+	public void create(${className} ${classNameLower});
 	
 	/** 
 	 * 更新${className}
 	 **/	
-    public ${className} update(${className} ${classNameLower});
+    public void update(${className} ${classNameLower});
     
 	/** 
 	 * 删除${className}

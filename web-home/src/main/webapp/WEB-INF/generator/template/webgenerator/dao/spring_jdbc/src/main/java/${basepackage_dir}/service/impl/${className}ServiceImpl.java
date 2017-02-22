@@ -88,7 +88,8 @@ public class ${className}ServiceImpl implements ${className}Service {
 	@Transactional(readOnly=true)
 	public Page<${className}> findPage(${className}Query query) {
 	    Assert.notNull(query,"'query' must be not null");
-		return ${classNameLower}Dao.findPage(query);
+	    Page<${className}> r = ${classNameLower}Dao.findPage(query);
+	    return r;
 	}
 	
 <#list table.columns as column>
