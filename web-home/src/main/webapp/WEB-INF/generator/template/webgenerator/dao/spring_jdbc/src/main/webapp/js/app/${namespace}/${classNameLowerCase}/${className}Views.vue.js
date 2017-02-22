@@ -19,7 +19,7 @@ Vue.component('${classNameLowerCase}-table', {
 	  }
   },
   template: multiline(function() {
-	  /*
+	  /*!@preserve
 	  <table class='table table-hover scrolltable sortable'>
 	  <thead>
 		  <tr>
@@ -57,7 +57,7 @@ Vue.component('${classNameLowerCase}-table', {
 Vue.component('${classNameLowerCase}-form', {
   props: ['id','${classNameLowerCase}','formAction','formErrors'],
   template: multiline(function() {
-	/*
+	/*!@preserve
   	<form :id='id' class='form-horizontal'>
     
 	<#list table.columns as column>
@@ -91,7 +91,7 @@ Vue.component('${classNameLowerCase}-form', {
 Vue.component('${classNameLowerCase}-query-form',{
 	props : ['query'],
 	template: multiline(function() {
-	/*
+	/*!@preserve
 	<div class="row">
 		<#list table.columns as column>
 			
