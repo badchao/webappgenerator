@@ -45,11 +45,11 @@
 		</div>
 		
 		<submit-dialog id="createFormDialog" title="新增${table.tableAlias}" @submit="create" submit-text="保存" >
-			<${classNameLowerCase}-form id="createForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="create"   />
+			<${classNameLowerCase}-form id="createForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="create"   ></${classNameLowerCase}-form>
 		</submit-dialog>
 		
 		<submit-dialog id="editFormDialog" title="编辑${table.tableAlias}" @submit="update" submit-text="保存" >
-			<${classNameLowerCase}-form id="editForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="edit"   />
+			<${classNameLowerCase}-form id="editForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="edit"   ></${classNameLowerCase}-form>
 		</submit-dialog>
 			
 	</div>
