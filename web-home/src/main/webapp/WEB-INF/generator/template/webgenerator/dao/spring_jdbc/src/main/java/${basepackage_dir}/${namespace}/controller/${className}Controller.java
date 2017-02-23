@@ -108,7 +108,7 @@ public class ${className}Controller {
 	/** 显示 */
 	@RequestMapping
 	public String show(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) throws Exception {
-		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
+		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getRequiredById(<@generatePassingParameters table.pkColumns/>);
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
 		return "${classWebBasePath}/show";
 	}
@@ -139,7 +139,7 @@ public class ${className}Controller {
 	/** 编辑 */
 	@RequestMapping
 	public String edit(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) throws Exception {
-		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
+		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getRequiredById(<@generatePassingParameters table.pkColumns/>);
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
 		return "${classWebBasePath}/edit";
 	}
