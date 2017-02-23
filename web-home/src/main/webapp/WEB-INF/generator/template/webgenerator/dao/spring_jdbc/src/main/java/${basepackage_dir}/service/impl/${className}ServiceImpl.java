@@ -17,6 +17,8 @@ import com.github.rapid.common.util.page.Page;
 import ${basepackage}.model.*;
 import ${basepackage}.dao.*;
 import ${basepackage}.query.*;
+
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -80,6 +82,17 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 **/    
     public ${className} getById(<@generateArguments table.pkColumns/>) {
         return ${classNameLower}Dao.getById(<@generatePassingParameters table.pkColumns/>);
+    }
+    
+    /** 
+	 * 根据ID得到${className},找不到抛异常
+	 **/    
+    public ${className} getRequiredById(<@generateArguments table.pkColumns/>) {
+    	${className} r = getById(<@generatePassingParameters table.pkColumns/>);
+    	if(r == null) {
+    		throw new IllegalArgumentException("required ${className} not found by id:"+Arrays.asList(<@generatePassingParameters table.pkColumns/>));
+    	}
+    	return r;
     }
     
 	/** 

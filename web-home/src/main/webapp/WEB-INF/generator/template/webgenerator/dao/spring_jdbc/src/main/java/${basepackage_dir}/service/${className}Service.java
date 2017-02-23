@@ -46,6 +46,11 @@ public interface ${className}Service {
 	 **/    
     public ${className} getById(<@generateArguments table.pkColumns/>);
     
+    /** 
+	 * 根据ID得到${className},找不到抛异常
+	 **/ 
+    public ${className} getRequiredById(<@generateArguments table.pkColumns/>);
+    
 	/** 
 	 * 分页查询: ${className}
 	 **/      
