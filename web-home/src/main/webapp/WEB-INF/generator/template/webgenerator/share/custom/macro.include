@@ -30,6 +30,12 @@
 </#compress>
 </#macro>
 
+<#macro generateJavaTypeArguments columns>
+<#compress>
+<#list columns as column> ${column.javaType} ${column.columnNameFirstLower}<#if column_has_next>,</#if></#list>
+</#compress>
+</#macro>
+
 <#macro generatePassingParameters columns>
 <#compress>
 <#list columns as column>${column.columnNameFirstLower}<#if column_has_next>,</#if></#list>

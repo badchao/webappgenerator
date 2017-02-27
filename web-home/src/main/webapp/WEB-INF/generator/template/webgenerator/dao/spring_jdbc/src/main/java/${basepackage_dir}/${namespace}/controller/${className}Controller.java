@@ -89,7 +89,12 @@ public class ${className}Controller {
 	 * 增加了@ModelAttribute的方法可以在本controller方法调用前执行,可以存放一些共享变量,如枚举值,或是一些初始化操作
 	 */
 	@ModelAttribute
-	public void init(ModelMap model) {
+	public ${className} init(ModelMap model,HttpServletRequest request,<@generateJavaTypeArguments table.pkColumns/>) {
+		if(request.getServletPath().endsWith("update.do")) {
+			${className} ${classNameFirstLower} = ${classNameFirstLower}Service.getRequiredById(<@generatePassingParameters table.pkColumns/>);
+			return ${classNameFirstLower};
+		}
+		return null;
 	}
 	
 	/** 列表  */
@@ -107,8 +112,8 @@ public class ${className}Controller {
 	
 	/** 显示 */
 	@RequestMapping
-	public String show(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) throws Exception {
-		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getRequiredById(<@generatePassingParameters table.pkColumns/>);
+	public String show(ModelMap model,<@generateArguments table.pkColumns/>) throws Exception {
+		${className} ${classNameFirstLower} = ${classNameFirstLower}Service.getRequiredById(<@generatePassingParameters table.pkColumns/>);
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
 		return "${classWebBasePath}/show";
 	}
@@ -138,15 +143,15 @@ public class ${className}Controller {
 	
 	/** 编辑 */
 	@RequestMapping
-	public String edit(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) throws Exception {
-		${className} ${classNameFirstLower} = (${className})${classNameFirstLower}Service.getRequiredById(<@generatePassingParameters table.pkColumns/>);
+	public String edit(ModelMap model,<@generateArguments table.pkColumns/>) throws Exception {
+		${className} ${classNameFirstLower} = ${classNameFirstLower}Service.getRequiredById(<@generatePassingParameters table.pkColumns/>);
 		model.addAttribute("${classNameFirstLower}",${classNameFirstLower});
 		return "${classWebBasePath}/edit";
 	}
 	
 	/** 保存更新,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
 	@RequestMapping(method=RequestMethod.POST)
-	public String update(ModelMap model,<@generateRequestParamArguments table.pkColumns/>,${className} ${classNameFirstLower},BindingResult errors) throws Exception {
+	public String update(ModelMap model,<@generateArguments table.pkColumns/>,${className} ${classNameFirstLower},BindingResult errors) throws Exception {
 		try {
 			${classNameFirstLower}Service.update(${classNameFirstLower});
 		}catch(ConstraintViolationException e) {
@@ -162,7 +167,7 @@ public class ${className}Controller {
 	
 	/** 删除 */
 	@RequestMapping
-	public String delete(ModelMap model,<@generateRequestParamArguments table.pkColumns/>) {
+	public String delete(ModelMap model,<@generateArguments table.pkColumns/>) {
 		${classNameFirstLower}Service.removeById(<@generatePassingParameters table.pkColumns/>);
 		Flash.current().success(DELETE_SUCCESS);
 		return LIST_ACTION;
@@ -214,8 +219,4 @@ public class ${className}Controller {
 
 }
 
-<#macro generateRequestParamArguments columns>
-<#compress>
-<#list table.pkColumns as column> ${column.primitiveJavaType} ${column.columnNameFirstLower}<#if column_has_next>,</#if></#list>
-</#compress>
-</#macro>
+
