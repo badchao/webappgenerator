@@ -86,7 +86,7 @@ public class ${className}Controller {
 	}
 	   
 	/**
-	 * 增加了@ModelAttribute的方法可以在本controller方法调用前执行,可以存放一些共享变量,如枚举值,或是一些初始化操作
+	 * 增加了@ModelAttribute的方法可以在本controller方法调用前执行,可以为update()方法取回数据库对象，再绑定属性
 	 */
 	@ModelAttribute
 	public ${className} init(ModelMap model,HttpServletRequest request,<@generateJavaTypeArguments table.pkColumns/>) {
