@@ -34,11 +34,11 @@ var ${className}Main = Vue.extend({
 			</div>
 			
 			<submit-dialog id="${classNameFirstLower}CreateFormDialog" title="新增${table.tableAlias}" @submit="create" submit-text="保存" >
-				<${classNameLowerCase}-form id="createForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="create"   ></${classNameLowerCase}-form>
+				<${classNameLowerCase}-form id="${classNameFirstLower}CreateForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="create"   ></${classNameLowerCase}-form>
 			</submit-dialog>
 			
 			<submit-dialog id="${classNameFirstLower}EditFormDialog" title="编辑${table.tableAlias}" @submit="update" submit-text="保存" >
-				<${classNameLowerCase}-form id="editForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="edit"   ></${classNameLowerCase}-form>
+				<${classNameLowerCase}-form id="${classNameFirstLower}EditForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="edit"   ></${classNameLowerCase}-form>
 			</submit-dialog>
 		</div>  
 	  */}),
@@ -107,7 +107,7 @@ var ${className}Main = Vue.extend({
 		  
 		  create : function() {
 			  var _this = this;
-			  var validator = $("#createForm").validate();
+			  var validator = $("#${classNameFirstLower}CreateForm").validate();
 			  if(!validator.form()) {
 				  return;
 			  }
@@ -124,7 +124,7 @@ var ${className}Main = Vue.extend({
 		  
 		  update : function() {
 			  var _this = this;
-			  var validator = $("#editForm").validate();
+			  var validator = $("#${classNameFirstLower}EditForm").validate();
 			  if(!validator.form()) {
 				  return;
 			  }
