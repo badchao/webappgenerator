@@ -5,21 +5,55 @@
 <#assign classNameLowerCase = className?lower_case>
 "use strict";
 /**
- * vue Controller for ${className}
+ * vue main view for ${className}
  * author: ${author}
  */
-
-var ${className}Controler = {
-	  data: {
-	    query : {
-	    	pageSize : 10,
-	    	page : 1
-	    },
-	    rows : [],
-	    paginator : {},
-	    
-	    ${classNameFirstLower} : {},
-	    formErrors : {}
+var ${className}Main = Vue.extend({
+	  template: multiline(function() {/*
+		<div id="${classNameLowerCase}-main">
+			<form id="queryForm" name="queryForm" method="get" @submit="findPage" onsubmit="return false;" >
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">${table.tableAlias} 列表</div>
+					<div class="panel-body">
+						<${classNameLowerCase}-query-form :query="query"></${classNameLowerCase}-query-form>
+						<div style="margin-top:20px"  class="row text-left">
+							<div class="col-sm-5">
+								<button id="search-button" type="submit" class="btn btn-primary btn-sm"  ><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+								<a id="create-button"  class="btn btn-primary btn-sm" @click="createForm" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</form>
+				
+			<div class="panel panel-default table-responsive">
+				<${classNameLowerCase}-table :rows="rows" @edit="editForm" @remove="remove"></${classNameLowerCase}-table>
+				<simplepagination @changepage="changePage" @changepagesize="changePageSize" :paginator="paginator"></simplepagination>
+			</div>
+			
+			<submit-dialog id="${classNameFirstLower}CreateFormDialog" title="新增${table.tableAlias}" @submit="create" submit-text="保存" >
+				<${classNameLowerCase}-form id="createForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="create"   ></${classNameLowerCase}-form>
+			</submit-dialog>
+			
+			<submit-dialog id="${classNameFirstLower}EditFormDialog" title="编辑${table.tableAlias}" @submit="update" submit-text="保存" >
+				<${classNameLowerCase}-form id="editForm" :${classNameLowerCase}="${classNameFirstLower}" :form-errors="formErrors" form-action="edit"   ></${classNameLowerCase}-form>
+			</submit-dialog>
+		</div>  
+	  */}),
+	  data: function() {
+		  return {
+		    query : {
+		    	pageSize : 10,
+		    	page : 1
+		    },
+		    rows : [],
+		    paginator : {},
+		    
+		    ${classNameFirstLower} : {},
+		    formErrors : {}
+		  }
 	  },
 	  mounted : function() {
 		  this.query = AppUtil.getJsonFromSessionStorage("${classNameFirstLower}Query",this.query);
@@ -58,7 +92,7 @@ var ${className}Controler = {
 			  this.${classNameFirstLower} = {};
 			  ${className}Util.formatEntity(this.${classNameFirstLower});
 			  
-			  $('#createFormDialog').modal('show');
+			  $('#${classNameFirstLower}CreateFormDialog').modal('show');
 		  },
 		  
 		  editForm : function(${classNameFirstLower}) {
@@ -68,7 +102,7 @@ var ${className}Controler = {
 			  this.${classNameFirstLower} = ${classNameFirstLower};
 			  ${className}Util.formatEntity(this.${classNameFirstLower});
 			  
-			  $('#editFormDialog').modal('show');
+			  $('#${classNameFirstLower}EditFormDialog').modal('show');
 		  },
 		  
 		  create : function() {
@@ -126,4 +160,4 @@ var ${className}Controler = {
 		  }
 	  }
 	  
-};
+});
