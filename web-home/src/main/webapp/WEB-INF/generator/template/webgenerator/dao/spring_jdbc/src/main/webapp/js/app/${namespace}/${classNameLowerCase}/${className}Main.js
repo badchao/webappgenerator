@@ -9,7 +9,7 @@
  * author: ${author}
  */
 var ${className}Main = Vue.extend({
-	  template: multiline(function() {/*
+	  template: multiline(function() {/*!@preserve
 		<div id="${classNameLowerCase}-main">
 			<form id="queryForm" name="queryForm" method="get" @submit="findPage" onsubmit="return false;" >
 				
