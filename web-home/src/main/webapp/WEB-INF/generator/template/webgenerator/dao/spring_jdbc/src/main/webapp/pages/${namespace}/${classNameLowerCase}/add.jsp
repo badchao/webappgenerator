@@ -20,7 +20,6 @@
 		<div class="form-group">
 		    <div class="text-center">
 				<input name="submitButton" id="submitButton" value="提交" class="btn btn-primary" type="submit"  />&nbsp;&nbsp;&nbsp;
-				<a class="btn btn-default" href="<@jspEl "ctx"/>${classWebBasePath}/index.do">返回列表</a>&nbsp;&nbsp;&nbsp;
 				<input type="button" class="btn btn-default" value="后退" onclick="history.back();"/>
 		    </div>
 		</div>
