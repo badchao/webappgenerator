@@ -97,20 +97,20 @@ Vue.component('${classNameLowerCase}-query-form',{
 			
 		<#if !column.htmlHidden>
 		<#if column.isDateTimeColumn>
-		<div class="col-sm-3">
+		<div class="col-sm-3 col-xs-6">
 			<div class="form-group">
 				<label for="${column.columnNameLower}Begin" class="control-label">开始${column.columnAlias}</label>
 				<input name="${column.columnNameLower}Begin" id="${column.columnNameLower}Begin"  v-model.lazy='query.${column.columnNameLower}Begin' placeholder="开始时间"  class="form-control input-from-control"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onchange=''  />
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3 col-xs-6">
 			<div class="form-group">
 				<label for="${column.columnNameLower}End" class="control-label">结束${column.columnAlias}</label>
 				<input name="${column.columnNameLower}End" id="${column.columnNameLower}End" v-model.lazy='query.${column.columnNameLower}End' placeholder="结束时间" class="form-control input-from-control"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onchange=''   />
 			</div>
 		</div>
 		<#else>
-		<div class="col-sm-3">
+		<div class="col-sm-3 col-xs-6">
 			<div class="form-group">
 				<label for="${column.columnNameLower}" class="control-label">${column.columnAlias}</label>
 				<input name="${column.columnNameLower}" id="${column.columnNameLower}" v-model='query.${column.columnNameLower}' placeholder=""  class="form-control input-from-control"   maxlength="${column.size}" />
