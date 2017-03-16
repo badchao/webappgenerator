@@ -32,10 +32,9 @@
 	
 		<div class="panel-heading">${table.tableAlias} 列表</div>
 		<div class="panel-body">
-		<#list table.columns?chunk(4) as row>
+			<div id="query-content" class="row visible-lg" >
+			<#list table.columns as column>
 			
-			<div class="row">
-			<#list row as column>
 			<#if !column.htmlHidden>
 				<#if column.isDateTimeColumn>
 				<div class="col-sm-3">
@@ -59,13 +58,13 @@
 				</div>
 				</#if>
 			</#if>
-			</#list>
-			</div>
 
-		</#list>	
+			</#list>	
+			</div>
 				
-			<div style="margin-top:20px"  class="row text-left">
+			<div class="row text-left">
 				<div class="col-sm-12">
+					<a href="#" class="btn btn-primary btn-sm hidden-lg" onclick="$('#query-content').toggleClass('visible-lg');">显示搜索</a>
 					<button type="submit" class="btn btn-primary btn-sm"  onclick="$(this).closest('form').action='<@jspEl 'ctx'/>${classWebBasePath}/index.do'; $(this).closest('form').submit();return false;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
 					<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>${classWebBasePath}/add.do"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</a>
 					<a class="btn btn-primary btn-sm" href="<@jspEl 'ctx'/>/pages${classWebBasePath}/upload.jsp"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> 批量导入</a>

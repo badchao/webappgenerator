@@ -92,7 +92,7 @@ Vue.component('${classNameLowerCase}-query-form',{
 	props : ['query'],
 	template: multiline(function() {
 	/*!@preserve
-	<div class="row">
+	<div id="query-content" class="row visible-lg">
 		<#list table.columns as column>
 			
 		<#if !column.htmlHidden>

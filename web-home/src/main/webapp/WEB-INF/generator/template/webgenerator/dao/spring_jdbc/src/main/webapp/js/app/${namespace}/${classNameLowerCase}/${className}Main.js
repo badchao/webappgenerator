@@ -17,8 +17,9 @@ var ${className}Main = Vue.extend({
 					<div class="panel-heading">${table.tableAlias} 列表</div>
 					<div class="panel-body">
 						<${classNameLowerCase}-query-form :query="query"></${classNameLowerCase}-query-form>
-						<div style="margin-top:20px"  class="row text-left">
+						<div class="row text-left">
 							<div class="col-sm-5">
+								<a href="#" class="btn btn-primary btn-sm hidden-lg" onclick="$('#query-content').toggleClass('visible-lg');">显示搜索</a>
 								<button id="search-button" type="submit" class="btn btn-primary btn-sm"  ><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
 								<a id="create-button"  class="btn btn-primary btn-sm" @click="createForm" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新增</a>
 							</div>
