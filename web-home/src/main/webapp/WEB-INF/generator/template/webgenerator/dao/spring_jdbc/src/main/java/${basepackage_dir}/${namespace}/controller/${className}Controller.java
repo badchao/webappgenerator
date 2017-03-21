@@ -89,12 +89,12 @@ public class ${className}Controller {
 	 * 增加了@ModelAttribute的方法可以在本controller方法调用前执行,可以为update()方法取回数据库对象，再绑定属性
 	 */
 	@ModelAttribute
-	public ${className} init(ModelMap model,HttpServletRequest request,<@generateJavaTypeArguments table.pkColumns/>) {
+	public ${className} ${classNameFirstLower}(ModelMap model,HttpServletRequest request,<@generateJavaTypeArguments table.pkColumns/>) {
 		if(request.getServletPath().endsWith("update.do")) {
 			${className} ${classNameFirstLower} = ${classNameFirstLower}Service.getRequiredById(<@generatePassingParameters table.pkColumns/>);
 			return ${classNameFirstLower};
 		}
-		return null;
+		return new ${className}();
 	}
 	
 	/** 列表  */
