@@ -24,7 +24,8 @@
 	<div id="app"></div>
 	
 	<script type="text/javascript">
-		new ${className}Main().$mount('#app');
+		var m = new ${className}Main();
+		m.$mount('#app');
 	</script>
 </rapid:override>
 
