@@ -9,7 +9,7 @@
 
 <#list table.columns as column>
 <#if column.htmlHidden>
-	<input name="${column.columnNameLower}" id="${column.columnNameLower}" type="hidden" value="<@jspEl classNameLower+"."+column.columnNameLower/>"/>
+	<input name="${column.columnNameLower}" id="${column.columnNameLower}" value="<@jspEl classNameLower+"."+column.columnNameLower/>" type="hidden" />
 </#if>
 </#list>
 

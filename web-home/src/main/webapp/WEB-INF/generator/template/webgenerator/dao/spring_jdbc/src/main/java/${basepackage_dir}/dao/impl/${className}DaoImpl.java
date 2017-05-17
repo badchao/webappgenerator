@@ -12,6 +12,9 @@ import ${basepackage}.dao.${className}Dao;
 
 
 
+
+
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Date;
@@ -28,6 +31,11 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+
 import com.github.rapid.common.util.page.Page;
 import com.github.rapid.common.util.ObjectUtil;
 import com.github.rapid.common.jdbc.dao.support.BaseSpringJdbcDao;
@@ -39,6 +47,7 @@ import com.github.rapid.common.jdbc.dao.support.BaseSpringJdbcDao;
 <#include "/java_description.include">
 */
 @Repository("${classNameLower}Dao")
+@CacheConfig(cacheNames="${className?lower_case}")
 public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${className}Dao{
 
 	protected static final Logger logger = LoggerFactory.getLogger(${className}DaoImpl.class);
@@ -79,6 +88,7 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		return entityRowMapper;
 	}
 	
+	@CacheEvict(key="#entity.${table.pkColumn.columnNameLower}")
 	public void insert(${className} entity) {
 		String sql = "insert into ${table.sqlName} " 
 			 + " (<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>) " 
@@ -93,6 +103,7 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		//insertWithAssigned(entity,sql); //手工分配
 	}
 	
+	@CacheEvict(key="#entity.${table.pkColumn.columnNameLower}")
 	public int update(${className} entity) {
 		String sql = "update ${table.sqlName} set "
 					+ " <#list table.notPkColumns as column>${column.sqlName}=:${column.columnNameLower}<#if column_has_next>,</#if></#list> "
@@ -100,11 +111,13 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		return getNamedParameterJdbcTemplate().update(sql, new BeanPropertySqlParameterSource(entity));
 	}
 	
+	@CacheEvict(key="#${table.pkColumn.columnNameLower}")
 	public int deleteById(<@generateArguments table.pkColumns/>) {
 		String sql = "delete from ${table.sqlName} where <#list table.pkColumns as column> ${column.sqlName} = ? <#if column_has_next>and</#if></#list>";
 		return  getJdbcTemplate().update(sql,  <@generatePassingParameters table.pkColumns/>);
 	}
 
+	@Cacheable(key="#${table.pkColumn.columnNameLower}")
 	public ${className} getById(<@generateArguments table.pkColumns/>) {
 		String sql = SELECT_FROM + " where <#list table.pkColumns as column> ${column.sqlName} = ? <#if column_has_next>and</#if></#list>";
 		return (${className})DataAccessUtils.singleResult(getJdbcTemplate().query(sql, getEntityRowMapper(),<@generatePassingParameters table.pkColumns/>));

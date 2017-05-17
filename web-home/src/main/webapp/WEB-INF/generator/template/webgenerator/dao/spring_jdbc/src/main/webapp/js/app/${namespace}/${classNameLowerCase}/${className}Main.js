@@ -52,6 +52,7 @@ var ${className}Main = Vue.extend({
 		    rows : [],
 		    paginator : {},
 		    
+		    default${className} : {},
 		    ${classNameFirstLower} : {},
 		    formErrors : {}
 		  }
@@ -90,7 +91,7 @@ var ${className}Main = Vue.extend({
 			  var _this = this;
 			  
 			  this.formErrors = {};
-			  this.${classNameFirstLower} = {};
+			  this.${classNameFirstLower} = $.extend({},this.default${className});
 			  ${className}Util.formatEntity(this.${classNameFirstLower});
 			  
 			  $('#${classNameFirstLower}CreateFormDialog').modal('show');

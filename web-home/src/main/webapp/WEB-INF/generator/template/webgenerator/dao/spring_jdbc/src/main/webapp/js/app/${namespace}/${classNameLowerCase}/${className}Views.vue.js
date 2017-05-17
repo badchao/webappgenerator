@@ -62,7 +62,7 @@ Vue.component('${classNameLowerCase}-form', {
     
 	<#list table.columns as column>
 	<#if column.htmlHidden>
-		<input name="${column.columnNameLower}" id="${column.columnNameLower}" type="hidden" v-model='${classNameLowerCase}.${column.columnNameLower}'/>
+		<input name="${column.columnNameLower}" id="${column.columnNameLower}" v-model='${classNameLowerCase}.${column.columnNameLower}'  type="hidden"/>
 	</#if>
 	</#list>
 
