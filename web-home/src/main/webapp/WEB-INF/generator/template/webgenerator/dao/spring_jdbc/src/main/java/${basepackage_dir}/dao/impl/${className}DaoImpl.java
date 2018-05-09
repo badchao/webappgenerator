@@ -88,7 +88,7 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		return entityRowMapper;
 	}
 	
-	@CacheEvict(key="#entity.${table.pkColumn.columnNameLower}")
+	@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
 	public void insert(${className} entity) {
 		String sql = "insert into ${table.sqlName} " 
 			 + " (<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>) " 
@@ -103,7 +103,7 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		//insertWithAssigned(entity,sql); //手工分配
 	}
 	
-	@CacheEvict(key="#entity.${table.pkColumn.columnNameLower}")
+	@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
 	public int update(${className} entity) {
 		String sql = "update ${table.sqlName} set "
 					+ " <#list table.notPkColumns as column>${column.sqlName}=:${column.columnNameLower}<#if column_has_next>,</#if></#list> "
@@ -111,13 +111,13 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		return getNamedParameterJdbcTemplate().update(sql, new BeanPropertySqlParameterSource(entity));
 	}
 	
-	@CacheEvict(key="#${table.pkColumn.columnNameLower}")
+	@CacheEvict(key="<@generateCacheArguments '' table.pkColumns/>")
 	public int deleteById(<@generateArguments table.pkColumns/>) {
 		String sql = "delete from ${table.sqlName} where <#list table.pkColumns as column> ${column.sqlName} = ? <#if column_has_next>and</#if></#list>";
 		return  getJdbcTemplate().update(sql,  <@generatePassingParameters table.pkColumns/>);
 	}
 
-	@Cacheable(key="#${table.pkColumn.columnNameLower}")
+	@Cacheable(key="<@generateCacheArguments '' table.pkColumns/>")
 	public ${className} getById(<@generateArguments table.pkColumns/>) {
 		String sql = SELECT_FROM + " where <#list table.pkColumns as column> ${column.sqlName} = ? <#if column_has_next>and</#if></#list>";
 		return (${className})DataAccessUtils.singleResult(getJdbcTemplate().query(sql, getEntityRowMapper(),<@generatePassingParameters table.pkColumns/>));
@@ -156,3 +156,10 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		return pageQuery(sql.toString(),query,getEntityRowMapper());				
 	}
 }
+
+
+<#macro generateCacheArguments prefix columns>
+<#compress>
+<#list columns as column>#${prefix}${column.columnNameFirstLower}<#if column_has_next>+'/'+</#if></#list>
+</#compress>
+</#macro>
