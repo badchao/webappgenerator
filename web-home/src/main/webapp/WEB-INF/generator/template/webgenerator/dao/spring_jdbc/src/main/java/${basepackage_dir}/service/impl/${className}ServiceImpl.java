@@ -6,6 +6,7 @@ package ${basepackage}.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
@@ -66,6 +67,7 @@ public class ${className}ServiceImpl implements ${className}Service {
     /**
      *  join取回${className}的关联对象,如一对多，多对一等的关联对象
      */
+    @Transactional(propagation=Propagation.NOT_SUPPORTED)
     public ${className} join(${className} ${classNameLower}) {
     	return ${classNameLower};
     }
