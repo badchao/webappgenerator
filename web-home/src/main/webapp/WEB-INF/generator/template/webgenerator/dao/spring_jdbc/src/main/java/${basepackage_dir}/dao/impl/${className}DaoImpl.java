@@ -135,25 +135,37 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 
 	public Page<${className}> findPage(${className}Query query) {
 		
-		StringBuilder sql = new StringBuilder("select "+ COLUMNS + " from ${table.sqlName} where 1=1 ");
-		<#list table.columns as column>
-		<#if column.isDateTimeColumn>
-		if(ObjectUtil.isNotEmpty(query.get${column.columnName}Begin())) {
-		    sql.append(" and ${column.sqlName} >= :${column.columnNameLower}Begin ");
-		}
-		if(ObjectUtil.isNotEmpty(query.get${column.columnName}End())) {
-            sql.append(" and ${column.sqlName} <= :${column.columnNameLower}End ");
-        }
-		<#else>
-		if(ObjectUtil.isNotEmpty(query.get${column.columnName}())) {
-            sql.append(" and ${column.sqlName} = :${column.columnNameLower} ");
-        }
-		</#if>
-		</#list>
+		StringBuilder sql = getQuerySql(query);
 		
         //sql.append(" order by :sortColumns ");
 		
 		return pageQuery(sql.toString(),query,getEntityRowMapper());				
+	}
+	
+	public List<${className}> findList(${className}Query query) {
+		StringBuilder sql = getQuerySql(query);
+		return getNamedParameterJdbcTemplate().query(sql.toString(),new BeanPropertySqlParameterSource(query),getEntityRowMapper());
+	}
+	
+	public StringBuilder getQuerySql(${className}Query query) {
+		StringBuilder sql = new StringBuilder("select "+ COLUMNS + " from ${table.sqlName} where 1=1 ");
+		
+		<#list table.columns as column>
+		<#if column.isDateTimeColumn>
+		if(ObjectUtil.isNotEmpty(query.get${column.columnName}Begin())) {
+			sql.append(" and ${column.sqlName} >= :${column.columnNameLower}Begin ");
+		}
+		if(ObjectUtil.isNotEmpty(query.get${column.columnName}End())) {
+			sql.append(" and ${column.sqlName} <= :${column.columnNameLower}End ");
+		}
+		<#else>
+		if(ObjectUtil.isNotEmpty(query.get${column.columnName}())) {
+			sql.append(" and ${column.sqlName} = :${column.columnNameLower} ");
+		}
+		</#if>
+		</#list>
+		
+		return sql;
 	}
 }
 

@@ -34,4 +34,6 @@ public interface ${className}Dao {
 
 	public Page<${className}> findPage(${className}Query query);	
 	
+	public List<${className}> findList(${className}Query query);
+	
 }
