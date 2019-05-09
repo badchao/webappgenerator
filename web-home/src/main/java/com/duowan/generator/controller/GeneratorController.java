@@ -189,7 +189,7 @@ public class GeneratorController {
 					//web-service
 					new String[]{"/**/main/**/webservice/**/*WebService.java","webservice-api"},
 					new String[]{"/**/main/**/webservice/**/impl/**","webservice-server"},
-					new String[]{"/**/main/**/webapp/**/*WebService-rpc-servlet.xml","webservice-server"},
+					new String[]{"/**/main/resources/webservice/**/*WebService-rpc-servlet.xml","webservice-server"},
 				};
 			
 			AntPathMatcher pathMatcher = new AntPathMatcher();
