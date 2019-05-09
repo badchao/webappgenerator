@@ -74,7 +74,10 @@ public class ${className}  implements java.io.Serializable{
 <#macro generateJavaColumns>
 	<#list table.columns as column>
 		<#if column.pk>
-		</#if>	
+		</#if>
+	/**
+     * ${column.columnAlias!}
+     */ 
 	public ${column.javaType} get${column.columnName}() {
 		return this.${column.columnNameLower};
 	}
@@ -83,6 +86,7 @@ public class ${className}  implements java.io.Serializable{
 		this.${column.columnNameLower} = ${column.columnNameLower};
 	}
 	
+	<#-- 
 	public ${column.javaType} ${column.columnNameLower}() {
 		return get${column.columnName}();
 	}
@@ -91,7 +95,7 @@ public class ${className}  implements java.io.Serializable{
 		set${column.columnName}(${column.columnNameLower});
 		return this;
 	}
-	
+	-->
 	</#list>
 </#macro>
 
