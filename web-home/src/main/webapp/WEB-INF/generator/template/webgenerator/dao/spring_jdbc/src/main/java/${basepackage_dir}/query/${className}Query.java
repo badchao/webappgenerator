@@ -32,7 +32,6 @@ public class ${className}Query extends PageQuery implements Serializable {
 <#macro generateFields>
 
 	<#list table.columns as column>
-	/** ${column.columnAlias} */
 	<#if column.isDateTimeColumn && !column.contains("begin,start,end")>
 	private ${column.javaType} ${column.columnNameLower}Begin;
 	private ${column.javaType} ${column.columnNameLower}End;
@@ -45,6 +44,7 @@ public class ${className}Query extends PageQuery implements Serializable {
 
 <#macro generateProperties>
 	<#list table.columns as column>
+	/** ${column.columnAlias} */
 	<#if column.isDateTimeColumn && !column.contains("begin,start,end")>
 	public ${column.javaType} get${column.columnName}Begin() {
 		return this.${column.columnNameLower}Begin;
