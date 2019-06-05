@@ -13,6 +13,7 @@ import ${basepackage}.model.*;
 import ${basepackage}.dao.*;
 import ${basepackage}.query.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * [${table.tableAlias}] 的Service接口
@@ -55,6 +56,8 @@ public interface ${className}Service {
 	 * 分页查询: ${className}
 	 **/      
 	public Page<${className}> findPage(${className}Query query);
+	
+	public List<${className}> findList(${className}Query query);
 	
 <#list table.columns as column>
 	<#if column.unique && !column.pk>

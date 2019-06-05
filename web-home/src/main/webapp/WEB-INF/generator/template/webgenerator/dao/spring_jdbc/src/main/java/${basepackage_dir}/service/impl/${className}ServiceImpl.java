@@ -21,6 +21,7 @@ import ${basepackage}.query.*;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * [${table.tableAlias}] 的Service接口实现
@@ -104,6 +105,12 @@ public class ${className}ServiceImpl implements ${className}Service {
 	public Page<${className}> findPage(${className}Query query) {
 	    Assert.notNull(query,"'query' must be not null");
 	    Page<${className}> r = ${classNameLower}Dao.findPage(query);
+	    return r;
+	}
+	
+	public List<${className}> findList(${className}Query query) {
+		Assert.notNull(query,"'query' must be not null");
+		List<${className}> r = ${classNameLower}Dao.findList(query);
 	    return r;
 	}
 	
