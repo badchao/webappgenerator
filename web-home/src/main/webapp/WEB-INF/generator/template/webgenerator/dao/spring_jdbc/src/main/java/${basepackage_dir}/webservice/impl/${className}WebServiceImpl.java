@@ -48,7 +48,9 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 	}
 
 	public ${className} getById(<@generateArguments table.pkColumns/>) {
-		return ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
+		${className} result = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
+		${classNameLower}Service.join(result);
+		return result;
 	}
 
 	public Page<${className}> findPage(${className}Query query) {
