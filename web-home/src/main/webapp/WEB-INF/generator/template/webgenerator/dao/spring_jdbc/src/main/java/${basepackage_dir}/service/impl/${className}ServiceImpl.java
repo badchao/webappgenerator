@@ -29,7 +29,6 @@ import java.util.List;
 <#include "/java_description.include">
  */
 @Service("${classNameLower}Service")
-@Transactional
 public class ${className}ServiceImpl implements ${className}Service {
 
 	protected static final Logger logger = LoggerFactory.getLogger(${className}ServiceImpl.class);
@@ -113,6 +112,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	    return r;
 	}
 	
+	@Transactional(readOnly=true)
 	public List<${className}> findList(${className}Query query) {
 		Assert.notNull(query,"'query' must be not null");
 		List<${className}> r = ${classNameLower}Dao.findList(query);
