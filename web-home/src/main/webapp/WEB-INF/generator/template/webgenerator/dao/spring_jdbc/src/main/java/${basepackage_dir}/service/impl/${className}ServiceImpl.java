@@ -47,6 +47,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	/** 
 	 * 创建${className}
 	 **/
+	@Override
 	public ${className} create(${className} ${classNameLower}) {
 	    Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
 	    initDefaultValuesForCreate(${classNameLower});
@@ -57,7 +58,8 @@ public class ${className}ServiceImpl implements ${className}Service {
 	
 	/** 
 	 * 更新${className}
-	 **/	
+	 **/
+	@Override
     public ${className} update(${className} ${classNameLower}) {
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
         new ${className}Checker().checkUpdate${className}(${classNameLower});
@@ -76,20 +78,23 @@ public class ${className}ServiceImpl implements ${className}Service {
 	/** 
 	 * 删除${className}
 	 **/
+    @Override
     public void removeById(<@generateArguments table.pkColumns/>) {
         ${classNameLower}Dao.deleteById(<@generatePassingParameters table.pkColumns/>);
     }
     
 	/** 
 	 * 根据ID得到${className}
-	 **/    
+	 **/
+    @Override
     public ${className} getById(<@generateArguments table.pkColumns/>) {
         return ${classNameLower}Dao.getById(<@generatePassingParameters table.pkColumns/>);
     }
     
     /** 
 	 * 根据ID得到${className},找不到抛异常
-	 **/    
+	 **/
+    @Override
     public ${className} getRequiredById(<@generateArguments table.pkColumns/>) {
     	${className} r = getById(<@generatePassingParameters table.pkColumns/>);
     	if(r == null) {

@@ -35,24 +35,29 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 		this.${classNameLower}Service = ${classNameLower}Service;
 	}
 
+	@Override
 	public void create(${className} ${classNameLower}) {
 		${classNameLower}Service.create(${classNameLower});
 	}
 
+	@Override
 	public void update(${className} ${classNameLower}) {
 		${classNameLower}Service.update(${classNameLower});
 	}
 
+	@Override
 	public void removeById(<@generateArguments table.pkColumns/>) {
 		${classNameLower}Service.removeById(<@generatePassingParameters table.pkColumns/>);
 	}
 
+	@Override
 	public ${className} getById(<@generateArguments table.pkColumns/>) {
 		${className} result = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
 		${classNameLower}Service.join(result);
 		return result;
 	}
 
+	@Override
 	public Page<${className}> findPage(${className}Query query) {
 		Assert.isTrue(query.getPageSize() <= 1000,"query.pageSize too large");
 		Page<${className}> r = ${classNameLower}Service.findPage(query);
