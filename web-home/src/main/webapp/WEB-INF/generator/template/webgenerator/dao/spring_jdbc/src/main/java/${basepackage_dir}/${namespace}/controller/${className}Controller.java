@@ -100,7 +100,7 @@ public class ${className}Controller {
 	/** 列表  */
 	@RequestMapping
 	public String index(ModelMap model,${className}Query query,HttpServletRequest request) {
-		Assert.isTrue(query.getPageSize() <= 200,"query.pageSize too large");
+		Assert.isTrue(query.getPageSize() <= 500,"query.pageSize too large");
 		query = ServletUtil.tryGetFromSession(request,query);
 		
 		Page<${className}> page = this.${classNameFirstLower}Service.findPage(query);
