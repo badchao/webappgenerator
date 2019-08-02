@@ -199,24 +199,6 @@ public class ${className}Controller {
 		return LIST_ACTION;
 	}
 	
-	/**
-	 * 生成HTML: <select></select> 标签，生成的标签配合 jsp:include标签一起使用
-	 * 应用场景：表之前有外键关联，如主从表，用于生成主从select标签,用于form表单的输入
-	 * 
-	 * <jsp:include page="${dollor}{ctx}${classWebBasePath}/htmlSelectTag.do?selected=someForeignKeyId"/>
-	 * @param selectName select标签的name
-	 */
-	@RequestMapping
-	public String htmlSelectTag(String selectName,String selected,ModelMap model) throws Exception {
-		${className}Query query = new ${className}Query();
-		query.setPageSize(Integer.MAX_VALUE);
-		Page<${className}> page = ${classNameFirstLower}Service.findPage(query);
-		model.put("itemList", page.getItemList());
-		model.put("selected", selected);
-		model.put("selectName", StringUtils.defaultIfEmpty(selectName,"${classNameFirstLower}Id"));
-		return "${classWebBasePath}/htmlSelectTag";
-	}
-
 }
 
 
