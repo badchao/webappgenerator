@@ -67,7 +67,6 @@ var ${className}WebService = {
 
 
 
-
 module.exports = {
   ${className}WebService: ${className}WebService,
 }

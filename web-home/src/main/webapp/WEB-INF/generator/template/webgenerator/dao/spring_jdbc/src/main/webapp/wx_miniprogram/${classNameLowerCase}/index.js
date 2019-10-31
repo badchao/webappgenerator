@@ -28,12 +28,14 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
 
+    <#list table.pkColumns as column>
     ${table.pkColumn.columnNameLower}: null,
+    </#list>
     
-    query:null, //搜索关键字,
-    dataList:[],
+    query:null, //搜索关键字
+    dataList:[], 
     page: 1,
-    pageSize: 1,
+    pageSize: 10,
     hasMoreData: true,
   },
 
@@ -51,14 +53,16 @@ Page({
     console.info("${className} doDelete", e);
     var that = this;
     var dataset = e.currentTarget.dataset;
-    var ${table.pkColumn.columnNameLower} = dataset.${table.pkColumn.columnName?lower_case};
-
+    
+    <#list table.pkColumns as column>
+    var ${column.columnNameLower} = dataset.${column.columnName?lower_case};
+    </#list>
 
     wx.showModal({
       title: '确认删除?',
       success: function (sm) {
         if (sm.confirm) {
-          webservice.${className}WebService.removeById({ ${table.pkColumn.columnNameLower}:${table.pkColumn.columnNameLower} }, function (res) {
+          webservice.${className}WebService.removeById({ <#list table.pkColumns as column>${column.columnNameLower}:${column.columnNameLower}<#if column_has_next>,</#if></#list> }, function (res) {
             that.execSearch();
           });
         }
@@ -70,10 +74,13 @@ Page({
     console.info("${className} doEdit", e);
     var that = this;
     var dataset = e.currentTarget.dataset;
-    var ${table.pkColumn.columnNameLower} = dataset.${table.pkColumn.columnName?lower_case};
-
+    
+    <#list table.pkColumns as column>
+    var ${column.columnNameLower} = dataset.${column.columnName?lower_case};
+    </#list>
+    
     wx.navigateTo({
-      url: 'form/index?edit=true&${table.pkColumn.columnNameLower}='+that.data.${table.pkColumn.columnNameLower}
+      url: 'form/index?edit=true'+<#list table.pkColumns as column>'&${column.columnNameLower}='+${column.columnNameLower}<#if column_has_next>+</#if></#list> 
     });
   },
 
