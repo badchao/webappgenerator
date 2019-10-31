@@ -25,7 +25,7 @@ Page({
    */
   data: {
     edit:false,
-
+    options:{},
     
     <#list table.columns as column>
 	${column.columnNameLower} : null,
@@ -33,8 +33,9 @@ Page({
   },
 
   goIndex() {
+	var url = util.buildUrl('../index',this.data.options);
     wx.navigateTo({
-      url: '../index',
+      url: url,
     });
   },
 
@@ -68,6 +69,7 @@ Page({
     console.info("${className} form onload,options", options);
     var that = this;
     this.setData(options);
+    this.setData({options:options});
 
     if(options.edit) {
       //for edit
