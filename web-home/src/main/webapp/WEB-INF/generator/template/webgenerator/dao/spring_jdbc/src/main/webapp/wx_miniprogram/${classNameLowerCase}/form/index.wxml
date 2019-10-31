@@ -1,0 +1,32 @@
+<#include "/custom.include">
+<#assign className = table.className>   
+<#assign classNameFirstLower = className?uncap_first>   
+<#assign classNameLowerCase = className?lower_case>   
+<#assign dollor = '$'>   
+
+<cu-custom isCustom="{{true}}">
+  <view slot="content">${className}</view>
+</cu-custom>
+
+<view class="page padding">
+  <form bindsubmit="doSave" report-submit="true">
+  	<#list table.columns as column>
+		<#if column.htmlHidden>
+    <input hidden value="{{${column.columnNameLower}}}" name="${column.columnNameLower}" />
+		</#if>
+	</#list>
+	
+	<#list table.columns as column>
+		<#if !column.htmlHidden>
+    <view class="cu-form-group">
+      <view class="title"><#if !column.nullable><text class="text-red">*</text></#if> ${column.columnAlias}</view>
+      <input name="${column.columnNameLower}" value="{{${column.columnNameLower}}}" placeholder=""></input>
+    </view>
+    	</#if>
+	</#list>
+
+    <view class="cu-bar btn-group padding-top">
+      <button class="cu-btn bg-orange lg" form-type='submit' >{{edit ? '修改' : '创建' }}</button>
+    </view>
+  </form>
+</view>

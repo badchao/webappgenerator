@@ -1,0 +1,4 @@
+/* pages/sandbox/listbox/add/index.wxss */
+.cu-custom .cu-bar{
+  background-color: #2ebf5a;
+}

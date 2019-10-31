@@ -3,6 +3,7 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.webservice.impl;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -18,6 +19,7 @@ import ${basepackage}.service.${className}Service;
 import ${basepackage}.webservice.${className}WebService;
 
 import com.github.rapid.common.util.page.Page;
+import com.greatroute.active.model.DeliveryPoint;
 
 /**
  * [${className}] 的WebService接口实现
@@ -42,7 +44,11 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 
 	@Override
 	public void update(${className} ${classNameLower}) {
-		${classNameLower}Service.update(${classNameLower});
+		//不可以让客户端可以更新所有属性
+		${className} fromDb = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
+		BeanUtils.copyProperties(${classNameLower}, fromDb,"createTime"); //ignore some copy property
+		
+		${classNameLower}Service.update(fromDb);
 	}
 
 	@Override

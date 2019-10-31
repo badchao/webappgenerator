@@ -1,0 +1,61 @@
+<#include "/custom.include">
+<#assign className = table.className>   
+<#assign classNameFirstLower = className?uncap_first>   
+<#assign classNameLowerCase = className?lower_case>   
+<#assign dollor = '$'>   
+
+<cu-custom  isCustom="{{true}}">
+  <view slot="content">${className}管理</view>
+</cu-custom>
+
+<view class="page">
+
+  <!--搜索及增加-->
+  <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
+    <view class="action">
+      <button class="cu-btn bg-green" bindtap="doAdd"><text class="cuIcon-roundadd"></text> 添加</button>
+    </view>
+
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input name="query" type="text" placeholder="输入搜索的关键词" confirm-type="search" bindconfirm='doSearch' ></input>
+    </view>
+
+  </view>
+  <!--搜索及增加 end-->
+
+  <!--列表-->
+  <view class="listClass">
+
+    <view class="cu-card case">
+      
+      <view class="cu-item shadow padding-sm padding-bottom-0 text-df" wx:for="{{dataList}}" wx:key="item">
+
+        <view class="text-gray">
+         <#list table.columns as column>
+		 <#if !column.htmlHidden>
+          <view class="">
+            ${column.columnAlias}：{{item.${column.columnNameLower}}}
+          </view>
+         </#if>
+         </#list>
+        </view>
+
+        <view class="cu-bar justify-end solid-top margin-top-sm">
+          <view class="action">
+            <button class="cu-btn bg-white text-green" data-${table.pkColumn.columnName?lower_case}="{{item.${table.pkColumn.columnNameLower}}}" bindtap="doEdit"><text class="cuIcon-edit"></text> 修改</button>
+            <button class="cu-btn bg-white text-red" data-${table.pkColumn.columnName?lower_case}="{{item.${table.pkColumn.columnNameLower}}}" bindtap="doDelete"><text class="cuIcon-delete"></text> 删除</button>
+          </view>
+        </view>
+      </view>
+
+      <view class="flex-sub text-center margin-top margin-bottom" wx:if="{{dataList.length==0}}">
+        <view class="padding-top text-sm text-grey">没有任何数据</view>
+      </view>
+
+    </view>
+
+  </view>
+  <!--列表end-->
+
+</view>

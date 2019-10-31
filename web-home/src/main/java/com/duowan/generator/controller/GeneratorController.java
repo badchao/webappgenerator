@@ -185,6 +185,7 @@ public class GeneratorController {
 					new String[]{"/**/main/**/webapp/pages/**","web-admin"},
 					new String[]{"/**/main/**/webapp/js/**","web-admin"},
 					new String[]{"/**/main/**/webapp/vue/**","web-admin"},
+					new String[]{"/**/main/**/webapp/wx_miniprogram/**","web-admin"},
 					
 					//web-service
 					new String[]{"/**/main/**/webservice/**/*WebService.java","webservice-api"},

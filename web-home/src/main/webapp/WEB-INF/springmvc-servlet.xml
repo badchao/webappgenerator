@@ -28,15 +28,10 @@
 	<mvc:resources location="/styles/" mapping="/styles/**"/>  
 	<mvc:resources location="/widgets/" mapping="/widgets/**"/>  
 	
-	<!-- 开启支持@NumberFormat @DateTimeFormat @Valid标注 ,@DateTimeFormat用于bean 日期属性的格式化,请查看: http://static.springsource.org/spring/docs/3.0.2.RELEASE/spring-framework-reference/htmlsingle/spring-framework-reference.html#mvc-config-->
-    <mvc:annotation-driven validator="validator"/>
+    <mvc:annotation-driven />
 	
 	<!-- HandlerMapping生成器: 用于生成controllder至URL的映射,如 /user/create.do => UserController.create() -->
 	<bean class="com.github.rapid.common.web.mvc.annotation.ConventionAnnotationHandlerMapping">
-		<!-- 拦截器注册 -->
-		<property name="interceptors">
-			<bean class="com.duowan.generator.common.springmvc.interceptor.SharedRenderVariableInterceptor"/>
-		</property>
 	</bean>
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
