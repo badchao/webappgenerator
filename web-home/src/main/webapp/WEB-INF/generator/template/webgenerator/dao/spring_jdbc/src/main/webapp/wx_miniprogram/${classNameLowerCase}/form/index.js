@@ -4,7 +4,6 @@
 <#assign classNameLowerCase = className?lower_case>   
 <#assign dollor = '$'>   
 
-// pages/sandbox/listbox/add/index.js
 var jsPath = '../../../';
 var util = require(jsPath + '/utils/util.js');
 var appEnum = require(jsPath + '/utils/app_enum.js');

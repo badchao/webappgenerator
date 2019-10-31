@@ -6,18 +6,8 @@
 
 var jsPath = '../..';
 var appWs = require(jsPath + '/utils/app_ws.js');
+var util = require(jsPath + '/utils/util.js');
 
-
-function listMap(list,convertFunc) {
-    var results = [];
-    for (var i = 0; i < list.length; i++) {
-      var row = list[i];
-      row = convertFunc(row);
-      results.push(row);
-    }
-    return results;
-}
-  
 var ${className}WebService = {
 
   //增加数据处理或转换，再传输给后端
@@ -58,7 +48,7 @@ var ${className}WebService = {
     var that = this;
     appWs.wsRequest("${className}WebService/search", data, function (res) {
     	//可以增加数据处理，再返回给展示层
-    	var result = listMap(res.data.result,that.convertShowData);
+    	var result = util.listMap(res.data.result,that.convertShowData);
     	success(result);
     }, fail);
   }
