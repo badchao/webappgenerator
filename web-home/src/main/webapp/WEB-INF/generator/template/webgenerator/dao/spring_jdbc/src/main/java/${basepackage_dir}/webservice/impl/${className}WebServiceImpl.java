@@ -12,13 +12,16 @@ import ${basepackage}.model.*;
 import ${basepackage}.query.*;
 
 import com.github.rapid.common.util.page.Page;
+import com.github.rapid.common.util.page.PageQuery;
 
 import java.util.Date;
+import java.util.List;
 
 import ${basepackage}.service.${className}Service;
 import ${basepackage}.webservice.${className}WebService;
 
 import com.github.rapid.common.util.page.Page;
+import com.github.rapid.common.util.page.PageQuery;
 import com.greatroute.active.model.DeliveryPoint;
 
 /**
@@ -69,6 +72,11 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 		Page<${className}> r = ${classNameLower}Service.findPage(query);
 		r.forEach(${classNameLower}Service::join);
 		return r;
+	}
+	
+	@Override
+	public List<${className}> search(String query,PageQuery pageQuery){
+		throw new RuntimeException("not yet impl")
 	}
     
 }

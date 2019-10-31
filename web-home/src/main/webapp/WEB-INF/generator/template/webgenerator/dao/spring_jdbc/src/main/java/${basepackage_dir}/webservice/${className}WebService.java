@@ -8,7 +8,9 @@ import ${basepackage}.model.*;
 import ${basepackage}.query.*;
 
 import com.github.rapid.common.util.page.Page;
+import com.github.rapid.common.util.page.PageQuery;
 import java.util.Date;
+import java.util.List;
 
 /**
  * [${className}] 的WebService接口
@@ -44,5 +46,8 @@ public interface ${className}WebService {
 	 **/      
 	public Page<${className}> findPage(${className}Query query);
 	
-    
+	/** 
+	 * 搜索: ${className}
+	 **/ 
+	public List<${className}> search(String query,PageQuery pageQuery);
 }
