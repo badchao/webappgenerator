@@ -44,6 +44,11 @@ Page({
    */
   doAdd: function (e) {
     var that = this;
+    
+    <#list table.pkColumns as column>
+    var ${column.columnNameLower} = that.data.${column.columnNameLower};
+    </#list>
+    
     wx.navigateTo({
       url: 'form/index'
     });
