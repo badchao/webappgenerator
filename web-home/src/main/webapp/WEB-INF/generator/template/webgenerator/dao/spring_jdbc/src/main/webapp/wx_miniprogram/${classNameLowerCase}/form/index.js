@@ -44,8 +44,16 @@ Page({
     var that = this;
     var form = e.detail.value;
 
-    //do form check
-
+    //do form check: support:required,max,maxLength ...
+    var checkRules = {
+    <#list table.columns as column>
+      ${column.columnNameLower} : { name: '${column.columnAlias}', required: ${(!column.nullable)?string} },
+    </#list>
+    };
+    
+    if(!util.validate(form,checkRules)) {
+      return;
+    }
 
     if(that.data.edit) {
 
