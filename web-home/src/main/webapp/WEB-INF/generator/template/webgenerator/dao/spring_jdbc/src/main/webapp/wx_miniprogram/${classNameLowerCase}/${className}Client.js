@@ -8,7 +8,7 @@ var jsPath = '../..';
 var appWs = require(jsPath + '/utils/app_ws.js');
 var util = require(jsPath + '/utils/util.js');
 
-var ${className}WebService = {
+var ${className}Client = {
 
   //增加数据处理或转换，再传输给后端
   convertSaveData : function(data) {
@@ -23,21 +23,21 @@ var ${className}WebService = {
   
   create:function(data,success,fail) {
     var data = this.convertSaveData(data);
-    appWs.wsRequest("${className}WebService/create", data, success, fail);
+    appWs.wsRequest("${className}Client/create", data, success, fail);
   },
 
   update:function(data,success,fail) {
     var data = this.convertSaveData(data);
-    appWs.wsRequest("${className}WebService/update", data, success, fail);
+    appWs.wsRequest("${className}Client/update", data, success, fail);
   },
 
   removeById:function(data,success,fail){
-    appWs.wsRequest("${className}WebService/removeById", data, success,fail);
+    appWs.wsRequest("${className}Client/removeById", data, success,fail);
   },
 
   getById: function (data, success, fail) {
     var that = this;
-    appWs.wsRequest("${className}WebService/getById", data, function(res) {
+    appWs.wsRequest("${className}Client/getById", data, function(res) {
       //可以增加数据处理，再返回给展示层
       var result = that.convertShowData(res.data.result);
       success(result);
@@ -46,7 +46,7 @@ var ${className}WebService = {
 
   search:function(data,success,fail) {
     var that = this;
-    appWs.wsRequest("${className}WebService/search", data, function (res) {
+    appWs.wsRequest("${className}Client/search", data, function (res) {
     	//可以增加数据处理，再返回给展示层
     	var result = util.listMap(res.data.result,that.convertShowData);
     	success(result);
@@ -58,6 +58,6 @@ var ${className}WebService = {
 
 
 module.exports = {
-  ${className}WebService: ${className}WebService,
+  ${className}Client: ${className}Client,
 }
 

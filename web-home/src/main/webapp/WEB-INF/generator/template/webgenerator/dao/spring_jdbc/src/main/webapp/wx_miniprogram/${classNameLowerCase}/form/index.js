@@ -15,7 +15,7 @@ var model = require(jsPath + '/utils/app_model.js');
 var config = require(jsPath + '/utils/app_config.js');
 var security = require(jsPath + '/utils/app_security.js');
 
-var webservice = require('../${className}WebService.js');
+var ${className}Client = require('../${className}Client.js').${className}Client;
 
 const app = getApp();
 Page({
@@ -49,13 +49,13 @@ Page({
 
     if(that.data.edit) {
 
-      webservice.${className}WebService.update( form, function (res) {
+      ${className}Client.update( form, function (res) {
         that.goIndex();
       });
 
     }else {
 
-      webservice.${className}WebService.create( form, function (res) {
+      ${className}Client.create( form, function (res) {
         that.goIndex();
       });
 
@@ -74,7 +74,7 @@ Page({
     if(options.edit) {
       //for edit
       
-      webservice.${className}WebService.getById(options, function (entity) {
+      ${className}Client.getById(options, function (entity) {
         that.setData(entity);
       });
     }else {

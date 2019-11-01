@@ -15,7 +15,7 @@ var model = require(jsPath +'/utils/app_model.js');
 var config = require(jsPath +'/utils/app_config.js');
 var security = require(jsPath +'/utils/app_security.js');
 
-var webservice = require('./${className}WebService.js');
+var ${className}Client = require('../${className}Client.js').${className}Client;
 
 
 const app = getApp();
@@ -67,7 +67,7 @@ Page({
       title: '确认删除?',
       success: function (sm) {
         if (sm.confirm) {
-          webservice.${className}WebService.removeById({ <#list table.pkColumns as column>${column.columnNameLower}:${column.columnNameLower}<#if column_has_next>,</#if></#list> }, function (res) {
+          ${className}Client.removeById({ <#list table.pkColumns as column>${column.columnNameLower}:${column.columnNameLower}<#if column_has_next>,</#if></#list> }, function (res) {
             that.execSearch();
           });
         }
@@ -106,7 +106,7 @@ Page({
     var page = isNextPage ? that.data.page : 1;
     var pageSize =that.data.pageSize;
     
-    webservice.${className}WebService.search({ query: query, page:page,pageSize:pageSize }, function (dataList) {
+    ${className}Client.search({ query: query, page:page,pageSize:pageSize }, function (dataList) {
       
       var finalDataList = [];
       if (isNextPage) {
