@@ -119,10 +119,10 @@ Page({
 
       that.setData({
         dataList: finalDataList.filter(function(row) {
-        	if (query) {
-            	return row.${table.columns[0].columnNameLower}.indexOf(query) >= 0;
-            }
-            return true;
+        	if(query) {
+        		return row.${table.columns[0].columnNameLower}.indexOf(query) >= 0;
+        	}
+        	return true;
         }),
         hasMoreData: dataList.length >= pageSize,
         page: page + 1,
