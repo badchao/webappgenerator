@@ -39,6 +39,15 @@ Page({
     hasMoreData: true,
   },
 
+  //用户选择某项数据并回调上一页
+  doSelect: function (e) {
+    var index = e.currentTarget.dataset.index;
+    var selectData = this.data.dataList[index];
+    util.callbackOrSetPrevPageData(this, selectData);
+
+    wx.navigateBack();   //返回上一个页面
+  },
+  
   /**
    * 增加
    */
@@ -57,10 +66,12 @@ Page({
   doDelete: function (e) {
     console.info("${className} doDelete", e);
     var that = this;
-    var dataset = e.currentTarget.dataset;
+
+    var index = e.currentTarget.dataset.index;
+    var selectData = this.data.dataList[index];
     
     <#list table.pkColumns as column>
-    var ${column.columnNameLower} = dataset.${column.columnName?lower_case};
+    var ${column.columnNameLower} = selectData.${column.columnName?lower_case};
     </#list>
 
     wx.showModal({
@@ -78,10 +89,12 @@ Page({
   doEdit: function(e) {
     console.info("${className} doEdit", e);
     var that = this;
-    var dataset = e.currentTarget.dataset;
+    
+    var index = e.currentTarget.dataset.index;
+    var selectData = this.data.dataList[index];
     
     <#list table.pkColumns as column>
-    var ${column.columnNameLower} = dataset.${column.columnName?lower_case};
+    var ${column.columnNameLower} = selectData.${column.columnName?lower_case};
     </#list>
     
     wx.navigateTo({

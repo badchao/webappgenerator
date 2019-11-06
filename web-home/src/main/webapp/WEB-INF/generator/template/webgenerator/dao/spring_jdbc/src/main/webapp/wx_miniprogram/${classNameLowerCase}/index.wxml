@@ -43,8 +43,8 @@
 
         <view class="cu-bar justify-end solid-top margin-top-sm">
           <view class="action">
-            <button class="cu-btn bg-white text-green"  <#list table.pkColumns as column>data-${column.columnName?lower_case}="{{item.${column.columnNameLower}}}" </#list>  bindtap="doEdit"><text class="cuIcon-edit"></text> 修改</button>
-            <button class="cu-btn bg-white text-red" <#list table.pkColumns as column>data-${column.columnName?lower_case}="{{item.${column.columnNameLower}}}" </#list> bindtap="doDelete"><text class="cuIcon-delete"></text> 删除</button>
+            <button class="cu-btn bg-white text-green" data-index="{{index}}"   bindtap="doEdit"><text class="cuIcon-edit"></text> 修改</button>
+            <button class="cu-btn bg-white text-red"  data-index="{{index}}" bindtap="doDelete"><text class="cuIcon-delete"></text> 删除</button>
           </view>
         </view>
       </view>
