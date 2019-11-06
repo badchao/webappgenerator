@@ -60,23 +60,23 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 	}
 
 	@Override
-	public ${className} getById(<@generateArguments table.pkColumns/>) {
+	public ${className} getById(boolean join,<@generateArguments table.pkColumns/>) {
 		${className} result = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
-		${classNameLower}Service.join(result);
+		if(join) ${classNameLower}Service.join(result);
 		return result;
 	}
 
 	@Override
-	public Page<${className}> findPage(${className}Query query) {
+	public Page<${className}> findPage(boolean join,${className}Query query) {
 		Assert.isTrue(query.getPageSize() <= 1000,"query.pageSize too large");
 		Page<${className}> r = ${classNameLower}Service.findPage(query);
-		r.forEach(${classNameLower}Service::join);
+		if(join) r.forEach(${classNameLower}Service::join);
 		return r;
 	}
 	
 	@Override
-	public List<${className}> search(String query,PageQuery pageQuery){
-		throw new RuntimeException("not yet impl")
+	public List<${className}> search(boolean join,String query,PageQuery pageQuery){
+		throw new RuntimeException("not yet impl");
 	}
     
 }

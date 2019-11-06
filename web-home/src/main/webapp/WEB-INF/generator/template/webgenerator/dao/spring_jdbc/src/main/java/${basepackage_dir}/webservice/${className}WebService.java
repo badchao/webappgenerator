@@ -39,15 +39,15 @@ public interface ${className}WebService {
 	/** 
 	 * 根据ID得到${className}
 	 **/    
-    public ${className} getById(<@generateArguments table.pkColumns/>);
+    public ${className} getById(boolean join,<@generateArguments table.pkColumns/>);
     
 	/** 
 	 * 分页查询: ${className}
 	 **/      
-	public Page<${className}> findPage(${className}Query query);
+	public Page<${className}> findPage(boolean join,${className}Query query);
 	
 	/** 
 	 * 搜索: ${className}
 	 **/ 
-	public List<${className}> search(String query,PageQuery pageQuery);
+	public List<${className}> search(boolean join,String query,PageQuery pageQuery);
 }
