@@ -81,10 +81,14 @@ Page({
 
     if(options.edit) {
       //for edit
-      
-      ${className}Client.getById(options, function (entity) {
-        that.setData(entity);
-      });
+    	
+      if(options.model) {
+    	  that.setData(JSON.parse(decodeURIComponent(options.model)));
+      }else {
+	      ${className}Client.getById(options, function (entity) {
+	        that.setData(entity);
+	      });
+      }
     }else {
       //for create
       

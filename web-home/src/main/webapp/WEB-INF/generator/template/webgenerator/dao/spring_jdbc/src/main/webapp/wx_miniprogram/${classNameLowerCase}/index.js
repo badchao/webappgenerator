@@ -97,8 +97,9 @@ Page({
     var ${column.columnNameLower} = selectData.${column.columnName?lower_case};
     </#list>
     
+    var model = encodeURIComponent(JSON.stringify(selectData));
     wx.navigateTo({
-      url: 'form/index?edit=true'+<#list table.pkColumns as column>'&${column.columnNameLower}='+${column.columnNameLower}<#if column_has_next>+</#if></#list> 
+      url: 'form/index?edit=true&model='+model+'&'+<#list table.pkColumns as column>'&${column.columnNameLower}='+${column.columnNameLower}<#if column_has_next>+</#if></#list> 
     });
   },
 
