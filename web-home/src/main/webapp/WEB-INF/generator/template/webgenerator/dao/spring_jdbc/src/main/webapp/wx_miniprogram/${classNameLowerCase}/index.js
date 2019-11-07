@@ -70,15 +70,11 @@ Page({
     var index = e.currentTarget.dataset.index;
     var selectData = this.data.dataList[index];
     
-    <#list table.pkColumns as column>
-    var ${column.columnNameLower} = selectData.${column.columnName?lower_case};
-    </#list>
-
     wx.showModal({
       title: '确认删除?',
       success: function (sm) {
         if (sm.confirm) {
-          ${className}Client.removeById({ <#list table.pkColumns as column>${column.columnNameLower}:${column.columnNameLower}<#if column_has_next>,</#if></#list> }, function (res) {
+          ${className}Client.removeById(selectData, function (res) {
             that.execSearch();
           });
         }
@@ -94,12 +90,12 @@ Page({
     var selectData = this.data.dataList[index];
     
     <#list table.pkColumns as column>
-    var ${column.columnNameLower} = selectData.${column.columnName?lower_case};
+    var ${column.columnNameLower} = selectData.${column.columnNameLower};
     </#list>
     
     var model = encodeURIComponent(JSON.stringify(selectData));
     wx.navigateTo({
-      url: 'form/index?edit=true&model='+model+'&'+<#list table.pkColumns as column>'&${column.columnNameLower}='+${column.columnNameLower}<#if column_has_next>+</#if></#list> 
+      url: 'form/index?edit=true&model='+model+<#list table.pkColumns as column>'&${column.columnNameLower}='+${column.columnNameLower}<#if column_has_next>+</#if></#list> 
     });
   },
 
@@ -114,7 +110,7 @@ Page({
     this.execSearch();
   },
 
-  execSearch: function(isNextPage) {
+  execSearch: function(isNextPage,success) {
     var that = this;
     var query = that.data.query;
     var page = isNextPage ? that.data.page : 1;
@@ -141,6 +137,8 @@ Page({
         hasMoreData: dataList.length >= pageSize,
         page: page + 1,
       });
+      
+      if(success) success(dataList);
     });
   },
 
