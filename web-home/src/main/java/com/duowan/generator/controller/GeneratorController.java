@@ -117,6 +117,64 @@ public class GeneratorController {
 			this.projectId = projectId;
 		}
 
+		String[][] multi_project_dir_layout_mappings = new String[][]{
+				//model
+				new String[]{"/**/main/**/query/**","model"},
+				new String[]{"/**/main/**/model/**","model"},
+				
+				//dao
+				new String[]{"/**/main/**/dao/**","dao"},
+				new String[]{"/**/main/**/util/**","dao"},
+				new String[]{"/**/main/resources/freemarker_sql/**","dao"},
+				new String[]{"/**/test/resources/testdata/**","dao"},
+				new String[]{"/**/test/**/dao/**","dao"},
+				new String[]{"/**/test/**/*DataFactory.java","dao"},
+				
+				//service
+				new String[]{"/**/test/**/service/**","service"},
+				new String[]{"/**/test/**/*DataFactory.java","service"},
+				new String[]{"/**/main/**/service/**","service"},
+				
+				//web-admin
+				new String[]{"/**/main/**/controller/**","web-admin"},
+				new String[]{"/**/main/**/webapp/pages/**","web-admin"},
+				new String[]{"/**/main/**/webapp/js/**","web-admin"},
+				new String[]{"/**/main/**/webapp/vue/**","web-admin"},
+				new String[]{"/**/main/**/webapp/wx_miniprogram/**","web-admin"},
+				
+				//web-service
+				new String[]{"/**/main/**/webservice/**/*WebService.java","webservice-api"},
+				new String[]{"/**/main/**/webservice/**/impl/**","webservice-server"},
+				new String[]{"/**/main/resources/webservice/**/*WebService-rpc-servlet.xml","webservice-server"},
+			};
+		
+		String[][] vue_arechetype_layout = new String[][]{
+				//service
+				new String[]{"/**/main/**/query/**","service"},
+				new String[]{"/**/main/**/model/**","service"},
+				new String[]{"/**/main/**/dao/**","service"},
+				new String[]{"/**/main/**/util/**","service"},
+				new String[]{"/**/main/resources/freemarker_sql/**","service"},
+				new String[]{"/**/test/resources/testdata/**","service"},
+				new String[]{"/**/test/**/dao/**","service"},
+				new String[]{"/**/test/**/*DataFactory.java","service"},
+				new String[]{"/**/test/**/service/**","service"},
+				new String[]{"/**/test/**/*DataFactory.java","service"},
+				new String[]{"/**/main/**/service/**","service"},
+				
+				//admin-front
+				new String[]{"/**/main/**/controller/**","admin-front"},
+				new String[]{"/**/main/**/webapp/pages/**","admin-front"},
+				new String[]{"/**/main/**/webapp/js/**","admin-front"},
+				new String[]{"/**/main/**/webapp/vue/**","admin-front"},
+				new String[]{"/**/main/**/webapp/wx_miniprogram/**","admin-front"},
+				
+				//admin-server
+				new String[]{"/**/main/**/webservice/**/*WebService.java","admin-server"},
+				new String[]{"/**/main/**/webservice/**/impl/**","admin-server"},
+				new String[]{"/**/main/resources/webservice/**/*WebService-rpc-servlet.xml","admin-server"},
+			};
+		
 		public void execute() throws Exception {
 			Assert.hasText(basepackage,"'basepackage' must be not blank");
 			Assert.hasText(sqls,"'sqls' must be not blank");
@@ -140,7 +198,9 @@ public class GeneratorController {
 					g.generateByTable(tableName);
 				}
 				
-				copy2MutiProjectDirLayout(outRoot,"multi_project_dir_layout");
+				copy2MutiProjectDirLayout(outRoot,"multi_project_dir_layout",multi_project_dir_layout_mappings);
+				copy2MutiProjectDirLayout(outRoot,"vue_arechetype_layout",vue_arechetype_layout);
+				
 				
 				FileUtils.writeStringToFile(new File(outRoot,"generator.log"), memoryConsole.toString());
 				
@@ -161,43 +221,14 @@ public class GeneratorController {
 		/**
 		 * 将生成的文件，另外拷贝成别一套目录结构的数据
 		 **/
-		public static void copy2MutiProjectDirLayout(String outRoot, String newDirName) throws IOException {
-			String[][] mappings = new String[][]{
-					//model
-					new String[]{"/**/main/**/query/**","model"},
-					new String[]{"/**/main/**/model/**","model"},
-					
-					//dao
-					new String[]{"/**/main/**/dao/**","dao"},
-					new String[]{"/**/main/**/util/**","dao"},
-					new String[]{"/**/main/resources/freemarker_sql/**","dao"},
-					new String[]{"/**/test/resources/testdata/**","dao"},
-					new String[]{"/**/test/**/dao/**","dao"},
-					new String[]{"/**/test/**/*DataFactory.java","dao"},
-					
-					//service
-					new String[]{"/**/test/**/service/**","service"},
-					new String[]{"/**/test/**/*DataFactory.java","service"},
-					new String[]{"/**/main/**/service/**","service"},
-					
-					//web-admin
-					new String[]{"/**/main/**/controller/**","web-admin"},
-					new String[]{"/**/main/**/webapp/pages/**","web-admin"},
-					new String[]{"/**/main/**/webapp/js/**","web-admin"},
-					new String[]{"/**/main/**/webapp/vue/**","web-admin"},
-					new String[]{"/**/main/**/webapp/wx_miniprogram/**","web-admin"},
-					
-					//web-service
-					new String[]{"/**/main/**/webservice/**/*WebService.java","webservice-api"},
-					new String[]{"/**/main/**/webservice/**/impl/**","webservice-server"},
-					new String[]{"/**/main/resources/webservice/**/*WebService-rpc-servlet.xml","webservice-server"},
-				};
+		public static void copy2MutiProjectDirLayout(String outRoot, String newDirName,String[][] layout_mappings) throws IOException {
+			
 			
 			AntPathMatcher pathMatcher = new AntPathMatcher();
 			Collection<File> files = FileUtils.listFiles(new File(outRoot), null, true);
 			for(File f : files) {
 				System.out.println("copy2MutiProjectDirLayout,file:"+f.getPath());
-				for(String[] mapping : mappings) {
+				for(String[] mapping : layout_mappings) {
 					String pattern = mapping[0];
 					String targetDir = mapping[1];
 					
