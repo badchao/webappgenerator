@@ -1,1 +1,0 @@
-#<#list table.columns as c>${c.columnAlias}<#if c_has_next>,</#if></#list>

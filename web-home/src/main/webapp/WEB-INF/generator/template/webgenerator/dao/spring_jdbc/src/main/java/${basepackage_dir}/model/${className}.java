@@ -13,6 +13,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 
 /**
@@ -37,6 +39,9 @@ public class ${className}  implements java.io.Serializable{
      * ${column.columnAlias!}       db_column: ${column.sqlName} 
      */ 	
 	${column.hibernateValidatorExprssion}
+	<#if column.pk>
+	@Id
+	</#if>
 	private ${column.javaType} ${column.columnNameLower};
 	
 	</#list>

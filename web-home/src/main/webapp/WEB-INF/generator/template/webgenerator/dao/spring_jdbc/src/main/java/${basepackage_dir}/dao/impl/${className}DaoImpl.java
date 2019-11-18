@@ -15,6 +15,12 @@ import ${basepackage}.dao.${className}Dao;
 
 
 
+
+
+
+
+
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Date;
@@ -39,6 +45,10 @@ import org.springframework.cache.annotation.Cacheable;
 import com.github.rapid.common.util.page.Page;
 import com.github.rapid.common.util.ObjectUtil;
 import com.github.rapid.common.jdbc.dao.support.BaseSpringJdbcDao;
+import com.github.rapid.common.jdbc.sqlgenerator.CacheSqlGenerator;
+import com.github.rapid.common.jdbc.sqlgenerator.SpringNamedSqlGenerator;
+import com.github.rapid.common.jdbc.sqlgenerator.metadata.MetadataCreateUtils;
+import com.github.rapid.common.jdbc.sqlgenerator.metadata.Table;
 
 /**
  * tableName: ${table.sqlName}
@@ -61,13 +71,20 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 	
 	private RowMapper<${className}> entityRowMapper = new BeanPropertyRowMapper<${className}>(getEntityClass());
 	
-	static final private String COLUMNS = "<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>";
-	static final private String SELECT_FROM = "select " + COLUMNS + " from ${table.sqlName}";
+	private CacheSqlGenerator sqlGenerator = null; //增删改查sql生成工具
+	private Table table;
+	protected String columns = null; // 表的列，如:  age,sex
+	protected String selectFromSql = null; // SQL: select age,sex from demo_table  
 	
 	@Override
 	protected void checkDaoConfig() {
 		setDataSource(dataSource);
 		super.checkDaoConfig();
+		
+		table = MetadataCreateUtils.createTable(getEntityClass());
+		sqlGenerator = new CacheSqlGenerator(new SpringNamedSqlGenerator(table));
+		columns = sqlGenerator.getColumnsSql();
+		selectFromSql = "select "+sqlGenerator.getColumnsSql()+" from " + table.getTableName();
 	}
 	
 	@Override
@@ -90,10 +107,7 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 	
 	@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
 	public void insert(${className} entity) {
-		String sql = "insert into ${table.sqlName} " 
-			 + " (<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>) " 
-			 + " values "
-			 + " (<#list table.columns as column>:${column.columnNameLower}<#if column_has_next>,</#if></#list>)";
+		String sql = sqlGenerator.getInsertSql();
 		insertWithGeneratedKey(entity,sql); //for sqlserver:identity and mysql:auto_increment
 		
 		//其它主键生成策略
@@ -105,28 +119,26 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 	
 	@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
 	public int update(${className} entity) {
-		String sql = "update ${table.sqlName} set "
-					+ " <#list table.notPkColumns as column>${column.sqlName}=:${column.columnNameLower}<#if column_has_next>,</#if></#list> "
-					+ " where <#list table.pkColumns as column> ${column.sqlName} = :${column.columnNameLower} <#if column_has_next>and</#if></#list>";
+		String sql = sqlGenerator.getUpdateByPkSql();
 		return getNamedParameterJdbcTemplate().update(sql, new BeanPropertySqlParameterSource(entity));
 	}
 	
 	@CacheEvict(key="<@generateCacheArguments '' table.pkColumns/>")
 	public int deleteById(<@generateArguments table.pkColumns/>) {
-		String sql = "delete from ${table.sqlName} where <#list table.pkColumns as column> ${column.sqlName} = ? <#if column_has_next>and</#if></#list>";
+		String sql = sqlGenerator.getDeleteByPkSql();
 		return  getJdbcTemplate().update(sql,  <@generatePassingParameters table.pkColumns/>);
 	}
 
 	@Cacheable(key="<@generateCacheArguments '' table.pkColumns/>")
 	public ${className} getById(<@generateArguments table.pkColumns/>) {
-		String sql = SELECT_FROM + " where <#list table.pkColumns as column> ${column.sqlName} = ? <#if column_has_next>and</#if></#list>";
+		String sql = sqlGenerator.getSelectByPkSql();
 		return (${className})DataAccessUtils.singleResult(getJdbcTemplate().query(sql, getEntityRowMapper(),<@generatePassingParameters table.pkColumns/>));
 	}
 	
 	<#list table.columns as column>
 	<#if column.unique && !column.pk>
 	public ${className} getBy${column.columnName}(${column.primitiveJavaType} ${column.columnNameFirstLower}) {
-		String sql =  SELECT_FROM + " where ${column.sqlName}=?";
+		String sql =  selectFromSql + " where ${column.sqlName}=?";
 		return (${className})DataAccessUtils.singleResult(getJdbcTemplate().query(sql, getEntityRowMapper(), ${column.columnNameFirstLower}));
 	}	
 	
@@ -148,7 +160,7 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 	}
 	
 	public StringBuilder getQuerySql(${className}Query query) {
-		StringBuilder sql = new StringBuilder("select "+ COLUMNS + " from ${table.sqlName} where 1=1 ");
+		StringBuilder sql = new StringBuilder(selectFromSql + " where 1=1 ");
 		
 		//大表容易有性能问题，小表才能使用动态查询
 		
