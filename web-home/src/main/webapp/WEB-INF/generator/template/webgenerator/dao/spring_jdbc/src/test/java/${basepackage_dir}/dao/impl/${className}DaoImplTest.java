@@ -5,19 +5,25 @@ package ${basepackage}.dao.impl;
 
 import ${basepackage}.${className}DataFactory;
 
+import com.company.project.dao.DaoTestConfig;
 import com.github.rapid.common.util.page.Page;
 
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
+
+
+
 
 
 
@@ -31,8 +37,9 @@ import ${basepackage}.dao.*;
 /**
 <#include "/java_description.include">
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/spring/*.xml" })
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@ContextConfiguration(classes = {DaoTestConfig.class})
 @Transactional
 public class ${className}DaoImplTest {
 	
