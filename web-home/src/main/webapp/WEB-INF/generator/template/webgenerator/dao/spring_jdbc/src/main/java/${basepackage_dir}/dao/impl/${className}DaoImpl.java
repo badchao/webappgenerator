@@ -150,6 +150,9 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 	public StringBuilder getQuerySql(${className}Query query) {
 		StringBuilder sql = new StringBuilder("select "+ COLUMNS + " from ${table.sqlName} where 1=1 ");
 		
+		//大表容易有性能问题，小表才能使用动态查询
+		
+		/*
 		<#list table.columns as column>
 		<#if column.isDateTimeColumn>
 		if(ObjectUtil.isNotEmpty(query.get${column.columnName}Begin())) {
@@ -164,6 +167,7 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		}
 		</#if>
 		</#list>
+		*/
 		
 		return sql;
 	}
