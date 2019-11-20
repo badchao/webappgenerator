@@ -39,9 +39,6 @@ public class ${className}  implements java.io.Serializable{
      * ${column.columnAlias!}       db_column: ${column.sqlName} 
      */ 	
 	${column.hibernateValidatorExprssion}
-	<#if column.pk>
-	@Id
-	</#if>
 	private ${column.javaType} ${column.columnNameLower};
 	
 	</#list>
@@ -78,11 +75,12 @@ public class ${className}  implements java.io.Serializable{
 
 <#macro generateJavaColumns>
 	<#list table.columns as column>
-		<#if column.pk>
-		</#if>
 	/**
      * ${column.columnAlias!}
      */ 
+	<#if column.pk>
+	@Id
+	</#if>
 	public ${column.javaType} get${column.columnName}() {
 		return this.${column.columnNameLower};
 	}
