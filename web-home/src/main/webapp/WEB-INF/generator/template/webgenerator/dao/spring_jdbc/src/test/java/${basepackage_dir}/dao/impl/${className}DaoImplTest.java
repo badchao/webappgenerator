@@ -59,7 +59,7 @@ public class ${className}DaoImplTest {
 
 	//数据库单元测试前会开始事务，结束时会回滚事务，所以测试方法可以不用关心测试数据的删除
 	@Test
-	public void findPage() {
+	public void testFindPage() {
 
 		${className}Query query = ${className}DataFactory.new${className}Query();
 		Page page = dao.findPage(query);
@@ -72,29 +72,29 @@ public class ${className}DaoImplTest {
 	}
 	
 	@Test
-	public void test_insert() {
+	public void testInsert() {
 		dao.insert(${className}DataFactory.new${className}());
 	}
 	
 	@Test
-	public void test_update() {
+	public void testUpdate() {
 		dao.update(${className}DataFactory.new${className}());
 	}
 	
 	@Test
-	public void test_delete() {
+	public void testDelete() {
 		dao.deleteById(<@generateArgumentsWithRandomValue table.pkColumns/>);
 	}
 	
 	@Test
-	public void test_getById() {
+	public void testGetById() {
 		dao.getById(<@generateArgumentsWithRandomValue table.pkColumns/>);
 	}
 	
 	<#list table.columns as column>
 	<#if column.unique && !column.pk>
 	@Test
-	public void test_getBy${column.columnName}() {
+	public void testGetBy${column.columnName}() {
 		dao.getBy${column.columnName}(new ${column.javaType}("1"));
 	}
 	
