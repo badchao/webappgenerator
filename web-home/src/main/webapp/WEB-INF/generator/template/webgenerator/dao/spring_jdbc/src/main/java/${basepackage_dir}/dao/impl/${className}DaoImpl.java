@@ -84,7 +84,7 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		table = MetadataCreateUtils.createTable(getEntityClass());
 		sqlGenerator = new CacheSqlGenerator(new SpringNamedSqlGenerator(table));
 		columns = sqlGenerator.getColumnsSql();
-		selectFromSql = "select "+sqlGenerator.getColumnsSql()+" from " + table.getTableName();
+		selectFromSql = "select "+sqlGenerator.getColumnsSql()+" from " + table.getTableName()+" ";
 	}
 	
 	@Override
