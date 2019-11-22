@@ -128,7 +128,16 @@ public class ${className}ServiceImpl implements ${className}Service {
 	
 	</#if>
 </#list>
-    
+
+	/** 
+	 * 权限检查,在Controller或WebService层调用, 请自行实现
+	 * @param userId 登录用户ID
+	 * @throws SecurityException 没有权限时抛出 
+	 **/
+	public void checkPermission(long userId,${className} ${classNameLower},String permission) {
+		throw new RuntimeException("not yet impl");
+	}
+
 	/**
 	 * 创建对象时初始化相关默认值 
 	 **/

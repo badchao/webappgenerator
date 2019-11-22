@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 import ${basepackage}.model.*;
 import ${basepackage}.dao.*;
 import ${basepackage}.query.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public interface ${className}Service {
 	public Page<${className}> findPage(${className}Query query);
 	
 	public List<${className}> findList(${className}Query query);
-	
+
 <#list table.columns as column>
 	<#if column.unique && !column.pk>
 	/** 
@@ -68,5 +69,12 @@ public interface ${className}Service {
 	
 	</#if>
 </#list>
-    
+
+	/** 
+	 * 权限检查,在Controller或WebService层调用, 请自行实现
+	 * @param userId 登录用户ID
+	 * @throws SecurityException 没有权限时抛出 
+	 **/
+	public void checkPermission(long userId,${className} ${classNameLower},String permission);
+
 }
