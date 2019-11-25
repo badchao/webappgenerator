@@ -62,18 +62,19 @@
       data() {
         return {
           rules: CheckRules,
-          projectId: this.$route.params.projectId,
+          //projectId: this.$route.params.projectId,
           
           loading: true,
           listQuery: {},
           tableData: [],
           dialogFormVisible: false,
           
-          form: {
+          defaultForm: {
             <#list table.columns as column>
             ${column.columnNameLower}: null,
             </#list>
           },
+          form: {},
           
           currentPage: 1,
           total: 0,
@@ -92,7 +93,7 @@
       watch: {
         '$route.params.projectId': function(val, oldVal) {
           if (val) {
-            this.projectId = val
+            //this.projectId = val
             this.getTableData(1, 30)
           }
         }
@@ -142,17 +143,7 @@
         },
         
         handleAdd() {
-          this.form = {
-            projectId: this.projectId,
-            siteDatasourceId: '',
-            host: '',
-            port: '',
-            db: '',
-            dbType: '',
-            userName: '',
-            password: '',
-            remarks: ''
-          };
+          this.form = this.defaultForm;
           
           this.dialogFormVisible = true
         },
