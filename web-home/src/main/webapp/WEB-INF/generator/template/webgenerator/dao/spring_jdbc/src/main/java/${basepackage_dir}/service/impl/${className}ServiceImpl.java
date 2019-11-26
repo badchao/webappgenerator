@@ -43,14 +43,23 @@ public class ${className}ServiceImpl implements ${className}Service {
 		this.${classNameLower}Dao = dao;
 	}
 	
+    /** 检查到有错误请直接抛异常，不要使用 return errorCode的方式 */
+    public void check${className}(${className} ${classNameLower}) {
+    	// Bean Validator检查,属性检查失败将抛异常
+    	BeanValidatorHolder.validateWithException(${classNameLower});
+    }
+    
 	/** 
 	 * 创建${className}
 	 **/
 	@Override
 	public ${className} create(${className} ${classNameLower}) {
 	    Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
-	    initDefaultValuesForCreate(${classNameLower});
-	    new ${className}Checker().checkCreate${className}(${classNameLower});
+
+	    //initDefaultValuesForCreate
+	    
+	    check${className}(${classNameLower});
+	    
 	    ${classNameLower}Dao.insert(${classNameLower});
 	    return ${classNameLower};
 	}
@@ -61,7 +70,8 @@ public class ${className}ServiceImpl implements ${className}Service {
 	@Override
     public ${className} update(${className} ${classNameLower}) {
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
-        new ${className}Checker().checkUpdate${className}(${classNameLower});
+        check${className}(${classNameLower});
+        
         ${classNameLower}Dao.update(${classNameLower});
         return ${classNameLower};
     }	
@@ -137,33 +147,6 @@ public class ${className}ServiceImpl implements ${className}Service {
 	public void checkPermission(long userId,${className} ${classNameLower},String permission) {
 		throw new SecurityException("not yet impl");
 	}
+    
 
-	/**
-	 * 创建对象时初始化相关默认值 
-	 **/
-    public void initDefaultValuesForCreate(${className} ${classNameLower}) {
-    }
-    
-    /**
-     * ${className}的属性检查类,根据自己需要编写自定义检查
-     **/
-    public class ${className}Checker {
-        /**可以在此检查只有更新才需要的特殊检查 */
-        public void checkUpdate${className}(${className} ${classNameLower}) {
-            check${className}(${classNameLower});
-        }
-    
-        /**可以在此检查只有创建才需要的特殊检查 */
-        public void checkCreate${className}(${className} ${classNameLower}) {
-            check${className}(${classNameLower});
-        }
-        
-        /** 检查到有错误请直接抛异常，不要使用 return errorCode的方式 */
-        public void check${className}(${className} ${classNameLower}) {
-        	// Bean Validator检查,属性检查失败将抛异常
-        	BeanValidatorHolder.validateWithException(${classNameLower});
-            
-        	//复杂的属性的检查一般需要分开写几个方法，如 checkProperty1(v),checkProperty2(v)
-        }
-    }
 }
