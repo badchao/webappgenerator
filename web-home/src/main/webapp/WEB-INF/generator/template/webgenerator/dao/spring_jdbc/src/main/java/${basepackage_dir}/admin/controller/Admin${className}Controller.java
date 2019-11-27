@@ -20,7 +20,7 @@ import ${basepackage}.service.${className}Service;
 import com.github.rapid.common.util.page.Page;
 
 /**
- * [${table.tableAlias}] 的Admin Controller
+ * [${table.tableAlias}] 管理后台  Controller
  * 
 <#include "/java_description.include">
  */

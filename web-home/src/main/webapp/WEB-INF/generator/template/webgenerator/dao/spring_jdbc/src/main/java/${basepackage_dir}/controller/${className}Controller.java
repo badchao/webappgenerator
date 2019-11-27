@@ -20,7 +20,7 @@ import ${basepackage}.service.${className}Service;
 import com.github.rapid.common.util.page.Page;
 
 /**
- * [${table.tableAlias}] 的前端用户  Controller
+ * [${table.tableAlias}] 用户前台  Controller
  * 
 <#include "/java_description.include">
  */
@@ -62,6 +62,8 @@ public class ${className}Controller extends BaseController {
 		${classNameLower}Service.checkPermission(getLoginUserId(request),${classNameLower},"r");
 		
 		${className} result = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
+		if(join) ${classNameLower}Service.join(result);
+		
 		return ResponseEntity.ok(result);
 	}
 	
@@ -69,8 +71,10 @@ public class ${className}Controller extends BaseController {
 	public ResponseEntity<?> findPage(boolean join,${className}Query query,${className} ${classNameLower},HttpServletRequest request){
 		${classNameLower}Service.checkPermission(getLoginUserId(request),${classNameLower},"r");
 		
-		Page<${className}> page = ${classNameLower}Service.findPage(query);
-		return ResponseEntity.ok(page);
+		Page<${className}> result = ${classNameLower}Service.findPage(query);
+		if(join) result.forEach(${classNameLower}Service::join);
+		
+		return ResponseEntity.ok(result);
 	}
 	
 }
