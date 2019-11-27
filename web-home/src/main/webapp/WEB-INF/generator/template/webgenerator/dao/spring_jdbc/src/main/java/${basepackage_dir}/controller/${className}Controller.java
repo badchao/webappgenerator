@@ -47,13 +47,7 @@ public class ${className}Controller extends BaseController {
 	public void update(@RequestBody ${className} ${classNameLower},HttpServletRequest request) {
 		${classNameLower}Service.checkPermission(getLoginUserId(request),${classNameLower},"w");
 		
-		Integer id = ${classNameLower}.getId();
-
-		//不可以让客户端可以更新所有属性
-		${className} fromDb = ${classNameLower}Service.getById(id);
-		BeanUtils.copyProperties(${classNameLower}, fromDb,"createTime"); //ignore some copy property
-		
-		${classNameLower}Service.update(fromDb);
+		${classNameLower}Service.update(${classNameLower});
 	}
 	
 	@PostMapping

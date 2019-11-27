@@ -47,16 +47,7 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 
 	@Override
 	public void update(${className} ${classNameLower}) {
-		
-		<#list table.pkColumns as column> 
-		${column.javaType} ${column.columnNameFirstLower} = ${classNameLower}.get${column.columnName}();
-		</#list>
-		
-		//不可以让客户端可以更新所有属性
-		${className} fromDb = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
-		BeanUtils.copyProperties(${classNameLower}, fromDb,"createTime"); //ignore some copy property
-		
-		${classNameLower}Service.update(fromDb);
+		${classNameLower}Service.update(${classNameLower});
 	}
 
 	@Override
