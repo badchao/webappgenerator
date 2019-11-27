@@ -145,7 +145,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @throws SecurityException 没有权限时抛出 
 	 **/
 	public void checkPermission(long userId,${className} ${classNameLower},String permission) {
-		throw new SecurityException("not yet impl");
+		//throw new SecurityException("not yet impl");
 	}
     
 
