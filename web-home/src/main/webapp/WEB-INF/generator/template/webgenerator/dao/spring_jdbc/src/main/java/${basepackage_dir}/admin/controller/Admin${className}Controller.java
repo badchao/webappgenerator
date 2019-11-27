@@ -24,6 +24,7 @@ import com.github.rapid.common.util.page.Page;
  * 
 <#include "/java_description.include">
  */
+
 @Controller
 @RequestMapping("/admin/${classNameLower}")
 public class Admin${className}Controller extends BaseController {
@@ -31,6 +32,10 @@ public class Admin${className}Controller extends BaseController {
     @Autowired
     private ${className}Service ${classNameLower}Service;
 
+	public void set${className}Service(${className}Service ${classNameLower}Service) {
+		this.${classNameLower}Service = ${classNameLower}Service;
+	}
+	
 	@PostMapping
 	public void create(@RequestBody ${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"w");
@@ -52,17 +57,17 @@ public class Admin${className}Controller extends BaseController {
 	}
 	
 	@PostMapping
-	public void removeById(int id,HttpServletRequest request) {
+	public void removeById(<@generateArguments table.pkColumns/>,HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"w");
 		
-		${classNameLower}Service.removeById(id);
+		${classNameLower}Service.removeById(<@generatePassingParameters table.pkColumns/>);
 	}
 
 	@GetMapping
-	public ResponseEntity<?> getById(boolean join,int id,HttpServletRequest request) {
+	public ResponseEntity<?> getById(boolean join,<@generateArguments table.pkColumns/>,HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"r");
 		
-		${className} result = ${classNameLower}Service.getById(id);
+		${className} result = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
 		return ResponseEntity.ok(result);
 	}
 	
