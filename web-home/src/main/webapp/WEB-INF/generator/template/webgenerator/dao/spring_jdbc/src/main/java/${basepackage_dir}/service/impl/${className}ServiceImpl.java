@@ -154,7 +154,15 @@ public class ${className}ServiceImpl implements ${className}Service {
 	 * @throws SecurityException 没有权限时抛出 
 	 **/
 	public void checkPermission(long userId,${className} ${classNameLower},String permission) {
-		//throw new SecurityException("not yet impl");
+		/* 
+		 示例代码,如发现创建人 == userId
+		 
+		 if(${className}.getUserId() == userId) {
+		 	return;
+		 }
+		 throw new SecurityException("you cannot admin ${className}:"+${classNameLower});
+		 
+		 */
 	}
     
 
