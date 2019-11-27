@@ -38,28 +38,28 @@ public class ${className}Controller extends BaseController {
 	
 	@PostMapping
 	public void create(@RequestBody ${className} ${classNameLower},HttpServletRequest request) {
-		${classNameLower}Service.checkPermission(getLoginUserId(request),${classNameLower},"w");
+		${classNameLower}Service.checkEntityPermission(getLoginUserId(request),${classNameLower},"w");
 		
 		${classNameLower}Service.create(${classNameLower});
 	}
 	
 	@PostMapping
 	public void update(@RequestBody ${className} ${classNameLower},HttpServletRequest request) {
-		${classNameLower}Service.checkPermission(getLoginUserId(request),${classNameLower},"w");
+		${classNameLower}Service.checkEntityPermission(getLoginUserId(request),${classNameLower},"w");
 		
 		${classNameLower}Service.update(${classNameLower});
 	}
 	
 	@PostMapping
 	public void removeById(${className} ${classNameLower},<@generateArguments table.pkColumns/>,HttpServletRequest request) {
-		${classNameLower}Service.checkPermission(getLoginUserId(request),${classNameLower},"w");
+		${classNameLower}Service.checkEntityPermission(getLoginUserId(request),${classNameLower},"w");
 		
 		${classNameLower}Service.removeById(<@generatePassingParameters table.pkColumns/>);
 	}
 
 	@GetMapping
 	public ResponseEntity<?> getById(boolean join,<@generateArguments table.pkColumns/>,${className} ${classNameLower},HttpServletRequest request) {
-		${classNameLower}Service.checkPermission(getLoginUserId(request),${classNameLower},"r");
+		${classNameLower}Service.checkEntityPermission(getLoginUserId(request),${classNameLower},"r");
 		
 		${className} result = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
 		if(join) ${classNameLower}Service.join(result);
@@ -69,7 +69,7 @@ public class ${className}Controller extends BaseController {
 	
 	@GetMapping
 	public ResponseEntity<?> findPage(boolean join,${className}Query query,${className} ${classNameLower},HttpServletRequest request){
-		${classNameLower}Service.checkPermission(getLoginUserId(request),${classNameLower},"r");
+		${classNameLower}Service.checkEntityPermission(getLoginUserId(request),${classNameLower},"r");
 		
 		Page<${className}> result = ${classNameLower}Service.findPage(query);
 		if(join) result.forEach(${classNameLower}Service::join);

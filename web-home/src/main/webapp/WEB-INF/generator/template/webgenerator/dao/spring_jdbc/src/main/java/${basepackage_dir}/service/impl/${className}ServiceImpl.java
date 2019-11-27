@@ -29,7 +29,7 @@ import java.util.List;
 <#include "/java_description.include">
  */
 @Service("${classNameLower}Service")
-public class ${className}ServiceImpl implements ${className}Service {
+public class ${className}ServiceImpl extends BaseService implements ${className}Service {
 
 	protected static final Logger logger = LoggerFactory.getLogger(${className}ServiceImpl.class);
 	
@@ -56,7 +56,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	public ${className} create(${className} ${classNameLower}) {
 	    Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
 
-	    //initDefaultValuesForCreate
+	    //init default value
 	    
 	    check${className}(${classNameLower});
 	    
@@ -149,11 +149,12 @@ public class ${className}ServiceImpl implements ${className}Service {
 </#list>
 
 	/** 
-	 * 权限检查,在用户Controller(非管理)或WebService层调用, 请自行实现
+	 * 行数据权限(实体权限检查),在用户Controller(非管理)或WebService层调用, 请自行实现
 	 * @param userId 登录用户ID
 	 * @throws SecurityException 没有权限时抛出 
 	 **/
-	public void checkPermission(long userId,${className} ${classNameLower},String permission) {
+	public void checkEntityPermission(long userId,${className} ${classNameLower},String permission) {
+		super.checkEntityPermission(userId,${className} ${classNameLower},String permission);
 		/* 
 		 示例代码,如发现创建人 == userId
 		 
