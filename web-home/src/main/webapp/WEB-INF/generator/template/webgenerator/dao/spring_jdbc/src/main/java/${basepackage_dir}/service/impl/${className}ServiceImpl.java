@@ -160,6 +160,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 		 if(${className}.getUserId() == userId) {
 		 	return;
 		 }
+		 
 		 throw new SecurityException("you cannot admin ${className}:"+${classNameLower});
 		 
 		 */
