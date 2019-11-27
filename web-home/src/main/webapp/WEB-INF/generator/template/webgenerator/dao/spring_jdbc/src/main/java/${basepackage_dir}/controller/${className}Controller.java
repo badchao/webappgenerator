@@ -26,7 +26,7 @@ import com.github.rapid.common.util.page.Page;
  */
 
 @Controller
-@RequestMapping("/admin/${classNameLower}")
+@RequestMapping("/${classNameLower}")
 public class ${className}Controller extends BaseController {
 
     @Autowired
