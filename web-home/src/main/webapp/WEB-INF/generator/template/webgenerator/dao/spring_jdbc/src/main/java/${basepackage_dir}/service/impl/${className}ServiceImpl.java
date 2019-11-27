@@ -155,16 +155,6 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 **/
 	public void checkEntityPermission(long userId,${className} ${classNameLower},String permission) {
 		super.checkEntityPermission(userId,${className} ${classNameLower},String permission);
-		/* 
-		 示例代码,如发现创建人 == userId
-		 
-		 if(${className}.getUserId() == userId) {
-		 	return;
-		 }
-		 
-		 throw new SecurityException("you cannot admin ${className}:"+${classNameLower});
-		 
-		 */
 	}
     
 
