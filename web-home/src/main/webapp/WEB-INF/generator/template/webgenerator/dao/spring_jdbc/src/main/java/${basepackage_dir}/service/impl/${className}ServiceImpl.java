@@ -140,7 +140,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 </#list>
 
 	/** 
-	 * 权限检查,在Controller或WebService层调用, 请自行实现
+	 * 权限检查,在用户Controller(非管理)或WebService层调用, 请自行实现
 	 * @param userId 登录用户ID
 	 * @throws SecurityException 没有权限时抛出 
 	 **/
