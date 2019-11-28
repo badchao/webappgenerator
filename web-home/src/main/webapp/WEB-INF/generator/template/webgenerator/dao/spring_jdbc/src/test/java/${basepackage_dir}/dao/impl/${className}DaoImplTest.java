@@ -5,7 +5,6 @@ package ${basepackage}.dao.impl;
 
 import ${basepackage}.${className}DataFactory;
 
-import com.company.project.dao.DaoTestConfig;
 import com.github.rapid.common.util.page.Page;
 
 import java.util.*;
@@ -24,10 +23,6 @@ import org.junit.runner.RunWith;
 
 
 
-
-
-
-
 import static junit.framework.Assert.*;
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;
@@ -37,11 +32,7 @@ import ${basepackage}.dao.*;
 /**
 <#include "/java_description.include">
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@ContextConfiguration(classes = {DaoTestConfig.class})
-@Transactional
-public class ${className}DaoImplTest {
+public class ${className}DaoImplTest extends BaseDaoTestCase {
 	
 	@Rule public TestName testName = new TestName();
 	
