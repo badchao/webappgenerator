@@ -49,6 +49,8 @@ public class ${className}ServiceImplTest {
 	
 	@Test
 	public void test_update() {
+		when(${classNameLower}Dao.getById(<@generateArgumentsWithRandomValue table.pkColumns/>)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
+		
 		${className} obj = ${className}DataFactory.new${className}();
 		service.update(obj);
 		
