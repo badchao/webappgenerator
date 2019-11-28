@@ -86,7 +86,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
     }	
     
     /**
-     *  join取回${className}的关联对象,如一对多，多对一等的关联对象
+     *  join取回${className}的关联对象,如一对多，多对一等的关联对象,如: user找到关联的 地址列表 
      */
     @Transactional(propagation=Propagation.NOT_SUPPORTED)
     public ${className} join(${className} ${classNameLower}) {
