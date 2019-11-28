@@ -5,6 +5,7 @@ package ${basepackage}.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,7 +78,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 		</#list>
 		
 		//不可以让客户端可以更新所有属性
-		${className} fromDb = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
+		${className} fromDb = getById(<@generatePassingParameters table.pkColumns/>);
 		BeanUtils.copyProperties(${classNameLower}, fromDb,"createTime"); //ignore some copy property
 		
 		${classNameLower}Dao.update(fromDb);
@@ -154,7 +155,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 * @throws SecurityException 没有权限时抛出 
 	 **/
 	public void checkEntityPermission(long userId,${className} ${classNameLower},String permission) {
-		super.checkEntityPermission(userId,${classNameLower},String permission);
+		super.checkEntityPermission(userId,${classNameLower},permission);
 	}
     
 

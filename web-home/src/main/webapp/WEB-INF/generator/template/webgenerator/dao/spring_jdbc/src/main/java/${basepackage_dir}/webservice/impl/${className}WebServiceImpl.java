@@ -22,7 +22,6 @@ import ${basepackage}.webservice.${className}WebService;
 
 import com.github.rapid.common.util.page.Page;
 import com.github.rapid.common.util.page.PageQuery;
-import com.greatroute.active.model.DeliveryPoint;
 
 /**
  * [${className}] 的WebService接口实现
