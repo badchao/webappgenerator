@@ -15,17 +15,17 @@ var ${className}Client = {
     return row;
   },
 
-  //为数据增加属性，用于前端展示
+  //为数据增加计算属性，用于前端展示
   convertShowData: function (that) {
 	  if(!that) return that;
 	  
-	  var extendProps = {
+	  var extendComputedProps = {
 		  get someString() {
 			  return that.toString()+", hello world";
 		  }
 	  }
 	  
-	  return util.extend(that,extendProps);
+	  return util.extend(that,extendComputedProps);
   },
 
 

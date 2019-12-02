@@ -8,14 +8,16 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.output.TeeOutputStream;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -175,6 +177,12 @@ public class GeneratorController {
 				new String[]{"/**/main/resources/webservice/**/*WebService-rpc-servlet.xml","admin-server"},
 			};
 		
+		private Map<String,String[][]> layoutDirMappings = new HashMap();
+		{
+			layoutDirMappings.put("multi_project_dir_layout",multi_project_dir_layout_mappings);
+			layoutDirMappings.put("vue_arechetype_layout",vue_arechetype_layout);
+		}
+		
 		public void execute() throws Exception {
 			Assert.hasText(basepackage,"'basepackage' must be not blank");
 			Assert.hasText(sqls,"'sqls' must be not blank");
@@ -198,8 +206,12 @@ public class GeneratorController {
 					g.generateByTable(tableName);
 				}
 				
-				copy2MutiProjectDirLayout(outRoot,"multi_project_dir_layout",multi_project_dir_layout_mappings);
-				copy2MutiProjectDirLayout(outRoot,"vue_arechetype_layout",vue_arechetype_layout);
+				
+				for(Map.Entry<String, String[][]> mapping : layoutDirMappings.entrySet()) {
+					copy2MutiProjectDirLayout(outRoot,mapping.getKey(),mapping.getValue());
+				}
+//				copy2MutiProjectDirLayout(outRoot,"multi_project_dir_layout",multi_project_dir_layout_mappings);
+//				copy2MutiProjectDirLayout(outRoot,"vue_arechetype_layout",vue_arechetype_layout);
 				
 				
 				FileUtils.writeStringToFile(new File(outRoot,"generator.log"), memoryConsole.toString());
@@ -221,13 +233,17 @@ public class GeneratorController {
 		/**
 		 * 将生成的文件，另外拷贝成别一套目录结构的数据
 		 **/
-		public static void copy2MutiProjectDirLayout(String outRoot, String newDirName,String[][] layout_mappings) throws IOException {
-			
-			
+		public void copy2MutiProjectDirLayout(String outRoot, String newDirName,String[][] layout_mappings) throws IOException {
 			AntPathMatcher pathMatcher = new AntPathMatcher();
 			Collection<File> files = FileUtils.listFiles(new File(outRoot), null, true);
 			for(File f : files) {
+				Set<String> keySet = layoutDirMappings.keySet();
+				if(isContains(f, keySet)) {
+					continue;
+				}
+				
 				System.out.println("copy2MutiProjectDirLayout,file:"+f.getPath());
+				
 				for(String[] mapping : layout_mappings) {
 					String pattern = mapping[0];
 					String targetDir = mapping[1];
@@ -242,6 +258,15 @@ public class GeneratorController {
 				}
 			}
 			
+		}
+
+		private boolean isContains(File f, Set<String> keySet) {
+			for(String dir : keySet) {
+				if(f.toString().contains(dir)) {
+					return true;
+				}
+			}
+			return false;
 		}
 
 		private void executeSqlsNoError(String sqls)  {
