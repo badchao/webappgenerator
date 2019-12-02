@@ -116,7 +116,8 @@ Page({
     var page = isNextPage ? that.data.page : 1;
     var pageSize =that.data.pageSize;
     
-    ${className}Client.search({ query: query, page:page,pageSize:pageSize }, function (dataList) {
+    ${className}Client.search({ query: query, page:page,pageSize:pageSize }, function (res) {
+      var dataList = res.data.result;
       
       var finalDataList = [];
       if (isNextPage) {

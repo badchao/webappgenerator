@@ -15,8 +15,17 @@ var ${className}Client = {
     return row;
   },
 
-  convertShowData: function (row) {
-    return row;
+  //为数据增加属性，用于前端展示
+  convertShowData: function (that) {
+	  if(!that) return that;
+	  
+	  var extendProps = {
+		  get someString() {
+			  return that.toString()+", hello world";
+		  }
+	  }
+	  
+	  return util.extend(that,extendProps);
   },
 
 
@@ -39,8 +48,8 @@ var ${className}Client = {
     var that = this;
     appWs.wsRequest("${className}WebService/getById", data, function(res) {
       //可以增加数据处理，再返回给展示层
-      var result = that.convertShowData(res.data.result);
-      success(result);
+      res.data.result = that.convertShowData(res.data.result);
+      success(res);
     }, fail);
   },
 
@@ -48,8 +57,8 @@ var ${className}Client = {
     var that = this;
     appWs.wsRequest("${className}WebService/search", data, function (res) {
     	//可以增加数据处理，再返回给展示层
-    	var result = util.listMap(res.data.result,that.convertShowData);
-    	success(result);
+    	res.data.result = util.listMap(res.data.result,that.convertShowData);
+    	success(res);
     }, fail);
   }
 
