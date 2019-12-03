@@ -31,12 +31,12 @@ var ${className}Client = {
 
   
   create:function(data,success,fail) {
-    var data = this.convertSaveData(data);
+    data = this.convertSaveData(data);
     appWs.wsRequest("${className}WebService/create", data, success, fail);
   },
 
   update:function(data,success,fail) {
-    var data = this.convertSaveData(data);
+    data = this.convertSaveData(data);
     appWs.wsRequest("${className}WebService/update", data, success, fail);
   },
 
