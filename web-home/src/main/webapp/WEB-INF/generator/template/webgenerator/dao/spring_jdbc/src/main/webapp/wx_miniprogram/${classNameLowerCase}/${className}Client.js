@@ -15,12 +15,12 @@ var ${className}Client = {
     return row;
   },
 
-  //为数据增加计算属性，用于前端展示
+  //为数据增加计算属性，用于前端展示。 应用场景: json string属性  =>  json 对象,  tags string => tags Array
   convertShowData: function (that) {
 	  if(!that) return that;
 	  
 	  var extendComputedProps = {
-		  get someString() {
+		  get demoProperty() { //示例,增加 一个计算列 
 			  return that.toString()+", hello world";
 		  }
 	  }
