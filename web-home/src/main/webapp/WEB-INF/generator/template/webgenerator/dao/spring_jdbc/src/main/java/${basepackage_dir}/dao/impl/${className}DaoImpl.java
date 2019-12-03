@@ -73,7 +73,6 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 	
 	private CacheSqlGenerator sqlGenerator = null; //增删改查sql生成工具
 	private Table table;
-	protected String columns = null; // 表的列，如:  age,sex
 	protected String selectFromSql = null; // SQL: select age,sex from demo_table  
 	
 	@Override
@@ -83,7 +82,6 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		
 		table = MetadataCreateUtils.createTable(getEntityClass());
 		sqlGenerator = new CacheSqlGenerator(new SpringNamedSqlGenerator(table));
-		columns = sqlGenerator.getColumnsSql();
 		selectFromSql = "select "+sqlGenerator.getColumnsSql()+" from " + table.getTableName()+" ";
 	}
 	
@@ -120,21 +118,21 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 	@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
 	public int update(${className} entity) {
 		String sql = sqlGenerator.getUpdateByPkSql();
-		return getNamedParameterJdbcTemplate().update(sql, new BeanPropertySqlParameterSource(entity));
+		return getExtNamedJdbcTemplate().update(sql, entity);
 	}
 	
 	@CacheEvict(key="<@generateCacheArguments '' table.pkColumns/>")
 	public int deleteById(<@generateArguments table.pkColumns/>) {
 		String sql = sqlGenerator.getDeleteByPkSql();
 		${className} id = new ${className}(<@generatePassingParameters table.pkColumns/>);
-		return  getNamedParameterJdbcTemplate().update(sql,new BeanPropertySqlParameterSource(id));
+		return  getExtNamedJdbcTemplate().update(sql,id);
 	}
 
 	@Cacheable(key="<@generateCacheArguments '' table.pkColumns/>")
 	public ${className} getById(<@generateArguments table.pkColumns/>) {
 		String sql = sqlGenerator.getSelectByPkSql();
 		${className} id = new ${className}(<@generatePassingParameters table.pkColumns/>);
-		return (${className})DataAccessUtils.singleResult(getNamedParameterJdbcTemplate().query(sql, new BeanPropertySqlParameterSource(id),getEntityRowMapper()));
+		return getExtNamedJdbcTemplate().queryOne(sql, id,getEntityRowMapper());
 	}
 	
 	<#list table.columns as column>
@@ -158,7 +156,7 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 	
 	public List<${className}> findList(${className}Query query) {
 		StringBuilder sql = getQuerySql(query);
-		return getNamedParameterJdbcTemplate().query(sql.toString(),new BeanPropertySqlParameterSource(query),getEntityRowMapper());
+		return getExtNamedJdbcTemplate().query(sql.toString(),query,getEntityRowMapper());
 	}
 	
 	public StringBuilder getQuerySql(${className}Query query) {
