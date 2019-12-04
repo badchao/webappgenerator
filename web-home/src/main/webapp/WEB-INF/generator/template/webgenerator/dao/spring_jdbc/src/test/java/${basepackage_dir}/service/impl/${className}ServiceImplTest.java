@@ -40,7 +40,7 @@ public class ${className}ServiceImplTest {
 	}
 	
 	@Test
-	public void test_create() {
+	public void create() {
 		${className} obj = ${className}DataFactory.new${className}();
 		service.create(obj);
 		
@@ -48,7 +48,7 @@ public class ${className}ServiceImplTest {
 	}
 	
 	@Test
-	public void test_update() {
+	public void update() {
 		when(${classNameLower}Dao.getById(<@generateArgumentsWithRandomValue table.pkColumns/>)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
 		
 		${className} obj = ${className}DataFactory.new${className}();
@@ -58,14 +58,14 @@ public class ${className}ServiceImplTest {
 	}
 	
 	@Test
-	public void test_removeById() {
+	public void removeById() {
 		service.removeById(<@generateArgumentsWithRandomValue table.pkColumns/>);
 		
 		verify(${classNameLower}Dao).deleteById(<@generateArgumentsWithRandomValue table.pkColumns/>); //验证执行了该语句
 	}
 	
 	@Test
-	public void test_getById() {
+	public void getById() {
 		when(${classNameLower}Dao.getById(<@generateArgumentsWithRandomValue table.pkColumns/>)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
 		
 		${className} ${classNameLower} = service.getById(<@generateArgumentsWithRandomValue table.pkColumns/>);
