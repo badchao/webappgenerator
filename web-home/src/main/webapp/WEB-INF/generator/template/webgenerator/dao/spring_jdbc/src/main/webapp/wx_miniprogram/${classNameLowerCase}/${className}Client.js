@@ -57,7 +57,7 @@ var ${className}Client = {
     var that = this;
     appWs.wsRequest("${className}WebService/search", data, function (res) {
     	//可以增加数据处理，再返回给展示层
-    	res.data.result = util.listMap(res.data.result,that.convertShowData);
+    	res.data.result = res.data.result.map(that.convertShowData);
     	success(res);
     }, fail);
   }
