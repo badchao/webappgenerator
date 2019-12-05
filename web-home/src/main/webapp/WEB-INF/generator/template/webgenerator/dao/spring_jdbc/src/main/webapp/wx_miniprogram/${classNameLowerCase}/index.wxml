@@ -35,7 +35,7 @@
          <#list table.columns as column>
 		 <#if !column.htmlHidden>
           <view class="">
-            ${column.columnAlias}：{{item.${column.columnNameLower}}}
+			${column.columnAlias}：{{item.${column.columnNameLower}}}
           </view>
          </#if>
          </#list>
