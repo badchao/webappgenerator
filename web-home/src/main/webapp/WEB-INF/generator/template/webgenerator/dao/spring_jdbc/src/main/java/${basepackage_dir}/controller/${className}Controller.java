@@ -1,7 +1,7 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.admin.controller;
+package ${basepackage}.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
