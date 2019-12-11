@@ -121,18 +121,16 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		return getExtNamedJdbcTemplate().update(sql, entity);
 	}
 	
-	@CacheEvict(key="<@generateCacheArguments '' table.pkColumns/>")
-	public int deleteById(<@generateArguments table.pkColumns/>) {
+	@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
+	public int deleteById(${className} entity) {
 		String sql = sqlGenerator.getDeleteByPkSql();
-		${className} id = new ${className}(<@generatePassingParameters table.pkColumns/>);
-		return  getExtNamedJdbcTemplate().update(sql,id);
+		return  getExtNamedJdbcTemplate().update(sql,entity);
 	}
 
-	@Cacheable(key="<@generateCacheArguments '' table.pkColumns/>")
-	public ${className} getById(<@generateArguments table.pkColumns/>) {
+	@Cacheable(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
+	public ${className} getById(${className} entity) {
 		String sql = sqlGenerator.getSelectByPkSql();
-		${className} id = new ${className}(<@generatePassingParameters table.pkColumns/>);
-		return getExtNamedJdbcTemplate().queryOne(sql, id,getEntityRowMapper());
+		return getExtNamedJdbcTemplate().queryOne(sql, entity,getEntityRowMapper());
 	}
 	
 	<#list table.columns as column>

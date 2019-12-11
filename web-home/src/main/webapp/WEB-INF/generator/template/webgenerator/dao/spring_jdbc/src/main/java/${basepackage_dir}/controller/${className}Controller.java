@@ -51,17 +51,17 @@ public class ${className}Controller extends BaseController {
 	}
 	
 	@PostMapping
-	public void removeById(<@generateArguments table.pkColumns/>,HttpServletRequest request) {
-		checkEntityPermission(request,new ${className}(<@generatePassingParameters table.pkColumns/>),"w");
+	public void removeById(${className} ${classNameLower},HttpServletRequest request) {
+		checkEntityPermission(request,${classNameLower},"w");
 		
-		${classNameLower}Service.removeById(<@generatePassingParameters table.pkColumns/>);
+		${classNameLower}Service.removeById(${classNameLower});
 	}
 
 	@GetMapping
-	public ResponseEntity<?> getById(boolean join,<@generateArguments table.pkColumns/>,HttpServletRequest request) {
-		checkEntityPermission(request,new ${className}(<@generatePassingParameters table.pkColumns/>),"r");
+	public ResponseEntity<?> getById(boolean join,${className} ${classNameLower},HttpServletRequest request) {
+		checkEntityPermission(request,${classNameLower},"r");
 		
-		${className} result = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
+		${className} result = ${classNameLower}Service.getById(${classNameLower});
 		if(join) ${classNameLower}Service.join(result);
 		
 		return ResponseEntity.ok(result);

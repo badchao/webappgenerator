@@ -74,12 +74,8 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
         check${className}(${classNameLower});
         
-        <#list table.pkColumns as column> 
-		${column.javaType} ${column.columnNameFirstLower} = ${classNameLower}.get${column.columnName}();
-		</#list>
-		
 		//不可以让客户端可以更新所有属性
-		${className} fromDb = getById(<@generatePassingParameters table.pkColumns/>);
+		${className} fromDb = getById(${classNameLower});
 		BeanUtils.copyProperties(${classNameLower}, fromDb,"createTime"); //ignore some copy property
 		
 		${classNameLower}Dao.update(fromDb);
@@ -99,24 +95,24 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 * 删除${className}
 	 **/
     @Override
-    public void removeById(<@generateArguments table.pkColumns/>) {
-        ${classNameLower}Dao.deleteById(<@generatePassingParameters table.pkColumns/>);
+    public void removeById(${className} ${classNameLower}) {
+        ${classNameLower}Dao.deleteById(${classNameLower});
     }
     
 	/** 
 	 * 根据ID得到${className}
 	 **/
     @Override
-    public ${className} getById(<@generateArguments table.pkColumns/>) {
-        return ${classNameLower}Dao.getById(<@generatePassingParameters table.pkColumns/>);
+    public ${className} getById(${className} ${classNameLower}) {
+        return ${classNameLower}Dao.getById(${classNameLower});
     }
     
     /** 
 	 * 根据ID得到${className},找不到抛异常
 	 **/
     @Override
-    public ${className} getRequiredById(<@generateArguments table.pkColumns/>) {
-    	${className} r = getById(<@generatePassingParameters table.pkColumns/>);
+    public ${className} getRequiredById(${className} ${classNameLower}) {
+    	${className} r = getById(${classNameLower});
     	if(r == null) {
     		throw new IllegalArgumentException("required ${className} not found by id:"+Arrays.asList(<@generatePassingParameters table.pkColumns/>));
     	}

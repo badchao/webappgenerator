@@ -51,12 +51,12 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 
 	@Override
 	public void removeById(<@generateArguments table.pkColumns/>) {
-		${classNameLower}Service.removeById(<@generatePassingParameters table.pkColumns/>);
+		${classNameLower}Service.removeById(new ${className}(<@generatePassingParameters table.pkColumns/>));
 	}
 
 	@Override
 	public ${className} getById(boolean join,<@generateArguments table.pkColumns/>) {
-		${className} result = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
+		${className} result = ${classNameLower}Service.getById(new ${className}(<@generatePassingParameters table.pkColumns/>));
 		if(join) ${classNameLower}Service.join(result);
 		return result;
 	}

@@ -41,17 +41,17 @@ public interface ${className}Service {
 	/** 
 	 * 删除${className}
 	 **/
-    public void removeById(<@generateArguments table.pkColumns/>);
+    public void removeById(${className} ${classNameLower});
     
 	/** 
 	 * 根据ID得到${className}
 	 **/    
-    public ${className} getById(<@generateArguments table.pkColumns/>);
+    public ${className} getById(${className} ${classNameLower});
     
     /** 
 	 * 根据ID得到${className},找不到抛异常
 	 **/ 
-    public ${className} getRequiredById(<@generateArguments table.pkColumns/>);
+    public ${className} getRequiredById(${className} ${classNameLower});
     
 	/** 
 	 * 分页查询: ${className}

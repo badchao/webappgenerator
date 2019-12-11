@@ -51,17 +51,17 @@ public class Admin${className}Controller extends BaseController {
 	}
 	
 	@PostMapping
-	public void removeById(<@generateArguments table.pkColumns/>,HttpServletRequest request) {
+	public void removeById(${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"w");
 		
-		${classNameLower}Service.removeById(<@generatePassingParameters table.pkColumns/>);
+		${classNameLower}Service.removeById(${classNameLower});
 	}
 
 	@GetMapping
-	public ResponseEntity<?> getById(boolean join,<@generateArguments table.pkColumns/>,HttpServletRequest request) {
+	public ResponseEntity<?> getById(boolean join,${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"r");
 		
-		${className} result = ${classNameLower}Service.getById(<@generatePassingParameters table.pkColumns/>);
+		${className} result = ${classNameLower}Service.getById(${classNameLower});
 		return ResponseEntity.ok(result);
 	}
 	

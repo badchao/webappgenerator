@@ -21,9 +21,9 @@ public interface ${className}Dao {
 	
 	public int update(${className} entity);
 
-	public int deleteById(<@generateArguments table.pkColumns/>);
+	public int deleteById(${className} entity);
 	
-	public ${className} getById(<@generateArguments table.pkColumns/>);
+	public ${className} getById(${className} entity);
 	
 	<#list table.columns as column>
 	<#if column.unique && !column.pk>
