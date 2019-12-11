@@ -103,7 +103,7 @@ public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${classNam
 		return entityRowMapper;
 	}
 	
-	@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
+	//@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
 	public void insert(${className} entity) {
 		String sql = sqlGenerator.getInsertSql();
 		insertWithGeneratedKey(entity,sql); //for sqlserver:identity and mysql:auto_increment
