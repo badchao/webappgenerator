@@ -41,8 +41,7 @@ Page({
 
   //用户选择某项数据并回调上一页
   doSelect: function (e) {
-    var index = e.currentTarget.dataset.index;
-    var selectData = this.data.dataList[index];
+	var selectData = e.currentTarget.dataset.model;
     util.callbackOrSetPrevPageData(this, selectData);
 
     wx.navigateBack();   //返回上一个页面
@@ -67,8 +66,7 @@ Page({
     console.info("${className} doDelete", e);
     var that = this;
 
-    var index = e.currentTarget.dataset.index;
-    var selectData = this.data.dataList[index];
+    var selectData = e.currentTarget.dataset.model;
     
     wx.showModal({
       title: '确认删除?',
@@ -86,8 +84,7 @@ Page({
     console.info("${className} doEdit", e);
     var that = this;
     
-    var index = e.currentTarget.dataset.index;
-    var selectData = this.data.dataList[index];
+    var selectData = e.currentTarget.dataset.model;
     
     <#list table.pkColumns as column>
     var ${column.columnNameLower} = selectData.${column.columnNameLower};
