@@ -41,7 +41,7 @@
 		 			<td><input class="form-control" type="text" id="basepackage" name="basepackage" placeholder="java包名" size="40" onchange="saveData()"/> 示例值:com.company.projectname</td>
 		 		</tr>
 		 	</table>
-		 	<div class="text-center"><input class="btn btn-primary btn-lg" type="submit" value="生成代码" /></div>
+		 	<div class="text-center"><input class="btn btn-primary btn-lg" type="submit" value="生成项目并下载" /></div>
 	 	</form>
 	 	
 	</div>

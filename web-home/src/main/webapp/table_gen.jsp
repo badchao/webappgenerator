@@ -49,7 +49,7 @@
 		 			<td><input class="form-control" type="text" id="tableRemovePrefixes" name="tableRemovePrefixes" size="40" onchange="saveCookie()" placeholder="生成的代码会删除该前缀，如t_user => user"/> 示例值: t_,v_</td>
 		 		</tr> 
 		 	</table>
-		 	<div class="text-center"><input class="btn btn-primary btn-lg" type="submit" value="生成代码" /></div>
+		 	<div class="text-center"><input class="btn btn-primary btn-lg" type="submit" value="生成代码并下载" /></div>
 	 	</form>
 	</div>
  	
