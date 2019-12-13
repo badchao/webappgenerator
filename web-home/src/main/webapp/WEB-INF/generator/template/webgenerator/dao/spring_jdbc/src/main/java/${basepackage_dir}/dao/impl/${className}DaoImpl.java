@@ -44,7 +44,6 @@ import org.springframework.cache.annotation.Cacheable;
 
 import com.github.rapid.common.util.page.Page;
 import com.github.rapid.common.util.ObjectUtil;
-import com.github.rapid.common.jdbc.dao.support.BaseSpringJdbcDao;
 import com.github.rapid.common.jdbc.sqlgenerator.CacheSqlGenerator;
 import com.github.rapid.common.jdbc.sqlgenerator.SpringNamedSqlGenerator;
 import com.github.rapid.common.jdbc.sqlgenerator.metadata.MetadataCreateUtils;
@@ -58,7 +57,7 @@ import com.github.rapid.common.jdbc.sqlgenerator.metadata.Table;
 */
 @Repository("${classNameLower}Dao")
 @CacheConfig(cacheNames="${className?lower_case}")
-public class ${className}DaoImpl extends BaseSpringJdbcDao implements ${className}Dao{
+public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 
 	protected static final Logger logger = LoggerFactory.getLogger(${className}DaoImpl.class);
 	

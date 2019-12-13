@@ -34,6 +34,8 @@ public class ${className}DaoImplTest extends BaseDaoTestCase {
 	
 	private ${className}Dao dao;
 	
+	private ${className} id = new ${className}(<@generateArgumentsWithRandomValue table.pkColumns/>);
+	
 	@Before
 	public void before() {
 		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
@@ -70,12 +72,12 @@ public class ${className}DaoImplTest extends BaseDaoTestCase {
 	
 	@Test
 	public void delete() {
-		dao.deleteById(<@generateArgumentsWithRandomValue table.pkColumns/>);
+		dao.deleteById(id);
 	}
 	
 	@Test
 	public void getById() {
-		dao.getById(<@generateArgumentsWithRandomValue table.pkColumns/>);
+		dao.getById(id);
 	}
 	
 	<#list table.columns as column>

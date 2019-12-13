@@ -33,6 +33,8 @@ public class ${className}ServiceImplTest {
 	
 	@Rule public TestName testName = new TestName();
 	
+	private ${className} id = new ${className}(<@generateArgumentsWithRandomValue table.pkColumns/>);
+	
 	@Before
 	public void before() {
 		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
@@ -49,7 +51,7 @@ public class ${className}ServiceImplTest {
 	
 	@Test
 	public void update() {
-		when(${classNameLower}Dao.getById(<@generateArgumentsWithRandomValue table.pkColumns/>)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
+		when(${classNameLower}Dao.getById(id)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
 		
 		${className} obj = ${className}DataFactory.new${className}();
 		service.update(obj);
@@ -59,18 +61,18 @@ public class ${className}ServiceImplTest {
 	
 	@Test
 	public void removeById() {
-		service.removeById(<@generateArgumentsWithRandomValue table.pkColumns/>);
+		service.removeById(id);
 		
-		verify(${classNameLower}Dao).deleteById(<@generateArgumentsWithRandomValue table.pkColumns/>); //验证执行了该语句
+		verify(${classNameLower}Dao).deleteById(id); //验证执行了该语句
 	}
 	
 	@Test
 	public void getById() {
-		when(${classNameLower}Dao.getById(<@generateArgumentsWithRandomValue table.pkColumns/>)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
+		when(${classNameLower}Dao.getById(id)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
 		
-		${className} ${classNameLower} = service.getById(<@generateArgumentsWithRandomValue table.pkColumns/>);
+		${className} ${classNameLower} = service.getById(id);
 		
-		verify(${classNameLower}Dao).getById(<@generateArgumentsWithRandomValue table.pkColumns/>); //验证执行了该语句
+		verify(${classNameLower}Dao).getById(id); //验证执行了该语句
 		assertNotNull(${classNameLower});
 	}
 	

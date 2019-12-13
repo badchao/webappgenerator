@@ -165,16 +165,17 @@ public class GeneratorController {
 				new String[]{"/**/main/**/service/**","service"},
 				
 				//admin-front
-				new String[]{"/**/main/**/controller/**","admin-front"},
-				new String[]{"/**/main/**/webapp/pages/**","admin-front"},
-				new String[]{"/**/main/**/webapp/js/**","admin-front"},
-				new String[]{"/**/main/**/webapp/vue/**","admin-front"},
+				new String[]{"/**/main/**/webapp/nodejs_vue/**","admin-front"},
 				new String[]{"/**/main/**/webapp/wx_miniprogram/**","admin-front"},
 				
 				//admin-server
 				new String[]{"/**/main/**/webservice/**/*WebService.java","admin-server"},
 				new String[]{"/**/main/**/webservice/**/impl/**","admin-server"},
 				new String[]{"/**/main/resources/webservice/**/*WebService-rpc-servlet.xml","admin-server"},
+				new String[]{"/**/main/**/admin/controller/Admin*Controller.java","admin-server"},
+				
+				//user-server
+				new String[]{"/**/main/**/controller/*Controller.java","user-server","/**/main/**/admin/controller/Admin*Controller.java"},
 			};
 		
 		private Map<String,String[][]> layoutDirMappings = new HashMap();
@@ -245,19 +246,34 @@ public class GeneratorController {
 				System.out.println("copy2MutiProjectDirLayout,file:"+f.getPath());
 				
 				for(String[] mapping : layout_mappings) {
-					String pattern = mapping[0];
+					String includePattern = mapping[0];
 					String targetDir = mapping[1];
+					String excludePattern = mapping.length > 2 ? mapping[2] : null;
 					
-					String toMatchPath = f.getPath().replace('\\', '/').replaceFirst("[\\w]:", "");
-					boolean match = pathMatcher.match(pattern, toMatchPath);
-					System.out.println("match,file:"+toMatchPath+" pattern:"+pattern+" result:"+match);
+					boolean exclude = isAntPathMatch(pathMatcher, f,excludePattern);
+					if(exclude){
+						continue;
+					}
+					
+					boolean match = isAntPathMatch(pathMatcher, f,includePattern);
 					if(match) {
+						System.out.println("match,file:"+f+" pattern:"+includePattern+" result:"+match);
+						
 						String relativePath = FileHelper.getRelativePath(new File(outRoot),f);
 						FileUtils.copyFile(f, new File(outRoot,newDirName+"/"+targetDir+"/"+relativePath));
 					}
 				}
 			}
 			
+		}
+
+		private boolean isAntPathMatch(AntPathMatcher pathMatcher, File f,
+				String pattern) {
+			if(StringUtils.isBlank(pattern)) return false;
+			
+			String toMatchPath = f.getPath().replace('\\', '/').replaceFirst("[\\w]:", "");
+			boolean match = pathMatcher.match(pattern, toMatchPath);
+			return match;
 		}
 
 		private boolean isContains(File f, Set<String> keySet) {

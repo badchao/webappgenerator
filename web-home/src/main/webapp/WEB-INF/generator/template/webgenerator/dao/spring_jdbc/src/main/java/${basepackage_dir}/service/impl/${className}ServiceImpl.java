@@ -114,7 +114,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
     public ${className} getRequiredById(${className} ${classNameLower}) {
     	${className} r = getById(${classNameLower});
     	if(r == null) {
-    		throw new IllegalArgumentException("required ${className} not found by id:"+Arrays.asList(<@generatePassingParameters table.pkColumns/>));
+    		throw new IllegalArgumentException("required ${className} not found by id:"+${classNameLower});
     	}
     	return r;
     }
