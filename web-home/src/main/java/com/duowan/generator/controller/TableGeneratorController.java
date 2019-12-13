@@ -35,10 +35,15 @@ import com.duowan.generator.common.util.SqlHelper;
 import com.duowan.generator.common.util.ZipHelper;
 import com.github.rapid.common.util.holder.PropertiesHolder;
 
-
+/**
+ * 基于表的生成器
+ * 
+ * @author badqiu
+ *
+ */
 @Controller
-@RequestMapping("/generator")
-public class GeneratorController {
+@RequestMapping("/tablegenerator")
+public class TableGeneratorController {
 
 	static ByteArrayOutputStream memoryConsole = new ByteArrayOutputStream();
 	static {
@@ -217,7 +222,7 @@ public class GeneratorController {
 				
 				FileUtils.writeStringToFile(new File(outRoot,"generator.log"), memoryConsole.toString());
 				
-				response.setHeader("Content-Disposition", "attachment; filename=\"" + "generator_output.zip" + "\"");
+				response.setHeader("Content-Disposition", "attachment; filename=\"" + "generator_table_output.zip" + "\"");
 				ZipHelper.zip(outRoot,response.getOutputStream());
 				
 //				FileUtils.copyDirectory(new File(outRoot), new File("E:/scm/xsj/dataanalyse/web_app_report"));

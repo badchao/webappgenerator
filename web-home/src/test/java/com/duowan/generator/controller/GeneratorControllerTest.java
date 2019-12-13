@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.duowan.generator.controller.GeneratorController.GenCmdExecutor;
+import com.duowan.generator.controller.TableGeneratorController.GenCmdExecutor;
 
 
 public class GeneratorControllerTest {
@@ -16,7 +16,7 @@ public class GeneratorControllerTest {
 		cmd.basepackage = "com.duowan.qq";
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		MockHttpServletRequest request = new MockHttpServletRequest();
-		new GeneratorController().gen(cmd,request,response);
+		new TableGeneratorController().gen(cmd,request,response);
 	}
 	
 }
