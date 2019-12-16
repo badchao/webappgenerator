@@ -54,12 +54,14 @@ public class ProjectGeneratorController {
 	}
 
 	private String getOutputDir() {
-		String outputDirectory = System.getProperty("java.io.tmpdir")+"project_generator_output/"+System.currentTimeMillis();
+		File outputDirectory = new File(System.getProperty("java.io.tmpdir"),"project_generator_output/"+System.currentTimeMillis());
+		outputDirectory.mkdirs();
+		
+		String outputDirPath = outputDirectory.getAbsolutePath();
 		if(SystemUtils.IS_OS_WINDOWS) {
-			outputDirectory = outputDirectory.replace('/','\\');
+			outputDirPath = outputDirPath.replace('/','\\');
 		}
-		new File(outputDirectory).mkdirs();
-		return outputDirectory;
+		return outputDirPath;
 	}
 
 	private TaskExecResult execCmd(String execCmd) throws IOException,InterruptedException {
