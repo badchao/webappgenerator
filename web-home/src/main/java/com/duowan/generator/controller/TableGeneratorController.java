@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -50,12 +52,18 @@ public class TableGeneratorController {
 		System.setOut(new PrintStream(new TeeOutputStream(System.out,(memoryConsole))));
 	}
 	
+	static Lock lock = new ReentrantLock();
 	@RequestMapping
 	public void gen(GenCmdExecutor cmd,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		memoryConsole.reset();
-		cmd.response = response;
-		cmd.request = request;
-		cmd.execute();
+		lock.lock();
+		try {
+			memoryConsole.reset();
+			cmd.response = response;
+			cmd.request = request;
+			cmd.execute();
+		}finally {
+			lock.unlock();
+		}
 	}
 	
 //	static String dataSourceJndiName = "java:comp/env/jdbc/mydatasource";
