@@ -42,7 +42,7 @@ public class ProjectGeneratorController {
 		String archetypeArtifactId = archeTypeArray[1];
 		
 		String outputDirectory = getOutputDir();
-		execCmd("cd "+tmpDir);
+		execCmd("cd "+tmpDir+"/");
 		
 		String execCmd = " mvn archetype:generate -DgroupId="+cmd.basepackage+" -DartifactId="+cmd.projectId+" -DarchetypeGroupId="+archetypeGroupId+" -DarchetypeArtifactId="+archetypeArtifactId+" -DinteractiveMode=false -DoutputDirectory="+outputDirectory;
 		
