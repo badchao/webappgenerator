@@ -42,10 +42,8 @@ public class ProjectGeneratorController {
 		String archetypeArtifactId = archeTypeArray[1];
 		
 		String outputDirectory = getOutputDir();
-		execCmd("cd "+tmpDir+"/");
 		
 		String execCmd = " mvn archetype:generate -DgroupId="+cmd.basepackage+" -DartifactId="+cmd.projectId+" -DarchetypeGroupId="+archetypeGroupId+" -DarchetypeArtifactId="+archetypeArtifactId+" -DinteractiveMode=false -DoutputDirectory="+outputDirectory;
-		
 		TaskExecResult result = execCmd(execCmd);
 		System.out.println("projectGen,TaskExecResult:"+ToStringBuilder.reflectionToString(result));
 		
@@ -81,7 +79,7 @@ public class ProjectGeneratorController {
 			execCmd = "cmd /c \"" + execCmd.trim()+"\""; 
 		}
 		
-		TaskExecResult result = CmdExecutor.execCmdForTaskExecResult(execCmd);
+		TaskExecResult result = CmdExecutor.execCmdForTaskExecResult(execCmd,new File(tmpDir));
 		return result;
 	}
 	

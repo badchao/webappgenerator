@@ -1,6 +1,7 @@
 package com.duowan.generator.common.util;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -13,14 +14,14 @@ public class CmdExecutor {
 	private static Logger logger = LoggerFactory.getLogger(CmdExecutor.class);
 	private static final int MAX_OUTPUT_LENGTH = 1024 * 1024;
 
-	public static TaskExecResult execCmdForTaskExecResult(String cmd) throws IOException, InterruptedException {
-		return execCmdForTaskExecResult(cmd,MAX_OUTPUT_LENGTH);
+	public static TaskExecResult execCmdForTaskExecResult(String cmd,File dir) throws IOException, InterruptedException {
+		return execCmdForTaskExecResult(cmd,dir,MAX_OUTPUT_LENGTH);
 	}
 	
-	public static TaskExecResult execCmdForTaskExecResult(String cmd,int maxOutputLength) throws IOException, InterruptedException {
+	public static TaskExecResult execCmdForTaskExecResult(String cmd,File dir,int maxOutputLength) throws IOException, InterruptedException {
 		logger.info("exec cmd:"+cmd);
 		long start = System.currentTimeMillis();
-		Process process = Runtime.getRuntime().exec(cmd);
+		Process process = Runtime.getRuntime().exec(cmd,null,dir);
 		
 		InputStream processInputStream = null;
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
