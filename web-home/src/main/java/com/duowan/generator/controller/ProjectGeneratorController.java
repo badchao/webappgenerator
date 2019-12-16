@@ -30,6 +30,7 @@ import com.duowan.generator.controller.TableGeneratorController.GenCmdExecutor;
 @RequestMapping("/projectgenerator")
 public class ProjectGeneratorController {
 
+	String tmpDir = System.getProperty("java.io.tmpdir");
 	@RequestMapping
 	public void gen(String archetypeGroupIdArtifactId,GenCmdExecutor cmd,HttpServletRequest request,HttpServletResponse response) throws Exception {
 //		archetypeArtifactId = StringUtils.defaultIfEmpty(archetypeArtifactId,"maven-archetype-quickstart");
@@ -41,9 +42,13 @@ public class ProjectGeneratorController {
 		String archetypeArtifactId = archeTypeArray[1];
 		
 		String outputDirectory = getOutputDir();
+		execCmd("cd "+tmpDir);
+		
 		String execCmd = " mvn archetype:generate -DgroupId="+cmd.basepackage+" -DartifactId="+cmd.projectId+" -DarchetypeGroupId="+archetypeGroupId+" -DarchetypeArtifactId="+archetypeArtifactId+" -DinteractiveMode=false -DoutputDirectory="+outputDirectory;
 		
 		TaskExecResult result = execCmd(execCmd);
+		System.out.println("projectGen,TaskExecResult:"+ToStringBuilder.reflectionToString(result));
+		
 		if(result.getExitValue() == 0) {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + cmd.projectId + "_project_output.zip" + "\"");
 			ZipHelper.zip(outputDirectory,response.getOutputStream());
@@ -59,7 +64,7 @@ public class ProjectGeneratorController {
 	}
 
 	private String getOutputDir() {
-		File outputDirectory = new File(System.getProperty("java.io.tmpdir"),"project_generator_output/"+System.currentTimeMillis());
+		File outputDirectory = new File(tmpDir,"project_generator_output/"+System.currentTimeMillis());
 		outputDirectory.mkdirs();
 		
 		String outputDirPath = outputDirectory.getAbsolutePath();
