@@ -6,7 +6,7 @@
 source /data/src/webgenerator/shell/env.sh
 
 echo 'start jetty...'
-cd /data/src/webgenerator/web-home/
+cd /data/app/webappgenerator/web-home/
 mvn jetty:run -Djetty.port=7020 ${JAVA_OPTS}
 
 
