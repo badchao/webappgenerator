@@ -123,7 +123,8 @@ public class TableGeneratorController {
 		public void setProjectId(String projectId) {
 			this.projectId = projectId;
 		}
-
+		
+		//每一条string组成: new String[include,dir,exclude]
 		String[][] multi_project_dir_layout_mappings = new String[][]{
 				//model
 				new String[]{"/**/main/**/query/**","model"},
@@ -155,6 +156,7 @@ public class TableGeneratorController {
 				new String[]{"/**/main/resources/webservice/**/*WebService-rpc-servlet.xml","webservice-server"},
 			};
 		
+		//每一条string组成: new String[include,dir,exclude]
 		String[][] vue_arechetype_layout = new String[][]{
 				//service
 				new String[]{"/**/main/**/query/**","service"},
@@ -174,9 +176,9 @@ public class TableGeneratorController {
 				new String[]{"/**/main/**/webapp/wx_miniprogram/**","admin-front"},
 				
 				//admin-server
-				new String[]{"/**/main/**/webservice/**/*WebService.java","admin-server"},
-				new String[]{"/**/main/**/webservice/**/impl/**","admin-server"},
-				new String[]{"/**/main/resources/webservice/**/*WebService-rpc-servlet.xml","admin-server"},
+//				new String[]{"/**/main/**/webservice/**/*WebService.java","admin-server"},
+//				new String[]{"/**/main/**/webservice/**/impl/**","admin-server"},
+//				new String[]{"/**/main/resources/webservice/**/*WebService-rpc-servlet.xml","admin-server"},
 				new String[]{"/**/main/**/admin/controller/Admin*Controller.java","admin-server"},
 				
 				//user-server

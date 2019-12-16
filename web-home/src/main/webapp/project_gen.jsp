@@ -27,8 +27,8 @@
 		 			<td><b>项目模板</b></td>
 		 			<td>
 		 				<select class="form-control"  name="archetypeArtifactId">
-		 					<option value="maven-archetype-quickstart">maven-archetype-quickstart</option>
-		 					<option value="maven-archetype-quickstart">vue + springjdbc + springboot模板</option>
+		 					<option value="rapid-vue-springboot-springjdbc-archetype">vue + springboot + springjdbc模板</option>
+		 					<option value="maven-archetype-quickstart">maven-archetype-quickstart示例模板</option>
 		 				</select>
 		 			</td>
 		 		</tr>
