@@ -41,7 +41,8 @@ public class ProjectGeneratorController {
 		String archetypeArtifactId = archeTypeArray[1];
 		
 		String outputDirectory = getOutputDir();
-		String execCmd = " mvn archetype:generate -DgroupId="+cmd.basepackage+" -DartifactId="+cmd.projectId+"-DarchetypeGroupId="+archetypeGroupId+" -DarchetypeArtifactId="+archetypeArtifactId+" -DinteractiveMode=false -DoutputDirectory="+outputDirectory;
+		String execCmd = " mvn archetype:generate -DgroupId="+cmd.basepackage+" -DartifactId="+cmd.projectId+" -DarchetypeGroupId="+archetypeGroupId+" -DarchetypeArtifactId="+archetypeArtifactId+" -DinteractiveMode=false -DoutputDirectory="+outputDirectory;
+		
 		TaskExecResult result = execCmd(execCmd);
 		if(result.getExitValue() == 0) {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + cmd.projectId + "_project_output.zip" + "\"");
