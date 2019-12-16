@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.stereotype.Controller;
@@ -30,14 +31,17 @@ import com.duowan.generator.controller.TableGeneratorController.GenCmdExecutor;
 public class ProjectGeneratorController {
 
 	@RequestMapping
-	public void gen(String archetypeArtifactId,GenCmdExecutor cmd,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public void gen(String archetypeGroupIdArtifactId,GenCmdExecutor cmd,HttpServletRequest request,HttpServletResponse response) throws Exception {
 //		archetypeArtifactId = StringUtils.defaultIfEmpty(archetypeArtifactId,"maven-archetype-quickstart");
-		Assert.hasText(archetypeArtifactId,"archetypeArtifactId must be not blank");
+		Assert.hasText(archetypeGroupIdArtifactId,"archetypeGroupIdArtifactId must be not blank");
 		Assert.hasText(cmd.projectId,"projectId must be not blank");
 		Assert.hasText(cmd.basepackage,"basepackage must be not blank");
+		String[] archeTypeArray = StringUtils.split(archetypeGroupIdArtifactId,":");
+		String archetypeGroupId = archeTypeArray[0];
+		String archetypeArtifactId = archeTypeArray[1];
 		
 		String outputDirectory = getOutputDir();
-		String execCmd = " mvn archetype:generate -DgroupId="+cmd.basepackage+" -DartifactId="+cmd.projectId+" -DarchetypeArtifactId="+archetypeArtifactId+" -DinteractiveMode=false -DoutputDirectory="+outputDirectory;
+		String execCmd = " mvn archetype:generate -DgroupId="+cmd.basepackage+" -DartifactId="+cmd.projectId+"-DarchetypeGroupId="+archetypeGroupId+" -DarchetypeArtifactId="+archetypeArtifactId+" -DinteractiveMode=false -DoutputDirectory="+outputDirectory;
 		TaskExecResult result = execCmd(execCmd);
 		if(result.getExitValue() == 0) {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + cmd.projectId + "_project_output.zip" + "\"");
