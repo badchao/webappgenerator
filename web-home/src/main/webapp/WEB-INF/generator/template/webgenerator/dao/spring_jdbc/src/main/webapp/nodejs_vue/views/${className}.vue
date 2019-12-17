@@ -56,7 +56,7 @@
 </template>
 
 <script>
-    import { ${className}Client,CheckRules } from '@/api/${classNameLowerCase}';
+    import { ${className}Client,CheckRules } from '@/api/${className}';
     
     export default {
       data() {
@@ -79,7 +79,8 @@
           currentPage: 1,
           total: 0,
           pageSize: 30,
-          formLabelWidth: '30%'
+          formLabelWidth: '30%',
+          edit: false,
         }
       },
       
@@ -119,10 +120,17 @@
         save(formName) {
           this.$refs[formName].validate((valid) => {
             if (valid) {
-               ${className}Client.save(this.form).then(response => {
-                  this.getTableData(1, 30)
-                  this.dialogFormVisible = false
-              })
+               if(this.edit) {
+	               ${className}Client.update(this.form).then(response => {
+	                  this.getTableData(1, 30)
+	                  this.dialogFormVisible = false
+	              })
+               }else {
+	               	${className}Client.create(this.form).then(response => {
+	                  this.getTableData(1, 30)
+	                  this.dialogFormVisible = false
+	              })
+               }
             } else {
               console.log('error submit!!')
               return false
@@ -144,12 +152,13 @@
         
         handleAdd() {
           this.form = this.defaultForm;
-          
+          this.edit = false,
           this.dialogFormVisible = true
         },
         
         handleEdit(index, row) {
           this.form = this.tableData[index];
+          this.edit = true,
           this.dialogFormVisible = true;
         },
         
@@ -161,7 +170,7 @@
           }).then(() => {
             var row = this.tableData[index];
             this.removeById(row);
-          }))
+          })
         },
         
         handleCancel() {

@@ -37,24 +37,27 @@ public class ${className}Controller extends BaseController {
 	}
 	
 	@PostMapping
-	public void create(@RequestBody ${className} ${classNameLower},HttpServletRequest request) {
+	public ResponseEntity<?> create(${className} ${classNameLower},HttpServletRequest request) {
 		checkEntityPermission(request,${classNameLower},"w");
 		
 		${classNameLower}Service.create(${classNameLower});
+		return ResponseEntity.ok("success");
 	}
 	
 	@PostMapping
-	public void update(@RequestBody ${className} ${classNameLower},HttpServletRequest request) {
+	public ResponseEntity<?> update(${className} ${classNameLower},HttpServletRequest request) {
 		checkEntityPermission(request,${classNameLower},"w");
 		
 		${classNameLower}Service.update(${classNameLower});
+		return ResponseEntity.ok("success");
 	}
 	
 	@PostMapping
-	public void removeById(${className} ${classNameLower},HttpServletRequest request) {
+	public ResponseEntity<?> removeById(${className} ${classNameLower},HttpServletRequest request) {
 		checkEntityPermission(request,${classNameLower},"w");
 		
 		${classNameLower}Service.removeById(${classNameLower});
+		return ResponseEntity.ok("success");
 	}
 
 	@GetMapping

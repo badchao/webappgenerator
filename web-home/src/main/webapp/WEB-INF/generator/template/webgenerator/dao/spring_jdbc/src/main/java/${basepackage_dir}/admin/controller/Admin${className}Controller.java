@@ -37,21 +37,21 @@ public class Admin${className}Controller extends BaseController {
 	}
 	
 	@PostMapping
-	public void create(@RequestBody ${className} ${classNameLower},HttpServletRequest request) {
+	public ResponseEntity<?> create(${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"w");
 		
 		${classNameLower}Service.create(${classNameLower});
 	}
 	
 	@PostMapping
-	public void update(@RequestBody ${className} ${classNameLower},HttpServletRequest request) {
+	public ResponseEntity<?> update(${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"w");
 		
 		${classNameLower}Service.update(${classNameLower});
 	}
 	
 	@PostMapping
-	public void removeById(${className} ${classNameLower},HttpServletRequest request) {
+	public ResponseEntity<?> removeById(${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"w");
 		
 		${classNameLower}Service.removeById(${classNameLower});

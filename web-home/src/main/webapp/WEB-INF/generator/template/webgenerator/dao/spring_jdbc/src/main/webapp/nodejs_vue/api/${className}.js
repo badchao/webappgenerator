@@ -46,12 +46,14 @@ var ${className}Client = {
 
 var CheckRules = {
 	<#list table.columns as column>
-	${column.columnNameLower}: [{ required: false, message: '请输入${column.columnAlias}', trigger: 'blur' }],
+	${column.columnNameLower}: [{ required: false, message: '请输入${column.columnAlias}' }],
 	</#list>
 }
 
-export ${className}Client;
 
-
+export {
+	${className}Client,
+	CheckRules,
+};
 
 
