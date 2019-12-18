@@ -29,7 +29,7 @@
           </el-table-column>
         </el-table>
 
-        <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="page" :page-sizes="[30, 50, 80, 100]" 
+        <el-pagination background @size-change="handleChangePageSize" @current-change="handleChangePage" :current-page="page" :page-sizes="[30, 50, 80, 100]" 
               :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total" class="pagination-container">
         </el-pagination>
 
@@ -88,11 +88,7 @@
       },
       
       watch: {
-        '$route.params.projectId': function(val, oldVal) {
-          if (val) {
-            //this.projectId = val
-            this.getTableData(1, this.pageSize)
-          }
+        '$route.params.someId': function(val, oldVal) {
         }
       },
       
@@ -114,22 +110,23 @@
         
         save(formName) {
           this.$refs[formName].validate((valid) => {
-            if (valid) {
-               if(this.edit) {
-	               ${className}Client.update(this.form).then(response => {
-	                  this.getTableData(1, this.pageSize)
-	                  this.dialogFormVisible = false
-	              })
-               }else {
-	               	${className}Client.create(this.form).then(response => {
-	                  this.getTableData(1, this.pageSize)
-	                  this.dialogFormVisible = false
-	              })
-               }
-            } else {
-              console.log('error submit!!')
-              return false
+            if (!valid) {
+                console.log('form check invalid!!');
+            	return false;
             }
+            
+			if(this.edit) {
+               ${className}Client.update(this.form).then(response => {
+                  this.getTableData(1, this.pageSize)
+                  this.dialogFormVisible = false
+               })
+            }else {
+               	${className}Client.create(this.form).then(response => {
+                  this.getTableData(1, this.pageSize)
+                  this.dialogFormVisible = false
+                })
+            }
+	        return true;
           })
         },
         
@@ -146,13 +143,13 @@
         },
         
         handleAdd() {
-          this.form = this.defaultForm;
+          this.form = JSON.parse(JSON.stringify(this.defaultForm)); //clone object
           this.edit = false,
           this.dialogFormVisible = true
         },
         
         handleEdit(index, row) {
-          this.form = this.tableData[index];
+          this.form = JSON.parse(JSON.stringify(this.tableData[index])); //clone object
           this.edit = true,
           this.dialogFormVisible = true;
         },
@@ -172,11 +169,11 @@
           this.dialogFormVisible = false
         },
         
-        handleSizeChange(pageSize) {
+        handleChangePageSize(pageSize) {
           this.getTableData(this.page, pageSize)
         },
         
-        handleCurrentChange(page) {
+        handleChangePage(page) {
           this.getTableData(page, this.pageSize)
         }
       }

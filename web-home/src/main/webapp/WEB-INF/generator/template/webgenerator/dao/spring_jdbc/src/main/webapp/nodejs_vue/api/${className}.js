@@ -7,39 +7,39 @@
 import request from '@/utils/request'
 
 var ${className}Client = {
-	create: function(data) {
+	create: function(params) {
 		return request({
-		    url: '/${classNameLowerCase}/create',
+		    url: '/admin/${classNameLowerCase}/create',
 		    method: 'post',
-		    params: data
+		    params: params
 		  })
 	},
-	removeById: function(query) {
+	removeById: function(params) {
 		return request({
-		    url: '/${classNameLowerCase}/removeById',
+		    url: '/admin/${classNameLowerCase}/removeById',
 		    method: 'post',
-		    params: query
+		    params: params
 		  })
 	},
-	update: function(data) {
+	update: function(params) {
 		return request({
-		    url: '/${classNameLowerCase}/update',
+		    url: '/admin/${classNameLowerCase}/update',
 		    method: 'post',
-		    params: data
+		    params: params
 		  })
 	},
-	getById: function(query) {
+	getById: function(params) {
 		return request({
-		    url: '/${classNameLowerCase}/getById',
+		    url: '/admin/${classNameLowerCase}/getById',
 		    method: 'get',
-		    params: query
+		    params: params
 		  })
 	},
-	findPage: function(query) {
+	findPage: function(params) {
 		return request({
-		    url: '/${classNameLowerCase}/findPage',
+		    url: '/admin/${classNameLowerCase}/findPage',
 		    method: 'get',
-		    params: query
+		    params: params
 		  })
 	},
 }
