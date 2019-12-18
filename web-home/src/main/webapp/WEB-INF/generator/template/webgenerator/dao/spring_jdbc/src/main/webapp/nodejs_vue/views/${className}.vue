@@ -29,7 +29,7 @@
           </el-table-column>
         </el-table>
 
-        <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[30, 50, 80, 100]" 
+        <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="page" :page-sizes="[30, 50, 80, 100]" 
               :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total" class="pagination-container">
         </el-pagination>
 
@@ -64,7 +64,6 @@
           rules: CheckRules,
           //projectId: this.$route.params.projectId,
           
-          loading: true,
           listQuery: {},
           tableData: [],
           dialogFormVisible: false,
@@ -76,7 +75,7 @@
           },
           form: {},
           
-          currentPage: 1,
+          page: 1,
           total: 0,
           pageSize: 30,
           formLabelWidth: '30%',
@@ -85,35 +84,31 @@
       },
       
       created() {
-        this.getTableData(1, 30)
-        setTimeout(() => {
-          this.loading = false
-        }, 200)
+        this.getTableData(1, this.pageSize);
       },
       
       watch: {
         '$route.params.projectId': function(val, oldVal) {
           if (val) {
             //this.projectId = val
-            this.getTableData(1, 30)
+            this.getTableData(1, this.pageSize)
           }
         }
       },
       
       methods: {
-        getTableData(current, size) {
-          this.listLoading = true
-          this.listQuery.current = current
-          this.listQuery.size = size
+        getTableData(page, pageSize) {
+          this.listQuery.page = page
+          this.listQuery.pageSize = pageSize
           this.findPage(this.listQuery)
         },
         
         findPage(listQuery) {
           ${className}Client.findPage(listQuery).then(response => {
-            this.tableData = response.records
-            this.total = response.total
-            this.pageSize = response.size
-            this.currentPage = response.current
+			this.tableData = response.itemList;
+            var paginator = response.paginator;
+            this.total = paginator.totalItems;
+            this.page = response.page;
           })
         },
         
@@ -122,12 +117,12 @@
             if (valid) {
                if(this.edit) {
 	               ${className}Client.update(this.form).then(response => {
-	                  this.getTableData(1, 30)
+	                  this.getTableData(1, this.pageSize)
 	                  this.dialogFormVisible = false
 	              })
                }else {
 	               	${className}Client.create(this.form).then(response => {
-	                  this.getTableData(1, 30)
+	                  this.getTableData(1, this.pageSize)
 	                  this.dialogFormVisible = false
 	              })
                }
@@ -141,7 +136,7 @@
         removeById(data) {
           ${className}Client.removeById(data).then(response => {
             if (response) {
-              this.getTableData(1, 30)
+              this.getTableData(1, this.pageSize)
               this.$message({
                 type: 'success',
                 message: '删除成功!'
@@ -178,11 +173,11 @@
         },
         
         handleSizeChange(pageSize) {
-          this.getTableData(this.currentPage, pageSize)
+          this.getTableData(this.page, pageSize)
         },
         
-        handleCurrentChange(currentPage) {
-          this.getTableData(currentPage, this.pageSize)
+        handleCurrentChange(page) {
+          this.getTableData(page, this.pageSize)
         }
       }
     }

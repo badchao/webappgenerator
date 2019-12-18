@@ -15,7 +15,7 @@ var model = require(jsPath + '/utils/app_model.js');
 var config = require(jsPath + '/utils/app_config.js');
 var security = require(jsPath + '/utils/app_security.js');
 
-var ${className}Client = require('../${className}Client.js').${className}Client;
+var ${className}Client = require(jsPath + '/api/${className}Client.js').${className}Client;
 
 const app = getApp();
 Page({

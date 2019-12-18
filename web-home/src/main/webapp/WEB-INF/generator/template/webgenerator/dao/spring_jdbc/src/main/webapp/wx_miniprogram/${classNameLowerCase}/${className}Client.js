@@ -4,7 +4,7 @@
 <#assign classNameLowerCase = className?lower_case>   
 <#assign dollor = '$'>   
 
-var jsPath = '../..';
+var jsPath = '..';
 var appWs = require(jsPath + '/utils/app_ws.js');
 var util = require(jsPath + '/utils/util.js');
 
