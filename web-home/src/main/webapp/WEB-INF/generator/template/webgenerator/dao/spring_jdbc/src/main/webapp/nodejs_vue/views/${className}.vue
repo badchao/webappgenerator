@@ -34,8 +34,8 @@
         </el-pagination>
 
         <!--弹出层-->
-        <el-dialog title="增加" :visible.sync="dialogFormVisible">
-          <el-form ref="form" :model="form" :rules="rules">
+        <el-dialog title="{{edit ? '编辑' : '增加'}}" :visible.sync="editFormVisible">
+          <el-form ref="form" :model="form" :rules="checkRules">
           	<#list table.columns as column>
             <el-form-item label="${column.columnAlias}" :label-width="formLabelWidth" prop="${column.columnNameLower}">
               <el-input v-model="form.${column.columnNameLower}" auto-complete="off" class="form-width"></el-input>
@@ -61,12 +61,11 @@
     export default {
       data() {
         return {
-          rules: CheckRules,
+          checkRules: CheckRules,
           //projectId: this.$route.params.projectId,
           
           listQuery: {},
           tableData: [],
-          dialogFormVisible: false,
           
           defaultForm: {
             <#list table.columns as column>
@@ -74,6 +73,7 @@
             </#list>
           },
           form: {},
+          editFormVisible: false,
           
           page: 1,
           total: 0,
@@ -117,13 +117,14 @@
             
 			if(this.edit) {
                ${className}Client.update(this.form).then(response => {
+               	  this.editFormVisible = false
                   this.getTableData(1, this.pageSize)
-                  this.dialogFormVisible = false
                })
             }else {
                	${className}Client.create(this.form).then(response => {
+               	  this.editFormVisible = false
                   this.getTableData(1, this.pageSize)
-                  this.dialogFormVisible = false
+                  
                 })
             }
 	        return true;
@@ -145,13 +146,13 @@
         handleAdd() {
           this.form = JSON.parse(JSON.stringify(this.defaultForm)); //clone object
           this.edit = false,
-          this.dialogFormVisible = true
+          this.editFormVisible = true
         },
         
         handleEdit(index, row) {
           this.form = JSON.parse(JSON.stringify(this.tableData[index])); //clone object
           this.edit = true,
-          this.dialogFormVisible = true;
+          this.editFormVisible = true;
         },
         
         handleDelete(index, row) {
@@ -166,7 +167,7 @@
         },
         
         handleCancel() {
-          this.dialogFormVisible = false
+          this.editFormVisible = false
         },
         
         handleChangePageSize(pageSize) {
