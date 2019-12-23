@@ -41,6 +41,7 @@ public class Admin${className}Controller extends BaseController {
 		checkActionPermission(request,${className}.class,"w");
 		
 		${classNameLower}Service.create(${classNameLower});
+		return ResponseEntity.ok("success");
 	}
 	
 	@PostMapping
@@ -48,6 +49,7 @@ public class Admin${className}Controller extends BaseController {
 		checkActionPermission(request,${className}.class,"w");
 		
 		${classNameLower}Service.update(${classNameLower});
+		return ResponseEntity.ok("success");
 	}
 	
 	@PostMapping
@@ -55,6 +57,7 @@ public class Admin${className}Controller extends BaseController {
 		checkActionPermission(request,${className}.class,"w");
 		
 		${classNameLower}Service.removeById(${classNameLower});
+		return ResponseEntity.ok("success");
 	}
 
 	@GetMapping
