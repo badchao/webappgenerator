@@ -73,7 +73,7 @@ Page({
       success: function (sm) {
         if (sm.confirm) {
           ${className}Client.removeById(selectData, function (res) {
-            that.execSearch();
+            that.execSearch(that.data.page);
           });
         }
       }
@@ -104,36 +104,36 @@ Page({
       query: query
     });
 
-    this.execSearch();
+    this.execSearch(1);
   },
 
-  execSearch: function(isNextPage,success) {
+  execSearch: function(page,success) {
     var that = this;
     var query = that.data.query;
-    var page = isNextPage ? that.data.page : 1;
-    var pageSize =that.data.pageSize;
+    var pageSize = that.data.pageSize;
     
     ${className}Client.search({ query: query, page:page,pageSize:pageSize }, function (res) {
       var dataList = res.data.result;
       
       var finalDataList = [];
-      if (isNextPage) {
+      if (page > 1) {
         finalDataList = that.data.dataList;
         finalDataList = finalDataList.concat(dataList);
       }else {
         finalDataList = dataList;
       }
       
+      var filterdList = finalDataList.filter(function(row) {
+      	if(query) {
+    		return row.${table.columns[0].columnNameLower}.indexOf(query) >= 0;
+    	}
+    	return true;
+      });
 
       that.setData({
-        dataList: finalDataList.filter(function(row) {
-        	if(query) {
-        		return row.${table.columns[0].columnNameLower}.indexOf(query) >= 0;
-        	}
-        	return true;
-        }),
+        dataList: filterdList,
         hasMoreData: dataList.length >= pageSize,
-        page: page + 1,
+        page: page,
       });
       
       if(success) success(dataList);
@@ -148,7 +148,7 @@ Page({
 
     var that = this;
     that.setData(options);
-    that.execSearch();
+    that.execSearch(1);
   },
 
   /**
@@ -183,7 +183,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.execSearch();
+    this.execSearch(1);
   },
 
   /**
@@ -191,7 +191,7 @@ Page({
    */
   onReachBottom: function () {
     if (this.data.hasMoreData) {
-      this.execSearch(true);
+      this.execSearch(this.data.page + 1);
     }
   },
 
