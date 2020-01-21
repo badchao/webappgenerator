@@ -46,7 +46,7 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 
 	@Override
 	public void update(${className} ${classNameLower}) {
-		${classNameLower}Service.update(${classNameLower});
+		${classNameLower}Service.updateByManual(${classNameLower});
 	}
 
 	@Override

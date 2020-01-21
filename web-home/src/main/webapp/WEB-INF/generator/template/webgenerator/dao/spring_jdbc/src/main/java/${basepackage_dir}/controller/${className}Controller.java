@@ -48,7 +48,7 @@ public class ${className}Controller extends BaseController {
 	public ResponseEntity<?> update(${className} ${classNameLower},HttpServletRequest request) {
 		checkEntityPermission(request,${classNameLower},"w");
 		
-		${classNameLower}Service.update(${classNameLower});
+		${classNameLower}Service.updateByManual(${classNameLower});
 		return ResponseEntity.ok("success");
 	}
 	

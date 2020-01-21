@@ -34,6 +34,11 @@ public interface ${className}Service {
     public ${className} update(${className} ${classNameLower});
     
     /**
+     * 人工手动更新
+     */
+    public ${className} updateByManual(${className} ${classNameLower});
+    
+    /**
      *  join取回${className}的关联对象,如一对多，多对一等的关联对象
      */
     public ${className} join(${className} ${classNameLower});

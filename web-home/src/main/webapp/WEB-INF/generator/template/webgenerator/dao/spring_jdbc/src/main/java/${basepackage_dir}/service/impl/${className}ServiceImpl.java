@@ -65,12 +65,25 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	    ${classNameLower}Dao.insert(${classNameLower});
 	    return ${classNameLower};
 	}
-	
+
 	/** 
 	 * 更新${className}
 	 **/
 	@Override
     public ${className} update(${className} ${classNameLower}) {
+        Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
+        check${className}(${classNameLower});
+        
+		${classNameLower}Dao.update(${classNameLower});
+		
+        return ${classNameLower};
+    }
+    
+	/** 
+	 * 人工手动更新${className}
+	 **/
+	@Override
+    public ${className} updateByManual(${className} ${classNameLower}) {
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
         check${className}(${classNameLower});
         
