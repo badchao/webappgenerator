@@ -25,7 +25,7 @@ var ${className}Client = {
 		  }
 	  }
 	  
-	  return util.extend(that,extendComputedProps);
+	  return Object.assign(that,extendComputedProps);
   },
 
 
