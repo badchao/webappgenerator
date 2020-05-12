@@ -18,7 +18,7 @@ import com.github.rapid.common.util.page.PageQuery;
 <#include "/java_description.include">
  */
 public class ${className}Query extends PageQuery implements Serializable {
-    private static final long serialVersionUID = 3148176768559230877L;
+    private static final long serialVersionUID = 1;
     
 	<@generateFields/>
 	<@generateProperties/>

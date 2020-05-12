@@ -23,7 +23,7 @@ import javax.persistence.Id;
 <#include "/java_description.include">
  */
 public class ${className}  implements java.io.Serializable{
-	private static final long serialVersionUID = 5454155825314635342L;
+	private static final long serialVersionUID = 1;
 	
 	//date formats
 	<#list table.columns as column>
