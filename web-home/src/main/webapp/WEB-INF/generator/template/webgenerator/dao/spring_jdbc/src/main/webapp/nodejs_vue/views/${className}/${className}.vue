@@ -33,7 +33,7 @@
               :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total" class="pagination-container">
         </el-pagination>
 
-        <!--弹出层-->
+        <!-- 编辑,增加 Dialog -->
         <el-dialog title="{{edit ? '编辑' : '增加'}}" :visible.sync="editFormVisible">
           <el-form ref="form" :model="form" :rules="checkRules">
           	<#list table.columns as column>
@@ -49,7 +49,7 @@
             <el-button @click="handleCancel">取 消</el-button>
           </div>
         </el-dialog>
-        <!--弹出层 end-->
+        <!-- 编辑,增加 Dialog end -->
 
 
    </div>
