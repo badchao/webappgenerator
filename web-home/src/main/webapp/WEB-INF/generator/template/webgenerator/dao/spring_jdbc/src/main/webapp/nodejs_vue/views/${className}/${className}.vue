@@ -144,13 +144,13 @@
         },
         
         handleAdd() {
-          this.form = JSON.parse(JSON.stringify(this.defaultForm)); //clone object
+          this.form = Object.assign({},this.defaultForm); //clone object
           this.edit = false,
           this.editFormVisible = true
         },
         
         handleEdit(index, row) {
-          this.form = JSON.parse(JSON.stringify(this.tableData[index])); //clone object
+          this.form = Object.assign({},this.tableData[index]); //clone object
           this.edit = true,
           this.editFormVisible = true;
         },
