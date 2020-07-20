@@ -22,19 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<!-- deploy path -->
-	<distributionManagement>
-		<repository>
-			<id>releases</id>
-			<name>Internal Releases</name>
-			<url>http://10.20.122.91/nexus/content/repositories/releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>Internal snapshots</name>
-			<url>http://10.20.122.91/nexus/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
+
  
 <dependencyManagement>
   <dependencies>
@@ -51,7 +39,7 @@
 	<dependency>
 		<groupId>com.github.rapid.common</groupId>
 		<artifactId>rapid-common-jdbc</artifactId>
-	  	<version>1.0.0</version>        
+	  	<version>1.0.3</version>        
 	</dependency>	
 	<dependency>
 		<groupId>com.github.rapid.common</groupId>
@@ -719,49 +707,8 @@
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<repositories>
-				<repository>
-					<id>releases</id>
-					<name>releases Repository</name>
-					<url>http://dev.game.yy.com/nexus/content/repositories/releases/</url>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-				</repository>
-				<repository>
-					<id>snapshots</id>
-					<name>public-snapshots</name>
-					<url>http://dev.game.yy.com/nexus/content/repositories/snapshots/</url>
-					<snapshots>
-					</snapshots>
-				</repository>
-			</repositories>
-		</profile>
-		<profile>
-			<id>test</id>
-			<activation>
-				<property>
-					<name>env</name>
-					<value>test</value>
-				</property>
-			</activation>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<activation>
-				<property>
-					<name>env</name>
-					<value>prod</value>
-				</property>
-			</activation>
-		</profile>
-	</profiles>	
+
+	
   <modules>
     <module>web-home</module>
   </modules>

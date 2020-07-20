@@ -281,10 +281,13 @@
 			</exclusion>
 		</exclusions>
 	</dependency>
+	<!-- 
 	<dependency>
 		<groupId>net.sf.log4jdbc</groupId>
 		<artifactId>log4jdbc4</artifactId>
 	</dependency>	
+	 -->
+	 
 	<!-- logging end-->
 	
 	<!-- j2ee web spec -->
