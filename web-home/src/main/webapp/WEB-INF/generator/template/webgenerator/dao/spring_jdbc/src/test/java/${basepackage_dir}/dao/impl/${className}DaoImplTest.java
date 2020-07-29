@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
 
 
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;
 import ${basepackage}.dao.*;

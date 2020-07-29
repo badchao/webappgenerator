@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 
 import ${basepackage}.${className}DataFactory;
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.util.*;

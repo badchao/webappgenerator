@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +25,7 @@ import com.github.rapid.common.util.page.Page;
 <#include "/java_description.include">
  */
 
-@Controller
+@RestController
 @RequestMapping("/admin/${classNameLower}")
 public class Admin${className}Controller extends BaseController {
 
@@ -37,43 +37,40 @@ public class Admin${className}Controller extends BaseController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> create(${className} ${classNameLower},HttpServletRequest request) {
+	public void create(${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"w");
 		
 		${classNameLower}Service.create(${classNameLower});
-		return ResponseEntity.ok("success");
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> update(${className} ${classNameLower},HttpServletRequest request) {
+	public void update(${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"w");
 		
 		${classNameLower}Service.updateByManual(${classNameLower});
-		return ResponseEntity.ok("success");
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> removeById(${className} ${classNameLower},HttpServletRequest request) {
+	public void removeById(${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"w");
 		
 		${classNameLower}Service.removeById(${classNameLower});
-		return ResponseEntity.ok("success");
 	}
 
 	@GetMapping
-	public ResponseEntity<?> getById(boolean join,${className} ${classNameLower},HttpServletRequest request) {
+	public ${className} getById(boolean join,${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,"r");
 		
 		${className} result = ${classNameLower}Service.getById(${classNameLower});
-		return ResponseEntity.ok(result);
+		return result;
 	}
 	
 	@GetMapping
-	public ResponseEntity<?> findPage(boolean join,${className}Query query,HttpServletRequest request){
+	public Page<${className}> findPage(boolean join,${className}Query query,HttpServletRequest request){
 		checkActionPermission(request,${className}.class,"r");
 		
 		Page<${className}> page = ${classNameLower}Service.findPage(query);
-		return ResponseEntity.ok(page);
+		return page;
 	}
 	
 }
