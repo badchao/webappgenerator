@@ -69,7 +69,6 @@ class ${className}List extends Component {
           {
               title: '${column.columnAlias!}',
               dataIndex: '${column.columnNameLower}',
-              render: (text,record)=> <a onClick={this.doView.bind(this,record)}>{text}</a>,
           },
         </#list>
           {
