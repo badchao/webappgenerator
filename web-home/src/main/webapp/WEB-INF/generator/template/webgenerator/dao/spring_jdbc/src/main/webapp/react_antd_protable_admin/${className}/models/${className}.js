@@ -19,8 +19,9 @@ function convertShowData(that) {
 }
 
 const PAGE_SIZE = 20;
+const NAMESPACE = '${classNameLower}';
 export default {
-    namespace: '${classNameLower}',
+    namespace: NAMESPACE,
     state: {
         // table 相关
         dataSrouce: [],
@@ -43,13 +44,14 @@ export default {
         },
         mergeQuery(state,{payload}) {
           return {
-            ...state, query : Object.assign(state.query,payload)
+            ...state, query : payload
           }
         },
     },
     effects: {
         *findPage({ payload }, { call, put, select }) {
-            const params = { ...payload, page : payload.current };
+            const query = yield select(state => state[NAMESPACE].query);
+            const params = { ...payload, page : payload.current, pageSize : query.pageSize };
 
             const response = yield call(${className}Service.findPage,params);
             yield put({
@@ -77,7 +79,7 @@ export default {
             yield put({ type: 'refresh' });
         },
         *refresh({ payload }, { call, put, select }) {
-          const query = yield select(state => state.${classNameLower}.query);
+          const query = yield select(state => state[NAMESPACE].query);
           yield put({ type: 'findPage', payload: query });
         },
     },
