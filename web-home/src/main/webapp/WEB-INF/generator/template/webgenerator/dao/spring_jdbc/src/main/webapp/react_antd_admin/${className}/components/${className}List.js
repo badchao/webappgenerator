@@ -65,12 +65,11 @@ class ${className}List extends Component {
     render() {
       const { dataSource, loading, total, current,pageSize } = this.props;
       
+      
+      //valueType: date,dateTime,time,money
       const columns = [
         <#list table.columns as column>
-          {
-              title: '${column.columnAlias!}',
-              dataIndex: '${column.columnNameLower}',
-          },
+          { title: '${column.columnAlias!}', dataIndex: '${column.columnNameLower}', valueType: 'text'},
         </#list>
           {
               title: '操作',
@@ -103,6 +102,7 @@ class ${className}List extends Component {
                       dataSource={dataSource}
                       rowKey={record => record.${table.pkColumn.columnNameLower}}
                       pagination={false}
+                      search={true} 
                   />
                   <Pagination
                       className="ant-table-pagination"
