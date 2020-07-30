@@ -64,7 +64,8 @@ class ${className}Table extends Component {
     }
 
     render() {
-      const { dataSource, loading, total, current,pageSize } = this.props;
+      const { dataSource, loading, query, total ,projectId } = this.props;
+      const { current,pageSize } = query;
 
       const columnOperationRender = (text, record) => {
         return (
