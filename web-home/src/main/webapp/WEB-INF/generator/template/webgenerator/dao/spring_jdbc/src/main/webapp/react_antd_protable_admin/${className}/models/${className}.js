@@ -5,6 +5,19 @@
 
 import * as ${className}Service from '../services/${className}';
 
+//为数据增加计算属性，用于前端展示。 应用场景: json string属性  =>  json 对象,  tags string => tags Array
+function convertShowData(that) {
+  if(!that) return that;
+  
+  var extendComputedProps = {
+    get demoProperty() { //示例,增加 一个计算列 
+      return that.toString()+", hello world";
+    }
+  }
+  
+  return Object.assign(that,extendComputedProps);
+}
+  
 const PAGE_SIZE = 20;
 export default {
     namespace: '${classNameLower}',
@@ -18,6 +31,10 @@ export default {
     },
     reducers: {
         merge(state, action) {
+            const dataSource = action.payload.dataSource;
+            if(dataSource) {
+              action.payload.dataSource = dataSource.map(convertShowData)
+            }
             return { ...state, ...action.payload };
         },
     },

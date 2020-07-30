@@ -1,9 +1,7 @@
-/*
- * Copyright [rapid-framework]
- * Web Site: https://github.com/badqiu/rapid-framework
- * Since 2005 - 2020
- * author: badqiu email:badqiu(a)gmail.com
- */
+<#include "/macro.include"/>
+<#include "/java_copyright.include">
+<#assign className = table.className>   
+<#assign classNameLower = className?uncap_first>
 
 import { Component } from 'react';
 import { Modal, Form, Input } from 'antd';
@@ -68,7 +66,7 @@ class ${className}Modal extends Component {
                 </span>
                 <Modal
                     destroyOnClose
-                    title="项目"
+                    title="${table.tableAlias!}"
                     visible={this.state.visible}
                     onOk={this.doOk}
                     onCancel={this.doHideModal}

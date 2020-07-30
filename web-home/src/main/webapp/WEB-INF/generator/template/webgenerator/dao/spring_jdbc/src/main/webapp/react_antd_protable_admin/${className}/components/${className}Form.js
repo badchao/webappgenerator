@@ -1,9 +1,7 @@
-/*
- * Copyright [rapid-framework]
- * Web Site: https://github.com/badqiu/rapid-framework
- * Since 2005 - 2020
- * author: badqiu email:badqiu(a)gmail.com
- */
+<#include "/macro.include"/>
+<#include "/java_copyright.include">
+<#assign className = table.className>   
+<#assign classNameLower = className?uncap_first>
 
 import { Component } from 'react';
 import { Modal, Form, Input } from 'antd';
@@ -12,7 +10,7 @@ const FormItem = Form.Item;
 
 class ${className}Form extends Component {
     formRef = React.createRef();
-    defaultRecord = {enabled:true};
+    defaultRecord = {}; //表单默认值
 
     constructor(props) {
         super(props);
@@ -40,7 +38,8 @@ class ${className}Form extends Component {
     }
 
     render() {
-        const {isEdit, onFinish} = this.props; //是否编辑,用于控制新增/编辑的页面展现
+        //isEdit 是否编辑,用于控制新增/编辑的页面展现
+        const {isEdit, onFinish} = this.props; 
         const record = isEdit ? this.props.record : this.defaultRecord;
 
         const formItemLayout = {
