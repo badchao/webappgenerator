@@ -22,6 +22,7 @@ const PAGE_SIZE = 20;
 const NAMESPACE = '${classNameLower}';
 export default {
     namespace: NAMESPACE,
+    
     state: {
         // table 相关
         dataSrouce: [],
@@ -33,6 +34,7 @@ export default {
         },
 
     },
+    
     reducers: {
         merge(state, action) {
             const payload = action.payload;
@@ -48,6 +50,7 @@ export default {
           }
         },
     },
+    
     effects: {
         *findPage({ payload }, { call, put, select }) {
             const query = yield select(state => state[NAMESPACE].query);
