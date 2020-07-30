@@ -3,7 +3,7 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>
 
-import * as ${className}Service from '../services/${className}';
+import * as Service from '../services/${className}';
 
 //为数据增加计算属性，用于前端展示。 应用场景: json string属性  =>  json 对象,  tags string => tags Array
 function convertShowData(that) {
@@ -56,7 +56,7 @@ export default {
             const query = yield select(state => state[NAMESPACE].query);
             const params = { ...payload, page : payload.current, pageSize : query.pageSize };
 
-            const response = yield call(${className}Service.findPage,params);
+            const response = yield call(Service.findPage,params);
             yield put({
                 type: 'merge',
                 payload: {
@@ -70,15 +70,15 @@ export default {
             }});
         },
         *remove({ payload }, { call, put, select }) {
-            yield call(${className}Service.remove, payload);
+            yield call(Service.remove, payload);
             yield put({ type: 'refresh' });
         },
         *update({ payload }, { call, put, select }) {
-            yield call(${className}Service.update, payload);
+            yield call(Service.update, payload);
             yield put({ type: 'refresh' });
         },
         *create({ payload }, { call, put, select }) {
-            yield call(${className}Service.create, payload);
+            yield call(Service.create, payload);
             yield put({ type: 'refresh' });
         },
         *refresh({ payload }, { call, put, select }) {

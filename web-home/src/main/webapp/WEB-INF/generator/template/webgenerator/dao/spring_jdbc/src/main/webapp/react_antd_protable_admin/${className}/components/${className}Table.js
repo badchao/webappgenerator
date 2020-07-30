@@ -83,7 +83,7 @@ class ${className}Table extends Component {
 
       const columns = [
           <#list table.columns as column>
-          { title: '${column.columnAlias!}', dataIndex: '${column.columnNameLower}', valueType: 'text'},
+          { title: '${column.columnAlias!}', dataIndex: '${column.columnNameLower}', valueType: 'text', hideInTable: ${column.isPk!} },
           </#list>
           {
               title: '操作',
