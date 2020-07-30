@@ -1,7 +1,9 @@
-<#include "/macro.include"/>
-<#include "/java_copyright.include">
-<#assign className = table.className>   
-<#assign classNameLower = className?uncap_first> 
+/*
+ * Copyright [rapid-framework]
+ * Web Site: https://github.com/badqiu/rapid-framework
+ * Since 2005 - 2020
+ * author: badqiu email:badqiu(a)gmail.com
+ */
 
 import { connect } from 'dva';
 import { Table, Pagination, Popconfirm, Button, Space } from 'antd';
@@ -9,22 +11,22 @@ import ProTable from '@ant-design/pro-table';
 import { Component } from 'react';
 import ${className}Modal from './${className}Modal';
 
-class ${className}List extends Component {
-    
+class ${className}Table extends Component {
+
     constructor(props) {
         super(props);
     }
-    
+
     componentDidMount() {
       this.doPageChange(1);
     }
-    
+
     componentDidUpdate() {
     }
-    
+
     componentWillUnmount() {
     }
-       
+
     doRemove = (record) => {
         this.dispatch({
             type: '${classNameLower}/remove',
@@ -53,41 +55,42 @@ class ${className}List extends Component {
             payload: record,
         });
     }
-    
+
     doView = (record) => {
       console.info("doView record",record);
     }
-    
+
     dispatch = (obj) => {
       this.props.dispatch(obj);
     }
-  
+
     render() {
       const { dataSource, loading, total, current,pageSize } = this.props;
-      
-      
-      //valueType: date,dateTime,time,money
+
+      const columnOperationRender = (text, record) => {
+        return (
+        <span >
+          <Space>
+            <${className}Modal isEdit={true} record={record} onOk={this.doEdit}>
+                <a>修改</a>
+            </${className}Modal>
+            <Popconfirm title="确认删除?" onConfirm={this.doRemove.bind(this,record)}>
+                <a href="">删除</a>
+            </Popconfirm>
+           </Space>
+        </span>)
+      };
+
       const columns = [
-        <#list table.columns as column>
+          <#list table.columns as column>
           { title: '${column.columnAlias!}', dataIndex: '${column.columnNameLower}', valueType: 'text'},
-        </#list>
+          </#list>
           {
               title: '操作',
-              render: (text, record) => (
-                  <span >
-                    <Space>
-                      <${className}Modal isEdit={true} record={record} onOk={this.doEdit}>
-                          <a>修改</a>
-                      </${className}Modal>
-                      <Popconfirm title="确认删除?" onConfirm={this.doRemove.bind(this,record)}>
-                          <a href="">删除</a>
-                      </Popconfirm>
-                     </Space>
-                  </span>
-              ),
+              render: columnOperationRender,
           },
       ];
-    
+
       return (
           <div >
               <div>
@@ -100,9 +103,9 @@ class ${className}List extends Component {
                       loading={loading}
                       columns={columns}
                       dataSource={dataSource}
-                      rowKey={record => record.${table.pkColumn.columnNameLower}}
+                      rowKey={record => record.${classNameLower}Id}
                       pagination={false}
-                      search={true} 
+                      search={false}
                   />
                   <Pagination
                       className="ant-table-pagination"
@@ -126,4 +129,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(${className}List);
+export default connect(mapStateToProps)(${className}Table);
