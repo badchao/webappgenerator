@@ -51,7 +51,7 @@ class ${className}Table extends Component {
     doCreate = (record) => {
         this.dispatch({
             type: '${classNameLower}/create',
-            payload: record,
+            payload: { ...record, },
         });
     }
 
