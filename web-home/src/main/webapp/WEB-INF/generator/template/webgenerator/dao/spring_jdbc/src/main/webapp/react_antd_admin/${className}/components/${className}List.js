@@ -5,6 +5,7 @@
 
 import { connect } from 'dva';
 import { Table, Pagination, Popconfirm, Button, Space } from 'antd';
+import ProTable from '@ant-design/pro-table';
 import { Component } from 'react';
 import ${className}Modal from './${className}Modal';
 
@@ -96,7 +97,7 @@ class ${className}List extends Component {
                           <Button type="primary">新增</Button>
                       </${className}Modal>
                   </div>
-                  <Table
+                  <ProTable
                       loading={loading}
                       columns={columns}
                       dataSource={dataSource}
