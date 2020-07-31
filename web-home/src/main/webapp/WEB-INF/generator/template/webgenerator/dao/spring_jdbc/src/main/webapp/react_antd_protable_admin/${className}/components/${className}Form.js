@@ -50,7 +50,7 @@ class ${className}Form extends Component {
         return (
           <Form ref={this.formRef} {...formItemLayout} layout="horizontal" onFinish={this.doFinish} initialValues={record} >
               <#list table.columns as column>
-              <FormItem label="${column.columnAlias!}" name="${column.columnNameLower}" rules={[{ required: ${(!column.nullable)?string} }]} >
+              <FormItem label="${column.columnAlias!}" name="${column.columnNameLower}" rules={[{ required: ${(!column.nullable)?string} }]} hidden={false} >
                   <Input />
               </FormItem>
               </#list>

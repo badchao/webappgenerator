@@ -80,10 +80,11 @@ class ${className}Table extends Component {
            </Space>
         </span>)
       };
-
+      
+      // valueType: date,time,dateTime,dateRange,  percent(百分比),money,progress(进度条)    具体查看: https://procomponents.ant.design/table/value-type#valueenum
       const columns = [
           <#list table.columns as column>
-          { title: '${column.columnAlias!}', dataIndex: '${column.columnNameLower}', valueType: 'text', hideInTable: ${column.isPk!} },
+          { title: '${column.columnAlias!}', dataIndex: '${column.columnNameLower}', valueType: 'text', hideInTable: ${column.pk?string}, },
           </#list>
           {
               title: '操作',
