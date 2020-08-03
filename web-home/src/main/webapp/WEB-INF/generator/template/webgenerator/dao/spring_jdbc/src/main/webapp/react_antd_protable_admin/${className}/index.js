@@ -22,9 +22,12 @@ class ${className}Index extends Component {
     }
     
     render() {
+      //URL 参数
+      const query = this.props.location.query;
+      
       return (
       <div>
-        <${className}Table />
+        <${className}Table {...query} />
       </div>
       );
     }
