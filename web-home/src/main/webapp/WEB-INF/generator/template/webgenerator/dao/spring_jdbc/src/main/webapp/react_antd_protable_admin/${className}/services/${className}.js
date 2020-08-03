@@ -3,17 +3,17 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 
-import request from '@/utils/request';
+import { rpc } from '@/utils/request';
 
 export function findPage(params) {
-    return request(`/${classNameLower}/findPage`,{
+    return rpc(`/${classNameLower}/findPage`,{
       method:'GET',
       params: params
     });
 }
 
 export function getById(params) {
-    return request(`/${classNameLower}/getById`,{
+    return rpc(`/${classNameLower}/getById`,{
       method:'GET',
       params: params,
     });
@@ -21,7 +21,7 @@ export function getById(params) {
 
 
 export function remove(params) {
-    return request(`/${classNameLower}/removeById`, {
+    return rpc(`/${classNameLower}/removeById`, {
         method: 'POST',
         requestType:'form',
         data: params,
@@ -29,7 +29,7 @@ export function remove(params) {
 }
 
 export function update(params) {
-    return request(`/${classNameLower}/update`, {
+    return rpc(`/${classNameLower}/update`, {
         method: 'POST',
         requestType:'form',
         data: params,
@@ -37,9 +37,11 @@ export function update(params) {
 }
 
 export function create(params) {
-    return request('/${classNameLower}/create', {
+    return rpc('/${classNameLower}/create', {
       method: 'POST',
       requestType:'form',
       data: params,
     });
-  }
+}
+
+
