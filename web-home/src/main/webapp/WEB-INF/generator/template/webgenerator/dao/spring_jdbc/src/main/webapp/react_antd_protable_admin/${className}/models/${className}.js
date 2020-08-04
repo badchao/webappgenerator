@@ -52,6 +52,9 @@ export default {
     },
     
     effects: {
+        *init({ payload }, { call, put, select }) {
+            yield put({ type: 'refresh' });
+        },
         *findPage({ payload }, { call, put, select }) {
             const query = yield select(state => state[NAMESPACE].query);
             const params = { ...payload, page : payload.current, pageSize : query.pageSize };
