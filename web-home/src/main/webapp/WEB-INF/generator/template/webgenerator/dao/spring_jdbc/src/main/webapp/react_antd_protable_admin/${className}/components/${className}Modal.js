@@ -47,8 +47,8 @@ class ${className}Modal extends Component {
 
     onFormFinish = (values) => {
       const onOk = this.props.onOk;
-      this.doHideModal();
       onOk(values);
+      this.doHideModal();
     };
 
     render() {
@@ -65,7 +65,8 @@ class ${className}Modal extends Component {
                     {children}
                 </span>
                 <Modal
-                    destroyOnClose
+                    destroyOnClose={true}
+                    maskClosable={false}
                     title="${table.tableAlias!}"
                     visible={this.state.visible}
                     onOk={this.doOk}
