@@ -9,7 +9,7 @@ import * as Service from '../services/${className}';
 function convertShowData(that) {
   if(!that) return that;
 
-  var extendComputedProps = {
+  let extendComputedProps = {
     get demoProperty() { //示例,增加 一个计算列
       return that.toString()+", hello world";
     }

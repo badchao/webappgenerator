@@ -39,7 +39,7 @@ class ${className}Form extends Component {
 
     render() {
         //isEdit 是否编辑,用于控制新增/编辑的页面展现
-        var {isEdit, onFinish,record} = this.props;
+        let {isEdit, onFinish,record} = this.props;
         record = isEdit ? record : Object.assign(this.defaultRecord,record);
 
         const formItemLayout = {
