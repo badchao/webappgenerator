@@ -85,15 +85,12 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	@Override
     public ${className} updateByManual(${className} ${classNameLower}) {
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
-        check${className}(${classNameLower});
-        
+
 		//不可以让客户端可以更新所有属性
-		${className} fromDb = getById(${classNameLower});
-		BeanUtils.copyProperties(${classNameLower}, fromDb,"createTime"); //ignore some copy property
+		${className} target = getById(${classNameLower});
+		BeanUtils.copyProperties(${classNameLower}, target,"createTime"); //ignore some copy property
 		
-		${classNameLower}Dao.update(fromDb);
-		
-        return fromDb;
+		return update(target);
     }	
     
     /**
