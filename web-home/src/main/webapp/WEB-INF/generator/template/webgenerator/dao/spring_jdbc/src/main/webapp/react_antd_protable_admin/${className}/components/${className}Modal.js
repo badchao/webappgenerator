@@ -47,8 +47,14 @@ class ${className}Modal extends Component {
 
     onFormFinish = (values) => {
       const onOk = this.props.onOk;
-      onOk(values);
-      this.doHideModal();
+      var promise = onOk(values);
+      if(promise) {
+        promise.then(()=>{
+          this.doHideModal();
+        });
+      }else {
+        this.doHideModal();
+      }
     };
 
     render() {

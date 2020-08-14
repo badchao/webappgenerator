@@ -41,7 +41,7 @@ class ${className}Table extends Component {
     }
 
     doEdit = (record) => {
-        this.dispatch({
+        return this.dispatch({
             type: '${classNameLower}/update',
             payload: record,
         });
@@ -49,7 +49,7 @@ class ${className}Table extends Component {
 
 
     doCreate = (record) => {
-        this.dispatch({
+        return this.dispatch({
             type: '${classNameLower}/create',
             payload: { ...record, },
         });
@@ -60,7 +60,7 @@ class ${className}Table extends Component {
     }
 
     dispatch = (obj) => {
-      this.props.dispatch(obj);
+      return this.props.dispatch(obj);
     }
 
     render() {
