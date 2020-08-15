@@ -59,7 +59,8 @@ class ${className}Modal extends Component {
 
     render() {
         const {isEdit, record, children, onOk} = this.props;
-
+        const isCreate = !isEdit;
+        
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
