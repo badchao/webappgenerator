@@ -8,6 +8,7 @@ import { history,Link } from 'umi';
 import { Table, Pagination, Popconfirm, Button, Space } from 'antd';
 import ProTable from '@ant-design/pro-table';
 import { Component } from 'react';
+import React from 'react';
 import ${className}Modal from './${className}Modal';
 
 class ${className}Table extends Component {

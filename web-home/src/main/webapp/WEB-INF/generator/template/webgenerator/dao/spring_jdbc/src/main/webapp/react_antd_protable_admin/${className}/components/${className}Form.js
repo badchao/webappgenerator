@@ -5,6 +5,7 @@
 
 import { Component } from 'react';
 import { Modal, Form, Input } from 'antd';
+import React from 'react';
 
 const FormItem = Form.Item;
 
