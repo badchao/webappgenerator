@@ -123,7 +123,7 @@ class ${className}Table extends Component {
 }
 
 function mapStateToProps(state) {
-    console.info("mapStateToProps() state",state);
+    //console.info("mapStateToProps() state",state);
     const model = state.${classNameLower};
     return {
         ...model,
