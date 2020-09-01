@@ -5,6 +5,7 @@
 
 import ${className}Table from './components/${className}Table';
 import { Component } from 'react';
+import React from 'react';
 
 class ${className}Index extends Component {
   
