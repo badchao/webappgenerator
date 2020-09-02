@@ -105,7 +105,7 @@ class ${className}Table extends Component {
                       loading={loading}
                       columns={columns}
                       dataSource={dataSource}
-                      rowKey={record => record.${table.pkColumn.columnName}}
+                      rowKey={record => record.${table.pkColumn.columnNameLower}}
                       pagination={false}
                       search={false}
                   />

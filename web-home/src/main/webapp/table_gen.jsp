@@ -23,17 +23,17 @@
 	 	<form action="${ctx}/tablegenerator/gen.do" method="post" >
 		 	<table width="100%">
 		 		<tr>
-		 			<td><b>create table SQL</b></td>
+		 			<td><b><span class="required">*</span>create table SQL</b></td>
 		 			<td><textarea class="form-control" id="sqls" name="sqls" cols="80" rows="19"  onchange="saveCookie()" placeholder="输入建表SQL,用分号；分隔多条SQL"></textarea>
 		 				示例值: create table demo_table (id int AUTO_INCREMENT primary key, username varchar(20) ,age int,birth_date datetime);
 		 			</td>
 		 		</tr>
 		 		<tr>
-		 			<td><b>java package</b></td>
+		 			<td><b><span class="required">*</span>java package</b></td>
 		 			<td><input class="form-control" type="text" id="basepackage" name="basepackage" placeholder="java包名" size="40" onchange="saveCookie()"/> 示例值:com.company.projectname</td>
 		 		</tr>
 		 		<tr>
-		 			<td><b>projectId</b></td>
+		 			<td><b><span class="required">*</span>projectId</b></td>
 		 			<td><input class="form-control" type="text" id="projectId" name="projectId" placeholder="项目ID(项目代号),输入值:小写，全英文" size="40" onchange="saveCookie()"/></td>
 		 		</tr>
 				<tr>
@@ -96,6 +96,14 @@
 	recoverCookie();
 	
 </script>
+
+<style type="text/css">
+  .required {
+    color:red;
+    font-weight: bold;
+    font-size: 16pt;
+  }
+</style>
 
 </body>
 

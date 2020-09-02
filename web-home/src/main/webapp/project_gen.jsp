@@ -24,7 +24,7 @@
 	 	<form action="${ctx}/projectgenerator/gen.do" method="post" >
 		 	<table width="100%">
 		 		<tr>
-		 			<td><b>项目模板</b></td>
+		 			<td><b><span class="required">*</span>项目模板</b></td>
 		 			<td>
 		 				<select class="form-control"  name="archetypeGroupIdArtifactId">
 		 					<option value="com.github.rapid:rapid-vue-springboot-springjdbc-archetype">vue + springboot + springjdbc模板</option>
@@ -33,11 +33,11 @@
 		 			</td>
 		 		</tr>
 		 		<tr>
-		 			<td><b>projectId</b></td>
+		 			<td><b><span class="required">*</span>projectId</b></td>
 		 			<td><input class="form-control" type="text" id="projectId" name="projectId" placeholder="项目ID(项目代号),输入值:小写，全英文" size="40" onchange="saveData()"/> 示例值:demoproject</td>
 		 		</tr>
 		 		<tr>
-		 			<td><b>java package</b></td>
+		 			<td><b><span class="required">*</span>java package</b></td>
 		 			<td><input class="form-control" type="text" id="basepackage" name="basepackage" placeholder="java包名" size="40" onchange="saveData()"/> 示例值:com.company.projectname</td>
 		 		</tr>
 		 	</table>
@@ -61,6 +61,14 @@
 	recoverData();
 	
 </script>
+
+<style type="text/css">
+  .required {
+    color:red;
+    font-weight: bold;
+    font-size: 16pt;
+  }
+</style>
 
 </body>
 
