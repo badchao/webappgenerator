@@ -34,10 +34,10 @@ class ${className}Table extends Component {
         });
     }
 
-    doPageChange = (current) => {
+    doPageChange = (current,query) => {
         this.dispatch({
             type: '${classNameLower}/findPage',
-            payload: { current },
+            payload: { current, ...query },
         });
     }
 
