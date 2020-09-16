@@ -62,6 +62,9 @@ public class Admin${className}Controller extends BaseController {
 		checkActionPermission(request,${className}.class,"r");
 		
 		${className} result = ${classNameLower}Service.getById(${classNameLower});
+		if(join) {
+			${classNameLower}Service.join(result);
+		}
 		return result;
 	}
 	
@@ -70,6 +73,9 @@ public class Admin${className}Controller extends BaseController {
 		checkActionPermission(request,${className}.class,"r");
 		
 		Page<${className}> page = ${classNameLower}Service.findPage(query);
+		if(join) {
+			page.forEach(${classNameLower}Service::join);
+		}
 		return page;
 	}
 	
