@@ -59,7 +59,7 @@ class ${className}Modal extends Component {
     };
 
     render() {
-        const {isEdit, record, children, onOk} = this.props;
+        const {isEdit, record, children, onOk, readonly} = this.props;
         
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -76,7 +76,8 @@ class ${className}Modal extends Component {
                     maskClosable={false}
                     title="${table.tableAlias!}"
                     visible={this.state.visible}
-                    onOk={this.doOk}
+                    okText={readonly ? '关闭' : '保存'}
+                    onOk={readonly ? this.doHideModal : this.doOk}
                     onCancel={this.doHideModal}
                 >
                     <${className}Form onFinish={this.onFormFinish} ref={this.formRef} record={record} isEdit={isEdit} />
