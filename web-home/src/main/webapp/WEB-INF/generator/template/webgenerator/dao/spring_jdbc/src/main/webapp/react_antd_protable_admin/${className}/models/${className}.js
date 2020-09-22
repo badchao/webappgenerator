@@ -32,7 +32,9 @@ export default {
           current: null,
           pageSize: PAGE_SIZE,
         },
-
+        
+        record: {},
+        
     },
     
     reducers: {
@@ -72,6 +74,15 @@ export default {
               ...params,
               current: response.paginator.page,
             }});
+        },
+        *getById({ payload }, { call, put, select }) {
+          const response = yield call(Service.getById,payload);
+          yield put({
+              type: 'merge',
+              payload: {
+                  record: response
+              },
+          });
         },
         *remove({ payload }, { call, put, select }) {
             yield call(Service.remove, payload);
