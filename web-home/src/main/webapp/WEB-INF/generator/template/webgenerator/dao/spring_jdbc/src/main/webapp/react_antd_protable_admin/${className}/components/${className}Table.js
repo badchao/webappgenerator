@@ -5,14 +5,18 @@
 
 import { connect } from 'dva';
 import { history,Link } from 'umi';
-import { Table, Pagination, Popconfirm, Button, Space } from 'antd';
+import { Table, Pagination, Popconfirm, Button, Space,Form,Input } from 'antd';
 import ProTable from '@ant-design/pro-table';
 import { Component } from 'react';
 import React from 'react';
 import ${className}Modal from './${className}Modal';
 
-class ${className}Table extends Component {
+const FormItem = Form.Item;
 
+class ${className}Table extends Component {
+    
+    queryFormRef = React.createRef();
+    
     constructor(props) {
         super(props);
     }
@@ -60,6 +64,16 @@ class ${className}Table extends Component {
       console.info("doView record",record);
     }
 
+    doQueryFormSubmit = (e) => {
+      console.info("doQueryFormSubmit e",e);
+      this.queryFormRef.current.submit();
+    }
+
+    doQueryFormFinish = (values) => {
+      console.info("doQueryFormFinish()",values);
+      this.doPageChange(1,values);
+    }
+    
     dispatch = (obj) => {
       return this.props.dispatch(obj);
     }
@@ -97,10 +111,18 @@ class ${className}Table extends Component {
           <div >
               <div>
                   <div >
-                      <${className}Modal  onOk={this.doCreate}>
-                          <Button type="primary">新增</Button>
-                      </${className}Modal>
+                      <Form ref={this.queryFormRef} layout="inline"   onFinish={this.doQueryFormFinish}  >
+                        <FormItem>
+                          <${className}Modal  onOk={this.doCreate}>
+                            <Button type="primary">新增</Button>
+                          </${className}Modal>
+                        </FormItem>
+                        <FormItem name="keyword"  >
+                            <Input placeholder="搜索关键字" type="search" />
+                        </FormItem>
+                      </Form>
                   </div>
+                  
                   <ProTable
                       loading={loading}
                       columns={columns}

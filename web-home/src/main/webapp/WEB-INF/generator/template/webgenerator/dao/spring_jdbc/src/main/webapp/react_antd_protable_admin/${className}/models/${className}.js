@@ -60,7 +60,7 @@ export default {
         *findPage({ payload }, { call, put, select }) {
             const query = yield select(state => state[NAMESPACE].query);
             const page = payload.current ? payload.current : query.current;
-            const params = { ...payload, page : page , pageSize : query.pageSize };
+            const params = { ...query, ...payload, page : page , pageSize : query.pageSize };
 
             const response = yield call(Service.findPage,params);
             yield put({
