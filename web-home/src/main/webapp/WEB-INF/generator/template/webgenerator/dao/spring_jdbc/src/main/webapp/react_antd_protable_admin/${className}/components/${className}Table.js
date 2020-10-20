@@ -111,7 +111,7 @@ class ${className}Table extends Component {
           <div >
               <div>
                   <div >
-                      <Form ref={this.queryFormRef} layout="inline"   onFinish={this.doQueryFormFinish}  >
+                      <Form ref={this.queryFormRef} layout="inline" initialValues={query} onFinish={this.doQueryFormFinish}  >
                         <FormItem>
                           <${className}Modal  onOk={this.doCreate}>
                             <Button type="primary">新增</Button>

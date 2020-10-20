@@ -61,6 +61,8 @@ public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 
 	protected static final Logger logger = LoggerFactory.getLogger(${className}DaoImpl.class);
 	
+	private static final String CACHE_KEY_EXPR = "<@generateCacheArguments 'entity.' table.pkColumns/>";
+	
 	@Resource(name="${projectId}DataSource")
 	private DataSource dataSource;
 	
@@ -102,7 +104,6 @@ public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 		return entityRowMapper;
 	}
 	
-	//@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
 	public void insert(${className} entity) {
 		String sql = sqlGenerator.getInsertSql();
 		insertWithGeneratedKey(entity,sql); //for sqlserver:identity and mysql:auto_increment
@@ -114,19 +115,19 @@ public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 		//insertWithAssigned(entity,sql); //手工分配
 	}
 	
-	@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
+	@CacheEvict(key=CACHE_KEY_EXPR)
 	public int update(${className} entity) {
 		String sql = sqlGenerator.getUpdateByPkSql();
 		return getExtNamedJdbcTemplate().update(sql, entity);
 	}
 	
-	@CacheEvict(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
+	@CacheEvict(key=CACHE_KEY_EXPR)
 	public int deleteById(${className} entity) {
 		String sql = sqlGenerator.getDeleteByPkSql();
 		return  getExtNamedJdbcTemplate().update(sql,entity);
 	}
 
-	@Cacheable(key="<@generateCacheArguments 'entity.' table.pkColumns/>")
+	@Cacheable(key=CACHE_KEY_EXPR)
 	public ${className} getById(${className} entity) {
 		String sql = sqlGenerator.getSelectByPkSql();
 		return getExtNamedJdbcTemplate().queryOne(sql, entity,getEntityRowMapper());
