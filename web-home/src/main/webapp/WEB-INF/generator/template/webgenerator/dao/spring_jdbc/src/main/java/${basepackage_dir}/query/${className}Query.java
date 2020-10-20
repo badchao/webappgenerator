@@ -20,7 +20,7 @@ import com.github.rapid.common.util.page.PageQuery;
 public class ${className}Query extends PageQuery implements Serializable {
     private static final long serialVersionUID = 1;
     
-    //搜索关键字,不区分列，多列搜索使用
+    //搜索关键字,不区分列，模糊搜索使用
     private String keyword; 
     
 	<@generateFields/>
