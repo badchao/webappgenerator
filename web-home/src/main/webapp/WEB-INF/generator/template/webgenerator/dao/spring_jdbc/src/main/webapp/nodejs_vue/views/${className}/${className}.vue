@@ -19,7 +19,7 @@
         <el-table :data="tableData" style="width: 100%" stripe>
         	<#list table.columns as column>
           <el-table-column prop="${column.columnNameLower}" label="${column.columnAlias}"></el-table-column>
-          	</#list>
+          </#list>
           
           <el-table-column prop="co" label="操作" align="right" width="180">
               <template slot-scope="scope">
