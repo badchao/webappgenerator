@@ -30,7 +30,7 @@ public class ${className}Query extends PageQuery implements Serializable {
 		return keyword;
 	}
 
-	public String setKeyword(String keyword) {
+	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
 	
