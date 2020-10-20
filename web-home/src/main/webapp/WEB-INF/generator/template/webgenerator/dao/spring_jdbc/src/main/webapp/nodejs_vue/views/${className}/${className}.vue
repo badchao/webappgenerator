@@ -99,6 +99,10 @@
           this.findPage(this.listQuery)
         },
         
+        refresh() {
+          this.getTableData(this.listQuery.page,this.listQuery.pageSize);
+        },
+        
         findPage(listQuery) {
           ${className}Client.findPage(listQuery).then(response => {
             this.tableData = response.itemList;
@@ -112,29 +116,28 @@
           this.$refs[formName].validate((valid) => {
             if (!valid) {
                 console.log('form check invalid!!');
-            	return false;
+                return false;
             }
             
-			if(this.edit) {
+            if(this.edit) {
                ${className}Client.update(this.form).then(response => {
                	  this.editFormVisible = false
-                  this.getTableData(1, this.pageSize)
+                  this.refresh();
                })
-            }else {
+            } else {
                	${className}Client.create(this.form).then(response => {
                	  this.editFormVisible = false
-                  this.getTableData(1, this.pageSize)
-                  
+                  this.refresh();
                 })
             }
-	        return true;
+            return true;
           })
         },
         
         removeById(data) {
           ${className}Client.removeById(data).then(response => {
             if (response) {
-              this.getTableData(1, this.pageSize)
+              this.refresh();
               this.$message({
                 type: 'success',
                 message: '删除成功!'
