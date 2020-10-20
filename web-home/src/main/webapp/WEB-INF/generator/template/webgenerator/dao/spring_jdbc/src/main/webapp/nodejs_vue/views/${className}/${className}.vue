@@ -101,7 +101,7 @@
         
         findPage(listQuery) {
           ${className}Client.findPage(listQuery).then(response => {
-			this.tableData = response.itemList;
+            this.tableData = response.itemList;
             var paginator = response.paginator;
             this.total = paginator.totalItems;
             this.page = response.page;
