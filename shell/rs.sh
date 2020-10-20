@@ -8,6 +8,7 @@ git pull
 git fetch --all
 git reset --hard origin/master
 
+source /etc/profile
 source /data/src/webgenerator/shell/env.sh
 
 echo 'start jetty...'
