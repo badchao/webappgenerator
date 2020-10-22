@@ -24,6 +24,19 @@ public class ${className}Query extends PageQuery implements Serializable {
     private String keyword; 
     
 	<@generateFields/>
+	
+	public ${className}Query() {
+		super();
+	}
+
+	public ${className}Query(int page, int pageSize) {
+		super(page, pageSize);
+	}
+
+	public ${className}Query(int pageSize) {
+		super(pageSize);
+	}
+	
 	<@generateProperties/>
 	
 	public String getKeyword() {
