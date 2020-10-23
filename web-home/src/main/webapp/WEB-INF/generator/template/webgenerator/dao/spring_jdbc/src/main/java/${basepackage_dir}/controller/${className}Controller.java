@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ${basepackage}.model.${className};
+import io.swagger.annotations.ApiOperation;
 import ${basepackage}.query.${className}Query;
 import ${basepackage}.service.${className}Service;
 import com.github.rapid.common.util.page.Page;
@@ -36,6 +36,7 @@ public class ${className}Controller extends BaseController {
 		this.${classNameLower}Service = ${classNameLower}Service;
 	}
 	
+	@ApiOperation(value="创建")
 	@PostMapping
 	public void create(${className} ${classNameLower},HttpServletRequest request) {
 		checkEntityPermission(request,${classNameLower},"w");
@@ -43,6 +44,7 @@ public class ${className}Controller extends BaseController {
 		${classNameLower}Service.create(${classNameLower});
 	}
 	
+	@ApiOperation(value="修改")
 	@PostMapping
 	public void update(${className} ${classNameLower},HttpServletRequest request) {
 		checkEntityPermission(request,${classNameLower},"w");
@@ -50,6 +52,7 @@ public class ${className}Controller extends BaseController {
 		${classNameLower}Service.updateByManual(${classNameLower});
 	}
 	
+	@ApiOperation(value="删除")
 	@PostMapping
 	public void removeById(${className} ${classNameLower},HttpServletRequest request) {
 		checkEntityPermission(request,${classNameLower},"w");
@@ -57,6 +60,7 @@ public class ${className}Controller extends BaseController {
 		${classNameLower}Service.removeById(${classNameLower});
 	}
 
+	@ApiOperation(value="ID查找")
 	@GetMapping
 	public ${className} getById(boolean join,${className} ${classNameLower},HttpServletRequest request) {
 		checkEntityPermission(request,${classNameLower},"r");
@@ -67,6 +71,7 @@ public class ${className}Controller extends BaseController {
 		return result;
 	}
 	
+	@ApiOperation(value="分页查询")
 	@GetMapping
 	public Page<${className}> findPage(boolean join,${className}Query query,${className} ${classNameLower},HttpServletRequest request){
 		checkEntityPermission(request,${classNameLower},"r");

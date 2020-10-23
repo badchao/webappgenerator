@@ -8,6 +8,9 @@ import javax.validation.constraints.*;
 import java.util.*;
 import org.hibernate.validator.constraints.*;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -22,6 +25,7 @@ import javax.persistence.Id;
  * 
 <#include "/java_description.include">
  */
+@ApiModel(value = "${table.tableAlias}", description = "")
 public class ${className}  implements java.io.Serializable{
 	private static final long serialVersionUID = 1;
 	
@@ -37,7 +41,8 @@ public class ${className}  implements java.io.Serializable{
 	<#list table.columns as column>
     /**
      * ${column.columnAlias!}       db_column: ${column.sqlName} 
-     */ 	
+     */
+	@ApiModelProperty(value = "${column.columnAlias!}", example = "", required = false)
 	${column.hibernateValidatorExprssion}
 	private ${column.javaType} ${column.columnNameLower};
 	
