@@ -16,11 +16,12 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+<#assign j='#'>
 /**
  * tableName: ${table.sqlName}
  * [${table.tableAlias}] 的Dao操作
  * 
-<#include "/java_description.include">
+<${j}include "/java_description.include">
 */
 public interface ${className}Mapper {
 	
@@ -30,31 +31,31 @@ public interface ${className}Mapper {
         "update_by, create_time, ",
         "update_time, deleted, ",
         "enabled)",
-        "values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, ",
-        "#{parentId,jdbcType=BIGINT}, #{createBy,jdbcType=BIGINT}, ",
-        "#{updateBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, ",
-        "#{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, ",
-        "#{enabled,jdbcType=BIT})"
+        "values (${j}{id,jdbcType=BIGINT}, ${j}{name,jdbcType=VARCHAR}, ",
+        "${j}{parentId,jdbcType=BIGINT}, ${j}{createBy,jdbcType=BIGINT}, ",
+        "${j}{updateBy,jdbcType=BIGINT}, ${j}{createTime,jdbcType=TIMESTAMP}, ",
+        "${j}{updateTime,jdbcType=TIMESTAMP}, ${j}{deleted,jdbcType=BIT}, ",
+        "${j}{enabled,jdbcType=BIT})"
     })
 	public void insert(${className} entity);
 	
 	@Update({
         "update user_group",
-        "set name = #{name,jdbcType=VARCHAR},",
-          "parent_id = #{parentId,jdbcType=BIGINT},",
-          "create_by = #{createBy,jdbcType=BIGINT},",
-          "update_by = #{updateBy,jdbcType=BIGINT},",
-          "create_time = #{createTime,jdbcType=TIMESTAMP},",
-          "update_time = #{updateTime,jdbcType=TIMESTAMP},",
-          "deleted = #{deleted,jdbcType=BIT},",
-          "enabled = #{enabled,jdbcType=BIT}",
-        "where id = #{id,jdbcType=BIGINT}"
+        "set name = ${j}{name,jdbcType=VARCHAR},",
+          "parent_id = ${j}{parentId,jdbcType=BIGINT},",
+          "create_by = ${j}{createBy,jdbcType=BIGINT},",
+          "update_by = ${j}{updateBy,jdbcType=BIGINT},",
+          "create_time = ${j}{createTime,jdbcType=TIMESTAMP},",
+          "update_time = ${j}{updateTime,jdbcType=TIMESTAMP},",
+          "deleted = ${j}{deleted,jdbcType=BIT},",
+          "enabled = ${j}{enabled,jdbcType=BIT}",
+        "where id = ${j}{id,jdbcType=BIGINT}"
     })
 	public int update(${className} entity);
 
 	@Delete({
         "delete from user_group",
-        "where id = #{id,jdbcType=BIGINT}"
+        "where id = ${j}{id,jdbcType=BIGINT}"
     })
 	public int deleteById(${className} entity);
 	
@@ -62,7 +63,7 @@ public interface ${className}Mapper {
         "select",
         "id, name, parent_id, create_by, update_by, create_time, update_time, deleted, ",
         "from user_group",
-        "where id = #{id,jdbcType=BIGINT}"
+        "where id = ${j}{id,jdbcType=BIGINT}"
     })
     @ResultMap("${basepackage}.UserGroupMapper.BaseResultMap")
 	public ${className} getById(${className} entity);
