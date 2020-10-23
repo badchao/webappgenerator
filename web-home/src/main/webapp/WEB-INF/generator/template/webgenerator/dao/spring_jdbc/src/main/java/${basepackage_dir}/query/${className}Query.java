@@ -12,6 +12,8 @@ import java.io.Serializable;
 
 import com.github.rapid.common.util.page.PageQuery;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * [${table.tableAlias}] 查询对象
  * 
@@ -60,6 +62,7 @@ public class ${className}Query extends PageQuery implements Serializable {
 	private ${column.javaType} ${column.columnNameLower}Begin;
 	private ${column.javaType} ${column.columnNameLower}End;
 	<#else>
+	@ApiModelProperty(value = "${column.columnAlias!}", example = "", required = false)
 	private ${column.javaType} ${column.columnNameLower};
 	</#if>
 	</#list>
