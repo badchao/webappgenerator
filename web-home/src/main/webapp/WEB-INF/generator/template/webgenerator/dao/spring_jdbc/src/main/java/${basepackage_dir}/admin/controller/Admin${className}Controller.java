@@ -5,6 +5,8 @@ package ${basepackage}.admin.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,8 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/admin/${classNameLower}")
 public class Admin${className}Controller extends BaseController {
 
+	private static Logger logger = LoggerFactory.getLogger(Admin${className}Controller.class);
+	
     @Autowired
     private ${className}Service ${classNameLower}Service;
 

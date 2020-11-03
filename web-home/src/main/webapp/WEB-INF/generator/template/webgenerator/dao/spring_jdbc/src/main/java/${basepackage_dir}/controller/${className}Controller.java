@@ -5,6 +5,8 @@ package ${basepackage}.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,8 @@ import com.github.rapid.common.util.page.Page;
 @RestController
 @RequestMapping("/${classNameLower}")
 public class ${className}Controller extends BaseController {
-
+	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
+	
     @Autowired
     private ${className}Service ${classNameLower}Service;
 
