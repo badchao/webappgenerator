@@ -65,7 +65,6 @@ class ${className}Table extends Component {
     }
 
     doQueryFormSubmit = (e) => {
-      console.info("doQueryFormSubmit e",e);
       this.queryFormRef.current.submit();
     }
 
@@ -118,7 +117,7 @@ class ${className}Table extends Component {
                           </${className}Modal>
                         </FormItem>
                         <FormItem name="keyword"  >
-                            <Input placeholder="搜索关键字" type="search" />
+                            <Input placeholder="搜索关键字" type="search" onPressEnter={this.doQueryFormSubmit} />
                         </FormItem>
                       </Form>
                   </div>

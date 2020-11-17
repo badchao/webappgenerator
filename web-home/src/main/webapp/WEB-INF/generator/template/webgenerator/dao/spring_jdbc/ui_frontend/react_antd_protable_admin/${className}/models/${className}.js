@@ -48,7 +48,7 @@ export default {
         },
         mergeQuery(state,{payload}) {
           return {
-            ...state, query : payload
+            ...state, query : { ...state.query, ...payload}
           }
         },
     },
