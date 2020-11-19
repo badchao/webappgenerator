@@ -46,7 +46,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	}
 	
     /** 检查到有错误请直接抛异常，不要使用 return errorCode的方式 */
-    public void check${className}(${className} ${classNameLower}) {
+    public void check(${className} ${classNameLower}) {
     	// Bean Validator检查,属性检查失败将抛异常
     	BeanValidatorHolder.validateWithException(${classNameLower});
     }
@@ -60,7 +60,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 
 	    //init default value
 	    
-	    check${className}(${classNameLower});
+	    check(${classNameLower});
 	    
 	    ${classNameLower}Dao.insert(${classNameLower});
 	    return ${classNameLower};
@@ -72,7 +72,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	@Override
     public ${className} update(${className} ${classNameLower}) {
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
-        check${className}(${classNameLower});
+        check(${classNameLower});
         
 		${classNameLower}Dao.update(${classNameLower});
 		

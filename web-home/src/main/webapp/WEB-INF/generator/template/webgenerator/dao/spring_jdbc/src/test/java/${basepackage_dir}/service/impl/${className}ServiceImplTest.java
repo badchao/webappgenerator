@@ -76,6 +76,10 @@ public class ${className}ServiceImplTest {
 		assertNotNull(${classNameLower});
 	}
 	
-	
+	@Test
+	public void check() {
+		${className} obj = ${className}DataFactory.new${className}();
+		service.check(obj);
+	}
 }
 
