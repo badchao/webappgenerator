@@ -28,7 +28,7 @@ class ${className}Index extends Component {
       
       return (
       <div>
-        <${className}Table {...query} />
+        <${className}Table locationQuery={...query} />
       </div>
       );
     }

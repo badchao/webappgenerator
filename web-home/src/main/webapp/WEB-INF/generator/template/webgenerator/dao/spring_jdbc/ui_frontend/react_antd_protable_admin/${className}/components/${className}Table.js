@@ -22,7 +22,7 @@ class ${className}Table extends Component {
     }
 
     componentDidMount() {
-      this.doPageChange(1);
+      this.doPageChange(1,this.props.locationQuery);
     }
 
     componentDidUpdate() {
