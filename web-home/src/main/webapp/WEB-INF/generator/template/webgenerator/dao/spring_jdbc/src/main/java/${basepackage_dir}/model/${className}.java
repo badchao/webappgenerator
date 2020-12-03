@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.*;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lightspeed.model.DataSourceDef;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -26,7 +27,7 @@ import javax.persistence.Id;
 <#include "/java_description.include">
  */
 @ApiModel(value = "${table.tableAlias}", description = "")
-public class ${className}  implements java.io.Serializable{
+public class ${className}  implements java.io.Serializable,Cloneable{
 	private static final long serialVersionUID = 1;
 	
 	//date formats
@@ -76,6 +77,15 @@ public class ${className}  implements java.io.Serializable{
 			</#list>
 			.isEquals();
 	}
+	
+	public ${className} clone()  {
+		try {
+			return (${className})super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 }
 
 <#macro generateJavaColumns>
