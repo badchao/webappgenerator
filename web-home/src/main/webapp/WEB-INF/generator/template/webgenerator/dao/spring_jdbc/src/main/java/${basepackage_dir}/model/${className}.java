@@ -6,7 +6,6 @@ package ${basepackage}.model;
 
 import javax.validation.constraints.*;
 import java.util.*;
-import org.hibernate.validator.constraints.*;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
