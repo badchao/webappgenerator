@@ -62,8 +62,8 @@ class ${className}Modal extends Component {
         const {isEdit, record, children, onOk, readonly} = this.props;
         
         const formItemLayout = {
-            labelCol: { span: 6 },
-            wrapperCol: { span: 14 },
+            labelCol: { span: 4 },
+            wrapperCol: { span: 20 },
         };
 
         return (
@@ -72,6 +72,7 @@ class ${className}Modal extends Component {
                     {children}
                 </span>
                 <Modal
+                    width="85%"
                     destroyOnClose={true}
                     maskClosable={false}
                     title="${table.tableAlias!}"
