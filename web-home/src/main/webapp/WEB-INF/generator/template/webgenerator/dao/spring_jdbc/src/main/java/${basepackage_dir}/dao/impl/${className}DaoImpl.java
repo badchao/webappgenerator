@@ -60,7 +60,7 @@ import com.github.rapid.common.jdbc.sqlgenerator.metadata.Table;
 public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 
 	private static final Logger logger = LoggerFactory.getLogger(${className}DaoImpl.class);
-	private static final String CACHE_KEY_PK_EXPR = "<@generateCacheArguments 'entity.' table.pkColumns/>";
+	private static final String CACHEKEY_PK = "<@generateCacheArguments 'entity.' table.pkColumns/>";
 	
 	@Resource(name="${projectId}DataSource")
 	private DataSource dataSource;
@@ -114,19 +114,19 @@ public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 		//insertWithAssigned(entity,sql); //手工分配
 	}
 	
-	@CacheEvict(key = CACHE_KEY_PK_EXPR)
+	@CacheEvict(key = CACHEKEY_PK)
 	public int update(${className} entity) {
 		String sql = sqlGenerator.getUpdateByPkSql();
 		return getExtNamedJdbcTemplate().update(sql, entity);
 	}
 	
-	@CacheEvict(key = CACHE_KEY_PK_EXPR)
+	@CacheEvict(key = CACHEKEY_PK)
 	public int deleteById(${className} entity) {
 		String sql = sqlGenerator.getDeleteByPkSql();
 		return  getExtNamedJdbcTemplate().update(sql,entity);
 	}
 
-	@Cacheable(key = CACHE_KEY_PK_EXPR)
+	@Cacheable(key = CACHEKEY_PK)
 	public ${className} getById(${className} entity) {
 		String sql = sqlGenerator.getSelectByPkSql();
 		return getExtNamedJdbcTemplate().queryOne(sql, entity,getEntityRowMapper());
