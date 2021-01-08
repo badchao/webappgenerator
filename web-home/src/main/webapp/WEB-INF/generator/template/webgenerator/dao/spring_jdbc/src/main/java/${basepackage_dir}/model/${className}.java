@@ -5,11 +5,11 @@
 package ${basepackage}.model;
 
 import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.Length;
 import java.util.*;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lightspeed.model.DataSourceDef;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
