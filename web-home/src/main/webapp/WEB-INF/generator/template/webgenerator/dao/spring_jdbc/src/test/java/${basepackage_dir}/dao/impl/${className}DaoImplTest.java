@@ -3,7 +3,7 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.dao.impl;
 
-import ${basepackage}.${className}DataFactory;
+import ${basepackage}.datafactory.${className}DataFactory;
 
 import com.github.rapid.common.util.page.Page;
 
