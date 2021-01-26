@@ -162,7 +162,6 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 * @throws SecurityException 没有权限时抛出 
 	 **/
 	public void checkEntityPermission(long userId,${className} ${classNameLower},String permission) {
-		super.checkEntityPermission(userId,${classNameLower},permission);
 	}
     
 
