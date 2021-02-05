@@ -143,13 +143,4 @@ class ${className}Table extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    //console.info("mapStateToProps() state",state);
-    const model = state.${classNameLower};
-    return {
-        ...model,
-        loading: state.loading.models.${classNameLower},
-    };
-}
-
-export default connect(mapStateToProps)(${className}Table);
+export default ${className}Table;

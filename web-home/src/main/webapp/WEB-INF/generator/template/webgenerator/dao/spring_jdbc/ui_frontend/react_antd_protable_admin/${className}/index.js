@@ -6,6 +6,18 @@
 import ${className}Table from './components/${className}Table';
 import { Component } from 'react';
 import React from 'react';
+import { connect } from 'dva';
+
+function mapStateToProps(state) {
+    //console.info("mapStateToProps() state",state);
+    const model = state.${classNameLower};
+    return {
+        ...model,
+        loading: state.loading.models.${classNameLower},
+    };
+}
+
+const C${className}Table = connect(mapStateToProps)(${className}Table);
 
 class ${className}Index extends Component {
   
@@ -28,7 +40,7 @@ class ${className}Index extends Component {
       
       return (
       <div>
-        <${className}Table locationQuery={...query} />
+        <C${className}Table locationQuery={...query} />
       </div>
       );
     }
