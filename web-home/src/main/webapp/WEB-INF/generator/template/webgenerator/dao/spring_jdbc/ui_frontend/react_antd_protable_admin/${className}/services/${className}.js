@@ -5,6 +5,11 @@
 
 import { rpc } from '@/utils/request';
 
+//增加数据处理或转换，再传输给后端
+function convertSaveData(data) {
+  return data;
+}
+
 export function findPage(params) {
     return rpc(`/${classNameLower}/findPage`,{
       method:'GET',
@@ -32,7 +37,7 @@ export function update(params) {
     return rpc(`/${classNameLower}/update`, {
         method: 'POST',
         requestType:'form',
-        data: params,
+        data: convertSaveData(params),
     });
 }
 
@@ -40,7 +45,7 @@ export function create(params) {
     return rpc('/${classNameLower}/create', {
       method: 'POST',
       requestType:'form',
-      data: params,
+      data: convertSaveData(params),
     });
 }
 
