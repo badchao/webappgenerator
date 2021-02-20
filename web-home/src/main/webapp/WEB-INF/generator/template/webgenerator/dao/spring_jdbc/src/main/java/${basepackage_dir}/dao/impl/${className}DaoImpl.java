@@ -3,7 +3,8 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.dao.impl;
 
-import ${basepackage}.model.*;
+import $
+import lightspeed.model.User;
 import ${basepackage}.query.*;
 import ${basepackage}.dao.${className}Dao;
 
@@ -23,11 +24,13 @@ import ${basepackage}.dao.${className}Dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.support.DataAccessUtils;
@@ -43,6 +46,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
 import com.github.rapid.common.util.page.Page;
+import com.github.rapid.common.util.MapUtil;
 import com.github.rapid.common.util.ObjectUtil;
 import com.github.rapid.common.jdbc.sqlgenerator.CacheSqlGenerator;
 import com.github.rapid.common.jdbc.sqlgenerator.SpringNamedSqlGenerator;
@@ -180,6 +184,15 @@ public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 		
 		return sql;
 	}
+	
+	private ${className} queryOneByWhereEq(String column,String columnValue) {
+		if(StringUtils.isBlank(columnValue)) return null;
+		
+		String sql = selectFromSql + " where  " + column + " = :" + column;
+		Map paramMap = MapUtil.newMap(column,columnValue);
+		return getExtNamedJdbcTemplate().queryOne(sql, paramMap ,getEntityRowMapper());
+	}
+	
 }
 
 
