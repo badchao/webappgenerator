@@ -86,10 +86,10 @@ class ${className}Table extends Component {
         <span >
           <Space>
             <${className}Modal isEdit={true} record={record} onOk={this.doEdit}>
-                <a>修改</a>
+                <Button size="small" type="primary">修改</Button>
             </${className}Modal>
             <Popconfirm title="确认删除?" onConfirm={this.doRemove.bind(this,record)}>
-                <a href="">删除</a>
+                <Button size="small" type="primary" danger={true}>删除</Button>
             </Popconfirm>
            </Space>
         </span>)
