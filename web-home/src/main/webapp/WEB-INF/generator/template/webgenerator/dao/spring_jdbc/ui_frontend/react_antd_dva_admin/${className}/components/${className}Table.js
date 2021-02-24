@@ -11,6 +11,8 @@ import { Component } from 'react';
 import React from 'react';
 import ${className}Modal from './${className}Modal';
 
+import { EditOutlined,DeleteOutlined } from '@ant-design/icons';
+
 const FormItem = Form.Item;
 
 class ${className}Table extends Component {
