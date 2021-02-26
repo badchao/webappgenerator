@@ -34,6 +34,11 @@ class ${className}Modal extends Component {
         this.setState({
             visible: true,
         });
+        
+        const onShow = this.props.onShow;
+        if(onShow){
+          onShow(values);
+        }
     };
 
     doHideModal = () => {
@@ -59,7 +64,7 @@ class ${className}Modal extends Component {
     };
 
     render() {
-        const {isEdit, record, children, onOk, readonly} = this.props;
+        const {isEdit, record, children, onOk, onShow, readonly} = this.props;
         
         const formItemLayout = {
             labelCol: { span: 4 },
