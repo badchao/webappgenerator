@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import io.swagger.annotations.ApiOperation;
+import ${basepackage}.model.${className};
 import ${basepackage}.query.${className}Query;
 import ${basepackage}.service.${className}Service;
 import com.github.rapid.common.util.page.Page;
