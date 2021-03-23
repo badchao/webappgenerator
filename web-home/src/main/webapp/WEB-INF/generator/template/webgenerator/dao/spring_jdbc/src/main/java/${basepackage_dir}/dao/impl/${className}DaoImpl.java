@@ -3,23 +3,8 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.dao.impl;
 
-import $
-import lightspeed.model.User;
 import ${basepackage}.query.*;
 import ${basepackage}.dao.${className}Dao;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 import java.io.Serializable;
