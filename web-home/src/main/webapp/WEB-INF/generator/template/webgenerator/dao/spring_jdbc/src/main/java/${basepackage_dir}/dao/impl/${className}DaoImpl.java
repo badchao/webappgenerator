@@ -3,6 +3,7 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.dao.impl;
 
+import ${basepackage}.model.*;
 import ${basepackage}.query.*;
 import ${basepackage}.dao.${className}Dao;
 
