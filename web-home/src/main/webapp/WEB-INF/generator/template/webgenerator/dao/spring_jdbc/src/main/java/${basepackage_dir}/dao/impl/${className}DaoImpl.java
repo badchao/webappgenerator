@@ -171,11 +171,11 @@ public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 		return sql;
 	}
 	
-	private ${className} queryOneByWhereEq(String column,String columnValue) {
-		if(StringUtils.isBlank(columnValue)) return null;
+	private ${className} queryOneByWhereEq(String columnName,Object columnValue) {
+		if(columnValue == null) return null;
 		
-		String sql = selectFromSql + " where  " + column + " = :" + column;
-		Map paramMap = MapUtil.newMap(column,columnValue);
+		String sql = selectFromSql + " where  " + columnName + " = :" + columnName;
+		Map paramMap = MapUtil.newMap(columnName,columnValue);
 		return getExtNamedJdbcTemplate().queryOne(sql, paramMap ,getEntityRowMapper());
 	}
 	
