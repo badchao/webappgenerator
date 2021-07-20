@@ -35,7 +35,8 @@ class ${className}Form extends Component {
 
       //可以继续增加自己的验证逻辑
 
-      onFinish(values);
+      var newValues = Object.assign({}, values,this.state); //合并本地状态
+      onFinish(newValues);
     }
 
     render() {
