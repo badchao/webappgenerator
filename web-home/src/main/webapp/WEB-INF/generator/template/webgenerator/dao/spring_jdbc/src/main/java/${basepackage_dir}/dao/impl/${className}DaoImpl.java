@@ -174,7 +174,7 @@ public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 	private ${className} queryOneByWhereEq(String columnName,Object columnValue) {
 		if(columnValue == null) return null;
 		
-		String sql = selectFromSql + " where  " + columnName + " = :" + columnName;
+		String sql = selectFromSql + " WHERE  " + columnName + " = :" + columnName;
 		Map paramMap = MapUtil.newMap(columnName,columnValue);
 		return getExtNamedJdbcTemplate().queryOne(sql, paramMap ,getEntityRowMapper());
 	}
