@@ -38,7 +38,7 @@
 		 		</tr>
 				<tr>
 		 			<td><b>web namespace</b></td>
-		 			<td><input class="form-control" type="text" id="namespace" name="namespace" placeholder="示例值:admin,system,message,company,order,member,news,monitor,security" size="40" onchange="saveCookie()"/> web页面子模块,用于web分模块,会影响jsp存放位置,如/{namespace}/{className}/list.jsp,示例值:admin,system,message,company,order,member,news,monitor,security</td>
+		 			<td><input class="form-control" type="text" id="namespace" name="namespace" placeholder="示例值:admin,system,message,company,order,member,news,monitor,security" size="40" onchange="saveCookie()"/> web页面子模块,用于web分模块,会影响jsp存放位置,如/{namespace}/{className}/list.jsp</td>
 		 		</tr>
 		 		<tr>
 		 			<td><b>作者(author)</b></td>
