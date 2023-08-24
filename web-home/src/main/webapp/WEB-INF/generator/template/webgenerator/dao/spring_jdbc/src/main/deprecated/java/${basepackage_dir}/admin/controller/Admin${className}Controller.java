@@ -45,7 +45,7 @@ public class Admin${className}Controller extends BaseController {
 	@ApiOperation(value="创建")
 	@PostMapping
 	public void create(${className} ${classNameLower},HttpServletRequest request) {
-		checkActionPermission(request,${className}.class,"w");
+		checkActionPermission(request,${className}.class,WRITE);
 		
 		${classNameLower}Service.create(${classNameLower});
 	}
@@ -53,7 +53,7 @@ public class Admin${className}Controller extends BaseController {
 	@ApiOperation(value="修改")
 	@PostMapping
 	public void update(${className} ${classNameLower},HttpServletRequest request) {
-		checkActionPermission(request,${className}.class,"w");
+		checkActionPermission(request,${className}.class,WRITE);
 		
 		${classNameLower}Service.updateByManual(${classNameLower});
 	}
@@ -61,7 +61,7 @@ public class Admin${className}Controller extends BaseController {
 	@ApiOperation(value="删除")
 	@PostMapping
 	public void removeById(${className} ${classNameLower},HttpServletRequest request) {
-		checkActionPermission(request,${className}.class,"w");
+		checkActionPermission(request,${className}.class,WRITE);
 		
 		${classNameLower}Service.removeById(${classNameLower});
 	}
@@ -69,7 +69,7 @@ public class Admin${className}Controller extends BaseController {
 	@ApiOperation(value="ID查找")
 	@GetMapping
 	public ${className} getById(boolean join,${className} ${classNameLower},HttpServletRequest request) {
-		checkActionPermission(request,${className}.class,"r");
+		checkActionPermission(request,${className}.class,READ);
 		
 		${className} result = ${classNameLower}Service.getById(${classNameLower});
 		if(join) {
@@ -81,7 +81,7 @@ public class Admin${className}Controller extends BaseController {
 	@ApiOperation(value="分页查询")
 	@GetMapping
 	public Page<${className}> findPage(boolean join,${className}Query query,HttpServletRequest request){
-		checkActionPermission(request,${className}.class,"r");
+		checkActionPermission(request,${className}.class,READ);
 		
 		Page<${className}> page = ${classNameLower}Service.findPage(query);
 		if(join) {
