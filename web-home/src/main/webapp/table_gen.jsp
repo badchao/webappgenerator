@@ -30,7 +30,7 @@
 		 		</tr>
 		 		<tr>
 		 			<td><b><span class="required">*</span>java package</b></td>
-		 			<td><input class="form-control" type="text" id="basepackage" name="basepackage" placeholder="java包名" size="40" onchange="saveCookie()"/> 示例值:com.company.projectname</td>
+		 			<td><input class="form-control" type="text" id="basepackage" name="basepackage" placeholder="java包名" size="40" onchange="saveCookie()"/> 示例值:com.company.project.module</td>
 		 		</tr>
 		 		<tr>
 		 			<td><b><span class="required">*</span>projectId</b></td>
@@ -38,7 +38,7 @@
 		 		</tr>
 				<tr>
 		 			<td><b>web namespace</b></td>
-		 			<td><input class="form-control" type="text" id="namespace" name="namespace" placeholder="示例值:admin,monitor,security" size="40" onchange="saveCookie()"/> web页面子模块,用于web分模块,会影响jsp存放位置,如/{namespace}/{className}/list.jsp,示例值:admin,monitor,security</td>
+		 			<td><input class="form-control" type="text" id="namespace" name="namespace" placeholder="示例值:admin,system,message,company,order,member,news,monitor,security" size="40" onchange="saveCookie()"/> web页面子模块,用于web分模块,会影响jsp存放位置,如/{namespace}/{className}/list.jsp,示例值:admin,system,message,company,order,member,news,monitor,security</td>
 		 		</tr>
 		 		<tr>
 		 			<td><b>作者(author)</b></td>
