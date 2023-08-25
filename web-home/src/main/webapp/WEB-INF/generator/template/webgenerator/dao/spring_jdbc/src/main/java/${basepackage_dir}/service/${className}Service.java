@@ -75,11 +75,4 @@ public interface ${className}Service {
 	</#if>
 </#list>
 
-	/** 
-	 * 行数据权限(实体权限检查),在用户Controller(非管理)或WebService层调用, 请自行实现
-	 * @param userId 登录用户ID
-	 * @throws SecurityException 没有权限时抛出 
-	 **/
-	public void checkEntityPermission(long userId,${className} ${classNameLower},String permission) throws SecurityException;
-
 }
