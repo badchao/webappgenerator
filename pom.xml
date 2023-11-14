@@ -461,6 +461,7 @@
 		<scope>test</scope>
 	</dependency>
 	
+	<!--
 	<dependency>
 		<groupId>org.eclipse.jetty</groupId>
 		<artifactId>jetty-webapp</artifactId>
@@ -468,6 +469,7 @@
 		<version>7.2.2.v20101205</version>
 		<optional>true</optional>
 	</dependency>
+	-->
 			
 	<!-- jdbc drivers begin -->	
 	<!-- 
