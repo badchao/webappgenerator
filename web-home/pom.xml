@@ -91,10 +91,6 @@
 		<groupId>com.github.rapid.common</groupId>
 		<artifactId>rapid-common-mvc</artifactId>
 	</dependency>
-	<dependency>
-		<groupId>com.github.rapid.common</groupId>
-		<artifactId>rapid-common-test</artifactId>
-	</dependency>	
 			
 	<!-- spring begin -->
 	<dependency>

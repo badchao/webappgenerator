@@ -32,8 +32,8 @@ public class LogExtTest {
 	}
 
 	private void printList(Collection<String> all) {
-		all.forEach((item) -> {
+		for(Object item : all) {
 			System.out.println(item);
-		});
+		}
 	}
 }
