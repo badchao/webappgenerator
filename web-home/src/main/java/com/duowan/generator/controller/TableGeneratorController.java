@@ -140,6 +140,7 @@ public class TableGeneratorController {
 				
 				//dao
 				new String[]{"/**/main/**/dao/**","dao"},
+				new String[]{"/**/main/**/mapper/**","service"},
 				new String[]{"/**/main/**/util/**","dao"},
 				new String[]{"/**/main/resources/freemarker_sql/**","dao"},
 				new String[]{"/**/test/resources/testdata/**","dao"},
@@ -190,13 +191,42 @@ public class TableGeneratorController {
 				new String[]{"/**/main/**/admin/controller/Admin*Controller.java","admin-server"},
 				
 				//user-server
-				new String[]{"/**/main/**/controller/*Controller.java","user-server","/**/main/**/admin/controller/Admin*Controller.java"},
+				//new String[]{"/**/main/**/controller/*Controller.java","user-server","/**/main/**/admin/controller/Admin*Controller.java"},
 			};
-		
+
+			//每一条string组成: new String[include,dir,exclude]
+			String[][] controler_service_diy_layout = new String[][]{
+					//service
+					new String[]{"/**/main/**/query/**","service"},
+					new String[]{"/**/main/**/model/**","service"},
+					new String[]{"/**/main/**/dao/**","service"},
+					new String[]{"/**/main/**/mapper/**","service"},
+					new String[]{"/**/main/**/util/**","service"},
+					new String[]{"/**/main/resources/freemarker_sql/**","service"},
+					new String[]{"/**/test/resources/testdata/**","service"},
+					new String[]{"/**/test/**/dao/**","service"},
+					new String[]{"/**/test/**/mapper/**","service"},
+					new String[]{"/**/test/**/*DataFactory.java","service"},
+					new String[]{"/**/test/**/service/**","service"},
+					new String[]{"/**/test/**/*DataFactory.java","service"},
+					new String[]{"/**/main/**/service/**","service"},
+					
+					//admin-front
+					new String[]{"/**/main/**/webapp/nodejs_vue/**","admin-front"},
+					new String[]{"/**/main/**/webapp/wx_miniprogram/**","admin-front"},
+					
+					//admin-server
+					new String[]{"/**/main/**/admin/controller/*Controller.java","admin-server"},
+					
+					//user-server
+					//new String[]{"/**/main/**/controller/*Controller.java","user-server","/**/main/**/admin/controller/Admin*Controller.java"},
+				};
+				
 		private Map<String,String[][]> layoutDirMappings = new HashMap();
 		{
 			layoutDirMappings.put("multi_project_dir_layout",multi_project_dir_layout_mappings);
 			layoutDirMappings.put("vue_arechetype_layout",vue_arechetype_layout);
+			layoutDirMappings.put("controler_service_diy_layout",controler_service_diy_layout);
 		}
 		
 		public void execute() throws Exception {

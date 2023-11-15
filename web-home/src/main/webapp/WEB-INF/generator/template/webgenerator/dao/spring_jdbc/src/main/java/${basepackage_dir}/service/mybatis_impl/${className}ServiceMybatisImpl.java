@@ -1,7 +1,7 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.service.impl;
+package ${basepackage}.service.mybatis_impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import ${basepackage}.service.${className}Service;
+import $
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.bigdata.ai.model.${className};
+import com.bigdata.ai.query.${className}Query;
 import com.github.rapid.common.util.holder.BeanValidatorHolder;
 import com.github.rapid.common.util.page.Page;
 
@@ -74,7 +78,7 @@ public class ${className}ServiceMybatisImpl extends BaseService implements ${cla
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
         check(${classNameLower});
         
-		${classNameLower}Mapper.update(${classNameLower});
+		${classNameLower}Mapper.updateById(${classNameLower});
 		
         return ${classNameLower};
     }
@@ -114,7 +118,7 @@ public class ${className}ServiceMybatisImpl extends BaseService implements ${cla
 	 **/
     @Override
     public ${className} getById(${className} ${classNameLower}) {
-        return ${classNameLower}Mapper.getById(${classNameLower});
+        return ${classNameLower}Mapper.selectById(${classNameLower});
     }
     
     /** 
@@ -130,7 +134,7 @@ public class ${className}ServiceMybatisImpl extends BaseService implements ${cla
     }
     
 	/** 
-	 * 分页查询: ${className}
+	 * 分页查询
 	 **/      
 	@Transactional(readOnly=true)
 	public Page<${className}> findPage(${className}Query query) {
@@ -144,6 +148,23 @@ public class ${className}ServiceMybatisImpl extends BaseService implements ${cla
 		Assert.notNull(query,"'query' must be not null");
 		List<${className}> r = ${classNameLower}Mapper.findList(query);
 	    return r;
+	}
+	
+	/** 
+	 * 分页查询
+	 **/      
+	@Transactional(readOnly=true)
+	public Page<${className}> findPage(${className}Query query) {
+	    Assert.notNull(query,"'query' must be not null");
+	    IPage<${className}> r = ${classNameLower}Mapper.queryPage(toMybatisPage(query),query);
+	    return toRapidPage(r);
+	}
+	
+	@Transactional(readOnly=true)
+	public List<${className}> findList(${className}Query query) {
+		Assert.notNull(query,"'query' must be not null");
+		IPage<${className}> r = ${classNameLower}Mapper.queryPage(toMybatisPage(query),query);
+		return toRapidPage(r).getItemList();
 	}
 	
 <#list table.columns as column>

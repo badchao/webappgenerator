@@ -19,6 +19,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 
 /**
  * tableName: ${table.sqlName} [${table.tableAlias}] 
@@ -42,6 +43,9 @@ public class ${className}  implements java.io.Serializable,Cloneable{
     /**
      * ${column.columnAlias!}       db_column: ${column.sqlName} 
      */
+	<#if column.pk>
+	@TableId
+	</#if>
 	@ApiModelProperty(value = "${column.columnAlias!}", example = "", required = false)
 	${column.hibernateValidatorExprssion}
 	private ${column.javaType} ${column.columnNameLower};

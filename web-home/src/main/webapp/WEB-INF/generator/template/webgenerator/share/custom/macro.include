@@ -1,6 +1,8 @@
 <#-- 本文件包含一些公共的函数,本文件会被其它模板自动include -->
 
 <#assign dollar = '$'> 
+<#assign poundKey = '#'> 
+
 
 <#-- 将value变成jsp el表达式,主要由于FreeMarker生成表达式不方便 -->
 <#macro jspEl value>${r"${"}${value}}</#macro>
@@ -42,5 +44,11 @@
 <#macro generatePassingParameters columns>
 <#compress>
 <#list columns as column>${column.columnNameFirstLower}<#if column_has_next>,</#if></#list>
+</#compress>
+</#macro>
+
+<#macro generateSqlSelectColumns columns>
+<#compress>
+<#list columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>
 </#compress>
 </#macro>

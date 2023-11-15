@@ -1,11 +1,15 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>  
-package ${basepackage}.dao;
+package ${basepackage}.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import ${basepackage}.query.*;
 import ${basepackage}.model.*;
 
 /**
@@ -17,4 +21,6 @@ import ${basepackage}.model.*;
 @Mapper
 public interface ${className}Mapper extends BaseMapper<${className}> {
 
+	IPage<${className}> queryPage(IPage<?> page, @Param("query") ${className}Query query);
+	
 }
