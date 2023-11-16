@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import ${basepackage}.model.${className};
 import ${basepackage}.query.${className}Query;
@@ -30,6 +31,7 @@ import com.github.rapid.common.util.page.Page;
 
 @RestController
 @RequestMapping("/${classNameLower}")
+@Api(tags = "${className} API - ${table.tableAlias}")
 public class ${className}Controller extends BaseController {
 	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
