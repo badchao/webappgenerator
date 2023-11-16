@@ -21,7 +21,7 @@ import java.util.List;
  * 
 <#include "/java_description.include">
  */
-public interface ${className}Service {
+public interface ${className}Service extends Service{
 
 	/** 
 	 * 创建${className}

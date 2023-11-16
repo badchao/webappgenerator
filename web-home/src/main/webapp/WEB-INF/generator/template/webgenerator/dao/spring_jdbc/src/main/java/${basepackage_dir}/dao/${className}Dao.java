@@ -15,7 +15,7 @@ import com.github.rapid.common.util.page.Page;
  * 
 <#include "/java_description.include">
 */
-public interface ${className}Dao {
+public interface ${className}Dao extends Dao {
 	
 	public void insert(${className} entity);
 	
