@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import ${basepackage}.service.${className}Service;
-import $
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.bigdata.ai.model.${className};
@@ -22,8 +21,8 @@ import com.github.rapid.common.util.holder.BeanValidatorHolder;
 import com.github.rapid.common.util.page.Page;
 
 import ${basepackage}.model.*;
-import ${basepackage}.dao.*;
 import ${basepackage}.query.*;
+import ${basepackage}.mapper.*;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -133,23 +132,6 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
     	return r;
     }
     
-	/** 
-	 * 分页查询
-	 **/      
-	@Transactional(readOnly=true)
-	public Page<${className}> findPage(${className}Query query) {
-	    Assert.notNull(query,"'query' must be not null");
-	    Page<${className}> r = ${classNameLower}Mapper.findPage(query);
-	    return r;
-	}
-	
-	@Transactional(readOnly=true)
-	public List<${className}> findList(${className}Query query) {
-		Assert.notNull(query,"'query' must be not null");
-		List<${className}> r = ${classNameLower}Mapper.findList(query);
-	    return r;
-	}
-	
 	/** 
 	 * 分页查询
 	 **/      
