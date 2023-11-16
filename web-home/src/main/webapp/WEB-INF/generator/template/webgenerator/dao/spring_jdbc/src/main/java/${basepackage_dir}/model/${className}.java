@@ -19,7 +19,9 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
 
 /**
  * tableName: ${table.sqlName} [${table.tableAlias}] 
@@ -44,7 +46,11 @@ public class ${className}  implements java.io.Serializable,Cloneable{
      * ${column.columnAlias!}       db_column: ${column.sqlName} 
      */
 	<#if column.pk>
+		<#if table.pkCount = 1>
 	@TableId
+		<#else>
+	@MppMultiId	
+		</#if>
 	</#if>
 	@ApiModelProperty(value = "${column.columnAlias!}", example = "", required = false)
 	${column.hibernateValidatorExprssion}
@@ -128,6 +134,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	<#assign fkPojoClass = fkSqlTable.className>
 	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
 	
+	@TableField(exist = false)
 	private Set ${fkPojoClassVar}s = new HashSet(0);
 	public Set<${fkPojoClass}> get${fkPojoClass}s() {
 		return ${fkPojoClassVar}s;
@@ -145,6 +152,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	<#assign fkPojoClass = fkSqlTable.className>
 	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
 	
+	@TableField(exist = false)
 	private ${fkPojoClass} ${fkPojoClassVar};
 	public ${fkPojoClass} get${fkPojoClass}() {
 		return ${fkPojoClassVar};

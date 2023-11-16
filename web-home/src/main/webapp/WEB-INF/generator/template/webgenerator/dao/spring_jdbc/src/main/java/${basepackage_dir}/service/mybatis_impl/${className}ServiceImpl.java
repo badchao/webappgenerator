@@ -28,6 +28,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * [${table.tableAlias}] 的Service接口实现
  * 
@@ -77,7 +78,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
         check(${classNameLower});
         
-		${classNameLower}Mapper.updateById(${classNameLower});
+		${classNameLower}Mapper.updateBy<@mybatisJavaIdMethod/>(${classNameLower});
 		
         return ${classNameLower};
     }
@@ -109,7 +110,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 **/
     @Override
     public void removeById(${className} ${classNameLower}) {
-        ${classNameLower}Mapper.deleteById(${classNameLower});
+        ${classNameLower}Mapper.deleteBy<@mybatisJavaIdMethod/>(${classNameLower});
     }
     
 	/** 
@@ -117,7 +118,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 **/
     @Override
     public ${className} getById(${className} ${classNameLower}) {
-        return ${classNameLower}Mapper.selectById(${classNameLower});
+        return ${classNameLower}Mapper.selectBy<@mybatisJavaIdMethod/>(${classNameLower});
     }
     
     /** 

@@ -52,3 +52,6 @@
 <#list columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>
 </#compress>
 </#macro>
+
+
+<#macro mybatisJavaIdMethod><#if table.pkCount = 1>Id<#else>MultiId</#if></#macro>

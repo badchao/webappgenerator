@@ -17,17 +17,17 @@ public class ${className}MapperTest extends BaseDaoTestCase {
 
 	@Test
 	public void selectById() {
-		${classNameLower}Mapper.selectById(new${className}());
+		${classNameLower}Mapper.selectBy<@mybatisJavaIdMethod/>(new${className}());
 	}
 	
 	@Test
 	public void deleteById() {
-		${classNameLower}Mapper.deleteById(new${className}());
+		${classNameLower}Mapper.deleteBy<@mybatisJavaIdMethod/>(new${className}());
 	}
 	
 	@Test
 	public void updateById() {
-		${classNameLower}Mapper.updateById(new${className}());
+		${classNameLower}Mapper.updateBy<@mybatisJavaIdMethod/>(new${className}());
 	}
 
 	@Test
