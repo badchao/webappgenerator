@@ -4,7 +4,7 @@
 <#assign pkJavaType = table.idColumn.javaType>   
 <#assign pkJavaVarName = table.pkColumn.columnNameFirstLower>
 
-package ${basepackage}.service.impl;
+package ${basepackage}.service.mybatis_impl;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -50,28 +50,28 @@ public class ${className}ServiceImplTest {
 	
 	@Test
 	public void update() {
-		when(${classNameLower}Mapper.getById(id)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
+		when(${classNameLower}Mapper.selectBy<@mybatisJavaIdMethod/>(id)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
 		
 		${className} obj = ${className}DataFactory.new${className}();
 		service.update(obj);
 		
-		verify(${classNameLower}Mapper).updateById(any()); //验证执行了该语句
+		verify(${classNameLower}Mapper).updateBy<@mybatisJavaIdMethod/>(any()); //验证执行了该语句
 	}
 	
 	@Test
 	public void removeById() {
 		service.removeById(id);
 		
-		verify(${classNameLower}Mapper).deleteById(id); //验证执行了该语句
+		verify(${classNameLower}Mapper).deleteBy<@mybatisJavaIdMethod/>(id); //验证执行了该语句
 	}
 	
 	@Test
 	public void getById() {
-		when(${classNameLower}Mapper.getById(id)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
+		when(${classNameLower}Mapper.selectBy<@mybatisJavaIdMethod/>(id)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
 		
 		${className} ${classNameLower} = service.getById(id);
 		
-		verify(${classNameLower}Mapper).selectById(id); //验证执行了该语句
+		verify(${classNameLower}Mapper).selectBy<@mybatisJavaIdMethod/>(id); //验证执行了该语句
 		assertNotNull(${classNameLower});
 	}
 	
