@@ -35,7 +35,7 @@ import java.util.List;
 <#include "/java_description.include">
  */
 @Service("${classNameLower}Service")
-public class ${className}ServiceMybatisImpl extends BaseService implements ${className}Service {
+public class ${className}ServiceImpl extends BaseService implements ${className}Service {
 
 	protected static final Logger logger = LoggerFactory.getLogger(${className}ServiceImpl.class);
 	
