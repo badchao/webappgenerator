@@ -16,6 +16,7 @@
 	
 	<sql id="commonWhere">
 		<where>
+			<!--  
 			<#list table.columns as column>
 			<#if column.isDateTimeColumn>
 			<if test="query.${column.columnNameLower}Begin != null">
@@ -30,6 +31,7 @@
 			</if>
 			</#if>
 			</#list>
+			-->
 		</where>
 	</sql>
 	
