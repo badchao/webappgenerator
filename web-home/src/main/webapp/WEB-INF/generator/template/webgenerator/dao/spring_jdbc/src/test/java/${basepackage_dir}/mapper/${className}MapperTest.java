@@ -3,8 +3,16 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.mapper;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.bigdata.ai.datafactory.${className}DataFactory;
+import com.bigdata.ai.query.${className}Query;
 
 import ${basepackage}.datafactory.${className}DataFactory;
 import ${basepackage}.mapper.${className}Mapper;
@@ -35,6 +43,17 @@ public class ${className}MapperTest extends BaseDaoTestCase {
 		${classNameLower}Mapper.insert(new${className}());
 	}
 
+	@Test
+	public void queryPage() {
+		Page page = new Page(1,100);
+		${className}Query query = ${className}DataFactory.new${className}Query();
+		
+		IPage result = ${classNameLower}Mapper.queryPage(page, query);
+		
+		assertNotNull(result);
+		//assertEquals(result.getTotal(),0);
+	}
+	
 	${className} new${className}() {
 		return ${className}DataFactory.new${className}();
 	}
