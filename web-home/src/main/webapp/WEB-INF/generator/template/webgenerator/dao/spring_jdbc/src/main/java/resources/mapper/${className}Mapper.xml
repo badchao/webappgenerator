@@ -40,7 +40,7 @@
 	<select id="queryPage" resultType="${className}">
 	    SELECT  
 	    <include refid="columns"/>
-	    FROM ${classNameLower}
+	    FROM ${table.sqlName}
 	    <include refid="commonWhere"/> 
 	</select>
 	
