@@ -10,13 +10,12 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
+import java.util.*;
 
-import ${basepackage}.datafactory.${className}DataFactory;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import java.util.*;
-
+import ${basepackage}.datafactory.${className}DataFactory;
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;
 import ${basepackage}.dao.*;
