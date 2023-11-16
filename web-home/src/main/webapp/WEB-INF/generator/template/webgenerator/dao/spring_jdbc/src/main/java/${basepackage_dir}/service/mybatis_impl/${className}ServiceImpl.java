@@ -146,7 +146,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	public List<${className}> findList(${className}Query query) {
 		Assert.notNull(query,"'query' must be not null");
 		IPage<${className}> r = ${classNameLower}Mapper.queryPage(toMybatisPage(query),query);
-		return toRapidPage(r).getItemList();
+		return r.getRecords();
 	}
 	
 <#list table.columns as column>
