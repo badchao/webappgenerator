@@ -42,7 +42,7 @@ public class ${className}Controller extends BaseController {
 	
 	@ApiOperation(value="创建")
 	@PostMapping
-	public void create(${className} ${classNameLower}) {
+	public void create(@RequestBody ${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},WRITE);
 		
 		${classNameLower}Service.create(${classNameLower});
@@ -50,7 +50,7 @@ public class ${className}Controller extends BaseController {
 	
 	@ApiOperation(value="修改")
 	@PostMapping
-	public void update(${className} ${classNameLower}) {
+	public void update(@RequestBody ${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},WRITE);
 		
 		${classNameLower}Service.updateByManual(${classNameLower});
@@ -58,7 +58,7 @@ public class ${className}Controller extends BaseController {
 	
 	@ApiOperation(value="删除")
 	@PostMapping
-	public void removeById(${className} ${classNameLower}) {
+	public void removeById(@RequestBody ${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},WRITE);
 		
 		${classNameLower}Service.removeById(${classNameLower});
@@ -66,22 +66,22 @@ public class ${className}Controller extends BaseController {
 
 	@ApiOperation(value="ID查找")
 	@GetMapping
-	public ${className} getById(boolean join,${className} ${classNameLower}) {
+	public ${className} getById(@RequestBody ${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},READ);
 		
 		${className} result = ${classNameLower}Service.getById(${classNameLower});
-		if(join) ${classNameLower}Service.join(result);
+		${classNameLower}Service.join(result);
 		
 		return result;
 	}
 	
 	@ApiOperation(value="分页查询")
 	@GetMapping
-	public Page<${className}> findPage(boolean join,${className}Query query,${className} ${classNameLower},HttpServletRequest request){
-		checkEntityPermission(getRequest(),${classNameLower},READ);
+	public Page<${className}> findPage(@RequestBody ${className}Query query){
+		checkEntityPermission(getRequest(),new ${className}(),READ);
 		
 		Page<${className}> result = ${classNameLower}Service.findPage(query);
-		if(join) result.forEach(${classNameLower}Service::join);
+		result.forEach(${classNameLower}Service::join);
 		
 		return result;
 	}
