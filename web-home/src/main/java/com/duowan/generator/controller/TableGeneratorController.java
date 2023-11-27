@@ -195,7 +195,7 @@ public class TableGeneratorController {
 			};
 
 			//每一条string组成: new String[include,dir,exclude]
-			String[][] controler_service_diy_layout = new String[][]{
+			String[][] controler_service_layout = new String[][]{
 					//service
 					new String[]{"/**/main/**/query/**","service"},
 					new String[]{"/**/main/**/model/**","service"},
@@ -224,9 +224,9 @@ public class TableGeneratorController {
 				
 		private Map<String,String[][]> layoutDirMappings = new HashMap();
 		{
-			layoutDirMappings.put("multi_project_dir_layout",multi_project_dir_layout_mappings);
+//			layoutDirMappings.put("multi_project_dir_layout",multi_project_dir_layout_mappings);
 			layoutDirMappings.put("vue_arechetype_layout",vue_arechetype_layout);
-			layoutDirMappings.put("controler_service_diy_layout",controler_service_diy_layout);
+			layoutDirMappings.put("controler_service_layout",controler_service_layout);
 		}
 		
 		public void execute() throws Exception {
