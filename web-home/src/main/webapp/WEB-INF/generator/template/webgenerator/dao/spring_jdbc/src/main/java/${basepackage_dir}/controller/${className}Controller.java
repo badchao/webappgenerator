@@ -24,7 +24,7 @@ import ${basepackage}.service.${className}Service;
 import com.github.rapid.common.util.page.Page;
 
 /**
- * [${table.tableAlias}] 用户前台  Controller
+ * [${table.tableAlias}] Controller
  * 
 <#include "/java_description.include">
  */
