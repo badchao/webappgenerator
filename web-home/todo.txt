@@ -1,4 +1,6 @@
 
+Dao层方法与Mybatis Mapper对齐: getById() => selectById(), update() => updateById()
+
 
 1. react javascript => typescript
 
