@@ -68,7 +68,7 @@ public class ${className}Controller extends BaseController {
 
 	@ApiOperation(value="ID查找")
 	@GetMapping
-	public ${className} getById(@RequestBody ${className} ${classNameLower}) {
+	public ${className} getById(${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},READ);
 		
 		${className} result = ${classNameLower}Service.getById(${classNameLower});
@@ -79,7 +79,7 @@ public class ${className}Controller extends BaseController {
 	
 	@ApiOperation(value="分页查询")
 	@GetMapping
-	public Page<${className}> findPage(@RequestBody ${className}Query query){
+	public Page<${className}> findPage(${className}Query query){
 		checkEntityPermission(getRequest(),new ${className}(),READ);
 		
 		Page<${className}> result = ${classNameLower}Service.findPage(query);
