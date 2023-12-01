@@ -31,7 +31,7 @@ import com.github.rapid.common.util.page.Page;
 
 @RestController
 @RequestMapping("/${classNameLower}")
-@Api("${className} API - ${table.tableAlias}")
+@Api(tags={"${table.tableAlias}"})
 public class ${className}Controller extends BaseController {
 	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
