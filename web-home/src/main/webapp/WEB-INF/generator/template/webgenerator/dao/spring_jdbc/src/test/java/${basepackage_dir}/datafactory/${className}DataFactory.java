@@ -20,6 +20,7 @@ public class ${className}DataFactory {
 		${className}Query query = new ${className}Query();
 		query.setPage(1);
 		query.setPageSize(10);
+		query.setKeyword("1");
 		
 		<#list table.columns as column>
 	  		<#if column.isDateTimeColumn && !column.contains("begin,start,end")>
