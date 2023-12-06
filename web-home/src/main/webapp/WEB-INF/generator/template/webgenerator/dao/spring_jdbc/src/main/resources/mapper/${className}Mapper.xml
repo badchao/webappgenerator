@@ -22,10 +22,10 @@
 			<#list table.columns as column>
 			<#if column.isDateTimeColumn>
 			<if test="query.${column.columnNameLower}Begin != null">
-				and ${column.sqlName} >= ${poundKey}{query.${column.columnNameLower}}Begin
+				and ${column.sqlName} >= ${poundKey}{query.${column.columnNameLower}Begin}
 			</if>
 			<if test="query.${column.columnNameLower}End != null">
-				and ${column.sqlName} &lt;= ${poundKey}{query.${column.columnNameLower}}End
+				and ${column.sqlName} &lt;= ${poundKey}{query.${column.columnNameLower}End}
 			</if>
 			<#else>
 			<if test="query.${column.columnNameLower} != null and query.${column.columnNameLower} != ''">
