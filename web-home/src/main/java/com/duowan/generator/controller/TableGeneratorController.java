@@ -262,7 +262,8 @@ public class TableGeneratorController {
 				
 				FileUtils.writeStringToFile(new File(outRoot,"generator.log"), memoryConsole.toString());
 				
-				response.setHeader("Content-Disposition", "attachment; filename=\"" + "generator_table_output.zip" + "\"");
+				String downloadFilename = basepackage + "_generator_table_output.zip";
+				response.setHeader("Content-Disposition", "attachment; filename=\"" + downloadFilename + "\"");
 				ZipHelper.zip(outRoot,response.getOutputStream());
 				
 //				FileUtils.copyDirectory(new File(outRoot), new File("E:/scm/xsj/dataanalyse/web_app_report"));
@@ -374,9 +375,12 @@ public class TableGeneratorController {
 			props.setProperty("java_typemapping.java.sql.Timestamp", "java.util.Date");
 			props.setProperty("java_typemapping.java.sql.Date", "java.util.Date");
 			props.setProperty("java_typemapping.java.sql.Time", "java.util.Date");
-			props.setProperty("java_typemapping.java.lang.Byte", "Integer");
-			props.setProperty("java_typemapping.java.lang.Short", "Integer");
+			
+			props.setProperty("java_typemapping.java.lang.Byte", "Boolean");
+			props.setProperty("java_typemapping.java.lang.Short", "Boolean");
+			
 			props.setProperty("java_typemapping.java.math.BigDecimal", "Double");
+			props.setProperty("java_typemapping.java.sql.Clob", "String");
 			props.setProperty("java_typemapping.java.sql.Clob", "String");
 			
 			props.setProperty("java_typemapping.java.lang.Integer", "Integer");
