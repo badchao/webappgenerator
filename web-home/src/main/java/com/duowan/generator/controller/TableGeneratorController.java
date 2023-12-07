@@ -376,8 +376,8 @@ public class TableGeneratorController {
 			props.setProperty("java_typemapping.java.sql.Date", "java.util.Date");
 			props.setProperty("java_typemapping.java.sql.Time", "java.util.Date");
 			
-			props.setProperty("java_typemapping.java.lang.Byte", "Boolean");
-			props.setProperty("java_typemapping.java.lang.Short", "Boolean");
+			props.setProperty("java_typemapping.java.lang.Byte", "Boolean"); //Integer or Boolean
+			props.setProperty("java_typemapping.java.lang.Short", "Boolean"); //Integer or Boolean
 			
 			props.setProperty("java_typemapping.java.math.BigDecimal", "Double");
 			props.setProperty("java_typemapping.java.sql.Clob", "String");
