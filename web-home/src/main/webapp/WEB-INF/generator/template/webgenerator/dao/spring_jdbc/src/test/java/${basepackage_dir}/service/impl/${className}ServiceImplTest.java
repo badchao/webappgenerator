@@ -32,7 +32,7 @@ public class ${className}ServiceImplTest {
 	
 	@Rule public TestName testName = new TestName();
 	
-	private ${className} id = new ${className}(<@generateArgumentsWithRandomValue table.pkColumns/>);
+	private ${className} id = new${className}();
 	
 	@Before
 	public void before() {
@@ -42,7 +42,7 @@ public class ${className}ServiceImplTest {
 	
 	@Test
 	public void create() {
-		${className} obj = ${className}DataFactory.new${className}();
+		${className} obj = new${className}();
 		service.create(obj);
 		
 		verify(${classNameLower}Dao).insert(obj); //验证执行了该语句
@@ -50,9 +50,9 @@ public class ${className}ServiceImplTest {
 	
 	@Test
 	public void update() {
-		when(${classNameLower}Dao.getById(id)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
+		when(${classNameLower}Dao.getById(id)).thenReturn(new${className}()); // mock方法调用
 		
-		${className} obj = ${className}DataFactory.new${className}();
+		${className} obj = new${className}();
 		service.update(obj);
 		
 		verify(${classNameLower}Dao).update(any()); //验证执行了该语句
@@ -67,7 +67,7 @@ public class ${className}ServiceImplTest {
 	
 	@Test
 	public void getById() {
-		when(${classNameLower}Dao.getById(id)).thenReturn(${className}DataFactory.new${className}()); // mock方法调用
+		when(${classNameLower}Dao.getById(id)).thenReturn(new${className}()); // mock方法调用
 		
 		${className} ${classNameLower} = service.getById(id);
 		
@@ -77,8 +77,12 @@ public class ${className}ServiceImplTest {
 	
 	@Test
 	public void check() {
-		${className} obj = ${className}DataFactory.new${className}();
+		${className} obj = new${className}();
 		service.check(obj);
+	}
+	
+	public ${className} new${className}() {
+		return ${className}DataFactory.new${className}();
 	}
 }
 
