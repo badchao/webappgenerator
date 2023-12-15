@@ -45,7 +45,7 @@ public class ${className}Controller extends BaseController {
 	@ApiOperation(value="创建")
 	@PostMapping
 	public void create(@RequestBody ${className} ${classNameLower}) {
-		checkEntityPermission(getRequest(),${classNameLower},WRITE);
+		checkEntityPermission(getRequest(),${classNameLower},CREATE);
 		
 		${classNameLower}Service.create(${classNameLower});
 	}
@@ -53,7 +53,7 @@ public class ${className}Controller extends BaseController {
 	@ApiOperation(value="修改")
 	@PostMapping
 	public void update(@RequestBody ${className} ${classNameLower}) {
-		checkEntityPermission(getRequest(),${classNameLower},WRITE);
+		checkEntityPermission(getRequest(),${classNameLower},UPDATE);
 		
 		${classNameLower}Service.updateByManual(${classNameLower});
 	}
@@ -61,7 +61,7 @@ public class ${className}Controller extends BaseController {
 	@ApiOperation(value="删除")
 	@PostMapping
 	public void removeById(@RequestBody ${className} ${classNameLower}) {
-		checkEntityPermission(getRequest(),${classNameLower},WRITE);
+		checkEntityPermission(getRequest(),${classNameLower},DELETE);
 		
 		${classNameLower}Service.removeById(${classNameLower});
 	}
