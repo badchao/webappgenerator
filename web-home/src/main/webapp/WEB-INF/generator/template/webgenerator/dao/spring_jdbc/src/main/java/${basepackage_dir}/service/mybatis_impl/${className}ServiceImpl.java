@@ -15,8 +15,8 @@ import org.springframework.util.Assert;
 import ${basepackage}.service.${className}Service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.bigdata.ai.model.${className};
-import com.bigdata.ai.query.${className}Query;
+import ${basepackage}.model.${className};
+import ${basepackage}.query.${className}Query;
 import com.github.rapid.common.util.holder.BeanValidatorHolder;
 import com.github.rapid.common.util.page.Page;
 

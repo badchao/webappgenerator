@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.bigdata.ai.datafactory.${className}DataFactory;
-import com.bigdata.ai.query.${className}Query;
+import ${basepackage}.datafactory.${className}DataFactory;
+import ${basepackage}.query.${className}Query;
 
 import ${basepackage}.datafactory.${className}DataFactory;
 import ${basepackage}.mapper.${className}Mapper;
