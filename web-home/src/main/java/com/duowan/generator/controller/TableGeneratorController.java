@@ -196,6 +196,7 @@ public class TableGeneratorController {
 
 			//每一条string组成: new String[include,dir,exclude]
 			String[][] controler_service_layout = new String[][]{
+				
 					//service
 					new String[]{"/**/main/**/query/**","service"},
 					new String[]{"/**/main/**/model/**","service"},
@@ -216,7 +217,7 @@ public class TableGeneratorController {
 					new String[]{"/**/main/**/webapp/wx_miniprogram/**","admin-front"},
 					
 					//admin-server
-					new String[]{"/**/main/**/admin/controller/*Controller.java","admin-server"},
+					new String[]{"/**/main/**/controller/*Controller.java","admin-server"},
 					
 					//user-server
 					//new String[]{"/**/main/**/controller/*Controller.java","user-server","/**/main/**/admin/controller/Admin*Controller.java"},
