@@ -1,6 +1,7 @@
 
 Dao层方法与Mybatis Mapper对齐: getById() => selectById(), update() => updateById()
 
+修复service.join() 方法，现在是空实现
 
 1. react javascript => typescript
 
