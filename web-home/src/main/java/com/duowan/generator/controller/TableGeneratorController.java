@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -22,20 +23,21 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.TeeOutputStream;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.duowan.generator.common.util.SqlHelper;
+import com.duowan.generator.common.util.ZipHelper;
+import com.github.rapid.common.util.holder.PropertiesHolder;
+
 import cn.org.rapid_framework.generator.GeneratorConstants;
 import cn.org.rapid_framework.generator.GeneratorContext;
 import cn.org.rapid_framework.generator.GeneratorFacade;
 import cn.org.rapid_framework.generator.util.FileHelper;
-
-import com.duowan.generator.common.util.SqlHelper;
-import com.duowan.generator.common.util.ZipHelper;
-import com.github.rapid.common.util.holder.PropertiesHolder;
 
 /**
  * 基于表的生成器
@@ -200,24 +202,25 @@ public class TableGeneratorController {
 					//service
 					new String[]{"/**/main/**/query/**","service"},
 					new String[]{"/**/main/**/model/**","service"},
-					new String[]{"/**/main/**/dao/**","service"},
+					//new String[]{"/**/main/**/dao/**","service"},
 					new String[]{"/**/main/**/mapper/**","service"},
 					new String[]{"/**/main/**/util/**","service"},
+					new String[]{"/**/main/**/service/**","service"},
 					new String[]{"/**/main/resources/freemarker_sql/**","service"},
 					new String[]{"/**/test/resources/testdata/**","service"},
-					new String[]{"/**/test/**/dao/**","service"},
+					//new String[]{"/**/test/**/dao/**","service"},
 					new String[]{"/**/test/**/mapper/**","service"},
 					new String[]{"/**/test/**/*DataFactory.java","service"},
 					new String[]{"/**/test/**/service/**","service"},
 					new String[]{"/**/test/**/*DataFactory.java","service"},
-					new String[]{"/**/main/**/service/**","service"},
 					
 					//admin-front
 					new String[]{"/**/main/**/webapp/nodejs_vue/**","admin-front"},
 					new String[]{"/**/main/**/webapp/wx_miniprogram/**","admin-front"},
 					
 					//admin-server
-					new String[]{"/**/main/**/controller/*Controller.java","admin-server"},
+					new String[]{"/**/main/**/controller/**","admin-server"},
+					new String[]{"/**/test/**/controller/**","admin-server"},
 					
 					//user-server
 					//new String[]{"/**/main/**/controller/*Controller.java","user-server","/**/main/**/admin/controller/Admin*Controller.java"},
@@ -263,7 +266,8 @@ public class TableGeneratorController {
 				
 				FileUtils.writeStringToFile(new File(outRoot,"generator.log"), memoryConsole.toString());
 				
-				String downloadFilename = basepackage + "_generator_table_output.zip";
+				String date = DateFormatUtils.format(new Date(), "yyyy-MM-dd");
+				String downloadFilename = basepackage + "_generator_table_output_"+date+".zip";
 				response.setHeader("Content-Disposition", "attachment; filename=\"" + downloadFilename + "\"");
 				ZipHelper.zip(outRoot,response.getOutputStream());
 				

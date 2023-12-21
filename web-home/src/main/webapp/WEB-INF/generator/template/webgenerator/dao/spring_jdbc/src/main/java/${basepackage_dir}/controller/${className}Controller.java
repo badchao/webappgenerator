@@ -36,7 +36,7 @@ public class ${className}Controller extends BaseController {
 	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
     @Autowired
-    private ${className}Service ${classNameLower}Service;
+    ${className}Service ${classNameLower}Service;
 
 	public void set${className}Service(${className}Service ${classNameLower}Service) {
 		this.${classNameLower}Service = ${classNameLower}Service;
