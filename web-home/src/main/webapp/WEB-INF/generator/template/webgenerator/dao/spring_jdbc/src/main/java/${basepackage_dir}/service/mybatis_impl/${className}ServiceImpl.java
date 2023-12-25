@@ -92,7 +92,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 
 		//不可以让客户端可以更新所有属性
 		${className} target = getById(${classNameLower});
-		BeanUtils.copyProperties(${classNameLower}, target,"createTime"); //ignore some copy property
+		BeanUtils.copyProperties(${classNameLower}, target,"createTime","creator"); //ignore some copy property
 		
 		return update(target);
     }	
