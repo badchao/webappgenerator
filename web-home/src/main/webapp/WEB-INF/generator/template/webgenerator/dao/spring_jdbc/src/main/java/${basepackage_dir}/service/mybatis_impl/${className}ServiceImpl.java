@@ -43,7 +43,16 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	* 请删除无用的方法，本代码生成器的理念是: 1. 一次生成，后期手工修改代码 2. 删除代码比手写重复代码快捷，所以请删除无用代码
 	*/
 	@Autowired
-	private ${className}Mapper ${classNameLower}Mapper;
+	${className}Mapper ${classNameLower}Mapper;
+	
+	<#list table.importedKeys.associatedTables?values as foreignKey>
+	<#assign fkSqlTable = foreignKey.sqlTable>
+	<#assign fkTable    = fkSqlTable.className>
+	<#assign fkPojoClass = fkSqlTable.className>
+	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
+	@Autowired
+	${fkPojoClass}Service ${fkPojoClassVar}Service;
+	</#list> 
 	
 	public void set${className}Mapper(${className}Mapper mapper) {
 		this.${classNameLower}Mapper = mapper;
@@ -102,6 +111,13 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
      */
     @Transactional(propagation=Propagation.NOT_SUPPORTED)
     public ${className} join(${className} ${classNameLower}) {
+    	<#list table.importedKeys.associatedTables?values as foreignKey>
+    	<#assign fkSqlTable = foreignKey.sqlTable>
+    	<#assign fkTable    = fkSqlTable.className>
+    	<#assign fkPojoClass = fkSqlTable.className>
+    	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
+    	//${classNameLower}.set${fkPojoClass}(${fkPojoClassVar}Service.getById(${classNameLower}.get${fkPojoClass}Id()));
+    	</#list>    	
     	return ${classNameLower};
     }
     

@@ -21,6 +21,7 @@ import javax.persistence.Id;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
 
 /**
@@ -135,6 +136,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
 	
 	@TableField(exist = false)
+	@JsonIgnore
 	private Set ${fkPojoClassVar}s = new HashSet(0);
 	public Set<${fkPojoClass}> get${fkPojoClass}s() {
 		return ${fkPojoClassVar}s;
