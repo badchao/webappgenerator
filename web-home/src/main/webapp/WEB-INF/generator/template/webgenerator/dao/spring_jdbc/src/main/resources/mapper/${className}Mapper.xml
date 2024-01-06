@@ -12,7 +12,11 @@
 
 <mapper namespace="${basepackage}.mapper.${className}Mapper">
 
+	<sql id="columns">*</sql>
+	
+	<!--
 	<sql id="columns"><@generateSqlSelectColumns table.columns/></sql>
+	-->
 	
 	<sql id="commonWhere">
 		<where>
@@ -39,8 +43,8 @@
 	
 	<select id="queryPage" resultType="${className}">
 	    SELECT  
-	    <include refid="columns"/>
-	    FROM ${table.sqlName}
+	    <include refid="columns"/> 
+	    FROM ${table.sqlName} 
 	    <include refid="commonWhere"/> 
 	</select>
 	
