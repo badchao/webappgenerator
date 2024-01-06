@@ -53,7 +53,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	@MppMultiId	
 		</#if>
 	</#if>
-	@ApiModelProperty(value = "${column.columnAlias!}", example = "",notes = "", required = false)
+	@ApiModelProperty(value = "${column.columnAlias!} ${column.pk?string('主键ID','')}", example = "",notes = "", required = false)
 	${column.hibernateValidatorExprssion}
 	private ${column.javaType} ${column.columnNameLower};
 	
