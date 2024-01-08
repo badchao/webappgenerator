@@ -107,6 +107,8 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
      */
     @Transactional(propagation=Propagation.NOT_SUPPORTED)
     public ${className} join(${className} ${classNameLower}) {
+    	if(${classNameLower} == null) return null;
+    	
     	<#list table.importedKeys.associatedTables?values as foreignKey>
     	<#assign fkSqlTable = foreignKey.sqlTable>
     	<#assign fkTable    = fkSqlTable.className>
