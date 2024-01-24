@@ -137,6 +137,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	
 	@TableField(exist = false)
 	@JsonIgnore
+	@ApiModelProperty(hidden = true)
 	private Set ${fkPojoClassVar}s = new HashSet(0);
 	public Set<${fkPojoClass}> get${fkPojoClass}s() {
 		return ${fkPojoClassVar}s;
