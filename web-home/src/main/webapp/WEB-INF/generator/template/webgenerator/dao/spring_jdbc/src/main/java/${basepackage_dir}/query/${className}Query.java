@@ -10,8 +10,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
-import com.github.rapid.common.util.page.PageQuery;
-
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -19,7 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
  * 
 <#include "/java_description.include">
  */
-public class ${className}Query extends PageQuery implements Serializable {
+public class ${className}Query extends BaseQuery implements Serializable {
     private static final long serialVersionUID = 1;
     
     //搜索关键字,不区分列，模糊搜索使用
