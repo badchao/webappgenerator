@@ -96,7 +96,7 @@ public class ${className}Controller extends BaseController {
 	public void download(${className}Query query) {
 		Page<${className}> result = findPage(query);
 
-		String fileName = "download_"+getClass().getSimpleName();
+		String fileName = "download_" + ${className}.class.getSimpleName();
 		HttpServletResponse response = getResponse();
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
