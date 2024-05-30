@@ -4,6 +4,7 @@
 package ${basepackage}.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,12 +16,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.alibaba.excel.EasyExcel;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
 import ${basepackage}.model.${className};
 import ${basepackage}.query.${className}Query;
-import ${basepackage}.service.${className}Service;
+
 import com.github.rapid.common.util.page.Page;
 
 /**
@@ -58,7 +61,7 @@ public class ${className}Controller extends BaseController {
 		${classNameLower}Service.updateByManual(${classNameLower});
 	}
 	
-	@ApiOperation(value="删除")
+	@ApiOperation(value="根据ID删除")
 	@PostMapping
 	public void removeById(@RequestBody ${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},DELETE);
@@ -66,7 +69,7 @@ public class ${className}Controller extends BaseController {
 		${classNameLower}Service.removeById(${classNameLower});
 	}
 
-	@ApiOperation(value="ID查找")
+	@ApiOperation(value="根据ID查找")
 	@GetMapping
 	public ${className} getById(${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},READ);
@@ -88,5 +91,21 @@ public class ${className}Controller extends BaseController {
 		return result;
 	}
 	
+	@ApiOperation(value="导出下载")
+	@GetMapping
+	public void download(${className}Query query) {
+		Page<${className}> result = findPage(query);
+
+		String fileName = "download_"+getClass().getSimpleName();
+		HttpServletResponse response = getResponse();
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+
+        EasyExcel.write(response.getOutputStream(), ${className}.class)
+//        .excelType(ExcelTypeEnum.CSV)
+        .inMemory(true)
+        .sheet(fileName)
+        .doWrite(result);
+	}
 }
 
