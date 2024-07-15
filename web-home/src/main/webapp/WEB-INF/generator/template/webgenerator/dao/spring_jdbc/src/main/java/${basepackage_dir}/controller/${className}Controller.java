@@ -93,7 +93,7 @@ public class ${className}Controller extends BaseController {
 	
 	@ApiOperation(value="导出下载")
 	@GetMapping
-	public void download(${className}Query query) {
+	public void download(${className}Query query) throws java.io.IOException {
 		Page<${className}> result = findPage(query);
 
 		String fileName = "download_" + ${className}.class.getSimpleName();
