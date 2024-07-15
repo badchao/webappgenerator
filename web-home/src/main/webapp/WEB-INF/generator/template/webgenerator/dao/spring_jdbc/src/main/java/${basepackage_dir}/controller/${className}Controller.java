@@ -105,7 +105,7 @@ public class ${className}Controller extends BaseController {
 //        .excelType(ExcelTypeEnum.CSV)
         .inMemory(true)
         .sheet(fileName)
-        .doWrite(result);
+        .doWrite(result.getItemList());
 	}
 }
 
