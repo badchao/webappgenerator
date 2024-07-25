@@ -41,7 +41,7 @@
 		</where>
 	</sql>
 	
-	<select id="queryPage" resultType="${className}">
+	<select id="queryPage" resultType="${basepackage}.model.${className}">
 	    SELECT  
 	    <include refid="columns"/> 
 	    FROM ${table.sqlName} 
