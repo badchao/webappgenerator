@@ -95,13 +95,15 @@ public class ${className}Controller extends BaseController {
 	@GetMapping
 	public void download(${className}Query query) throws java.io.IOException {
 		Page<${className}> result = findPage(query);
-
-		String fileName = "download_" + ${className}.class.getSimpleName();
+		
+		Class headClazz = ${className}.class;
+		
+		String fileName = "download_" + headClazz.getSimpleName();
 		HttpServletResponse response = getResponse();
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
 
-        EasyExcel.write(response.getOutputStream(), ${className}.class)
+        EasyExcel.write(response.getOutputStream(), headClazz)
 //        .excelType(ExcelTypeEnum.CSV)
 //        .inMemory(true)
         .sheet("sheet1")
