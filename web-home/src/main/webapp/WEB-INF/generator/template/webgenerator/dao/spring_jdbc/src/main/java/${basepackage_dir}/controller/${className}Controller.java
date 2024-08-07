@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.aigc.server.dto.DailyLlmStatForReportDownloadDto;
 import com.alibaba.excel.EasyExcel;
 
 import io.swagger.annotations.Api;
@@ -93,21 +95,10 @@ public class ${className}Controller extends BaseController {
 	
 	@ApiOperation(value="导出下载")
 	@GetMapping
-	public void download(${className}Query query) throws java.io.IOException {
+	public void download(${className}Query query)  {
 		Page<${className}> result = findPage(query);
-		
-		Class headClazz = ${className}.class;
-		
-		String fileName = "download_" + headClazz.getSimpleName() + ".xlsx";
-		HttpServletResponse response = getResponse();
-        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName);
-
-        EasyExcel.write(response.getOutputStream(), headClazz)
-//        .excelType(ExcelTypeEnum.CSV)
-//        .inMemory(true)
-        .sheet("sheet1")
-        .doWrite(result.getItemList());
+		writeExcel2Response(getResponse(),result.getItemList(),${className}.class);
 	}
+	
 }
 
