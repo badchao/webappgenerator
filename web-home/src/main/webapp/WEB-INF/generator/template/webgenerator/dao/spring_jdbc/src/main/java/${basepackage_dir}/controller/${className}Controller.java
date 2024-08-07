@@ -103,8 +103,8 @@ public class ${className}Controller extends BaseController {
 
         EasyExcel.write(response.getOutputStream(), ${className}.class)
 //        .excelType(ExcelTypeEnum.CSV)
-        .inMemory(true)
-        .sheet(fileName)
+//        .inMemory(true)
+        .sheet("sheet1")
         .doWrite(result.getItemList());
 	}
 }
