@@ -98,10 +98,10 @@ public class ${className}Controller extends BaseController {
 		
 		Class headClazz = ${className}.class;
 		
-		String fileName = "download_" + headClazz.getSimpleName();
+		String fileName = "download_" + headClazz.getSimpleName() + ".xlsx";
 		HttpServletResponse response = getResponse();
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName);
 
         EasyExcel.write(response.getOutputStream(), headClazz)
 //        .excelType(ExcelTypeEnum.CSV)
