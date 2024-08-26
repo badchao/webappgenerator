@@ -34,7 +34,7 @@ public class ${className}DataFactory {
 	  		obj.set${column.columnName}(new ${column.javaType}("1"));
 			</#if>
 		</#list>
-		return query;
+		return obj;
 	}
 	
 	public static ${className} new${className}() {
