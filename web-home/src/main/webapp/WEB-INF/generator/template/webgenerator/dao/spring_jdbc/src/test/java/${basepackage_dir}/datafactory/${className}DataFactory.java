@@ -9,7 +9,8 @@ import ${basepackage}.model.*;
 import ${basepackage}.query.*;
 
 /**
- * 用于生成${className}相关数据对象的默认值
+ * 生成${className}相关数据对象的默认值
+ * 用于测试数据生成
  * 
 <#include "/java_description.include">
  * 
