@@ -46,7 +46,7 @@ import com.github.rapid.common.jdbc.sqlgenerator.metadata.Table;
 <#include "/java_description.include">
 */
 @Repository("${classNameLower}Dao")
-@CacheConfig(cacheNames="${className?lower_case}")
+@CacheConfig(cacheNames="${className?lower_case}" ,cacheManager="memoryCacheManager")  //memoryCacheManager or redisCacheManager
 public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 
 	private static final Logger logger = LoggerFactory.getLogger(${className}DaoImpl.class);
