@@ -50,6 +50,14 @@ public class ${className}Query extends BaseQuery implements Serializable {
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}
+
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+	
+	public boolean equals(Object other) {
+		return EqualsBuilder.reflectionEquals(this, other);
+	}
 	
 }
 
