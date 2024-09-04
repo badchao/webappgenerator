@@ -29,7 +29,7 @@ import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
  * 
 <#include "/java_description.include">
  */
-@ApiModel(value = "${table.tableAlias}", description = "")
+@ApiModel(description = "${table.tableAlias}")
 public class ${className}  implements java.io.Serializable,Cloneable{
 	private static final long serialVersionUID = 1;
 	

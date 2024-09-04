@@ -10,6 +10,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -17,6 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  * 
 <#include "/java_description.include">
  */
+@ApiModel(description = "${table.tableAlias}-查询对象")
 public class ${className}Query extends BaseQuery implements Serializable {
     private static final long serialVersionUID = 1;
     
