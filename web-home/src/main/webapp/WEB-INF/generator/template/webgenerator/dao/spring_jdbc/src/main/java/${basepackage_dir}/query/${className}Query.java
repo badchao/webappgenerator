@@ -73,6 +73,7 @@ public class ${className}Query extends BaseQuery implements Serializable {
 	@ApiModelProperty(value = "${column.columnAlias!}", example = "", required = false)
 	private ${column.javaType} ${column.columnNameLower};
 	</#if>
+	
 	</#list>
 
 </#macro>
