@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.aigc.server.dto.DailyLlmStatForReportDownloadDto;
 import com.alibaba.excel.EasyExcel;
 
 import io.swagger.annotations.Api;
@@ -25,6 +24,7 @@ import io.swagger.annotations.ApiOperation;
 
 import ${basepackage}.model.${className};
 import ${basepackage}.query.${className}Query;
+import ${basepackage}.service.${className}Service;
 
 import com.github.rapid.common.util.page.Page;
 
