@@ -55,7 +55,7 @@ public class ${className}ServiceImplTest {
 		${className} obj = new${className}();
 		service.update(obj);
 		
-		verify(${classNameLower}Mapper).updateBy<@mybatisJavaIdMethod/>(any()); //验证执行了该语句
+		verify(${classNameLower}Mapper).updateBy<@mybatisJavaIdMethod/>(obj); //验证执行了该语句
 	}
 	
 	@Test

@@ -55,7 +55,7 @@ public class ${className}ServiceImplTest {
 		${className} obj = new${className}();
 		service.update(obj);
 		
-		verify(${classNameLower}Dao).update(any()); //验证执行了该语句
+		verify(${classNameLower}Dao).update(obj); //验证执行了该语句
 	}
 	
 	@Test
