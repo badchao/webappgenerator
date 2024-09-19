@@ -77,13 +77,27 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 	
 	@Test
 	public void findPage() {
-		${className}Query query = new ${className}Query();
+		${className}Query query = new${className}Query();
 		when(${classNameLower}Service.findPage(query)).thenReturn(new Page()); // mock方法调用
 		
 		Page page = controller.findPage(query);
 		
 		verify(${classNameLower}Service).findPage(query); //验证执行了该语句
 		assertNotNull(page);
+	}
+
+	@Test
+	public void download() {
+		${className}Query query = new${className}Query();
+		when(${classNameLower}Service.findPage(query)).thenReturn(new Page()); // mock方法调用
+		
+		controller.download(query);
+		
+		verify(${classNameLower}Service).findPage(query); //验证执行了该语句
+	}
+	
+	private ${className}Query new${className}Query() {
+		return new ${className}Query();
 	}
 	
 	private ${className} new${className}() {
