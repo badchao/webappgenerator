@@ -28,6 +28,9 @@ import ${basepackage}.service.${className}Service;
 
 import com.github.rapid.common.util.page.Page;
 
+import java.util.Map;
+import java.util.HashMap;
+
 /**
  * [${table.tableAlias}] Controller
  * 
@@ -45,6 +48,15 @@ public class ${className}Controller extends BaseController {
 
 	public void set${className}Service(${className}Service ${classNameLower}Service) {
 		this.${classNameLower}Service = ${classNameLower}Service;
+	}
+	
+	@ApiOperation(value="元数据查询,返回所有搜索条件")
+	@PostMapping
+	public Map meta(@RequestBody ${className} ${classNameLower}) {
+		checkEntityPermission(getRequest(),${classNameLower},READ);
+		
+		Map<String,Object> result = new HashMap<String,Object>();
+		return result;
 	}
 	
 	@ApiOperation(value="创建")
