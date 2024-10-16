@@ -53,7 +53,7 @@ public class ${className}Controller extends BaseController {
 	@ApiOperation(value="元数据查询,返回所有搜索条件")
 	@GetMapping
 	public Map meta() {
-		checkEntityPermission(getRequest(),${classNameLower},READ);
+		checkEntityPermission(getRequest(),new ${className}(),READ);
 		
 		Map<String,Object> result = new HashMap<String,Object>();
 		return result;
