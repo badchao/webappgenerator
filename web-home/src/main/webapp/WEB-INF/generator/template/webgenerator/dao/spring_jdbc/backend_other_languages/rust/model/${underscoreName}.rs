@@ -11,6 +11,7 @@ use serde::{Deserialize, Serialize};
 use diesel::{Queryable, Insertable, AsChangeset};
 use diesel::sql_types::{BigInt, Text, Numeric};
 use chrono::NaiveDateTime;
+use chrono::NaiveDate;
 
 <#if 1 < table.pkCount>
 #[derive(Debug,Clone,Queryable, Serialize, Deserialize)]

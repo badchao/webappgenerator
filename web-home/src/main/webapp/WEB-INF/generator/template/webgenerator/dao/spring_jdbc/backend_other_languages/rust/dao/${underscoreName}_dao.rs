@@ -5,10 +5,11 @@
 
 use axum::extract::RawPathParams;
 use diesel::{prelude::*, pg::PgConnection, query_dsl::methods::BoxedDsl};
+use diesel::pg::Pg;
+
 use crate::model::${underscoreName}::*;
 use crate::dto::${underscoreName}_query::${className}Query;
 
-use diesel::pg::Pg;
 
 
 pub struct ${className}Dao;
