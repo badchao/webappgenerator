@@ -34,7 +34,7 @@ public interface ${className}WebService {
 	/** 
 	 * 删除${className}
 	 **/
-    public void removeById(<@generateArguments table.pkColumns/>);
+    public void remove(<@generateArguments table.pkColumns/>);
     
 	/** 
 	 * 根据ID得到${className}

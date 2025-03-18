@@ -147,7 +147,7 @@ var ${className}Main = Vue.extend({
 				 <#list table.pkColumns as column>
 				 var ${column.columnNameLower} = ${classNameFirstLower}.${column.columnNameLower};
 				 </#list>
-			 	 ${className}WebService.removeById(<@generatePassingParameters table.pkColumns/>,function(response) {
+			 	 ${className}WebService.remove(<@generatePassingParameters table.pkColumns/>,function(response) {
 			 		_this.query();
 			 	 });
 			  }

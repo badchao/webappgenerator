@@ -14,9 +14,9 @@ var ${className}Client = {
 		    params: params
 		  })
 	},
-	removeById: function(params) {
+	remove: function(params) {
 		return request({
-		    url: '/admin/${classNameLowerCase}/removeById',
+		    url: '/admin/${classNameLowerCase}/remove',
 		    method: 'post',
 		    params: params
 		  })

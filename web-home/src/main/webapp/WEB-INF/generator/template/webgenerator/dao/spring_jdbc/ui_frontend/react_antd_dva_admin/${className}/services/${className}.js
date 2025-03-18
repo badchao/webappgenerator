@@ -26,7 +26,7 @@ export function getById(params) {
 
 
 export function remove(params) {
-    return rpc(`/${classNameLower}/removeById`, {
+    return rpc(`/${classNameLower}/remove`, {
         method: 'POST',
         requestType:'form',
         data: params,

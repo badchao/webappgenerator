@@ -60,10 +60,10 @@ public class Admin${className}Controller extends BaseController {
 	
 	@ApiOperation(value="删除")
 	@PostMapping
-	public void removeById(${className} ${classNameLower},HttpServletRequest request) {
+	public void remove(${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,WRITE);
 		
-		${classNameLower}Service.removeById(${classNameLower});
+		${classNameLower}Service.remove(${classNameLower});
 	}
 
 	@ApiOperation(value="ID查找")

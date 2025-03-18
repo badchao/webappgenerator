@@ -127,7 +127,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 * 删除${className}
 	 **/
     @Override
-    public void removeById(${className} ${classNameLower}) {
+    public void remove(${className} ${classNameLower}) {
         ${classNameLower}Mapper.deleteBy<@mybatisJavaIdMethod/>(${classNameLower});
     }
     

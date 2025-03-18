@@ -78,10 +78,10 @@ public class ${className}Controller extends BaseController {
 	
 	@ApiOperation(value="根据ID删除")
 	@PostMapping
-	public void removeById(@RequestBody ${className} ${classNameLower}) {
+	public void remove(@RequestBody ${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},DELETE);
 		
-		${classNameLower}Service.removeById(${classNameLower});
+		${classNameLower}Service.remove(${classNameLower});
 	}
 
 	@ApiOperation(value="根据ID查找")

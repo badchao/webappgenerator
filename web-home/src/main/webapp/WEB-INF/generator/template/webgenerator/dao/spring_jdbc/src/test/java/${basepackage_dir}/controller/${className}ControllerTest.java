@@ -58,10 +58,10 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 	}
 	
 	@Test
-	public void removeById() {
-		controller.removeById(id);
+	public void remove() {
+		controller.remove(id);
 		
-		verify(${classNameLower}Service).removeById(id); //验证执行了该语句
+		verify(${classNameLower}Service).remove(id); //验证执行了该语句
 	}
 	
 	@Test

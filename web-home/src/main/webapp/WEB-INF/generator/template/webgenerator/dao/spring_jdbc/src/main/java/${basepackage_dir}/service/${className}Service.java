@@ -44,7 +44,7 @@ public interface ${className}Service extends Service{
 	/** 
 	 * 删除${className}
 	 **/
-    public void removeById(${className} ${classNameLower});
+    public void remove(${className} ${classNameLower});
     
 	/** 
 	 * 根据ID得到${className}

@@ -40,8 +40,8 @@ var ${className}Client = {
     appWs.wsRequest("${className}WebService/update", data, success, fail);
   },
 
-  removeById:function(data,success,fail){
-    appWs.wsRequest("${className}WebService/removeById", data, success,fail);
+  remove:function(data,success,fail){
+    appWs.wsRequest("${className}WebService/remove", data, success,fail);
   },
 
   getById: function (data, success, fail) {

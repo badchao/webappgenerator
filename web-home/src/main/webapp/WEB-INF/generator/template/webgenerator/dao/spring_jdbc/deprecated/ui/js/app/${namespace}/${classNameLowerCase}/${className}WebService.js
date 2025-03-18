@@ -22,9 +22,9 @@ var ${className}WebService = {
 		$.jsonp(${classNameFirstLower}WsUrl+"/getById",pk,AppUtil.wsCallback(success,error));
 	},
 	
-	removeById : function(<@generatePassingParameters table.pkColumns/>,success,error) {
+	remove : function(<@generatePassingParameters table.pkColumns/>,success,error) {
 		var pk = <#compress>{<#list table.pkColumns as column>${column.columnNameLower} : ${column.columnNameLower}<#if column_has_next>,</#if></#list>};</#compress>
-		$.jsonp(${classNameFirstLower}WsUrl+"/removeById",pk,AppUtil.wsCallback(success,error));
+		$.jsonp(${classNameFirstLower}WsUrl+"/remove",pk,AppUtil.wsCallback(success,error));
 	},
 	
 	create : function(${classNameFirstLower},success,error) {

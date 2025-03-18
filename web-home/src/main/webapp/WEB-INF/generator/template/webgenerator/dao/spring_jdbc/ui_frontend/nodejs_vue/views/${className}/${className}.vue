@@ -134,8 +134,8 @@
           })
         },
         
-        removeById(data) {
-          ${className}Client.removeById(data).then(response => {
+        remove(data) {
+          ${className}Client.remove(data).then(response => {
             if (response) {
               this.refresh();
               this.$message({
@@ -165,7 +165,7 @@
             type: 'warning'
           }).then(() => {
             var row = this.tableData[index];
-            this.removeById(row);
+            this.remove(row);
           })
         },
         

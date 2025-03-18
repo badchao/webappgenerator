@@ -50,8 +50,8 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 	}
 
 	@Override
-	public void removeById(<@generateArguments table.pkColumns/>) {
-		${classNameLower}Service.removeById(new ${className}(<@generatePassingParameters table.pkColumns/>));
+	public void remove(<@generateArguments table.pkColumns/>) {
+		${classNameLower}Service.remove(new ${className}(<@generatePassingParameters table.pkColumns/>));
 	}
 
 	@Override

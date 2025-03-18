@@ -72,7 +72,7 @@ Page({
       title: '确认删除?',
       success: function (sm) {
         if (sm.confirm) {
-          ${className}Client.removeById(selectData, function (res) {
+          ${className}Client.remove(selectData, function (res) {
             that.execSearch(that.data.page);
           });
         }

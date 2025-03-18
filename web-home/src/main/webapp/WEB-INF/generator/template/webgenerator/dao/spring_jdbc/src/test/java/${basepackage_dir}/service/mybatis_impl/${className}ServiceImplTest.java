@@ -59,8 +59,8 @@ public class ${className}ServiceImplTest {
 	}
 	
 	@Test
-	public void removeById() {
-		service.removeById(id);
+	public void remove() {
+		service.remove(id);
 		
 		verify(${classNameLower}Mapper).deleteBy<@mybatisJavaIdMethod/>(id); //验证执行了该语句
 	}

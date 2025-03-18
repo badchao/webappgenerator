@@ -21,7 +21,7 @@ export function getById(params) {
 
 
 export function remove(params) {
-    return request(`/${classNameLower}/removeById`, {
+    return request(`/${classNameLower}/remove`, {
         method: 'POST',
         requestType:'form',
         data: params,
