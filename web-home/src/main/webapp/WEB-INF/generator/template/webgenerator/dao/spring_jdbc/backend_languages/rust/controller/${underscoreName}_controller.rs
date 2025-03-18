@@ -22,7 +22,7 @@ pub fn service_config_${underscoreName}(cfg: &mut web::ServiceConfig) {
     cfg.service(update);
     cfg.service(create);
     cfg.service(delete);
-    cfg.service(get_by_id);
+    cfg.service(getone);
 }
 
 #[get("/meta")]
