@@ -9,7 +9,7 @@
 
 use serde::{Deserialize, Serialize};
 use diesel::{Queryable, Insertable, AsChangeset};
-use diesel::sql_types::{BigInt, Text, Numeric};
+use diesel::sql_types::*;
 use chrono::NaiveDateTime;
 use chrono::NaiveDate;
 
