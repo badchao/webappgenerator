@@ -13,7 +13,7 @@ use diesel::sql_types::{BigInt, Text, Numeric};
 use chrono::NaiveDateTime;
 
 <#if 1 < table.pkCount>
-#[derive(Debug,Queryable, Serialize, Deserialize)]
+#[derive(Debug,Clone,Queryable, Serialize, Deserialize)]
 pub struct ${className}Id {
 	<#list table.pkColumns as column>
     pub ${column.underscoreName} : <@rustType column/>,
@@ -21,7 +21,7 @@ pub struct ${className}Id {
 }
 </#if>
 
-#[derive(Debug, Insertable,Queryable, Serialize, Deserialize, AsChangeset)]
+#[derive(Debug,Clone, Insertable,Queryable, Serialize, Deserialize, AsChangeset)]
 #[diesel(table_name = ${underscoreName})]
 pub struct ${className} {
 	<#list table.columns as column>

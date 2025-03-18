@@ -8,7 +8,7 @@
 use serde::{Deserialize, Serialize};
 
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug,Clone, Serialize, Deserialize)]
 pub struct ${className}Query{
 	<#list table.columns as column>
 	pub ${column.underscoreName} : Option<<@rustType column/>>,
