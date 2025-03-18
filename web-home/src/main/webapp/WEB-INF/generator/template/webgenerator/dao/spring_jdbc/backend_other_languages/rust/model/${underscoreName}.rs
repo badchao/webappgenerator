@@ -30,7 +30,7 @@ pub struct ${className} {
 	 */
 	<#if column.pk>
 	</#if>
-	pub ${column.underscoreName} : <@rustType column/>,
+	pub ${column.underscoreName} : <@rustTypeWithOption column/>,
 
 	</#list>
     
@@ -39,11 +39,12 @@ pub struct ${className} {
 diesel::table! {
     ${underscoreName} (<#list table.pkColumns as column>${column.underscoreName}<#if column_has_next>,</#if></#list>) {
 	<#list table.columns as column>
-		${column.underscoreName} -> <@rustType column/>,
+		<#if column.pk>
+		#[diesel(primary_key)]
+	    </#if>
+		${column.underscoreName} -> <@rustDieselTableTypeWithOption column/>,
+		
 	</#list>
-		org_id -> BigInt,
-		ip -> Text,
-		battery_soc -> Double,
     }
 }
 
