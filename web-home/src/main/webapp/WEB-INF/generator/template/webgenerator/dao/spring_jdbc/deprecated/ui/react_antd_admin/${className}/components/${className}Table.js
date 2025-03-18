@@ -34,7 +34,7 @@ class ${className}Table extends Component {
 
     doPageChange = (current) => {
         this.dispatch({
-            type: '${classNameLower}/findPage',
+            type: '${classNameLower}/query',
             payload: { current },
         });
     }

@@ -12,9 +12,9 @@ var globalWsUrl = globalWsUrl ? globalWsUrl : '/rpc';
 var ${classNameFirstLower}WsUrl = globalWsUrl + "/${className}WebService";
 var ${className}WebService = {
 
-	findPage : function(query,success,error) {
+	query : function(query,success,error) {
 		var q = ${className}Util.convertQuery(query);
-		$.jsonp(${classNameFirstLower}WsUrl+"/findPage",q,AppUtil.wsCallback(success,error));
+		$.jsonp(${classNameFirstLower}WsUrl+"/query",q,AppUtil.wsCallback(success,error));
 	},
 	
 	getById : function(<@generatePassingParameters table.pkColumns/>,success,error) {

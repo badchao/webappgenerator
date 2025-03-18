@@ -35,9 +35,9 @@ var ${className}Client = {
 		    params: params
 		  })
 	},
-	findPage: function(params) {
+	query: function(params) {
 		return request({
-		    url: '/admin/${classNameLowerCase}/findPage',
+		    url: '/admin/${classNameLowerCase}/query',
 		    method: 'get',
 		    params: params
 		  })

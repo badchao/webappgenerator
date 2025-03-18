@@ -5,8 +5,8 @@
 
 import request from '@/utils/request';
 
-export function findPage(params) {
-    return request(`/${classNameLower}/findPage`,{
+export function query(params) {
+    return request(`/${classNameLower}/query`,{
       method:'GET',
       params: params
     });

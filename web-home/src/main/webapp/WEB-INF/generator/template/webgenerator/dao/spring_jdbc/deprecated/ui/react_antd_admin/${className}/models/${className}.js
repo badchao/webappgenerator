@@ -22,10 +22,10 @@ export default {
         },
     },
     effects: {
-        *findPage({ payload }, { call, put, select }) {
+        *query({ payload }, { call, put, select }) {
             const pageSize = yield select(state => state.${classNameLower}.pageSize);
             const params = { ...payload, page : payload.current, pageSize : pageSize };
-            const response = yield call(${className}Service.findPage,params);
+            const response = yield call(${className}Service.query,params);
             yield put({
                 type: 'merge',
                 payload: {
@@ -38,17 +38,17 @@ export default {
         *remove({ payload }, { call, put, select }) {
             yield call(${className}Service.remove, payload);
             const current = yield select(state => state.${classNameLower}.current);
-            yield put({ type: 'findPage', payload: { current } });
+            yield put({ type: 'query', payload: { current } });
         },
         *update({ payload }, { call, put, select }) {
             yield call(${className}Service.update, payload);
             const current = yield select(state => state.${classNameLower}.current);
-            yield put({ type: 'findPage', payload: { current } });
+            yield put({ type: 'query', payload: { current } });
         },
         *create({ payload }, { call, put, select }) {
             yield call(${className}Service.create, payload);
             const current = yield select(state => state.${classNameLower}.current);
-            yield put({ type: 'findPage', payload: { current } });
+            yield put({ type: 'query', payload: { current } });
         },
     },
     

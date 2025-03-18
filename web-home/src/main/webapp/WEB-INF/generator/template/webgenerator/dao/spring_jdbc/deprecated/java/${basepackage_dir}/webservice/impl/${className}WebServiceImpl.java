@@ -62,9 +62,9 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 	}
 
 	@Override
-	public Page<${className}> findPage(boolean join,${className}Query query) {
+	public Page<${className}> query(boolean join,${className}Query query) {
 		Assert.isTrue(query.getPageSize() <= 1000,"query.pageSize too large");
-		Page<${className}> result = ${classNameLower}Service.findPage(query);
+		Page<${className}> result = ${classNameLower}Service.query(query);
 		if(join) result.forEach(${classNameLower}Service::join);
 		return result;
 	}

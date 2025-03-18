@@ -155,7 +155,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 * 分页查询
 	 **/      
 	@Transactional(readOnly=true)
-	public Page<${className}> findPage(${className}Query query) {
+	public Page<${className}> query(${className}Query query) {
 	    Assert.notNull(query,"'query' must be not null");
 	    IPage<${className}> r = ${classNameLower}Mapper.queryPage(toMybatisPage(query),query);
 	    return toRapidPage(r);

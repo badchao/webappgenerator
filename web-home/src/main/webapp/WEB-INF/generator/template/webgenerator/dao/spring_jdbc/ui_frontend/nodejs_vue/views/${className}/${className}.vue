@@ -96,15 +96,15 @@
         getTableData(page, pageSize) {
           this.listQuery.page = page
           this.listQuery.pageSize = pageSize
-          this.findPage(this.listQuery)
+          this.query(this.listQuery)
         },
         
         refresh() {
           this.getTableData(this.listQuery.page,this.listQuery.pageSize);
         },
         
-        findPage(listQuery) {
-          ${className}Client.findPage(listQuery).then(response => {
+        query(listQuery) {
+          ${className}Client.query(listQuery).then(response => {
             this.tableData = response.itemList;
             var paginator = response.paginator;
             this.total = paginator.totalItems;

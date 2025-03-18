@@ -75,7 +75,7 @@ public interface ${className}Mapper {
 	</#if>
 	</#list>
 
-	public Page<${className}> findPage(${className}Query query);	
+	public Page<${className}> query(${className}Query query);	
 	
 	public List<${className}> findList(${className}Query query);
 	

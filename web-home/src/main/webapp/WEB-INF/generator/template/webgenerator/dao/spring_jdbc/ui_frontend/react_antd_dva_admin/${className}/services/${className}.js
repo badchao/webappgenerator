@@ -10,8 +10,8 @@ function convertSaveData(data) {
   return data;
 }
 
-export function findPage(params) {
-    return rpc(`/${classNameLower}/findPage`,{
+export function query(params) {
+    return rpc(`/${classNameLower}/query`,{
       method:'GET',
       params: params
     });

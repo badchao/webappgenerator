@@ -59,7 +59,7 @@ public interface ${className}Service extends Service{
 	/** 
 	 * 分页查询: ${className}
 	 **/      
-	public Page<${className}> findPage(${className}Query query);
+	public Page<${className}> query(${className}Query query);
 	
 	public List<${className}> findList(${className}Query query);
 

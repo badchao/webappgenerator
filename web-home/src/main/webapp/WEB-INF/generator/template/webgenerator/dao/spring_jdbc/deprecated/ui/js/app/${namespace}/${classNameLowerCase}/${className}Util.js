@@ -15,7 +15,7 @@ var ${className}Util = {
 	 **/
 	select2Config : {
 		ajax: {
-			url: globalWsUrl+'/${className}WebService/findPage?page=1&pageSize=999&__format=jsonp',
+			url: globalWsUrl+'/${className}WebService/query?page=1&pageSize=999&__format=jsonp',
 			cache: true,
 			dataType: 'jsonp',
 			jsonp: "__jsoncallback",

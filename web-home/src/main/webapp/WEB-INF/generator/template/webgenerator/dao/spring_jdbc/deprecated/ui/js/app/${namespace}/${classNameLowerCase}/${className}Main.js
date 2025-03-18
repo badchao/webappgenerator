@@ -11,7 +11,7 @@
 var ${className}Main = Vue.extend({
 	  template: multiline(function() {/*!@preserve
 		<div id="${classNameLowerCase}-main">
-			<form id="queryForm" name="queryForm" method="get" @submit="findPage" onsubmit="return false;" >
+			<form id="queryForm" name="queryForm" method="get" @submit="query" onsubmit="return false;" >
 				
 				<div class="panel panel-default">
 					<div class="panel-heading">${table.tableAlias} 列表</div>
@@ -64,23 +64,23 @@ var ${className}Main = Vue.extend({
 	  methods : {
 		  changePageSize : function(pageSize) {
 			  this.query.pageSize = pageSize;
-			  this.findPage();
+			  this.query();
 		  },
 		  
 		  changePage : function(page) {
 			  this.query.page = page;
-			  this.findPage();
+			  this.query();
 		  },
 		  
 		  index : function() {
 			  $('.submit-dialog').modal('hide');
-			  this.findPage();
+			  this.query();
 		  },
 		  
-		  findPage : function() {
+		  query : function() {
 			  var _this = this;
 			  
-			  ${className}WebService.findPage(_this.query,function(response) {
+			  ${className}WebService.query(_this.query,function(response) {
 				  _this.rows = response.result.itemList;
 				  _this.paginator = response.result.paginator;
 				  if(sessionStorage) sessionStorage.setItem("${classNameFirstLower}Query", JSON.stringify(_this.query));
@@ -148,7 +148,7 @@ var ${className}Main = Vue.extend({
 				 var ${column.columnNameLower} = ${classNameFirstLower}.${column.columnNameLower};
 				 </#list>
 			 	 ${className}WebService.removeById(<@generatePassingParameters table.pkColumns/>,function(response) {
-			 		_this.findPage();
+			 		_this.query();
 			 	 });
 			  }
 		  },

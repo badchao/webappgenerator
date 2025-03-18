@@ -151,9 +151,9 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 * 分页查询: ${className}
 	 **/      
 	@Transactional(readOnly=true)
-	public Page<${className}> findPage(${className}Query query) {
+	public Page<${className}> query(${className}Query query) {
 	    Assert.notNull(query,"'query' must be not null");
-	    Page<${className}> r = ${classNameLower}Dao.findPage(query);
+	    Page<${className}> r = ${classNameLower}Dao.query(query);
 	    return r;
 	}
 	

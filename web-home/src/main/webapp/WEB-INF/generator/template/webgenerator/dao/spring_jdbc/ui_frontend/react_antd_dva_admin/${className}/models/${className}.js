@@ -57,12 +57,12 @@ export default {
         *init({ payload }, { call, put, select }) {
             yield put({ type: 'refresh' });
         },
-        *findPage({ payload }, { call, put, select }) {
+        *query({ payload }, { call, put, select }) {
             const query = yield select(state => state[NAMESPACE].query);
             const page = payload.current ? payload.current : query.current;
             const params = { ...query, ...payload, page : page , pageSize : query.pageSize };
 
-            const response = yield call(Service.findPage,params);
+            const response = yield call(Service.query,params);
             yield put({
                 type: 'merge',
                 payload: {
@@ -98,7 +98,7 @@ export default {
         },
         *refresh({ payload }, { call, put, select }) {
           const query = yield select(state => state[NAMESPACE].query);
-          yield put({ type: 'findPage', payload: query });
+          yield put({ type: 'query', payload: query });
         },
     },
 

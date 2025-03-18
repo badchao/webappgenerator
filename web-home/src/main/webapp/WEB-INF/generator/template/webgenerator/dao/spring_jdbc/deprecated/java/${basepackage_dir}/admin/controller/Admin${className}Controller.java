@@ -80,10 +80,10 @@ public class Admin${className}Controller extends BaseController {
 	
 	@ApiOperation(value="分页查询")
 	@GetMapping
-	public Page<${className}> findPage(boolean join,${className}Query query,HttpServletRequest request){
+	public Page<${className}> query(boolean join,${className}Query query,HttpServletRequest request){
 		checkActionPermission(request,${className}.class,READ);
 		
-		Page<${className}> page = ${classNameLower}Service.findPage(query);
+		Page<${className}> page = ${classNameLower}Service.query(query);
 		if(join) {
 			page.forEach(${classNameLower}Service::join);
 		}

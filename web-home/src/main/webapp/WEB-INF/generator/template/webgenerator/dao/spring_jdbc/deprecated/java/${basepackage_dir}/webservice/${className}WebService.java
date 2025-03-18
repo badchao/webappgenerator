@@ -44,7 +44,7 @@ public interface ${className}WebService {
 	/** 
 	 * 分页查询: ${className}
 	 **/      
-	public Page<${className}> findPage(boolean join,${className}Query query);
+	public Page<${className}> query(boolean join,${className}Query query);
 	
 	/** 
 	 * 搜索: ${className}

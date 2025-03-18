@@ -97,10 +97,10 @@ public class ${className}Controller extends BaseController {
 	
 	@ApiOperation(value="分页查询")
 	@GetMapping
-	public Page<${className}> findPage(${className}Query query){
+	public Page<${className}> query(${className}Query query){
 		checkEntityPermission(getRequest(),new ${className}(),READ);
 		
-		Page<${className}> result = ${classNameLower}Service.findPage(query);
+		Page<${className}> result = ${classNameLower}Service.query(query);
 		result.forEach(${classNameLower}Service::join);
 		
 		return result;
@@ -109,7 +109,7 @@ public class ${className}Controller extends BaseController {
 	@ApiOperation(value="导出下载")
 	@GetMapping
 	public void download(${className}Query query)  {
-		Page<${className}> result = findPage(query);
+		Page<${className}> result = query(query);
 		writeExcel2Response(getResponse(),result.getItemList(),${className}.class);
 	}
 	
