@@ -53,8 +53,8 @@ async fn remove(entity : web::Json<${className}Id>)  -> Result<impl Responder> {
     Ok(web::Json(ApiResponse::result(result)))
 }
 
-#[post("/get_by_id")]
-async fn get_by_id(entity : web::Json<${className}Id>)  -> Result<impl Responder> {
+#[post("/getone")]
+async fn getone(entity : web::Json<${className}Id>)  -> Result<impl Responder> {
     let result = ${className}Service::get_by_id(&mut get_ds_connection(), entity.into_inner());
     Ok(web::Json(ApiResponse::result(result)))
 }
