@@ -29,27 +29,27 @@
 	<dependency>
 		<groupId>com.github.rapid.common</groupId>
 		<artifactId>rapid-common-util</artifactId>
-	  	<version>1.0.0</version>        
+	  	<version>1.0.8-RELEASE</version>        
 	</dependency>
 	<dependency>
 		<groupId>com.github.rapid.common</groupId>
 		<artifactId>rapid-common-web</artifactId>
-	  	<version>1.0.0</version>        
+	  	<version>1.0.8-RELEASE</version>        
 	</dependency>	
 	<dependency>
 		<groupId>com.github.rapid.common</groupId>
 		<artifactId>rapid-common-jdbc</artifactId>
-	  	<version>1.0.3</version>        
+	  	<version>1.0.8-RELEASE</version>        
 	</dependency>	
 	<dependency>
 		<groupId>com.github.rapid.common</groupId>
 		<artifactId>rapid-common-mvc</artifactId>
-	  	<version>1.0.0</version>        
+	  	<version>1.0.8-RELEASE</version>        
 	</dependency>
 	<dependency>
 		<groupId>com.github.rapid.common</groupId>
 		<artifactId>rapid-common-test</artifactId>
-	  	<version>1.0.0</version>        
+	  	<version>1.0.8-RELEASE</version>        
 	</dependency>	
 		
   	<!-- rapid generator begn -->
@@ -503,8 +503,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 
