@@ -72,6 +72,7 @@ impl ${className}Dao {
         params: &${className}Query
     ) -> QueryResult<Vec<${className}>> {
         let mut query = ${underscoreName}::table.into_boxed();
+		
 		<#list table.columns as column>
         if let Some(${column.underscoreName}) = &params.${column.underscoreName} {
             query = query.filter(${underscoreName}::${column.underscoreName}.eq(${column.underscoreName}));

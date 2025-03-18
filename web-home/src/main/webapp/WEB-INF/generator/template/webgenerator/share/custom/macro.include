@@ -1,3 +1,4 @@
+<#include "/rust_macro.include"/>
 <#-- 本文件包含一些公共的函数,本文件会被其它模板自动include -->
 
 <#assign dollar = '$'> 
@@ -57,83 +58,4 @@
 <#macro mybatisJavaIdMethod><#if table.pkCount = 1>Id<#else>MultiId</#if></#macro>
 
 
-<#macro rustType column>
-<#compress>
-    <#if column.javaType?ends_with("Integer")>
-        int32
-    <#elseif column.javaType?ends_with("Long")>
-        int64
-    <#elseif column.javaType?ends_with("Short")>
-        i16
-    <#elseif column.javaType?ends_with("Byte")>
-        u8        
-    <#elseif column.javaType?ends_with("String")>
-        String
-    <#elseif column.javaType?ends_with("Float")>
-        f32
-    <#elseif column.javaType?ends_with("Double")>
-        f64
-    <#elseif column.javaType?ends_with("Char")>
-        char
-    <#elseif column.javaType?ends_with("byte[]")>
-        Vec<u8>        
-    <#elseif column.javaType?ends_with("Boolean")>
-        bool
-    <#elseif column.javaType?ends_with("java.util.Date")>
-        NaiveDateTime
-    <#elseif column.javaType?ends_with("LocalDate")>
-        NaiveDate
-    <#elseif column.javaType?ends_with("LocalDateTime")>
-        NaiveDateTime        
-    <#else>
-        unknown_type_${column.javaType?lower_case}
-    </#if>
-</#compress>
-</#macro>
-
-<#macro rustTypeWithOption column>
-<#compress>
-	<#if column.nullable>Option<</#if><@rustType column/><#if column.nullable>></#if>
-</#compress>
-</#macro>
-
-<#macro rustDieselTableType column>
-<#compress>
-    <#if column.javaType?ends_with("Integer")>
-        diesel::sql_types::Integer
-    <#elseif column.javaType?ends_with("Long")>
-        diesel::sql_types::BigInt
-    <#elseif column.javaType?ends_with("Short")>
-        diesel::sql_types::SmallInt
-    <#elseif column.javaType?ends_with("Byte")>
-        diesel::sql_types::Binary
-    <#elseif column.javaType?ends_with("String")>
-        diesel::sql_types::Text
-    <#elseif column.javaType?ends_with("Float")>
-        diesel::sql_types::Float
-    <#elseif column.javaType?ends_with("Double")>
-        diesel::sql_types::Double
-    <#elseif column.javaType?ends_with("Boolean")>
-        diesel::sql_types::Bool
-    <#elseif column.javaType?ends_with("java.util.Date")>
-        diesel::sql_types::Timestamp
-    <#elseif column.javaType?ends_with("LocalDate")>
-        diesel::sql_types::Date
-    <#elseif column.javaType?ends_with("LocalDateTime")>
-        diesel::sql_types::Timestamp
-    <#elseif column.javaType?ends_with("BigDecimal")>
-        diesel::sql_types::Numeric
-    <#elseif column.javaType?ends_with("byte[]")>
-        diesel::sql_types::Bytea
-    <#else>
-        unknown_diesel_type_${column.javaType?lower_case}
-    </#if>
-</#compress>
-</#macro>
-
-<#macro rustDieselTableTypeWithOption column>
-    <#compress>
-	<#if column.nullable>Option<</#if><@rustDieselTableType column/><#if column.nullable>></#if>
-	</#compress>
-</#macro>
 
