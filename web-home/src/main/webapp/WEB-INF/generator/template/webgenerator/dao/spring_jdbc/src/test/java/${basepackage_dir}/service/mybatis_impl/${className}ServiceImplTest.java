@@ -66,10 +66,10 @@ public class ${className}ServiceImplTest {
 	}
 	
 	@Test
-	public void getById() {
+	public void getone() {
 		when(${classNameLower}Mapper.selectBy<@mybatisJavaIdMethod/>(id)).thenReturn(new${className}()); // mock方法调用
 		
-		${className} ${classNameLower} = service.getById(id);
+		${className} ${classNameLower} = service.getone(id);
 		
 		verify(${classNameLower}Mapper).selectBy<@mybatisJavaIdMethod/>(id); //验证执行了该语句
 		assertNotNull(${classNameLower});

@@ -100,7 +100,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
 
 		//不可以让客户端可以更新所有属性
-		${className} target = getById(${classNameLower});
+		${className} target = getone(${classNameLower});
 		BeanUtils.copyProperties(${classNameLower}, target,"createTime","creator"); //ignore some copy property
 		
 		return update(target);
@@ -118,7 +118,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
     	<#assign fkTable    = fkSqlTable.className>
     	<#assign fkPojoClass = fkSqlTable.className>
     	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
-    	//${classNameLower}.set${fkPojoClass}(${fkPojoClassVar}Service.getById(${classNameLower}.get${fkPojoClass}Id()));
+    	//${classNameLower}.set${fkPojoClass}(${fkPojoClassVar}Service.getone(${classNameLower}.get${fkPojoClass}Id()));
     	</#list>    	
     	return ${classNameLower};
     }
@@ -135,7 +135,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 * 根据ID得到${className}
 	 **/
     @Override
-    public ${className} getById(${className} ${classNameLower}) {
+    public ${className} getone(${className} ${classNameLower}) {
         return ${classNameLower}Mapper.selectBy<@mybatisJavaIdMethod/>(${classNameLower});
     }
     
@@ -144,7 +144,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	 **/
     @Override
     public ${className} getRequiredById(${className} ${classNameLower}) {
-    	${className} r = getById(${classNameLower});
+    	${className} r = getone(${classNameLower});
     	if(r == null) {
     		throw new IllegalArgumentException("required ${className} not found by id:"+${classNameLower});
     	}

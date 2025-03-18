@@ -12,8 +12,8 @@ export function query(params) {
     });
 }
 
-export function getById(params) {
-    return request(`/${classNameLower}/getById`,{
+export function getone(params) {
+    return request(`/${classNameLower}/getone`,{
       method:'GET',
       params: params,
     });

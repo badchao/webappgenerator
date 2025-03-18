@@ -17,8 +17,8 @@ export function query(params) {
     });
 }
 
-export function getById(params) {
-    return rpc(`/${classNameLower}/getById`,{
+export function getone(params) {
+    return rpc(`/${classNameLower}/getone`,{
       method:'GET',
       params: params,
     });

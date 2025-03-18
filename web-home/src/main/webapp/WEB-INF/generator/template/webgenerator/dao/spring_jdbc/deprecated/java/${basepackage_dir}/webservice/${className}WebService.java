@@ -39,7 +39,7 @@ public interface ${className}WebService {
 	/** 
 	 * 根据ID得到${className}
 	 **/    
-    public ${className} getById(boolean join,<@generateArguments table.pkColumns/>);
+    public ${className} getone(boolean join,<@generateArguments table.pkColumns/>);
     
 	/** 
 	 * 分页查询: ${className}

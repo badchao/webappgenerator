@@ -44,9 +44,9 @@ var ${className}Client = {
     appWs.wsRequest("${className}WebService/remove", data, success,fail);
   },
 
-  getById: function (data, success, fail) {
+  getone: function (data, success, fail) {
     var that = this;
-    appWs.wsRequest("${className}WebService/getById", data, function(res) {
+    appWs.wsRequest("${className}WebService/getone", data, function(res) {
       //可以增加数据处理，再返回给展示层
       res.data.result = that.convertShowData(res.data.result);
       success(res);

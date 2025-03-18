@@ -55,8 +55,8 @@ public class ${className}WebServiceImpl implements ${className}WebService {
 	}
 
 	@Override
-	public ${className} getById(boolean join,<@generateArguments table.pkColumns/>) {
-		${className} result = ${classNameLower}Service.getById(new ${className}(<@generatePassingParameters table.pkColumns/>));
+	public ${className} getone(boolean join,<@generateArguments table.pkColumns/>) {
+		${className} result = ${classNameLower}Service.getone(new ${className}(<@generatePassingParameters table.pkColumns/>));
 		if(join) ${classNameLower}Service.join(result);
 		return result;
 	}

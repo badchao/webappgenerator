@@ -85,7 +85,7 @@ Page({
       if(options.model) {
     	  that.setData(JSON.parse(decodeURIComponent(options.model)));
       }else {
-	      ${className}Client.getById(options, function (res) {
+	      ${className}Client.getone(options, function (res) {
 	    	var entity = res.data.result;
 	        that.setData(entity);
 	      });

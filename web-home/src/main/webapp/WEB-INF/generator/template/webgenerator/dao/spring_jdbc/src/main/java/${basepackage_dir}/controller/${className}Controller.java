@@ -86,10 +86,10 @@ public class ${className}Controller extends BaseController {
 
 	@ApiOperation(value="根据ID查找")
 	@GetMapping
-	public ${className} getById(${className} ${classNameLower}) {
+	public ${className} getone(${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},READ);
 		
-		${className} result = ${classNameLower}Service.getById(${classNameLower});
+		${className} result = ${classNameLower}Service.getone(${classNameLower});
 		${classNameLower}Service.join(result);
 		
 		return result;

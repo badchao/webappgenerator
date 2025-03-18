@@ -49,7 +49,7 @@ public interface ${className}Service extends Service{
 	/** 
 	 * 根据ID得到${className}
 	 **/    
-    public ${className} getById(${className} ${classNameLower});
+    public ${className} getone(${className} ${classNameLower});
     
     /** 
 	 * 根据ID得到${className},找不到抛异常

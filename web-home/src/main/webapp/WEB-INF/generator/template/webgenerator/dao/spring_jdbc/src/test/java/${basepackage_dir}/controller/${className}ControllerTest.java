@@ -65,12 +65,12 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 	}
 	
 	@Test
-	public void getById() {
-		when(${classNameLower}Service.getById(id)).thenReturn(new${className}()); // mock方法调用
+	public void getone() {
+		when(${classNameLower}Service.getone(id)).thenReturn(new${className}()); // mock方法调用
 		
-		${className} ${classNameLower} = controller.getById(id);
+		${className} ${classNameLower} = controller.getone(id);
 		
-		verify(${classNameLower}Service).getById(id); //验证执行了该语句
+		verify(${classNameLower}Service).getone(id); //验证执行了该语句
 		assertNotNull(${classNameLower});
 	}
 	

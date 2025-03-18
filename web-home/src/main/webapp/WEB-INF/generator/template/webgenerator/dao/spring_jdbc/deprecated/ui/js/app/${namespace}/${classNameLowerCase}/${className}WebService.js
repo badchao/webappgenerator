@@ -17,9 +17,9 @@ var ${className}WebService = {
 		$.jsonp(${classNameFirstLower}WsUrl+"/query",q,AppUtil.wsCallback(success,error));
 	},
 	
-	getById : function(<@generatePassingParameters table.pkColumns/>,success,error) {
+	getone : function(<@generatePassingParameters table.pkColumns/>,success,error) {
 		var pk = <#compress>{<#list table.pkColumns as column>${column.columnNameLower} : ${column.columnNameLower}<#if column_has_next>,</#if></#list>};</#compress>
-		$.jsonp(${classNameFirstLower}WsUrl+"/getById",pk,AppUtil.wsCallback(success,error));
+		$.jsonp(${classNameFirstLower}WsUrl+"/getone",pk,AppUtil.wsCallback(success,error));
 	},
 	
 	remove : function(<@generatePassingParameters table.pkColumns/>,success,error) {

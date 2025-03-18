@@ -47,8 +47,8 @@ async fn create(entity : web::Json<${className}>)  -> Result<impl Responder> {
 }
 
 
-#[post("/delete")]
-async fn delete(entity : web::Json<${className}Id>)  -> Result<impl Responder> {
+#[post("/remove")]
+async fn remove(entity : web::Json<${className}Id>)  -> Result<impl Responder> {
     let result = ${className}Service::delete_by_id(&mut get_ds_connection(), entity.into_inner());
     Ok(web::Json(ApiResponse::result(result)))
 }

@@ -117,7 +117,7 @@ public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 	}
 
 	@Cacheable(key = CACHEKEY_PK)
-	public ${className} getById(${className} entity) {
+	public ${className} getone(${className} entity) {
 		String sql = sqlGenerator.getSelectByPkSql();
 		return getExtNamedJdbcTemplate().queryOne(sql, entity,getEntityRowMapper());
 	}

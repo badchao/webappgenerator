@@ -68,10 +68,10 @@ public class Admin${className}Controller extends BaseController {
 
 	@ApiOperation(value="ID查找")
 	@GetMapping
-	public ${className} getById(boolean join,${className} ${classNameLower},HttpServletRequest request) {
+	public ${className} getone(boolean join,${className} ${classNameLower},HttpServletRequest request) {
 		checkActionPermission(request,${className}.class,READ);
 		
-		${className} result = ${classNameLower}Service.getById(${classNameLower});
+		${className} result = ${classNameLower}Service.getone(${classNameLower});
 		if(join) {
 			${classNameLower}Service.join(result);
 		}

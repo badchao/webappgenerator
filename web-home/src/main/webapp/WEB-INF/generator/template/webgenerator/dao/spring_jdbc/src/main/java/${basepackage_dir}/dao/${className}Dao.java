@@ -23,7 +23,7 @@ public interface ${className}Dao extends Dao {
 
 	public int deleteById(${className} entity);
 	
-	public ${className} getById(${className} entity);
+	public ${className} getone(${className} entity);
 	
 	<#list table.columns as column>
 	<#if column.unique && !column.pk>

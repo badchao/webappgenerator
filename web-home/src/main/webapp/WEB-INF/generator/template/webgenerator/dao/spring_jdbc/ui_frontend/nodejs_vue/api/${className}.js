@@ -28,9 +28,9 @@ var ${className}Client = {
 		    params: params
 		  })
 	},
-	getById: function(params) {
+	getone: function(params) {
 		return request({
-		    url: '/admin/${classNameLowerCase}/getById',
+		    url: '/admin/${classNameLowerCase}/getone',
 		    method: 'get',
 		    params: params
 		  })

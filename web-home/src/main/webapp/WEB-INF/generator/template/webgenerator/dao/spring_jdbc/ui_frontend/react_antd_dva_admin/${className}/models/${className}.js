@@ -75,8 +75,8 @@ export default {
               current: response.paginator.page,
             }});
         },
-        *getById({ payload }, { call, put, select }) {
-          const response = yield call(Service.getById,payload);
+        *getone({ payload }, { call, put, select }) {
+          const response = yield call(Service.getone,payload);
           yield put({
               type: 'merge',
               payload: {

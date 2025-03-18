@@ -50,7 +50,7 @@ public class ${className}ServiceImplTest {
 	
 	@Test
 	public void update() {
-		when(${classNameLower}Dao.getById(id)).thenReturn(new${className}()); // mock方法调用
+		when(${classNameLower}Dao.getone(id)).thenReturn(new${className}()); // mock方法调用
 		
 		${className} obj = new${className}();
 		service.update(obj);
@@ -66,12 +66,12 @@ public class ${className}ServiceImplTest {
 	}
 	
 	@Test
-	public void getById() {
-		when(${classNameLower}Dao.getById(id)).thenReturn(new${className}()); // mock方法调用
+	public void getone() {
+		when(${classNameLower}Dao.getone(id)).thenReturn(new${className}()); // mock方法调用
 		
-		${className} ${classNameLower} = service.getById(id);
+		${className} ${classNameLower} = service.getone(id);
 		
-		verify(${classNameLower}Dao).getById(id); //验证执行了该语句
+		verify(${classNameLower}Dao).getone(id); //验证执行了该语句
 		assertNotNull(${classNameLower});
 	}
 	

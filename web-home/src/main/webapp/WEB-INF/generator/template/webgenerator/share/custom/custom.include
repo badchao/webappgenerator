@@ -6,3 +6,12 @@
 <#else>
 	<#assign classWebBasePath = '/'+table.className?lower_case>
 </#if>
+
+<#assign METHOD_GET_BY_ID = 'getone'>
+<#assign METHOD_PAGE_QUERY = 'query'>
+<#assign METHOD_UPDATE = 'update'>
+<#assign METHOD_CREATE = 'create'>
+<#assign METHOD_REMOVE = 'remove'>
+<#assign METHOD_DOWNLOAD = 'download'>
+<#assign METHOD_UPLOAD = 'upload'>
+<#assign METHOD_META = 'meta'>

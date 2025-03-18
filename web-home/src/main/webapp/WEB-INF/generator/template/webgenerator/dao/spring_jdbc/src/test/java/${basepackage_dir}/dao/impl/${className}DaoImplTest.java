@@ -76,8 +76,8 @@ public class ${className}DaoImplTest extends BaseDaoTestCase {
 	}
 	
 	@Test
-	public void getById() {
-		dao.getById(id);
+	public void getone() {
+		dao.getone(id);
 	}
 	
 	<#list table.columns as column>

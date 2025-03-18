@@ -66,7 +66,7 @@ public interface ${className}Mapper {
         "where id = ${j}{id,jdbcType=BIGINT}"
     })
     @ResultMap("${basepackage}.UserGroupMapper.BaseResultMap")
-	public ${className} getById(${className} entity);
+	public ${className} getone(${className} entity);
 	
 	<#list table.columns as column>
 	<#if column.unique && !column.pk>

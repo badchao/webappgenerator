@@ -11,7 +11,7 @@
 	<!-- rpc service -->
 	<bean id="${classNameLower}WebService" class="${basepackage}.webservice.impl.${className}WebServiceImpl"/>
 	
-	<!-- 调用示例: http://localhost:6060/rpc/${className}WebService/getById  -->
+	<!-- 调用示例: http://localhost:6060/rpc/${className}WebService/getone  -->
 	<bean class="com.github.rapid.common.rpc.server.RPCServiceExporter">
 	  <property name="serviceInterface" value="${basepackage}.webservice.${className}WebService" />
 	  <property name="service" ref="${classNameLower}WebService"/>
