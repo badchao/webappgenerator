@@ -17,31 +17,34 @@ use crate::model::${underscoreName}::{${className}, ${className}Id};
 pub struct ${className}Service;
 
 impl ${className}Service {
-
+	
+	pub fn check(${underscoreName}: &${className}) -> Result<()> {
+		Ok(())
+	}
+	
     pub fn create(conn: &mut PgConnection, ${underscoreName}: ${className}) -> Result<${className}> {
-        return ${className}Dao::create(conn, &${underscoreName})
+        Self::check(${underscoreName});
+        let result = ${className}Dao::insert(conn, &${underscoreName})
             .context("create error");
+        return result;
     }
 
-    pub fn update_by_id(
-        conn: &mut PgConnection,
-        entity: ${className}
-    ) -> Result<${className}> {
-        return ${className}Dao::update_by_id(conn, &updated)
+    pub fn update_by_id(conn: &mut PgConnection,entity: ${className}) -> Result<${className}> {
+    	Self::check(${underscoreName});
+        let result = ${className}Dao::update_by_id(conn, &updated)
             .context("update error");
+		return result;
     }
 
-    pub fn delete_by_id(
-        conn: &mut PgConnection,
-        id : ${className}Id
-    ) -> Result<usize> {
-        return ${className}Dao::delete_by_id(conn, &id)
+    pub fn delete_by_id(conn: &mut PgConnection,id : ${className}Id) -> Result<usize> {
+        let result = ${className}Dao::delete_by_id(conn, &id)
             .context("delete error");
+		return result;
     }
 
 
-    pub fn find_by_id(conn: &mut PgConnection, id: ${className}Id) -> Result<${className}> {
-        return ${className}Dao::find_by_id(conn, &id)
+    pub fn get_by_id(conn: &mut PgConnection, id: ${className}Id) -> Result<${className}> {
+        return ${className}Dao::get_by_id(conn, &id)
             .context(format!("query error,entity: {id:?}"));
     }
 

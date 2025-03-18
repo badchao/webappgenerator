@@ -22,7 +22,7 @@ pub fn service_config_${underscoreName}(cfg: &mut web::ServiceConfig) {
     cfg.service(update);
     cfg.service(create);
     cfg.service(delete);
-    cfg.service(find_by_id);
+    cfg.service(get_by_id);
 }
 
 #[get("/meta")]
@@ -53,9 +53,9 @@ async fn delete(entity : web::Json<${className}Id>)  -> Result<impl Responder> {
     Ok(web::Json(ApiResponse::result(result)))
 }
 
-#[post("/find_by_id")]
-async fn find_by_id(entity : web::Json<${className}Id>)  -> Result<impl Responder> {
-    let result = ${className}Service::find_by_id(&mut get_ds_connection(), entity.into_inner());
+#[post("/get_by_id")]
+async fn get_by_id(entity : web::Json<${className}Id>)  -> Result<impl Responder> {
+    let result = ${className}Service::get_by_id(&mut get_ds_connection(), entity.into_inner());
     Ok(web::Json(ApiResponse::result(result)))
 }
 

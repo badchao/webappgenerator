@@ -17,7 +17,7 @@ pub struct ${className}Dao;
 impl ${className}Dao {
 
 
-    pub fn create(conn: &mut PgConnection, entity: &${className}) -> QueryResult<${className}> {
+    pub fn insert(conn: &mut PgConnection, entity: &${className}) -> QueryResult<${className}> {
         diesel::insert_into(${underscoreName}::table)
             .values(entity)
             .get_result(conn)
@@ -56,7 +56,7 @@ impl ${className}Dao {
             .execute(conn)
     }
 
-    pub fn find_by_id(
+    pub fn get_by_id(
         conn: &mut PgConnection, 
         id : &${className}Id
     ) -> QueryResult<${className}> {
