@@ -27,7 +27,7 @@ impl ${className}Service {
         conn: &mut PgConnection,
         entity: ${className}
     ) -> Result<${className}> {
-        return ${className}Dao::update_by_id(conn, &entity)
+        return ${className}Dao::update_by_id(conn, &updated)
             .context("update error");
     }
 

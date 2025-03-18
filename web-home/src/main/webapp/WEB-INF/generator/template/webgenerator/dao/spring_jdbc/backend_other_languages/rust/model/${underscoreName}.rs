@@ -1,4 +1,5 @@
 <#include "/java_copyright.include">
+<#include "/macro.include"/>
 <#assign className = table.className>   
 <#assign underscoreName = table.underscoreName>   
 
@@ -9,12 +10,13 @@
 use serde::{Deserialize, Serialize};
 use diesel::{Queryable, Insertable, AsChangeset};
 use diesel::sql_types::{BigInt, Text, Numeric};
+use chrono::NaiveDateTime;
 
-<#if table.pkCount &gt; 1>
+<#if 1 < table.pkCount>
 #[derive(Debug,Queryable, Serialize, Deserialize)]
 pub struct ${className}Id {
 	<#list table.pkColumns as column>
-    pub ${column.underscoreName} : ${column.javaType},
+    pub ${column.underscoreName} : <@rustType column/>,
 	</#list>
 }
 </#if>
@@ -28,7 +30,7 @@ pub struct ${className} {
 	 */
 	<#if column.pk>
 	</#if>
-	pub ${column.underscoreName} : ${column.javaType},
+	pub ${column.underscoreName} : <@rustType column/>,
 
 	</#list>
     
@@ -37,7 +39,7 @@ pub struct ${className} {
 diesel::table! {
     ${underscoreName} (<#list table.pkColumns as column>${column.underscoreName}<#if column_has_next>,</#if></#list>) {
 	<#list table.columns as column>
-		${column.underscoreName} -> ${column.javaType},
+		${column.underscoreName} -> <@rustType column/>,
 	</#list>
 		org_id -> BigInt,
 		ip -> Text,

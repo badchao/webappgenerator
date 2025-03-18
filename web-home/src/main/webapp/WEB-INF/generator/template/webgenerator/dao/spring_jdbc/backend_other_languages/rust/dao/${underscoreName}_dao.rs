@@ -29,13 +29,13 @@ impl ${className}Dao {
         let id = ${className}Id {
 			<#list table.pkColumns as column>
 		    ${column.underscoreName}: entity.${column.underscoreName}.clone(),
-			<#/list>
+			</#list>
         };
 
         let statement = ${underscoreName}::table
 		<#list table.pkColumns as column>
-		    .filter(${underscoreName}::${column.underscoreName}.eq(id.${column.underscoreName}))
-		<#/list>;
+			.filter(${underscoreName}::${column.underscoreName}.eq(id.${column.underscoreName}))
+		</#list>;
         
         diesel::update(statement)
             .set(entity)
@@ -48,8 +48,8 @@ impl ${className}Dao {
     ) -> QueryResult<usize> {
         let statement = ${underscoreName}::table
 		<#list table.pkColumns as column>
-            .filter(${underscoreName}::${column.underscoreName}.eq(id.${column.underscoreName}))
-		<#/list>;
+			.filter(${underscoreName}::${column.underscoreName}.eq(id.${column.underscoreName}))
+		</#list>;
         
         diesel::delete(statement)
             .execute(conn)
@@ -61,8 +61,8 @@ impl ${className}Dao {
     ) -> QueryResult<${className}> {
         let statement = ${underscoreName}::table
 		<#list table.pkColumns as column>
-		    .filter(${underscoreName}::${column.underscoreName}.eq(id.${column.underscoreName}))
-		<#/list>;
+			.filter(${underscoreName}::${column.underscoreName}.eq(id.${column.underscoreName}))
+		</#list>;
 
         statement.first(conn)
     }
@@ -72,16 +72,11 @@ impl ${className}Dao {
         params: &${className}Query
     ) -> QueryResult<Vec<${className}>> {
         let mut query = ${underscoreName}::table.into_boxed();
-        
-        if let Some(org_id) = &params.org_id {
-            query = query.filter(${underscoreName}::org_id.eq(org_id));
+		<#list table.columns as column>
+        if let Some(${column.underscoreName}) = &params.${column.underscoreName} {
+            query = query.filter(${underscoreName}::${column.underscoreName}.eq(${column.underscoreName}));
         }
-        if let Some(warehouse_id) = &params.warehouse_id {
-            query = query.filter(${underscoreName}::warehouse_id.eq(warehouse_id));
-        }
-        if let Some(agv_id) = &params.agv_id {
-            query = query.filter(${underscoreName}::agv_id.eq(agv_id));
-        }
+		</#list>
 
         query.load::<${className}>(conn)
     }
