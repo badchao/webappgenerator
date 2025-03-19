@@ -7,8 +7,8 @@
 	<#assign classWebBasePath = '/'+table.className?lower_case>
 </#if>
 
-<#assign METHOD_GET_BY_ID = 'getone'>
-<#assign METHOD_PAGE_QUERY = 'query'>
+<#assign METHOD_GETONE = 'getone'>
+<#assign METHOD_QUERY = 'query'>
 <#assign METHOD_UPDATE = 'update'>
 <#assign METHOD_CREATE = 'create'>
 <#assign METHOD_REMOVE = 'remove'>
