@@ -26,41 +26,41 @@ pub fn service_config_${underscoreName}(cfg: &mut web::ServiceConfig) {
 }
 
 #[get("/meta")]
-async fn meta()  -> Result<impl Responder> {
+async fn meta()  -> impl Responder {
     let mut result: HashMap<&str, Value> = HashMap::new();
 
-    Ok(web::Json(ApiResponse::success(result)))
+    web::Json(ApiResponse::success(result))
 }
 
 
 #[post("/update")]
-async fn update(entity : web::Json<${className}>)  -> Result<impl Responder> {
+async fn update(entity : web::Json<${className}>)  -> impl Responder {
     let result = ${className}Service::update_by_id(&mut get_ds_connection(), entity.into_inner());
-    Ok(web::Json(ApiResponse::result(result)))
+    web::Json(ApiResponse::result(result))
 }
 
 
 #[post("/create")]
-async fn create(entity : web::Json<${className}>)  -> Result<impl Responder> {
+async fn create(entity : web::Json<${className}>)  -> impl Responder {
     let result = ${className}Service::create(&mut get_ds_connection(), entity.into_inner());
-    Ok(web::Json(ApiResponse::result(result)))
+    web::Json(ApiResponse::result(result))
 }
 
 
 #[post("/remove")]
-async fn remove(entity : web::Json<${className}Id>)  -> Result<impl Responder> {
+async fn remove(entity : web::Json<${className}Id>)  -> impl Responder {
     let result = ${className}Service::delete_by_id(&mut get_ds_connection(), entity.into_inner());
-    Ok(web::Json(ApiResponse::result(result)))
+    web::Json(ApiResponse::result(result))
 }
 
-#[post("/getone")]
-async fn getone(entity : web::Json<${className}Id>)  -> Result<impl Responder> {
+#[get("/getone")]
+async fn getone(entity : web::Query<${className}Id>)  -> impl Responder {
     let result = ${className}Service::get_by_id(&mut get_ds_connection(), entity.into_inner());
-    Ok(web::Json(ApiResponse::result(result)))
+    web::Json(ApiResponse::result(result))
 }
 
-#[post("/query")]
-async fn query(entity : web::Json<${className}Query>)  -> impl Responder {
+#[get("/query")]
+async fn query(entity : web::Query<${className}Query>)  -> impl Responder {
     let result = ${className}Service::query(&mut get_ds_connection(), &entity.into_inner());
     web::Json(ApiResponse::result(result))
 }
