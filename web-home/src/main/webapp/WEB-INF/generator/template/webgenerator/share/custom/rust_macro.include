@@ -3,77 +3,77 @@
 
 
 <#macro rustType column>
-<#compress>
-    <#if column.javaType?ends_with("Integer")>
-        int32
-    <#elseif column.javaType?ends_with("Long")>
-        int64
-    <#elseif column.javaType?ends_with("Short")>
-        i16
-    <#elseif column.javaType?ends_with("Byte")>
-        u8        
-    <#elseif column.javaType?ends_with("String")>
-        String
-    <#elseif column.javaType?ends_with("Float")>
-        f32
-    <#elseif column.javaType?ends_with("Double")>
-        f64
-    <#elseif column.javaType?ends_with("Char")>
-        char
-    <#elseif column.javaType?ends_with("byte[]")>
-        Vec<u8>        
-    <#elseif column.javaType?ends_with("Boolean")>
-        bool
-    <#elseif column.javaType?ends_with("java.util.Date")>
-        NaiveDateTime
-    <#elseif column.javaType?ends_with("LocalDate")>
-        NaiveDate
-    <#elseif column.javaType?ends_with("LocalDateTime")>
-        NaiveDateTime        
-    <#else>
-        unknown_type_${column.javaType?lower_case}
-    </#if>
-</#compress>
+	<#compress>
+	    <#if column.javaType?ends_with("Integer")>
+	        int32
+	    <#elseif column.javaType?ends_with("Long")>
+	        int64
+	    <#elseif column.javaType?ends_with("Short")>
+	        i16
+	    <#elseif column.javaType?ends_with("Byte")>
+	        u8        
+	    <#elseif column.javaType?ends_with("String")>
+	        String
+	    <#elseif column.javaType?ends_with("Float")>
+	        f32
+	    <#elseif column.javaType?ends_with("Double")>
+	        f64
+	    <#elseif column.javaType?ends_with("Char")>
+	        char
+	    <#elseif column.javaType?ends_with("byte[]")>
+	        Vec<u8>        
+	    <#elseif column.javaType?ends_with("Boolean")>
+	        bool
+	    <#elseif column.javaType?ends_with("java.util.Date")>
+	        NaiveDateTime
+	    <#elseif column.javaType?ends_with("LocalDate")>
+	        NaiveDate
+	    <#elseif column.javaType?ends_with("LocalDateTime")>
+	        NaiveDateTime        
+	    <#else>
+	        unknown_type_${column.javaType?lower_case}
+	    </#if>
+	</#compress>
 </#macro>
 
 <#macro rustTypeWithOption column>
-<#compress>
-	<#if column.nullable>Option<</#if><@rustType column/><#if column.nullable>></#if>
-</#compress>
+	<#compress>
+		<#if column.nullable>Option<</#if><@rustType column/><#if column.nullable>></#if>
+	</#compress>
 </#macro>
 
 <#macro rustDieselTableType column>
-<#compress>
-    <#if column.javaType?ends_with("Integer")>
-        Integer
-    <#elseif column.javaType?ends_with("Long")>
-        BigInt
-    <#elseif column.javaType?ends_with("Short")>
-        SmallInt
-    <#elseif column.javaType?ends_with("Byte")>
-        Binary
-    <#elseif column.javaType?ends_with("String")>
-        Text
-    <#elseif column.javaType?ends_with("Float")>
-        Float
-    <#elseif column.javaType?ends_with("Double")>
-        Double
-    <#elseif column.javaType?ends_with("Boolean")>
-        Bool
-    <#elseif column.javaType?ends_with("java.util.Date")>
-        Timestamp
-    <#elseif column.javaType?ends_with("LocalDate")>
-        Date
-    <#elseif column.javaType?ends_with("LocalDateTime")>
-        Timestamp
-    <#elseif column.javaType?ends_with("BigDecimal")>
-        Numeric
-    <#elseif column.javaType?ends_with("byte[]")>
-        Bytea
-    <#else>
-        unknown_diesel_type_${column.javaType?lower_case}
-    </#if>
-</#compress>
+	<#compress>
+	    <#if column.javaType?ends_with("Integer")>
+	        Integer
+	    <#elseif column.javaType?ends_with("Long")>
+	        BigInt
+	    <#elseif column.javaType?ends_with("Short")>
+	        SmallInt
+	    <#elseif column.javaType?ends_with("Byte")>
+	        Binary
+	    <#elseif column.javaType?ends_with("String")>
+	        Text
+	    <#elseif column.javaType?ends_with("Float")>
+	        Float
+	    <#elseif column.javaType?ends_with("Double")>
+	        Double
+	    <#elseif column.javaType?ends_with("Boolean")>
+	        Bool
+	    <#elseif column.javaType?ends_with("java.util.Date")>
+	        Timestamp
+	    <#elseif column.javaType?ends_with("LocalDate")>
+	        Date
+	    <#elseif column.javaType?ends_with("LocalDateTime")>
+	        Timestamp
+	    <#elseif column.javaType?ends_with("BigDecimal")>
+	        Numeric
+	    <#elseif column.javaType?ends_with("byte[]")>
+	        Bytea
+	    <#else>
+	        unknown_diesel_type_${column.javaType?lower_case}
+	    </#if>
+	</#compress>
 </#macro>
 
 <#macro rustDieselTableTypeWithOption column>
