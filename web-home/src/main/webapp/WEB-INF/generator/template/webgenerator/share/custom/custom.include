@@ -15,3 +15,7 @@
 <#assign METHOD_DOWNLOAD = 'download'>
 <#assign METHOD_UPLOAD = 'upload'>
 <#assign METHOD_META = 'meta'>
+
+<#-- lowerCamelCase or snake_case
+<#assign DTO_FIELD_NAME_TYPE = 'lowerCamelCase'>
+
