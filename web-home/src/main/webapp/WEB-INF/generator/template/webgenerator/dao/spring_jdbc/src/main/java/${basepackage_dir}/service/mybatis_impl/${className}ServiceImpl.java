@@ -23,6 +23,7 @@ import com.github.rapid.common.util.page.Page;
 import ${basepackage}.model.*;
 import ${basepackage}.query.*;
 import ${basepackage}.mapper.*;
+import ${basepackage}.service.*;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -118,7 +119,8 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
     	<#assign fkTable    = fkSqlTable.className>
     	<#assign fkPojoClass = fkSqlTable.className>
     	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
-    	//${classNameLower}.set${fkPojoClass}(${fkPojoClassVar}Service.getone(${classNameLower}.get${fkPojoClass}Id()));
+    	//${fkPojoClass} ${fkPojoClassVar} = ${fkPojoClassVar}Service.getone(new ${fkPojoClass}(${classNameLower}.get${fkPojoClass}Id()));
+    	//${classNameLower}.set${fkPojoClass}(${fkPojoClassVar});
     	</#list>    	
     	return ${classNameLower};
     }
