@@ -26,7 +26,7 @@
 		 		<tr>
 		 			<td><b><span class="required">*</span>create table SQL</b></td>
 		 			<td><textarea class="form-control" id="sqls" name="sqls" cols="80" rows="19"  onchange="saveCookie()" placeholder="输入建表SQL,用分号；分隔多条SQL"></textarea>
-		 				示例值: create table demo_table (id int AUTO_INCREMENT primary key, username varchar(20) ,age int,height bigint,weight float,money double,sex tinyint,birth_date datetime,props text);
+		 				示例值: create table demo_table (id int AUTO_INCREMENT primary key, username varchar(20) ,age int,height bigint,weight float,money double,sex tinyint,income smallint,outcome mediumint,birth_date datetime,props text);
 		 			</td>
 		 		</tr>
 		 		<tr>
