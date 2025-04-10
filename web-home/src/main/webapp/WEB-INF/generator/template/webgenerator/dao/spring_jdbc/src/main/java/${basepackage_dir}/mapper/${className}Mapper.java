@@ -29,7 +29,7 @@ public interface ${className}Mapper extends MppBaseMapper<${className}> {
 
 	<#list table.columns as column>
 	<#if column.unique && !column.pk>
-	public ${className} getBy${column.columnName}(${column.primitiveJavaType} ${column.columnNameFirstLower}) {
+	public default ${className} getBy${column.columnName}(${column.primitiveJavaType} ${column.columnNameFirstLower}) {
 		LambdaQueryWrapper<${className}> query = new LambdaQueryWrapper<${className}>();
 		query.eq(${className}::get${column.columnName}, ${column.columnNameFirstLower});
 		return selectOne(query);	
