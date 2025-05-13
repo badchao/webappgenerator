@@ -13,14 +13,19 @@ use diesel::sql_types::*;
 use chrono::NaiveDateTime;
 use chrono::NaiveDate;
 
+<#-- 
 <#if 1 < table.pkCount>
+ -->
 #[derive(Debug,Clone,Queryable, Serialize, Deserialize)]
 pub struct ${className}Id {
 	<#list table.pkColumns as column>
     pub ${column.underscoreName} : <@rustType column/>,
 	</#list>
 }
+<#-- 
 </#if>
+-->
+
 
 #[derive(Debug,Clone, Insertable,Queryable, Serialize, Deserialize, AsChangeset)]
 #[diesel(table_name = ${underscoreName})]

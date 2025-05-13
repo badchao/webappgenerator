@@ -19,7 +19,7 @@ pub struct ${className}Service;
 impl ${className}Service {
 	
 	pub fn check(${underscoreName}: &${className}) -> Result<${className}> {
-		Ok(())
+		Ok(${underscoreName}.clone())
 	}
 	
     pub fn create(conn: &mut PgConnection, ${underscoreName}: ${className}) -> Result<${className}> {
