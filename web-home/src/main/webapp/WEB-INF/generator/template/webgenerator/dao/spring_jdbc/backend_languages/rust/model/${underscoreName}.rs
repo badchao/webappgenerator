@@ -43,7 +43,7 @@ diesel::table! {
 		<#if column.pk>
 		#[diesel(primary_key)]
 	    </#if>
-		${column.underscoreName} -> <@rustDieselTableTypeWithOption column/>,
+		${column.underscoreName} -> <@rustDieselTableTypeWithNullable column/>,
 		
 	</#list>
     }
