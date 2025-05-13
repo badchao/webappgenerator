@@ -18,7 +18,7 @@ pub struct ${className}Service;
 
 impl ${className}Service {
 	
-	pub fn check(${underscoreName}: &${className}) -> Result<()> {
+	pub fn check(${underscoreName}: &${className}) -> Result<${className}> {
 		Ok(())
 	}
 	
@@ -29,9 +29,9 @@ impl ${className}Service {
         return result;
     }
 
-    pub fn update_by_id(conn: &mut PgConnection,entity: ${className}) -> Result<${className}> {
+    pub fn update_by_id(conn: &mut PgConnection,${underscoreName}: ${className}) -> Result<${className}> {
     	Self::check(&${underscoreName});
-        let result = ${className}Dao::update_by_id(conn, &updated)
+        let result = ${className}Dao::update_by_id(conn, &${underscoreName})
             .context("update error");
 		return result;
     }

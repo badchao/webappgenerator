@@ -6,7 +6,9 @@
 
 
 use serde::{Deserialize, Serialize};
-
+use chrono::NaiveDateTime;
+use chrono::NaiveDate;
+use diesel::sql_types::*;
 
 #[derive(Debug,Clone, Serialize, Deserialize)]
 pub struct ${className}Query{

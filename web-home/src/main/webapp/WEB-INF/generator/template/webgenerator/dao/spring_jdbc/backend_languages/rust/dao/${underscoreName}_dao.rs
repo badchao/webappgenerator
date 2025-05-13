@@ -34,7 +34,7 @@ impl ${className}Dao {
 
         let statement = ${underscoreName}::table
 		<#list table.pkColumns as column>
-			.filter(${underscoreName}::${column.underscoreName}.eq(id.${column.underscoreName}))
+			.filter(${underscoreName}::${column.underscoreName}.eq(&id.${column.underscoreName}))
 		</#list>;
         
         diesel::update(statement)
@@ -48,7 +48,7 @@ impl ${className}Dao {
     ) -> QueryResult<usize> {
         let statement = ${underscoreName}::table
 		<#list table.pkColumns as column>
-			.filter(${underscoreName}::${column.underscoreName}.eq(id.${column.underscoreName}))
+			.filter(${underscoreName}::${column.underscoreName}.eq(&id.${column.underscoreName}))
 		</#list>;
         
         diesel::delete(statement)
@@ -61,7 +61,7 @@ impl ${className}Dao {
     ) -> QueryResult<${className}> {
         let statement = ${underscoreName}::table
 		<#list table.pkColumns as column>
-			.filter(${underscoreName}::${column.underscoreName}.eq(id.${column.underscoreName}))
+			.filter(${underscoreName}::${column.underscoreName}.eq(&id.${column.underscoreName}))
 		</#list>;
 
         statement.first(conn)

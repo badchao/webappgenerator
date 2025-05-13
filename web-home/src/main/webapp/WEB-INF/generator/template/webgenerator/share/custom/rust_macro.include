@@ -5,9 +5,9 @@
 <#macro rustType column>
 	<#compress>
 	    <#if column.javaType?ends_with("Integer")>
-	        int32
+	        i32
 	    <#elseif column.javaType?ends_with("Long")>
-	        int64
+	        i64
 	    <#elseif column.javaType?ends_with("Short")>
 	        i16
 	    <#elseif column.javaType?ends_with("Byte")>

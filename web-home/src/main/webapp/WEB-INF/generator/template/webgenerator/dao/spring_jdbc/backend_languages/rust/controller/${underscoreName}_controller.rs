@@ -21,7 +21,7 @@ pub fn service_config_${underscoreName}(cfg: &mut web::ServiceConfig) {
     cfg.service(meta);
     cfg.service(update);
     cfg.service(create);
-    cfg.service(delete);
+    cfg.service(remove);
     cfg.service(getone);
 	cfg.service(query);
 }
