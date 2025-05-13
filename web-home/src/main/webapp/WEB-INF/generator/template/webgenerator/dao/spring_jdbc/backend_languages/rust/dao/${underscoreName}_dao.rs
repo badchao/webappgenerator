@@ -3,7 +3,6 @@
 <#assign className = table.className>   
 <#assign underscoreName = table.underscoreName>   
 
-use axum::extract::RawPathParams;
 use diesel::{prelude::*, pg::PgConnection, query_dsl::methods::BoxedDsl};
 use diesel::pg::Pg;
 

@@ -23,14 +23,14 @@ impl ${className}Service {
 	}
 	
     pub fn create(conn: &mut PgConnection, ${underscoreName}: ${className}) -> Result<${className}> {
-        Self::check(${underscoreName});
+        Self::check(&${underscoreName});
         let result = ${className}Dao::insert(conn, &${underscoreName})
             .context("create error");
         return result;
     }
 
     pub fn update_by_id(conn: &mut PgConnection,entity: ${className}) -> Result<${className}> {
-    	Self::check(${underscoreName});
+    	Self::check(&${underscoreName});
         let result = ${className}Dao::update_by_id(conn, &updated)
             .context("update error");
 		return result;
