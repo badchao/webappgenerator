@@ -16,7 +16,7 @@ use chrono::NaiveDate;
 <#-- 
 <#if 1 < table.pkCount>
  -->
-#[derive(Debug,Clone,Default,Queryable, Serialize, Deserialize)]
+#[derive(Debug,Clone,Default,Serialize, Deserialize,Queryable)]
 pub struct ${className}Id {
 	<#list table.pkColumns as column>
     pub ${column.underscoreName} : <@rustType column/>,
@@ -27,7 +27,7 @@ pub struct ${className}Id {
 -->
 
 
-#[derive(Debug,Clone,Default, Insertable,Queryable, Serialize, Deserialize, AsChangeset)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize, Insertable,Queryable,AsChangeset)]
 #[diesel(table_name = ${underscoreName})]
 pub struct ${className} {
 	<#list table.columns as column>
