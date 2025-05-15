@@ -4,15 +4,18 @@ syntax = "proto3";
 <#include "/macro.include"/>
 <#assign className = table.className>   
 <#assign underscoreName = table.underscoreName>   
+<#assign classNameLower = className?uncap_first>
 
 package ${basepackage}.protobuf;
 
 import "google/protobuf/timestamp.proto";
 
 message ${className} {
+
 <#list table.columns as column>
-	<#if column.nullable>optional</#if> <@protobufType column> ${column.columnNameLower} = ${column?index + 1};
+	<#if column.nullable>optional</#if> <@protobufType column/> ${column.columnNameLower} = ${column_index + 1};
 </#list>
+
 }
 
 message ${className}List {
