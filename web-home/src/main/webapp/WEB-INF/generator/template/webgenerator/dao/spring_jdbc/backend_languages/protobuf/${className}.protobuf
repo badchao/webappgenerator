@@ -9,6 +9,8 @@ syntax = "proto3";
 package ${basepackage}.protobuf;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
 
 message ${className} {
 
@@ -18,8 +20,76 @@ message ${className} {
 
 }
 
+message PageRequest {
+  int32 page = 1;
+  int32 pageSize = 2; 
+  string keyword = 3;
+}
+
+message PageResponse {
+  int32 page = 1;
+  int32 pageSize = 2; 
+  int32 total = 3;
+}
+
+message NumberIdRequest {
+  int64 id = 1;
+}
+
+message StringIdRequest {
+  string id = 1;
+}
+
+message BatchNumberIdRequest {
+  repeated int32 ids = 1;
+}
+
+message BatchStringIdRequest {
+  repeated string ids = 1;
+}
+
+message CommonResponse {
+  bool success = 1;        
+  string message = 2;
+  string errorCode = 3
+  string errorLog = 4;
+  string requestId = 5;    
+}
+
+
+message ${className}Query {
+	PageRequest pageRequest;
+}
+
 message ${className}List {
   repeated User ${classNameLower}List = 1;
-  int32 total = 2;
-  int32 pageSize = 3;
+  PageResponse pageResponse;
 }
+
+message ${className}Request {
+  ${className} entity = 1; 
+}
+
+message ${className}MetaResponse{
+	map<string, string> enums = 1;
+	google.protobuf.Any data = 2;
+}
+
+
+service ${className}RpcService {
+
+  rpc meta () returns (${className}MetaResponse);
+  
+  rpc create (${className}Request) returns (CommonResponse);
+
+  rpc update (${className}Request) returns (CommonResponse);
+
+  rpc remove (NumberIdRequest) returns (CommonResponse); 
+
+  rpc getone (NumberIdRequest) returns (${className});
+
+  rpc query (${className}Query) returns (${className}List);
+  
+}
+
+
