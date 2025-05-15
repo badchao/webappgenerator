@@ -1,0 +1,33 @@
+<#macro protobufType column>
+    <#compress>
+        <#if column.javaType?ends_with("Integer") || column.javaType?ends_with("int")>
+            int32
+        <#elseif column.javaType?ends_with("Long") || column.javaType?ends_with("long")>
+            int64
+        <#elseif column.javaType?ends_with("Short") || column.javaType?ends_with("short")>
+            int32
+        <#elseif column.javaType?ends_with("Byte") || column.javaType?ends_with("byte")>
+            int32
+        <#elseif column.javaType?ends_with("String")>
+            string
+        <#elseif column.javaType?ends_with("Float") || column.javaType?ends_with("float")>
+            float
+        <#elseif column.javaType?ends_with("Double") || column.javaType?ends_with("double")>
+            double
+        <#elseif column.javaType?ends_with("Boolean") || column.javaType?ends_with("boolean")>
+            bool
+        <#elseif column.javaType?lower_case?ends_with("byte[]")>  <#-- 处理字节数组 -->
+            bytes
+        <#elseif column.javaType?contains("Date")> 
+            google.protobuf.Timestamp
+	    <#elseif column.javaType?ends_with("java.util.Date")>
+	        google.protobuf.Timestamp
+	    <#elseif column.javaType?ends_with("LocalDate")>
+	        google.protobuf.Timestamp
+	    <#elseif column.javaType?ends_with("LocalDateTime")>
+	        google.protobuf.Timestamp        
+	    <#else>
+	        unknown_type_${column.javaType?lower_case}
+	    </#if>
+	</#compress>
+</#macro>

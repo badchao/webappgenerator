@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+<#include "/java_copyright.include">
+<#include "/macro.include"/>
+<#assign className = table.className>   
+<#assign underscoreName = table.underscoreName>   
+
+package ${basepackage}.protobuf;
+
+import "google/protobuf/timestamp.proto";
+
+message ${className} {
+<#list table.columns as column>
+	<#if column.nullable>optional</#if> <@protobufType column> ${column.columnNameLower} = ${column?index + 1};
+</#list>
+}
+
+message ${className}List {
+  repeated User ${classNameLower}List = 1;
+  int32 total = 2;
+  int32 pageSize = 3;
+}
