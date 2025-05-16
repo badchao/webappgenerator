@@ -1,0 +1,100 @@
+<#include "/java_copyright.include">
+<#include "/macro.include"/>
+<#assign className = table.className>   
+<#assign underscoreName = table.underscoreName>   
+<#assign classNameLower = className?uncap_first>
+
+
+namespace ${basepackage}.flatbuffers;
+
+table ${className} {
+
+<#list table.columns as column>
+	//${column.columnAlias!}       db_column: ${column.sqlName}
+	${column.columnNameLower} : <@flatbuffersType column/> <#if column.nullable>(optional)</#if>;
+</#list>
+
+}
+
+// 分页相关结构
+table PageRequest {
+    page: int;
+    pageSize: int;
+    keyword: string;
+}
+
+table PageResponse {
+    page: int;
+    pageSize: int;
+    total: int;
+}
+
+// ID 相关结构
+table NumberIdRequest {
+    id: long;
+}
+
+table StringIdRequest {
+    id: string;
+}
+
+table BatchNumberIdRequest {
+    ids: [long];
+}
+
+table BatchStringIdRequest {
+    ids: [string];
+}
+
+// 元数据响应
+table EnumPair {
+    key: string;
+    value: string;
+}
+
+
+// 通用响应
+table CommonResponse {
+    success: bool;
+    message: string;
+    errorCode: string;
+    errorLog: string;
+    requestId: string;
+}
+
+// 查询结构
+table ${className}Query {
+    pageRequest: PageRequest;
+}
+
+table ${className}List {
+    ${className}List: [${className}];
+    pageResponse: PageResponse;
+}
+
+// 请求体结构
+table ${className}Request {
+    entity: ${className};
+}
+
+
+table ${className}MetaResponse {
+    enums: [EnumPair];
+    data: [ubyte]; // 使用二进制存储任意类型数据
+}
+
+// RPC 服务定义
+rpc_service ${className}RpcService {
+    meta() -> ${className}MetaResponse;
+    create(${className}Request): CommonResponse;
+    update(${className}Request): CommonResponse;
+    remove(NumberIdRequest): CommonResponse;
+    getone(NumberIdRequest): ${className};
+    query(${className}Query): ${className}List;
+}
+
+
+
+root_type ${className};
+
+

@@ -1,0 +1,29 @@
+<#macro flatbuffersType column>
+    <#compress>
+        <#if column.javaType?ends_with("Integer") || column.javaType?ends_with("int")>
+            int
+        <#elseif column.javaType?ends_with("Long") || column.javaType?ends_with("long")>
+            long
+        <#elseif column.javaType?ends_with("Short") || column.javaType?ends_with("short")>
+            short
+        <#elseif column.javaType?ends_with("Byte") || column.javaType?ends_with("byte")>
+            ubyte
+        <#elseif column.javaType?ends_with("String")>
+            string
+        <#elseif column.javaType?ends_with("Float") || column.javaType?ends_with("float")>
+            float
+        <#elseif column.javaType?ends_with("Double") || column.javaType?ends_with("double")>
+            double
+        <#elseif column.javaType?ends_with("Boolean") || column.javaType?ends_with("boolean")>
+            bool
+        <#elseif column.javaType?lower_case?ends_with("byte[]")>
+            [ubyte]
+        <#elseif column.javaType?contains("Date") 
+              || column.javaType?ends_with("LocalDate")
+              || column.javaType?ends_with("LocalDateTime")>
+            long
+        <#else>
+            unknown_type_${column.javaType?lower_case}
+        </#if>
+    </#compress>
+</#macro>
