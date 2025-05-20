@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+
+
+message PageRequest {
+  int32 page = 1;
+  int32 pageSize = 2; 
+  string keyword = 3;
+}
+
+message PageResponse {
+  int32 page = 1;
+  int32 pageSize = 2; 
+  int32 total = 3;
+}
+
+message NumberIdRequest {
+  int64 id = 1;
+}
+
+message StringIdRequest {
+  string id = 1;
+}
+
+message BatchNumberIdRequest {
+  repeated int32 ids = 1;
+}
+
+message BatchStringIdRequest {
+  repeated string ids = 1;
+}
+
+message CommonResponse {
+  bool success = 1;        
+  string message = 2;
+  string errorCode = 3;
+  string errorLog = 4;
+  string requestId = 5;    
+}
+
