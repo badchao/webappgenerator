@@ -49,7 +49,7 @@ message ${className}Response {
 
 service ${className}RpcService {
 
-  rpc meta (google.protobuf.Empty) returns (${className}MetaResponse);
+  rpc meta (EmptyRequest) returns (${className}MetaResponse);
   
   rpc create (${className}Request) returns (CommonResponse);
 

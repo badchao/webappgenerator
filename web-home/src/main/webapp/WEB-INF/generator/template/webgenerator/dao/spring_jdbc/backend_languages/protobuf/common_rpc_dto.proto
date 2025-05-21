@@ -1,6 +1,10 @@
 syntax = "proto3";
 
+package ${basepackage}.protobuf;
 
+
+message EmptyRequest{
+}
 
 message PageRequest {
   int32 page = 1;
