@@ -6,7 +6,7 @@ syntax = "proto3";
 <#assign underscoreName = table.underscoreName>   
 <#assign classNameLower = className?uncap_first>
 
-package ${basepackage}.protobuf;
+package generated_protobuf;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
