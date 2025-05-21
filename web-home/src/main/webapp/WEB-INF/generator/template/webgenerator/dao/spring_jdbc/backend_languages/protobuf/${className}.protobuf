@@ -22,22 +22,28 @@ message ${className} {
 
 }
 
-message ${className}Query {
+message ${className}PageRequest {
 	PageRequest pageRequest = 1;
 }
 
-message ${className}List {
-  repeated ${className} ${classNameLower}List = 1;
-  PageResponse pageResponse = 2;
+message ${className}ListResponse {
+  CommonResponse commonResponse = 1;
+  repeated ${className} dataList = 2;
+  PageResponse pageResponse = 3;
 }
 
 message ${className}Request {
-  ${className} entity = 1; 
+  ${className} data = 1; 
 }
 
 message ${className}MetaResponse{
 	map<string, string> enums = 1;
 	google.protobuf.Any data = 2;
+}
+
+message ${className}Response {
+  CommonResponse commonResponse = 1;
+  OdsEnvCheck data = 2;
 }
 
 
@@ -51,9 +57,9 @@ service ${className}RpcService {
 
   rpc remove (NumberIdRequest) returns (CommonResponse); 
 
-  rpc getone (NumberIdRequest) returns (${className});
+  rpc getone (NumberIdRequest) returns (${className}Response);
 
-  rpc query (${className}Query) returns (${className}List);
+  rpc query (${className}PageRequest) returns (${className}ListResponse);
   
 }
 
