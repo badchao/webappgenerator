@@ -1,0 +1,33 @@
+<#macro dartType column>
+    <#compress>
+        <#if column.javaType?ends_with("Integer") || column.javaType?ends_with("int")>
+            int
+        <#elseif column.javaType?ends_with("Long") || column.javaType?ends_with("long")>
+            int
+        <#elseif column.javaType?ends_with("Short") || column.javaType?ends_with("short")>
+            int
+        <#elseif column.javaType?ends_with("Byte") || column.javaType?ends_with("byte")>
+            int
+        <#elseif column.javaType?ends_with("String")>
+            String
+        <#elseif column.javaType?ends_with("Float") || column.javaType?ends_with("float")>
+            double
+        <#elseif column.javaType?ends_with("Double") || column.javaType?ends_with("double")>
+            double
+        <#elseif column.javaType?ends_with("Boolean") || column.javaType?ends_with("boolean")>
+            bool
+        <#elseif column.javaType?lower_case?ends_with("byte[]")>
+            Uint8List
+        <#elseif column.javaType?contains("Date")>
+            DateTime
+        <#elseif column.javaType?ends_with("java.util.Date")>
+            DateTime
+        <#elseif column.javaType?ends_with("LocalDate")>
+            DateTime
+        <#elseif column.javaType?ends_with("LocalDateTime")>
+            DateTime
+        <#else>
+            unknown_type_${column.javaType?lower_case}
+        </#if>
+    </#compress>
+</#macro>

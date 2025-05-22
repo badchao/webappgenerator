@@ -1,6 +1,7 @@
 <#include "/rust_macro.include"/>
 <#include "/protobuf_macro.include"/>
 <#include "/flatbuffers_macro.include"/>
+<#include "/flutter_dart_macro.include"/>
 <#-- 本文件包含一些公共的函数,本文件会被其它模板自动include -->
 
 <#assign dollar = '$'> 
