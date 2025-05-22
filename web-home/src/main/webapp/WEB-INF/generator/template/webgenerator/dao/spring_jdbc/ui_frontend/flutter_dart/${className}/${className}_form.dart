@@ -37,7 +37,7 @@ class _${className}FormState extends State<${className}Form> {
   ${className} _buildDataFromForm() {
     return ${className}(
 	  <#list table.columns as column>
-      ${column.columnNameLower}: <@dartType column>.parse(${column.columnNameLower}Controller.text),
+      ${column.columnNameLower}: <@dartType column/>.parse(${column.columnNameLower}Controller.text),
       </#list>
     );
   }
