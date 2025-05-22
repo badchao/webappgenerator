@@ -14,15 +14,8 @@ import "all.dart";
 
 
 class ${className}Service {
-  static final List<${className}> _mockData = List.generate(200, (index) => ${className}(
-	<#list table.columns as column>
-		<#if column.isStringColumn>
-		${column.columnNameLower}: '${column.columnNameLower}',
-		<#else>
-		${column.columnNameLower}: <@dartType column/>.parse('1'),
-		</#if>
-    </#list>
-  ));
+  static final List<${className}> _mockData = List.generate(105, (index) => ${className}.newMockData());
+
 
   static Future<QueryResult<${className}>> query(int page, int pageSize, {String keyword = ''}) async {
     

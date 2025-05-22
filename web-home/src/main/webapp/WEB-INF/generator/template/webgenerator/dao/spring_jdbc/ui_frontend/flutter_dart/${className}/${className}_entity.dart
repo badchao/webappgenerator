@@ -17,4 +17,19 @@ class ${className} {
     <#if !column.nullable>required</#if> this.${column.columnNameLower},
 </#list>    
   });
+  
+  
+  
+  static OdsEnvCheck newMockData()  => ${className}(
+	<#list table.columns as column>
+		<#if column.isStringColumn>
+		${column.columnNameLower}: '${column.columnNameLower}',
+		<#elseif column.isDateTimeColumn>
+		${column.columnNameLower}: DataTime.now(),
+		<#else>
+		${column.columnNameLower}: <@dartType column/>.parse('1'),
+		</#if>
+    </#list>
+  );
+  
 }
