@@ -77,7 +77,9 @@ class _${className}FormState extends State<${className}Form> {
       TextFormField(
         controller: ${column.columnNameLower}Controller,
         decoration: const InputDecoration(labelText: '${column.columnAlias!}'),
+        <#if !column.nullable>
         validator: (value) => value?.isEmpty ?? true ? '请输入${column.columnAlias!}' : null,
+        </#if>
       ),		
 	</#list>
 
