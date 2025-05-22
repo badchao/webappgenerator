@@ -20,16 +20,19 @@ class ${className} {
   
   
   
-  static OdsEnvCheck newMockData()  => ${className}(
-	<#list table.columns as column>
-		<#if column.isStringColumn>
-		${column.columnNameLower}: '${column.columnNameLower}',
-		<#elseif column.isDateTimeColumn>
-		${column.columnNameLower}: DataTime.now(),
-		<#else>
-		${column.columnNameLower}: <@dartType column/>.parse('1'),
-		</#if>
-    </#list>
-  );
+  static OdsEnvCheck newMockData(int index)  {
+	String num = index.toString();
+	return ${className}(
+		<#list table.columns as column>
+			<#if column.isStringColumn>
+			${column.columnNameLower}: '${column.columnNameLower}',
+			<#elseif column.isDateTimeColumn>
+			${column.columnNameLower}: DateTime.now(),
+			<#else>
+			${column.columnNameLower}: <@dartType column/>.parse(num),
+			</#if>
+	    </#list>
+	  );
+  }
   
 }

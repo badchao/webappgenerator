@@ -14,7 +14,7 @@ import "all.dart";
 
 
 class ${className}Service {
-  static final List<${className}> _mockData = List.generate(105, (index) => ${className}.newMockData());
+  static final List<${className}> _mockData = List.generate(105, (index) => ${className}.newMockData(index));
 
 
   static Future<QueryResult<${className}>> query(int page, int pageSize, {String keyword = ''}) async {
