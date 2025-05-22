@@ -12,21 +12,6 @@ import 'common_import.dart';
 import "all.dart";
 
 void main() {
-  runApp(const ${className}App());
+  runApp(buildTestApp(homePage: const ${className}CrudTablePage()));
 }
 
-class ${className}App extends StatelessWidget {
-  const ${className}App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '数据表格管理',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
-      home: const ${className}CrudTablePage(),
-    );
-  }
-}
