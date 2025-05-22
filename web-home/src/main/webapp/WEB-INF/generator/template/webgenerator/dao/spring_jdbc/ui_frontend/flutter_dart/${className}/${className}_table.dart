@@ -10,10 +10,10 @@ import 'package:intl/intl.dart';
 import 'dart:async';
 import 'common_import.dart';
 import "all.dart";
+import 'package:auto_route/auto_route.dart';
 
 
-
-
+@RoutePage()
 class ${className}CrudTablePage extends StatefulWidget {
   const ${className}CrudTablePage({super.key});
 
