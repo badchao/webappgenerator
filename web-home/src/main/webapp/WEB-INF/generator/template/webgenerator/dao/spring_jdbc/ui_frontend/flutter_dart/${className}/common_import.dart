@@ -1,5 +1,5 @@
 
 
 
-import 'package:${projectId}/app/all.dart';
+export 'package:${projectId}/app/all.dart';
 
