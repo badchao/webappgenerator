@@ -24,9 +24,9 @@ class ${className}CrudTablePage extends StatefulWidget {
 
 
 class _${className}CrudTablePageState extends State<${className}CrudTablePage> {
-  List<${className}> _data = [];
+  List<${className}> _dataList = [];
   int _currentPage = 1;
-  final int _pageSize = 10;
+  int _pageSize = 10;
   bool _isLoading = false;
   int _totalRecords = 0;
   final TextEditingController _searchController = TextEditingController();
@@ -45,7 +45,7 @@ class _${className}CrudTablePageState extends State<${className}CrudTablePage> {
     try {
       final result = await ${className}Service.query(_currentPage, _pageSize, keyword: _searchController.text);
       setState(() {
-        _data = result.data;
+        _dataList = result.data;
         _totalRecords = result.total;
       });
     } finally {
@@ -130,7 +130,7 @@ class _${className}CrudTablePageState extends State<${className}CrudTablePage> {
   }
 
   List<DataRow> _buildTableBodyRows() {
-    return _data.map((item) => DataRow(cells: [
+    return _dataList.map((item) => DataRow(cells: [
 		  <#list table.columns as column>
           <#if column.isDateTimeColumn>
           DataCell(Text(DateFormat('yyyy-MM-dd').format(item.createTime))),
@@ -199,7 +199,7 @@ class _${className}CrudTablePageState extends State<${className}CrudTablePage> {
           Expanded(
             child: _isLoading 
                 ? const Center(child: CircularProgressIndicator())
-                : _data.isEmpty
+                : _dataList.isEmpty
                     ? const Center(child: Text('暂无数据'))
                     : _buildDataTable(),
           ),
