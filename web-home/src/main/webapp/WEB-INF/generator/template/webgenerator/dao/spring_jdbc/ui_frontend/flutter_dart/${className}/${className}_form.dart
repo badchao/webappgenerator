@@ -37,7 +37,11 @@ class _${className}FormState extends State<${className}Form> {
   ${className} _buildDataFromForm() {
     return ${className}(
 	  <#list table.columns as column>
-      ${column.columnNameLower}: <@dartType column/>.parse(${column.columnNameLower}Controller.text),
+		<#if column.isStringColumn>
+		${column.columnNameLower}: ${column.columnNameLower}Controller.text,
+		<#else>
+		${column.columnNameLower}: <@dartType column/>.parse(${column.columnNameLower}Controller.text),
+		</#if>      
       </#list>
     );
   }

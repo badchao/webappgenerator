@@ -132,8 +132,11 @@ class _${className}CrudTablePageState extends State<${className}CrudTablePage> {
   List<DataRow> _buildTableBodyRows() {
     return _data.map((item) => DataRow(cells: [
 		  <#list table.columns as column>
-          DataCell(Text(item.${column.columnNameLower}.toString())),
+          <#if column.isDateTimeColumn>
           DataCell(Text(DateFormat('yyyy-MM-dd').format(item.createTime))),
+          <#else>
+          DataCell(Text(item.${column.columnNameLower}.toString())),
+          </#if>
           </#list>
 
           DataCell(Row(children: _buildTableHandleActions(item))),

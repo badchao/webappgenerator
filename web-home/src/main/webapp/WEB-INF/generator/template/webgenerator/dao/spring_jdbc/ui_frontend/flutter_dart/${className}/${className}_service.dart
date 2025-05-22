@@ -16,12 +16,15 @@ import "all.dart";
 class ${className}Service {
   static final List<${className}> _mockData = List.generate(200, (index) => ${className}(
 	<#list table.columns as column>
-    ${column.columnNameLower}: '${column.columnNameLower}',
+		<#if column.isStringColumn>
+		${column.columnNameLower}: '${column.columnNameLower}',
+		<#else>
+		${column.columnNameLower}: <@dartType column/>.parse('1'),
+		</#if>
     </#list>
   ));
 
   static Future<QueryResult<${className}>> query(int page, int pageSize, {String keyword = ''}) async {
-    await Future.delayed(const Duration(milliseconds: 500));
     
     var filteredList = _mockData.where((item) {
       if (keyword.isEmpty) return true;
@@ -41,18 +44,15 @@ class ${className}Service {
   }
 
   static Future<void> create(${className} item) async {
-    await Future.delayed(const Duration(milliseconds: 300));
     _mockData.insert(0, item);
   }
 
   static Future<void> update(${className} item) async {
-    await Future.delayed(const Duration(milliseconds: 300));
     final index = _mockData.indexWhere((e) => e.id == item.id);
     if (index != -1) _mockData[index] = item;
   }
 
   static Future<void> remove(int id) async {
-    await Future.delayed(const Duration(milliseconds: 300));
     _mockData.removeWhere((e) => e.id == id);
   }
 
