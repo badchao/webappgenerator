@@ -79,6 +79,11 @@ impl ${className}Dao {
         }
 		</#list>
 
+		let offset = (params.page - 1) * params.page_size;
+		query = query.offset(offset as i64);
+		query = query.limit(params.page_size as i64);
+		query = query.order_by(ods_env_check::create_time.desc());
+		
         query.load::<${className}>(conn)
     }
 
