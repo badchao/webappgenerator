@@ -8,8 +8,35 @@
 
 import 'common_import.dart';
 
-
 class ${className}Service {
+
+  static Future<QueryResult<${classNameDtoClass}>> query(int page, int pageSize, {String keyword = ''}) async {
+    ${className}PageRequest request = ${className}PageRequest();
+    request.pageRequest = PageRequest(page: page, pageSize: pageSize,keyword: keyword);
+
+    ${className}ListResponse response = await ${classNameLower}RpcServiceClient.query(request);
+
+    return QueryResult<${classNameDtoClass}>(data: response.dataList, total: response.pageResponse.total.toInt());
+  }
+
+  static Future<void> create(${classNameDtoClass} item) async {
+  }
+
+  static Future<void> update(${classNameDtoClass} item) async {
+  }
+
+  static Future<void> remove(int id) async {
+  }
+
+  static Future<void> deploy(int id) async => await Future.delayed(const Duration(milliseconds: 500));
+  static Future<void> run(int id) async => await Future.delayed(const Duration(milliseconds: 500));	
+}
+
+
+
+
+
+class ${className}MockService {
   static final List<${classNameDtoClass}> _mockData = List.generate(105, (index) => ${classNameDtoClass}.newMockData(index));
 
 
