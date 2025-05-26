@@ -3,7 +3,7 @@
         <#if column.javaType?ends_with("Integer") || column.javaType?ends_with("int")>
             int32
         <#elseif column.javaType?ends_with("Long") || column.javaType?ends_with("long")>
-            int64
+            int32
         <#elseif column.javaType?ends_with("Short") || column.javaType?ends_with("short")>
             int32
         <#elseif column.javaType?ends_with("Byte") || column.javaType?ends_with("byte")>

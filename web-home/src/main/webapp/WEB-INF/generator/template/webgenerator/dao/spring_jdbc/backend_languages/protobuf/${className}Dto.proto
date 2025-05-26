@@ -5,6 +5,7 @@ syntax = "proto3";
 <#assign className = table.className>   
 <#assign underscoreName = table.underscoreName>   
 <#assign classNameLower = className?uncap_first>
+<#assign classNameDtoClass = className+"Dto"> 
 
 package ${projectId};
 
@@ -13,7 +14,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/any.proto";
 import "common_rpc_dto.proto";
 
-message ${className}Dto {
+message ${classNameDtoClass} {
 
 <#list table.columns as column>
 	//${column.columnAlias!}       db_column: ${column.sqlName}
@@ -28,12 +29,12 @@ message ${className}PageRequest {
 
 message ${className}ListResponse {
   CommonResponse commonResponse = 1;
-  repeated ${className}Dto dataList = 2;
+  repeated ${classNameDtoClass} dataList = 2;
   PageResponse pageResponse = 3;
 }
 
 message ${className}Request {
-  ${className}Dto data = 1; 
+  ${classNameDtoClass} data = 1; 
 }
 
 message ${className}MetaResponse{
