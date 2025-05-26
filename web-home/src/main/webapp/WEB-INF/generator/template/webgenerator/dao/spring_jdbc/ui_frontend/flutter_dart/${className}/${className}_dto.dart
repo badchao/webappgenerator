@@ -21,7 +21,7 @@ class ${classNameDtoClass} {
   
   
   
-  static OdsEnvCheck newMockData(int index)  {
+  static ${classNameDtoClass} newMockData(int index)  {
 	String num = index.toString();
 	return ${classNameDtoClass}(
 		<#list table.columns as column>

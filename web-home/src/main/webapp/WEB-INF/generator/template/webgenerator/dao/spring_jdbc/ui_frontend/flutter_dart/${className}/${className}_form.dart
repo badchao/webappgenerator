@@ -15,8 +15,8 @@ import "all.dart";
 
 
 class ${className}Form extends StatefulWidget {
-  final ${className}Dto? initData;
-  final Function(${className}) onSubmit;
+  final ${classNameDtoClass}? initData;
+  final Function(${classNameDtoClass}) onSubmit;
 
   const ${className}Form({
     super.key,
@@ -35,8 +35,8 @@ class _${className}FormState extends State<${className}Form> {
   late final TextEditingController ${column.columnNameLower}Controller = TextEditingController(text: widget.initData?.${column.columnNameLower}.toString() ?? '');
   </#list>
   
-  ${className}Dto _buildDataFromForm() {
-    return ${className}Dto(
+  ${classNameDtoClass} _buildDataFromForm() {
+    return ${classNameDtoClass}(
 	  <#list table.columns as column>
 		<#if column.isStringColumn>
 		${column.columnNameLower}: ${column.columnNameLower}Controller.text,
