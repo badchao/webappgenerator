@@ -9,5 +9,5 @@ export '${className}App.dart';
 export '${className}Dto.dart';
 export '${className}Form.dart';
 export '${className}Service.dart';
-export '${className}Table.dart';
+export '${className}TablePage.dart';
 

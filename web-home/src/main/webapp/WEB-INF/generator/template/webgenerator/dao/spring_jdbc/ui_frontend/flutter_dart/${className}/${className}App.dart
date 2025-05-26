@@ -6,13 +6,9 @@
 <#assign classNameLower = className?uncap_first>
 <#assign classNameDtoClass = className+"Dto"> 
 
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'dart:async';
 import 'common_import.dart';
-import "all.dart";
 
 void main() {
-  runApp(buildTestApp(homePage: const ${className}CrudTablePage()));
+  runApp(buildTestApp(homePage: const ${className}TablePage()));
 }
 
