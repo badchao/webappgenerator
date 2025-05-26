@@ -29,8 +29,8 @@ message ${className}PageRequest {
 
 message ${className}ListResponse {
   CommonResponse commonResponse = 1;
-  repeated ${classNameDtoClass} dataList = 2;
-  PageResponse pageResponse = 3;
+  PageResponse pageResponse = 2;
+  repeated ${classNameDtoClass} dataList = 3;
 }
 
 message ${className}Request {
@@ -44,7 +44,7 @@ message ${className}MetaResponse{
 
 message ${className}Response {
   CommonResponse commonResponse = 1;
-  OdsEnvCheck data = 2;
+  ${classNameDtoClass} data = 2;
 }
 
 
