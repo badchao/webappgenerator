@@ -20,12 +20,30 @@ class ${className}Service {
   }
 
   static Future<void> create(${classNameDtoClass} item) async {
+    ${className}Request request = ${className}Request();
+    request.data = item;
+    ${className}RpcServiceClient.create(request);
   }
 
   static Future<void> update(${classNameDtoClass} item) async {
+    ${className}Request request = ${className}Request();
+    request.data = item;
+    ${className}RpcServiceClient.update(request);
   }
 
-  static Future<void> remove(int id) async {
+  static Future<void> remove(Int64 id) async {
+    NumberIdRequest request = NumberIdRequest(
+      id: id
+    );
+    ${className}RpcServiceClient.remove(request);
+  }
+
+  static Future<${classNameDtoClass}> getone(Int64 id) async {
+    NumberIdRequest request = NumberIdRequest(
+      id: id
+    );
+    ${className}Response response = await ${className}RpcServiceClient.getone(request);
+    return response.data;
   }
 
   static Future<void> deploy(int id) async => await Future.delayed(const Duration(milliseconds: 500));
