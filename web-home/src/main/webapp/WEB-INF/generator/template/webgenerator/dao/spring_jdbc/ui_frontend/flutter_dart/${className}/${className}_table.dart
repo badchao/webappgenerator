@@ -4,6 +4,7 @@
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
 <#assign classNameLower = className?uncap_first> 
+<#assign classNameDtoClass = className+"Dto"> 
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -24,7 +25,7 @@ class ${className}CrudTablePage extends StatefulWidget {
 
 
 class _${className}CrudTablePageState extends State<${className}CrudTablePage> {
-  List<${className}> _dataList = [];
+  List<${classNameDtoClass}> _dataList = [];
   int _currentPage = 1;
   int _pageSize = 10;
   bool _isLoading = false;
@@ -61,7 +62,7 @@ class _${className}CrudTablePageState extends State<${className}CrudTablePage> {
     });
   }
 
-  void _handleFormSubmit(${className} newItem, bool isCreate) async {
+  void _handleFormSubmit(${classNameDtoClass} newItem, bool isCreate) async {
     if(isCreate) {
       await ${className}Service.create(newItem);
     }else {
@@ -71,7 +72,7 @@ class _${className}CrudTablePageState extends State<${className}CrudTablePage> {
     _loadData();
   }
 
-  List<Widget> _buildTableHandleActions(${className} item) {
+  List<Widget> _buildTableHandleActions(${classNameDtoClass} item) {
     return [
 
       //edit action

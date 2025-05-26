@@ -3,7 +3,8 @@
 <#assign className = table.className>   
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
-<#assign classNameLower = className?uncap_first> 
+<#assign classNameLower = className?uncap_first>
+<#assign classNameDtoClass = className+"Dto"> 
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

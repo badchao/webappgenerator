@@ -4,6 +4,7 @@
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
 <#assign classNameLower = className?uncap_first> 
+<#assign classNameDtoClass = className+"Dto"> 
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +15,7 @@ import "all.dart";
 
 
 class ${className}Form extends StatefulWidget {
-  final ${className}? initData;
+  final ${className}Dto? initData;
   final Function(${className}) onSubmit;
 
   const ${className}Form({
@@ -34,8 +35,8 @@ class _${className}FormState extends State<${className}Form> {
   late final TextEditingController ${column.columnNameLower}Controller = TextEditingController(text: widget.initData?.${column.columnNameLower}.toString() ?? '');
   </#list>
   
-  ${className} _buildDataFromForm() {
-    return ${className}(
+  ${className}Dto _buildDataFromForm() {
+    return ${className}Dto(
 	  <#list table.columns as column>
 		<#if column.isStringColumn>
 		${column.columnNameLower}: ${column.columnNameLower}Controller.text,

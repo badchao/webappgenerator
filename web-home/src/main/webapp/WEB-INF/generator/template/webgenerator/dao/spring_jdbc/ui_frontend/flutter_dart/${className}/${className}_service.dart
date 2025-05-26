@@ -4,7 +4,7 @@
 <#assign classNameFirstLower = className?uncap_first> 
 <#assign classNameLowerCase = className?lower_case>
 <#assign classNameLower = className?uncap_first> 
-
+<#assign classNameDtoClass = className+"Dto"> 
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -14,10 +14,10 @@ import "all.dart";
 
 
 class ${className}Service {
-  static final List<${className}> _mockData = List.generate(105, (index) => ${className}.newMockData(index));
+  static final List<${classNameDtoClass}> _mockData = List.generate(105, (index) => ${classNameDtoClass}.newMockData(index));
 
 
-  static Future<QueryResult<${className}>> query(int page, int pageSize, {String keyword = ''}) async {
+  static Future<QueryResult<${classNameDtoClass}>> query(int page, int pageSize, {String keyword = ''}) async {
     
     var filteredList = _mockData.where((item) {
       if (keyword.isEmpty) return true;
@@ -33,14 +33,14 @@ class ${className}Service {
       endIndex.clamp(0, filteredList.length)
     );
 
-    return QueryResult<${className}>(data: pageSubList, total: filteredList.length);
+    return QueryResult<${classNameDtoClass}>(data: pageSubList, total: filteredList.length);
   }
 
-  static Future<void> create(${className} item) async {
+  static Future<void> create(${classNameDtoClass} item) async {
     _mockData.insert(0, item);
   }
 
-  static Future<void> update(${className} item) async {
+  static Future<void> update(${classNameDtoClass} item) async {
     final index = _mockData.indexWhere((e) => e.id == item.id);
     if (index != -1) _mockData[index] = item;
   }
