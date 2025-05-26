@@ -6,27 +6,33 @@
 
 use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
-use crate::generated::protobuf::generated_protobuf::${ClassName}Dto;
-use crate::model::${underscoreName}::${ClassName};
+use crate::generated::protobuf::generated_protobuf::${className}Dto;
+use crate::model::${underscoreName}::${className};
 
-struct ${ClassName}DtoUtil;
+struct ${className}DtoUtil;
 
-impl ${ClassName}DtoUtil{
-    pub fn from_dto(input: &${ClassName}Dto) -> ${ClassName} {
-        let result = ${ClassName} {
-			<#list table.columns as column>
-            ${column.underscoreName}: input.${column.underscoreName},
-            </#list>
-        };
+<#macro generateAllColumnsCopy>
+	<#list table.columns as column>
+		result.${column.underscoreName} = input.${column.underscoreName};
+	</#list>
+</#macro>
+
+impl ${className}DtoUtil{
+	
+    pub fn from_dto(input: &${className}Dto) -> ${className} {
+		let input = input.clone();
+		let mut result = ${className}::default();
+		
+		<@generateAllColumnsCopy/>
         return result;
     }
 
-	pub fn to_dto(input: &${ClassName}) -> ${ClassName}Dto {
-        let mut result = ${ClassName}Dto{
-			<#list table.columns as column>
-            ${column.underscoreName}: input.${column.underscoreName},
-            </#list>
-		};
+	pub fn to_dto(input: &${className}) -> ${className}Dto {
+		let input = input.clone();
+		let mut result = OdsEnvCheckDto::default();
+		
+		<@generateAllColumnsCopy/>
 		return result;
     }
+	
 }
