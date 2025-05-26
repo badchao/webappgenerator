@@ -15,16 +15,16 @@ import 'package:auto_route/auto_route.dart';
 
 
 @RoutePage()
-class ${className}CrudTablePage extends StatefulWidget {
-  const ${className}CrudTablePage({super.key});
+class ${className}TablePage extends StatefulWidget {
+  const ${className}TablePage({super.key});
 
   @override
-  _${className}CrudTablePageState createState() => _${className}CrudTablePageState();
+  _${className}TablePageState createState() => _${className}TablePageState();
 }
 
 
 
-class _${className}CrudTablePageState extends State<${className}CrudTablePage> {
+class _${className}TablePageState extends State<${className}TablePage> {
   List<${classNameDtoClass}> _dataList = [];
   int _currentPage = 1;
   int _pageSize = 10;
