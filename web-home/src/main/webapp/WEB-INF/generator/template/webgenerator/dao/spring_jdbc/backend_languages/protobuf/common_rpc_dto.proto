@@ -13,9 +13,9 @@ message PageRequest {
 }
 
 message PageResponse {
-  int32 page = 1;
-  int32 pageSize = 2; 
-  int32 total = 3;
+  int32 total = 1;
+  int32 page = 2;
+  int32 pageSize = 3; 
 }
 
 message NumberIdRequest {
