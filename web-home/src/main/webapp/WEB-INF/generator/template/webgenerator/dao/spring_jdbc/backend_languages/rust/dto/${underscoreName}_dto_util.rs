@@ -29,10 +29,26 @@ impl ${className}DtoUtil{
 
 	pub fn to_dto(input: &${className}) -> ${className}Dto {
 		let input = input.clone();
-		let mut result = OdsEnvCheckDto::default();
+		let mut result = ${className}Dto::default();
 		
 		<@generateAllColumnsCopy/>
 		return result;
     }
 	
+	
+	pub fn to_list_dto(input: &Vec<${className}>) -> Vec<${className}Dto> {
+		let mut result = Vec::new();
+		for item in input {
+			result.push(Self::to_dto(item));
+		}
+		return result;
+	}
+
+	pub fn from_list_dto(input: &Vec<${className}Dto>) -> Vec<${className}> {
+		let mut result = Vec::new();
+		for item in input {
+			result.push(Self::from_dto(item));
+		}
+		return result;
+	}	
 }
