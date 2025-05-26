@@ -7,7 +7,7 @@
 use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
 use crate::generated::protobuf::generated_protobuf::${ClassName}Dto;
-use crate::model::ods_env_check::${ClassName};
+use crate::model::${underscoreName}::${ClassName};
 
 struct ${ClassName}DtoUtil;
 
