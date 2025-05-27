@@ -14,7 +14,7 @@ class ${classNameDtoClass} {
 
 <#list table.columns as column>
 	//${column.columnAlias!}       db_column: ${column.sqlName}
-	final <@dartType column/><#if column.nullable>?</#if> ${column.columnNameLower};
+	<@dartType column/><#if column.nullable>?</#if> ${column.columnNameLower};
 </#list>
 
   ${classNameDtoClass}({
@@ -42,6 +42,11 @@ class ${classNameDtoClass} {
   
 }
 
+class ${className}PageRequest {
+<#list table.columns as column>
+	<@dartType column/>? ${column.columnNameLower};
+</#list>	
+}
 
 // add other compute fields
 extension ${classNameDtoClass}Extension on ${classNameDtoClass} {

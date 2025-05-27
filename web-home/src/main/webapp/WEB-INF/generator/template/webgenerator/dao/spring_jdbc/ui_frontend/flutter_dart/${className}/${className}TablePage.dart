@@ -41,7 +41,8 @@ class _${className}TablePageState extends State<${className}TablePage> {
     setState(() => _isLoading = true);
     
     try {
-      final result = await ${className}Service.query(_currentPage, _pageSize, keyword: _searchController.text);
+	  ${className}PageRequest query = ${className}PageRequest();
+      final result = await ${className}Service.query(query,_currentPage, _pageSize, keyword: _searchController.text);
       setState(() {
         _dataList = result.data;
         _totalRecords = result.total;

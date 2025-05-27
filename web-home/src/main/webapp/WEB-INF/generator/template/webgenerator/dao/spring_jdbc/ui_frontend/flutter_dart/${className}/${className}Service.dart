@@ -10,12 +10,11 @@ import 'common_import.dart';
 
 class ${className}Service {
 
-  static Future<QueryResult<${classNameDtoClass}>> query(int page, int pageSize, {String keyword = ''}) async {
-    ${className}PageRequest request = ${className}PageRequest();
-    request.pageRequest = PageRequest(page: page, pageSize: pageSize,keyword: keyword);
+  static Future<QueryResult<${classNameDtoClass}>> query(${className}PageRequest query,int page, int pageSize, {String keyword = ''}) async {
+    query.pageRequest = PageRequest(page: page, pageSize: pageSize,keyword: keyword);
+    ${className}ListResponse response = await ${className}RpcServiceClient.query(query);
 
-    ${className}ListResponse response = await ${classNameLower}RpcServiceClient.query(request);
-
+    print("${className}Service.query() response: ${response} \n query: ${query} page: ${page} pageSize: ${pageSize}");
     return QueryResult<${classNameDtoClass}>(data: response.dataList, total: response.pageResponse.total.toInt());
   }
 
