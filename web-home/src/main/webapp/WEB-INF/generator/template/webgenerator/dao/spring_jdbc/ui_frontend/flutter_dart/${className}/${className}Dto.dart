@@ -6,6 +6,10 @@
 <#assign classNameLower = className?uncap_first> 
 <#assign classNameDtoClass = className+"Dto"> 
 
+
+import 'common_import.dart';
+
+
 class ${classNameDtoClass} {
 
 <#list table.columns as column>
@@ -37,3 +41,12 @@ class ${classNameDtoClass} {
   }
   
 }
+
+
+// add other compute fields
+extension ${classNameDtoClass}Extension on ${classNameDtoClass} {
+	
+}
+
+
+	
