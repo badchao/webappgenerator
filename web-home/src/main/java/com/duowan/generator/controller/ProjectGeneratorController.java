@@ -31,7 +31,7 @@ import com.duowan.generator.controller.TableGeneratorController.GenCmdExecutor;
 public class ProjectGeneratorController {
 
 	String tmpDir = System.getProperty("java.io.tmpdir");
-	@RequestMapping
+	@RequestMapping("/gen")
 	public void gen(String archetypeGroupIdArtifactId,GenCmdExecutor cmd,HttpServletRequest request,HttpServletResponse response) throws Exception {
 //		archetypeArtifactId = StringUtils.defaultIfEmpty(archetypeArtifactId,"maven-archetype-quickstart");
 		Assert.hasText(archetypeGroupIdArtifactId,"archetypeGroupIdArtifactId must be not blank");

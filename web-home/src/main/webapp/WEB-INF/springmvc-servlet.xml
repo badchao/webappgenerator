@@ -31,8 +31,8 @@
     <mvc:annotation-driven />
 	
 	<!-- HandlerMapping生成器: 用于生成controllder至URL的映射,如 /user/create.do => UserController.create() -->
-	<bean class="com.github.rapid.common.web.mvc.annotation.ConventionAnnotationHandlerMapping">
-	</bean>
+<!-- 	<bean class="com.github.rapid.common.web.mvc.annotation.ConventionAnnotationHandlerMapping"> -->
+<!-- 	</bean> -->
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
     

@@ -14,7 +14,6 @@ class ${className}Service {
     query.pageRequest = PageRequest(page: page, pageSize: pageSize,keyword: keyword);
     ${className}ListResponse response = await ${className}RpcServiceClient.query(query);
 
-    print("${className}Service.query() response: ${response} \n query: ${query} page: ${page} pageSize: ${pageSize}");
     return QueryResult<${classNameDtoClass}>(data: response.dataList, total: response.pageResponse.total.toInt());
   }
 

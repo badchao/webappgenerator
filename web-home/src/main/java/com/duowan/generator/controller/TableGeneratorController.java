@@ -55,7 +55,7 @@ public class TableGeneratorController {
 	}
 	
 	static Lock lock = new ReentrantLock();
-	@RequestMapping
+	@RequestMapping("/gen")
 	public void gen(GenCmdExecutor cmd,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		lock.lock();
 		try {
