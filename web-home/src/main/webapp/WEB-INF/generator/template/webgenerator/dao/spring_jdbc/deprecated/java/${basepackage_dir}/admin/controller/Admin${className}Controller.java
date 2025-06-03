@@ -3,7 +3,7 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.admin.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
