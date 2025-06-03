@@ -19,11 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.excel.EasyExcel;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 import ${basepackage}.model.${className};
 import ${basepackage}.query.${className}Query;
@@ -42,7 +39,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/${classNameLower}")
-@Tag(name = "${table.tableAlias}", description = "${table.tableAlias}")
+@Api(tags={"${table.tableAlias}"})
 public class ${className}Controller extends BaseController {
 	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
@@ -53,7 +50,7 @@ public class ${className}Controller extends BaseController {
 		this.${classNameLower}Service = ${classNameLower}Service;
 	}
 	
-	@Operation(summary = "元数据查询,返回所有搜索条件")
+	@ApiOperation(value="元数据查询,返回所有搜索条件")
 	@GetMapping
 	public Map<String,Object> meta() {
 		checkEntityPermission(getRequest(),new ${className}(),READ);
@@ -63,7 +60,7 @@ public class ${className}Controller extends BaseController {
 		return result;
 	}
 	
-	@Operation(summary = "创建")
+	@ApiOperation(value="创建")
 	@PostMapping
 	public void create(@RequestBody ${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},CREATE);
@@ -71,7 +68,7 @@ public class ${className}Controller extends BaseController {
 		${classNameLower}Service.create(${classNameLower});
 	}
 	
-	@Operation(summary = "修改")
+	@ApiOperation(value="修改")
 	@PostMapping
 	public void update(@RequestBody ${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},UPDATE);
@@ -79,7 +76,7 @@ public class ${className}Controller extends BaseController {
 		${classNameLower}Service.updateByManual(${classNameLower});
 	}
 	
-	@Operation(summary = "根据ID删除")
+	@ApiOperation(value="根据ID删除")
 	@PostMapping
 	public void remove(@RequestBody ${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},DELETE);
@@ -87,7 +84,7 @@ public class ${className}Controller extends BaseController {
 		${classNameLower}Service.remove(${classNameLower});
 	}
 
-	@Operation(summary = "根据ID查找")
+	@ApiOperation(value="根据ID查找")
 	@GetMapping
 	public ${className} getone(${className} ${classNameLower}) {
 		checkEntityPermission(getRequest(),${classNameLower},READ);
@@ -98,7 +95,7 @@ public class ${className}Controller extends BaseController {
 		return result;
 	}
 	
-	@Operation(summary = "分页查询")
+	@ApiOperation(value="分页查询")
 	@GetMapping
 	public Page<${className}> query(${className}Query query){
 		checkEntityPermission(getRequest(),new ${className}(),READ);
@@ -109,7 +106,7 @@ public class ${className}Controller extends BaseController {
 		return result;
 	}
 	
-	@Operation(summary = "导出下载")
+	@ApiOperation(value="导出下载")
 	@GetMapping
 	public void download(${className}Query query)  {
 		Page<${className}> result = query(query);

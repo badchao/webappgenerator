@@ -8,7 +8,8 @@ import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 import java.util.*;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -28,7 +29,7 @@ import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
  * 
 <#include "/java_description.include">
  */
-@Schema(description = "${table.tableAlias}")
+@ApiModel(description = "${table.tableAlias}")
 public class ${className}  implements java.io.Serializable,Cloneable{
 	private static final long serialVersionUID = 1;
 	
@@ -52,7 +53,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	@MppMultiId	
 		</#if>
 	</#if>
-	@Schema(description = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}", example = "")
+	@ApiModelProperty(value = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}", example = "",notes = "", required = false)
 	${column.hibernateValidatorExprssion}
 	private ${column.javaType} ${column.columnNameLower};
 	
@@ -136,7 +137,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	
 	@TableField(exist = false)
 	@JsonIgnore
-	@Schema(hidden = true)
+	@ApiModelProperty(hidden = true)
 	private Set ${fkPojoClassVar}s = new HashSet(0);
 	public Set<${fkPojoClass}> get${fkPojoClass}s() {
 		return ${fkPojoClassVar}s;

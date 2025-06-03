@@ -10,13 +10,15 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * [${table.tableAlias}] 查询对象
  * 
 <#include "/java_description.include">
  */
-@Schema(description = "${table.tableAlias}-查询对象")
+@ApiModel(description = "${table.tableAlias}-查询对象")
 public class ${className}Query extends BaseQuery implements Serializable {
     private static final long serialVersionUID = 1;
     
@@ -68,7 +70,7 @@ public class ${className}Query extends BaseQuery implements Serializable {
 	private ${column.javaType} ${column.columnNameLower}Begin;
 	private ${column.javaType} ${column.columnNameLower}End;
 	<#else>
-	@Schema(description = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}", example = "")
+	@ApiModelProperty(value = "${column.columnAlias!}", example = "", required = false)
 	private ${column.javaType} ${column.columnNameLower};
 	</#if>
 	

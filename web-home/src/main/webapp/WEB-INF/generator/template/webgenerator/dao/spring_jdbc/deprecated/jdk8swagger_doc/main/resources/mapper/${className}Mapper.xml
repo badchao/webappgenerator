@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+
+<#include "/macro.include"/>
+<#assign className = table.className>   
+<#assign classNameLower = className?uncap_first>  
+
+ -->
+
+
+<mapper namespace="${basepackage}.mapper.${className}Mapper">
+
+	<sql id="columns">*</sql>
+	
+	<!--
+	<sql id="columns"><@generateSqlSelectColumns table.columns/></sql>
+	-->
+	
+	<sql id="commonWhere">
+		<where>
+			<!-- 条件未走索引容易有性能问题，按需打开所需要的条件 -->
+			
+			<!--  
+			<#list table.columns as column>
+			<#if column.isDateTimeColumn>
+			<if test="query.${column.columnNameLower}Begin != null">
+				and ${column.sqlName} >= ${poundKey}{query.${column.columnNameLower}Begin}
+			</if>
+			<if test="query.${column.columnNameLower}End != null">
+				and ${column.sqlName} &lt;= ${poundKey}{query.${column.columnNameLower}End}
+			</if>
+			<#else>
+			<if test="query.${column.columnNameLower} != null and query.${column.columnNameLower} != ''">
+				and ${column.sqlName} = ${poundKey}{query.${column.columnNameLower}}
+			</if>
+			</#if>
+			</#list>
+			-->
+		</where>
+	</sql>
+	
+	<select id="queryPage" resultType="${basepackage}.model.${className}">
+	    SELECT  
+	    <include refid="columns"/> 
+	    FROM ${table.sqlName} 
+	    <include refid="commonWhere"/> 
+	</select>
+	
+</mapper>
