@@ -4,8 +4,7 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.model;
 
-import javax.validation.constraints.*;
-import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.*;
 import java.util.*;
 
 import io.swagger.v3.oas.annotations.media.Schema;
