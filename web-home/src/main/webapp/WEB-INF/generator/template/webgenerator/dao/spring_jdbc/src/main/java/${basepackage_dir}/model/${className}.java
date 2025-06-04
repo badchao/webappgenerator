@@ -4,6 +4,7 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.model;
 
+import org.hibernate.validator.constraints.Length;
 import jakarta.validation.constraints.*;
 import java.util.*;
 
