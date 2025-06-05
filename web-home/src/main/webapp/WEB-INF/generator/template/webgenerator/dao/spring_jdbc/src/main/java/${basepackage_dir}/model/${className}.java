@@ -28,7 +28,7 @@ import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
  * 
 <#include "/java_description.include">
  */
-@Schema(title="${table.tableAlias}", description = "")
+@Schema(title="${className}-${table.tableAlias}", description = "")
 public class ${className}  implements java.io.Serializable,Cloneable{
 	private static final long serialVersionUID = 1;
 	

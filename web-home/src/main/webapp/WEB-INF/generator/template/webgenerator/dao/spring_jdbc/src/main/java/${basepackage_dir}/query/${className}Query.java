@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * 
 <#include "/java_description.include">
  */
-@Schema(title="${table.tableAlias}-查询对象", description = "")
+@Schema(title="${className}Query-${table.tableAlias}-查询对象", description = "")
 public class ${className}Query extends BaseQuery implements Serializable {
     private static final long serialVersionUID = 1;
     
