@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * 
 <#include "/java_description.include">
  */
-@Schema(description = "${table.tableAlias}-查询对象")
+@Schema(title="${table.tableAlias}-查询对象", description = "")
 public class ${className}Query extends BaseQuery implements Serializable {
     private static final long serialVersionUID = 1;
     
@@ -68,7 +68,7 @@ public class ${className}Query extends BaseQuery implements Serializable {
 	private ${column.javaType} ${column.columnNameLower}Begin;
 	private ${column.javaType} ${column.columnNameLower}End;
 	<#else>
-	@Schema(description = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}", example = "")
+	@Schema(title="${column.columnAlias!}${column.pk?string(' - 主键ID','')}", description = "", example = "")
 	private ${column.javaType} ${column.columnNameLower};
 	</#if>
 	

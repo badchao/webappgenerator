@@ -28,7 +28,7 @@ import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
  * 
 <#include "/java_description.include">
  */
-@Schema(description = "${table.tableAlias}")
+@Schema(title="${table.tableAlias}", description = "")
 public class ${className}  implements java.io.Serializable,Cloneable{
 	private static final long serialVersionUID = 1;
 	
@@ -52,7 +52,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	@MppMultiId	
 		</#if>
 	</#if>
-	@Schema(description = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}", example = "")
+	@Schema(title="${column.columnAlias!}${column.pk?string(' - 主键ID','')}", description = "", example = "")
 	${column.hibernateValidatorExprssion}
 	private ${column.javaType} ${column.columnNameLower};
 	
