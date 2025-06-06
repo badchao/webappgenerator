@@ -20,6 +20,19 @@ class ${className}TablePage extends StatefulWidget {
 }
 
 
+class TableColumn {
+  String label;
+  Widget Function(DemoTableDto item) dataCellBuilder;
+  bool sortable;
+  String? columnName;
+
+  TableColumn({
+    required this.label,
+    required this.dataCellBuilder,
+    this.sortable = false,
+    this.columnName,
+  });
+}
 
 class _${className}TablePageState extends State<${className}TablePage> {
   List<${classNameDtoClass}> _dataList = [];
@@ -34,12 +47,34 @@ class _${className}TablePageState extends State<${className}TablePage> {
   bool _sortAscending = true; // 排序方向（true=升序）
   String? _sortColumn;
   
+  List<TableColumn> tableColumns = [];
+  
+  final DateFormat DATE_FORMAT = DateFormat('yyyy-MM-dd');
+  
   @override
   void initState() {
     super.initState();
+    _initTableColumns();
     _loadData();
   }
 
+  void _initTableColumns() {
+    tableColumns = [
+	<#list table.columns as column>
+      TableColumn(
+        label: '${column.columnAlias!}',
+        <#if column.isDateTimeColumn>
+        dataCellBuilder: (item) => Text(DATE_FORMAT.format(item.${column.columnNameLower})),
+        <#else>
+        dataCellBuilder: (item) => Text(item.${column.columnNameLower}.toString()),
+        </#if>   
+        sortable: true,     
+        columnName: '${column.sqlName}',
+      ),
+    </#list>
+    ];
+  }
+  
   Future<void> _loadData() async {
     if (_isLoading) return;
     setState(() => _isLoading = true);
@@ -72,7 +107,7 @@ class _${className}TablePageState extends State<${className}TablePage> {
         _sortAscending = ascending;
         _sortColumn = sortColumn;
         _currentPage = 1;
-        print('_handleSortTable() by sortColumn:$sortColumn in ${ascending ? 'ascending' : 'descending'} order');
+        print('_handleSortTable() by sortColumn:$sortColumn in ascending:$ascending order');
         
         _loadData();
       });
@@ -137,7 +172,7 @@ class _${className}TablePageState extends State<${className}TablePage> {
   }
 
   List<DataColumn> _buildTableHeaderColumns() {
-    return const [
+    return [
 	  <#list table.columns as column>
       DataColumn(label: Text('${column.columnAlias!}'), ,onSort: (columnIndex, ascending) => _handleSortTable(columnIndex, ascending,"${column.sqlName}")),
       </#list>
@@ -159,6 +194,35 @@ class _${className}TablePageState extends State<${className}TablePage> {
           DataCell(Row(children: _buildTableHandleActions(item))),
         ])).toList();
   }
+  
+  
+  List<DataColumn> _buildTableHeaderColumns() {
+    return [
+      ...tableColumns.map((column) => 
+        DataColumn(
+          label: Text(column.label),
+          onSort: column.sortable
+              ? (columnIndex, ascending) => 
+                  _handleSortTable(columnIndex, ascending, column.columnName)
+              : null,
+        )
+      ).toList(),
+      
+      const DataColumn(label: Text('操作')),
+    ];
+  }
+
+  List<DataRow> _buildTableBodyRows() {
+    return _dataList.map((item) => DataRow(
+      cells: [
+        ...tableColumns.map((column) => 
+          DataCell(column.dataCellBuilder(item))
+        ).toList(),
+        
+        DataCell(Row(children: _buildTableHandleActions(item))),
+      ],
+    )).toList();
+  }  
 
   Widget _buildDataTable() {
     return SingleChildScrollView(
