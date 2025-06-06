@@ -11,7 +11,7 @@ import 'common_import.dart';
 class ${className}Service {
 
   static Future<QueryResult<${classNameDtoClass}>> query(${className}PageRequest query,int page, int pageSize,String? sortColumns, {String keyword = ''}) async {
-    query.pageRequest = PageRequest(page: page, pageSize: pageSize,keyword: keyword);
+    query.pageRequest = PageRequest(page: page, pageSize: pageSize,keyword: keyword,sortColumns: sortColumns);
     ${className}ListResponse response = await ${className}RpcServiceClient.query(query);
 
     return QueryResult<${classNameDtoClass}>(data: response.dataList, total: response.pageResponse.total.toInt());
