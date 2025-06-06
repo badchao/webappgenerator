@@ -164,6 +164,8 @@ class _${className}TablePageState extends State<${className}TablePage> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
+        sortColumnIndex: _sortColumnIndex,
+        sortAscending: _sortAscending,		
         columns: _buildTableHeaderColumns(),
         rows: _buildTableBodyRows(),
       ),
