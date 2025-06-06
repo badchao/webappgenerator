@@ -101,7 +101,7 @@ class _${className}TablePageState extends State<${className}TablePage> {
     });
   }
 
-  void _handleSortTable(int columnIndex, bool ascending,String sortColumn) {
+  void _handleSortTable(int columnIndex, bool ascending,String? sortColumn) {
       setState(() {
         _sortColumnIndex = columnIndex;
         _sortAscending = ascending;
