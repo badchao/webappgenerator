@@ -30,6 +30,10 @@ class _${className}TablePageState extends State<${className}TablePage> {
   final TextEditingController _searchController = TextEditingController();
   Timer? _searchDebounce;
 
+  int? _sortColumnIndex; 
+  bool _sortAscending = true; // 排序方向（true=升序）
+  String? _sortColumn;
+  
   @override
   void initState() {
     super.initState();
@@ -41,8 +45,10 @@ class _${className}TablePageState extends State<${className}TablePage> {
     setState(() => _isLoading = true);
     
     try {
+	  String? sortInfo = _sortColumn == null ? null : _sortColumn! + (_sortAscending ? " asc" : " desc");
+      
 	  ${className}PageRequest query = ${className}PageRequest();
-      final result = await ${className}Service.query(query,_currentPage, _pageSize, keyword: _searchController.text);
+      final result = await ${className}Service.query(query,_currentPage, _pageSize,sortInfo, keyword: _searchController.text,sortInfo);
       setState(() {
         _dataList = result.data;
         _totalRecords = result.total;
@@ -60,6 +66,18 @@ class _${className}TablePageState extends State<${className}TablePage> {
     });
   }
 
+  void _handleSortTable(int columnIndex, bool ascending,String sortColumn) {
+      setState(() {
+        _sortColumnIndex = columnIndex;
+        _sortAscending = ascending;
+        _sortColumn = sortColumn;
+        _currentPage = 1;
+        print('_handleSortTable() by sortColumn:$sortColumn in ${ascending ? 'ascending' : 'descending'} order');
+        
+        _loadData();
+      });
+  }
+  
   void _handleFormSubmit(${classNameDtoClass} newItem, bool isCreate) async {
     if(isCreate) {
       await ${className}Service.create(newItem);
@@ -121,7 +139,7 @@ class _${className}TablePageState extends State<${className}TablePage> {
   List<DataColumn> _buildTableHeaderColumns() {
     return const [
 	  <#list table.columns as column>
-      DataColumn(label: Text('${column.columnAlias!}')),
+      DataColumn(label: Text('${column.columnAlias!}'), ,onSort: (columnIndex, ascending) => _handleSortTable(columnIndex, ascending,"${column.sqlName}")),
       </#list>
 
       DataColumn(label: Text('操作')),
