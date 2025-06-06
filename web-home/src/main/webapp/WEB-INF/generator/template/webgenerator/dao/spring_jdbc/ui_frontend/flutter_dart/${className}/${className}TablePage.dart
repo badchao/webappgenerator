@@ -171,30 +171,6 @@ class _${className}TablePageState extends State<${className}TablePage> {
     ];
   }
 
-  List<DataColumn> _buildTableHeaderColumns() {
-    return [
-	  <#list table.columns as column>
-      DataColumn(label: Text('${column.columnAlias!}'), ,onSort: (columnIndex, ascending) => _handleSortTable(columnIndex, ascending,"${column.sqlName}")),
-      </#list>
-
-      DataColumn(label: Text('操作')),
-    ];
-  }
-
-  List<DataRow> _buildTableBodyRows() {
-    return _dataList.map((item) => DataRow(cells: [
-		  <#list table.columns as column>
-          <#if column.isDateTimeColumn>
-          DataCell(Text(DateFormat('yyyy-MM-dd').format(item.createTime))),
-          <#else>
-          DataCell(Text(item.${column.columnNameLower}.toString())),
-          </#if>
-          </#list>
-
-          DataCell(Row(children: _buildTableHandleActions(item))),
-        ])).toList();
-  }
-  
   
   List<DataColumn> _buildTableHeaderColumns() {
     return [
