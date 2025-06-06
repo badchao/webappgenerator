@@ -45,10 +45,10 @@ class _${className}TablePageState extends State<${className}TablePage> {
     setState(() => _isLoading = true);
     
     try {
-	  String? sortInfo = _sortColumn == null ? null : _sortColumn! + (_sortAscending ? " asc" : " desc");
+	  String? sortColumns = _sortColumn == null ? null : _sortColumn! + (_sortAscending ? " asc" : " desc");
       
 	  ${className}PageRequest query = ${className}PageRequest();
-      final result = await ${className}Service.query(query,_currentPage, _pageSize,sortInfo, keyword: _searchController.text,sortInfo);
+      final result = await ${className}Service.query(query,_currentPage, _pageSize,sortColumns, keyword: _searchController.text,sortInfo);
       setState(() {
         _dataList = result.data;
         _totalRecords = result.total;

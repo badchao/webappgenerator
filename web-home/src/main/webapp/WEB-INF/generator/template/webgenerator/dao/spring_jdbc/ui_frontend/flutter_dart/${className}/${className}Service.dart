@@ -10,7 +10,7 @@ import 'common_import.dart';
 
 class ${className}Service {
 
-  static Future<QueryResult<${classNameDtoClass}>> query(${className}PageRequest query,int page, int pageSize,String? sortInfo, {String keyword = ''}) async {
+  static Future<QueryResult<${classNameDtoClass}>> query(${className}PageRequest query,int page, int pageSize,String? sortColumns, {String keyword = ''}) async {
     query.pageRequest = PageRequest(page: page, pageSize: pageSize,keyword: keyword);
     ${className}ListResponse response = await ${className}RpcServiceClient.query(query);
 
