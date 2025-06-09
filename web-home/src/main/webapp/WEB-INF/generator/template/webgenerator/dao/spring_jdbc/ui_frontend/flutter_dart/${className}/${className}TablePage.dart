@@ -20,20 +20,6 @@ class ${className}TablePage extends StatefulWidget {
 }
 
 
-class TableColumn<T> {
-  String label;
-  Widget Function(T item) dataCellBuilder;
-  bool sortable;
-  String? columnName;
-
-  TableColumn({
-    required this.label,
-    required this.dataCellBuilder,
-    this.sortable = false,
-    this.columnName,
-  });
-}
-
 class _${className}TablePageState extends State<${className}TablePage> {
   List<${classNameDtoClass}> _dataList = [];
   int _currentPage = 1;
