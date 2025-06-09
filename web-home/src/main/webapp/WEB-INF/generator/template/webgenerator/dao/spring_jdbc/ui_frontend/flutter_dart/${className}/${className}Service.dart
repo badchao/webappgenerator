@@ -45,7 +45,6 @@ class ${className}Service {
   }
 
   static Future<void> deploy(${classNameDtoClass} item) async => await Future.delayed(const Duration(milliseconds: 500));
-  static Future<void> run(${classNameDtoClass} item) async => await Future.delayed(const Duration(milliseconds: 500));	
 }
 
 
@@ -89,7 +88,6 @@ class ${className}MockService {
   }
 
   static Future<void> deploy(${classNameDtoClass} item) async => await Future.delayed(const Duration(milliseconds: 500));
-  static Future<void> run(${classNameDtoClass} item) async => await Future.delayed(const Duration(milliseconds: 500));
 }
 
 
