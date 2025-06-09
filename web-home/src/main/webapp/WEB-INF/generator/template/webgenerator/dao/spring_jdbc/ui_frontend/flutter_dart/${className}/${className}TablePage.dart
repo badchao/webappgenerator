@@ -20,9 +20,9 @@ class ${className}TablePage extends StatefulWidget {
 }
 
 
-class TableColumn {
+class TableColumn<T> {
   String label;
-  Widget Function(DemoTableDto item) dataCellBuilder;
+  Widget Function(T item) dataCellBuilder;
   bool sortable;
   String? columnName;
 
@@ -47,7 +47,7 @@ class _${className}TablePageState extends State<${className}TablePage> {
   bool _sortAscending = true; // 排序方向（true=升序）
   String? _sortColumn;
   
-  List<TableColumn> tableColumns = [];
+  List<TableColumn<${classNameDtoClass}> tableColumns = [];
   
   final DateFormat DATE_FORMAT = DateFormat('yyyy-MM-dd');
   
