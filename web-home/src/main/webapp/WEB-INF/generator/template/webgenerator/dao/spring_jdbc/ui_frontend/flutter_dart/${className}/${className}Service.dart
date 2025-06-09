@@ -29,9 +29,9 @@ class ${className}Service {
     ${className}RpcServiceClient.update(request);
   }
 
-  static Future<void> remove(Int64 id) async {
+  static Future<void> remove(${classNameDtoClass} item) async {
     NumberIdRequest request = NumberIdRequest(
-      id: id
+      id: item.id
     );
     ${className}RpcServiceClient.remove(request);
   }
@@ -44,8 +44,8 @@ class ${className}Service {
     return response.data;
   }
 
-  static Future<void> deploy(int id) async => await Future.delayed(const Duration(milliseconds: 500));
-  static Future<void> run(int id) async => await Future.delayed(const Duration(milliseconds: 500));	
+  static Future<void> deploy(${classNameDtoClass} item) async => await Future.delayed(const Duration(milliseconds: 500));
+  static Future<void> run(${classNameDtoClass} item) async => await Future.delayed(const Duration(milliseconds: 500));	
 }
 
 
@@ -84,12 +84,12 @@ class ${className}MockService {
     if (index != -1) _mockData[index] = item;
   }
 
-  static Future<void> remove(int id) async {
-    _mockData.removeWhere((e) => e.id == id);
+  static Future<void> remove(${classNameDtoClass} item) async {
+    _mockData.removeWhere((e) => e.id == item.id);
   }
 
-  static Future<void> deploy(int id) async => await Future.delayed(const Duration(milliseconds: 500));
-  static Future<void> run(int id) async => await Future.delayed(const Duration(milliseconds: 500));
+  static Future<void> deploy(${classNameDtoClass} item) async => await Future.delayed(const Duration(milliseconds: 500));
+  static Future<void> run(${classNameDtoClass} item) async => await Future.delayed(const Duration(milliseconds: 500));
 }
 
 

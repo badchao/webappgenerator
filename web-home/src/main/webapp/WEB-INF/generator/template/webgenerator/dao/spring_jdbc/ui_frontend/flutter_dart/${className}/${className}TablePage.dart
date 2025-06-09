@@ -132,7 +132,7 @@ class _${className}TablePageState extends State<${className}TablePage> {
         icon: const Icon(Icons.delete, color: Colors.red, size: 20),
         onPressed: () {
           showDeleteConfirmDialog(context, () async {
-            await ${className}Service.remove(item.id);
+            await ${className}Service.remove(item);
             _loadData();
           });
         },
@@ -147,7 +147,7 @@ class _${className}TablePageState extends State<${className}TablePage> {
             padding: const EdgeInsets.symmetric(horizontal: 12),
           ),
           onPressed: () async {
-            await ${className}Service.deploy(item.id);
+            await ${className}Service.deploy(item);
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('部署操作已触发')));
           },
