@@ -47,7 +47,7 @@ class _${className}TablePageState extends State<${className}TablePage> {
   bool _sortAscending = true; // 排序方向（true=升序）
   String? _sortColumn;
   
-  List<TableColumn<${classNameDtoClass}> tableColumns = [];
+  List<TableColumn<${classNameDtoClass}>> tableColumns = [];
   
   final DateFormat DATE_FORMAT = DateFormat('yyyy-MM-dd');
   
@@ -83,7 +83,7 @@ class _${className}TablePageState extends State<${className}TablePage> {
 	  String? sortColumns = _sortColumn == null ? null : _sortColumn! + (_sortAscending ? " asc" : " desc");
       
 	  ${className}PageRequest query = ${className}PageRequest();
-      final result = await ${className}Service.query(query,_currentPage, _pageSize,sortColumns, keyword: _searchController.text,sortInfo);
+      final result = await ${className}Service.query(_currentPage, _pageSize,sortColumns, keyword: _searchController.text);
       setState(() {
         _dataList = result.data;
         _totalRecords = result.total;

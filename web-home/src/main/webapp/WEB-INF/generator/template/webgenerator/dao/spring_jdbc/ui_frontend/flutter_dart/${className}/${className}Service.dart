@@ -56,7 +56,7 @@ class ${className}MockService {
   static final List<${classNameDtoClass}> _mockData = List.generate(105, (index) => ${classNameDtoClass}.newMockData(index));
 
 
-  static Future<QueryResult<${classNameDtoClass}>> query(int page, int pageSize, {String keyword = ''}) async {
+  static Future<QueryResult<${classNameDtoClass}>> query(int page, int pageSize, String? sortColumns, {String keyword = ''}) async {
     
     var filteredList = _mockData.where((item) {
       if (keyword.isEmpty) return true;
