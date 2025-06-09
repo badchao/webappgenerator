@@ -26,7 +26,10 @@ class _${className}TablePageState extends State<${className}TablePage> {
   int _pageSize = 10;
   bool _isLoading = false;
   int _totalRecords = 0;
+  
+  
   final TextEditingController _searchController = TextEditingController();
+  final ScrollController _horizontalController = ScrollController();
   Timer? _searchDebounce;
 
   int? _sortColumnIndex; 
@@ -36,6 +39,12 @@ class _${className}TablePageState extends State<${className}TablePage> {
   List<TableColumn<${classNameDtoClass}>> tableColumns = [];
   
   final DateFormat DATE_FORMAT = DateFormat('yyyy-MM-dd');
+
+  @override
+  void dispose() {
+    _horizontalController.dispose();
+    super.dispose();
+  }
   
   @override
   void initState() {
@@ -197,6 +206,29 @@ class _${className}TablePageState extends State<${className}TablePage> {
       ),
     );
   }
+  
+  Widget _buildDataTable() {
+    return Scrollbar(
+      controller: _horizontalController,
+      thumbVisibility: true,
+      trackVisibility: true,
+      child: SingleChildScrollView(
+        controller: _horizontalController,
+        scrollDirection: Axis.horizontal,
+        child: ConstrainedBox(
+	            constraints: BoxConstraints(
+	              minWidth: MediaQuery.of(context).size.width, // 关键！取屏幕宽
+	            ),
+	            child: DataTable(
+	              sortColumnIndex: _sortColumnIndex,
+	              sortAscending: _sortAscending,
+	              columns: _buildTableHeaderColumns(),
+	              rows: _buildTableBodyRows(),
+	            ) // 原有表格
+            ),
+      ),
+    );
+  }  
 
   Widget _buildAppBarSearchTitle() {
     return Row(
