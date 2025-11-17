@@ -2,7 +2,7 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.${namespace}.entity;
+package ${basepackage}.entity.${namespace};
 
 import org.hibernate.validator.constraints.Length;
 import java.util.*;

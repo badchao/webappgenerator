@@ -1,7 +1,8 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>   
-package ${basepackage}.dao.impl;
+
+package ${basepackage}.dao.${namespace}.impl;
 
 import ${basepackage}.entity.${namespace}.${className};
 import ${basepackage}.query.${namespace}.${className}Query;

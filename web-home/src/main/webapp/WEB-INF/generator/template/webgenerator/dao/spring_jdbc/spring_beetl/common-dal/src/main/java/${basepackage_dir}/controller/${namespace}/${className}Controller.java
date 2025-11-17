@@ -1,7 +1,8 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.${namespace}.controller;
+
+package ${basepackage}.controller.${namespace};
 
 
 import org.slf4j.Logger;

@@ -1,7 +1,8 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.service.mybatis_impl;
+
+package ${basepackage}.service.${namespace};
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,13 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-
-
-import com.modo.cloud.beetl.service.BeetlService;
 import org.springframework.stereotype.Service;
 
-import ${basepackage}.model.${namespace}.${className};
-import ${basepackage}.query.${namespace}.${className}Query;
+
 // import com.github.rapid.common.util.holder.BeanValidatorHolder;
 
 import ${basepackage}.model.${namespace}.*;
@@ -30,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 
+import com.modo.cloud.beetl.service.BeetlService;
 import com.znyx.core.utils.ZnyxUtil;
 import org.beetl.sql.core.engine.PageQuery;
 

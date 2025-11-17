@@ -2,10 +2,8 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.${namespace}.dto;
+package ${basepackage}.dto.${namespace};
 
-import org.hibernate.validator.constraints.Length;
-import jakarta.validation.constraints.*;
 import java.util.*;
 
 import io.swagger.annotations.ApiModel;
@@ -18,9 +16,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
