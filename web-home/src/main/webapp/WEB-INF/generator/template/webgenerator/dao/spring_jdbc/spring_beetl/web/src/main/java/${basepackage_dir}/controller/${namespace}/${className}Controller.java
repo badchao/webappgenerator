@@ -29,6 +29,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 import com.znyx.core.utils.ZnyxUtil;
+import com.znyx.core.common.ResultBean;
+import org.beetl.sql.core.engine.PageQuery;
 
 
 /**
@@ -41,6 +43,7 @@ import com.znyx.core.utils.ZnyxUtil;
 @RequestMapping("/${classNameLower}")
 @Api(tags = "${className}-${table.tableAlias}")
 public class ${className}Controller  {
+	
 	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
     @Autowired

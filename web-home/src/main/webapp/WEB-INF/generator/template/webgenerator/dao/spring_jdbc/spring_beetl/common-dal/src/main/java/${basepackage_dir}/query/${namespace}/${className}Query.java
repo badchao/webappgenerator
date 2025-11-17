@@ -14,6 +14,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
+import com.modo.cloud.query.BaseQuery;
+
 /**
  * [${table.tableAlias}] 查询对象
  * 

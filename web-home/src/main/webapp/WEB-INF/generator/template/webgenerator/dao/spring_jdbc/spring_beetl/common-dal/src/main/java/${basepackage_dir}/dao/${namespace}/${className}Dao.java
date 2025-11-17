@@ -2,7 +2,7 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>   
 
-package ${basepackage}.dao.${namespace}.impl;
+package ${basepackage}.dao.${namespace};
 
 import ${basepackage}.entity.${namespace}.${className};
 import ${basepackage}.query.${namespace}.${className}Query;

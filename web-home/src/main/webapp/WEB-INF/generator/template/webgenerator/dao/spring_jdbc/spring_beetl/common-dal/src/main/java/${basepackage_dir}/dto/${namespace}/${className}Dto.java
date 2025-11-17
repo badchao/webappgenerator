@@ -52,7 +52,7 @@ private static final long serialVersionUID = 1;
 	</#list>
 	//columns END
 
-<@generateConstructor className/>
+<@generateConstructor className+"Dto"/>
 <@generateJavaOneToMany/>
 <@generateJavaManyToOne/>
 
