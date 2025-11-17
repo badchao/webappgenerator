@@ -2,13 +2,15 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.entity;
+package ${basepackage}.${namespace}.dto;
 
 import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.*;
 import java.util.*;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -16,6 +18,9 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,8 +32,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Data
 @Accessors(chain = true)
 @ApiModel(value = "${className}-${table.tableAlias}",description = "")
-public class ${className}  implements java.io.Serializable,Cloneable{
-	private static final long serialVersionUID = 1;
+public class ${className}Dto  implements java.io.Serializable,Cloneable{
+private static final long serialVersionUID = 1;
 	
 	//date formats
 	<#list table.columns as column>
@@ -62,28 +67,9 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 		return ToStringBuilder.reflectionToString(this);
 	}
 	
-	public int hashCode() {
-		return new HashCodeBuilder()
-		<#list table.pkColumns as column>
-			.append(get${column.columnName}())
-		</#list>
-			.toHashCode();
-	}
-	
-	public boolean equals(Object obj) {
-		if(this == obj) return true;
-		if(obj instanceof ${className} == false) return false;
-		${className} other = (${className})obj;
-		return new EqualsBuilder()
-			<#list table.pkColumns as column>
-			.append(get${column.columnName}(),other.get${column.columnName}())
-			</#list>
-			.isEquals();
-	}
-	
-	public ${className} clone()  {
+	public ${className}Dto clone()  {
 		try {
-			return (${className})super.clone();
+			return (${className}Dto)super.clone();
 		} catch (CloneNotSupportedException e) {
 			throw new RuntimeException(e);
 		}

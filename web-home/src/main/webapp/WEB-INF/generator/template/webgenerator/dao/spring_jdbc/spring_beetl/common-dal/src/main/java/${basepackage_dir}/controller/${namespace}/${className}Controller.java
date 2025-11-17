@@ -1,7 +1,7 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.controller;
+package ${basepackage}.${namespace}.controller;
 
 
 import org.slf4j.Logger;
@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-import ${basepackage}.entity.${className};
-import ${basepackage}.query.${className}Query;
-import ${basepackage}.service.${className}Service;
+import ${basepackage}.entity.${namespace}.${className};
+import ${basepackage}.query.${namespace}.${className}Query;
+import ${basepackage}.service.${namespace}.${className}Service;
 
 import java.util.Map;
 import java.util.HashMap;

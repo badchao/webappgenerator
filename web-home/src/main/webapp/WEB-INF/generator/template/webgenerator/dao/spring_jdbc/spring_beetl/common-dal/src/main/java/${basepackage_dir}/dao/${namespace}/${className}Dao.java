@@ -3,8 +3,9 @@
 <#assign classNameLower = className?uncap_first>   
 package ${basepackage}.dao.impl;
 
-import ${basepackage}.entity.${className};
-import ${basepackage}.query.${className}Query;
+import ${basepackage}.entity.${namespace}.${className};
+import ${basepackage}.query.${namespace}.${className}Query;
+
 import com.modo.cloud.beetl.mapper.MyMapper;
 import org.beetl.sql.mapper.annotation.Param;
 import org.beetl.sql.mapper.annotation.SqlResource;
@@ -22,7 +23,7 @@ import org.beetl.sql.core.engine.PageQuery;
 <#include "/java_description.include">
 */
 @Repository
-@SqlResource("${classNameLower}")
+@SqlResource("${namespace}/${classNameLower}")
 public interface ${className}Dao extends MyMapper<${className}>{
 	
 	  /**

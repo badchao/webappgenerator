@@ -2,7 +2,7 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.query;
+package ${basepackage}.${namespace}.query;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;

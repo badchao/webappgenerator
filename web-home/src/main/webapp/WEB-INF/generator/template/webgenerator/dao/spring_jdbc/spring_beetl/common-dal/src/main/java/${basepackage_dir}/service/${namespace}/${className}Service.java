@@ -16,14 +16,14 @@ import org.springframework.util.Assert;
 import com.modo.cloud.beetl.service.BeetlService;
 import org.springframework.stereotype.Service;
 
-import ${basepackage}.model.${className};
-import ${basepackage}.query.${className}Query;
+import ${basepackage}.model.${namespace}.${className};
+import ${basepackage}.query.${namespace}.${className}Query;
 // import com.github.rapid.common.util.holder.BeanValidatorHolder;
 
-import ${basepackage}.model.*;
-import ${basepackage}.query.*;
-import ${basepackage}.mapper.*;
-import ${basepackage}.service.*;
+import ${basepackage}.model.${namespace}.*;
+import ${basepackage}.query.${namespace}.*;
+import ${basepackage}.mapper.${namespace}.*;
+import ${basepackage}.service.${namespace}.*;
 
 import java.util.Arrays;
 import java.util.Date;
