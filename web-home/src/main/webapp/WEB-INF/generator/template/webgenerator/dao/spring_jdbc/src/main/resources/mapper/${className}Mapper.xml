@@ -26,14 +26,14 @@
 			<#list table.columns as column>
 			<#if column.isDateTimeColumn>
 			<if test="query.${column.columnNameLower}Begin != null">
-				and ${column.sqlName} >= ${poundKey}{query.${column.columnNameLower}Begin}
+				AND main.${column.sqlName}=#query.${column.columnNameLower}Begin#
 			</if>
 			<if test="query.${column.columnNameLower}End != null">
-				and ${column.sqlName} &lt;= ${poundKey}{query.${column.columnNameLower}End}
+				AND main.${column.sqlName}=#query.${column.columnNameLower}End#
 			</if>
 			<#else>
 			<if test="query.${column.columnNameLower} != null and query.${column.columnNameLower} != ''">
-				and ${column.sqlName} = ${poundKey}{query.${column.columnNameLower}}
+				AND main.${column.sqlName}=#query.${column.columnNameLower}#
 			</if>
 			</#if>
 			</#list>
