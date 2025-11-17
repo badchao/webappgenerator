@@ -70,7 +70,7 @@ public class ${className}ServiceImpl extends BeetSQLIService<${className}Dao,${c
 	    Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
 		Assert.notNull(${classNameLower}.getCreateUserId(),"createUserId must be not blank");
 
-		${classNameLower}.setUpdateUserId(${classNameLower.getCreateUserId());
+		${classNameLower}.setUpdateUserId(${classNameLower}.getCreateUserId());
 		${classNameLower}.setCreateDate(new Date());
 		${classNameLower}.setUpdateDate(new Date());
 		
