@@ -5,6 +5,8 @@
 package ${basepackage}.query.${namespace};
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -50,7 +52,7 @@ public class ${className}Query extends BaseQuery implements Serializable {
 	private ${column.javaType} ${column.columnNameLower}Begin;
 	private ${column.javaType} ${column.columnNameLower}End;
 	<#else>
-	@Schema(title="${column.columnAlias!}${column.pk?string(' - 主键ID','')}", description = "", example = "")
+	@ApiModelProperty(name = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",notes = "")
 	private ${column.javaType} ${column.columnNameLower};
 	</#if>
 	

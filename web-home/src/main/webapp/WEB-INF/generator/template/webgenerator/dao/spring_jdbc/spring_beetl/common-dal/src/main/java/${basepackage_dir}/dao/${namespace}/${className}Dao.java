@@ -7,9 +7,6 @@ package ${basepackage}.dao.${namespace}.impl;
 import ${basepackage}.entity.${namespace}.${className};
 import ${basepackage}.query.${namespace}.${className}Query;
 
-import com.modo.cloud.beetl.mapper.MyMapper;
-import org.beetl.sql.mapper.annotation.Param;
-import org.beetl.sql.mapper.annotation.SqlResource;
 import org.springframework.stereotype.Repository;
 
 import com.znyx.core.beetl.MyMapper;

@@ -30,16 +30,16 @@
 		 			</td>
 		 		</tr>
 		 		<tr>
-		 			<td><b><span class="required">*</span>java package</b></td>
+		 			<td><b><span class="required">*</span>java basepackage</b></td>
 		 			<td><input class="form-control" type="text" id="basepackage" name="basepackage" placeholder="java包名" size="40" onchange="saveCookie()"/> 示例值:com.company.project.module</td>
 		 		</tr>
 		 		<tr>
-		 			<td><b><span class="required">*</span>projectId</b></td>
+		 			<td><b><span class="required">*</span>项目ID(projectId)</b></td>
 		 			<td><input class="form-control" type="text" id="projectId" name="projectId" placeholder="项目ID(项目代号),输入值:小写，全英文" size="40" onchange="saveCookie()"/></td>
 		 		</tr>
 				<tr>
-		 			<td><b>web namespace</b></td>
-		 			<td><input class="form-control" type="text" id="namespace" name="namespace" placeholder="示例值:admin,system,message,company,order,member,news,monitor,security" size="40" onchange="saveCookie()"/> web页面子模块,用于web分模块,会影响jsp存放位置,如/{namespace}/{className}/list.jsp</td>
+		 			<td><b>子模块(namespace)</b></td>
+		 			<td><input class="form-control" type="text" id="namespace" name="namespace" placeholder="示例值:admin,system,message,company,order,member,news,monitor,security" size="40" onchange="saveCookie()"/> 子模块,用于web,controller,service等分模块,会影响jsp存放位置,如/{namespace}/{className}/list.jsp</td>
 		 		</tr>
 		 		<tr>
 		 			<td><b>作者(author)</b></td>

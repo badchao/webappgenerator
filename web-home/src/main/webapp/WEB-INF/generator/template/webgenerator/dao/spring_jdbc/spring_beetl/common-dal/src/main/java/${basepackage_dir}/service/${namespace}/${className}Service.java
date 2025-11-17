@@ -17,17 +17,18 @@ import org.springframework.stereotype.Service;
 
 // import com.github.rapid.common.util.holder.BeanValidatorHolder;
 
-import ${basepackage}.model.${namespace}.*;
+import ${basepackage}.entity.${namespace}.*;
 import ${basepackage}.query.${namespace}.*;
-import ${basepackage}.mapper.${namespace}.*;
+import ${basepackage}.dao.${namespace}.*;
 import ${basepackage}.service.${namespace}.*;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Collection;
 
 
-import com.modo.cloud.beetl.service.BeetlService;
+import com.znyx.core.beetl.BeetSQLIService;
 import com.znyx.core.utils.ZnyxUtil;
 import org.beetl.sql.core.engine.PageQuery;
 
@@ -37,9 +38,9 @@ import org.beetl.sql.core.engine.PageQuery;
 <#include "/java_description.include">
  */
 @Service("${classNameLower}Service")
-public class ${className}ServiceImpl extends BeetSQLIService<${className}Dao,${className}>{
+public class ${className}Service extends BeetSQLIService<${className}Dao,${className}>{
 
-	protected static final Logger logger = LoggerFactory.getLogger(${className}ServiceImpl.class);
+	protected static final Logger logger = LoggerFactory.getLogger(${className}Service.class);
 	
 	@Autowired
 	${className}Dao ${classNameLower}Dao;
@@ -57,7 +58,7 @@ public class ${className}ServiceImpl extends BeetSQLIService<${className}Dao,${c
     /** 检查到有错误请直接抛异常，不要使用 return errorCode的方式 */
     public void check(${className} ${classNameLower}) {
     	// Bean Validator检查,属性检查失败将抛异常
-    	BeanValidatorHolder.validateWithException(${classNameLower});
+    	// BeanValidatorHolder.validateWithException(${classNameLower});
     }
     
 	/** 
