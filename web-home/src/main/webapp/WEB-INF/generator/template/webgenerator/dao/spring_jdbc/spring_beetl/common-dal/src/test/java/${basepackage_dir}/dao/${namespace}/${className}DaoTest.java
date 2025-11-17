@@ -4,19 +4,23 @@
 
 package ${basepackage}.dao.${namespace};
 
-import com.znyx.core.basetest.BaseDaoTest;
 import  ${basepackage}.query.${namespace}.${className}Query;
 
-import org.beetl.sql.core.engine.PageQuery;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import org.beetl.sql.core.engine.PageQuery;
+import com.znyx.core.basetest.BaseDaoTest;
+
 public class ${className}DaoTest extends BaseDaoTest {
 
     ${className}Dao dao = getZnyxDao(${className}Dao.class);
 
+    String rootShopId = "SHOP01";
+    String shopId = "SHOP01";
+    
     @Before
     public void setUp() throws Exception {
     }
@@ -24,7 +28,7 @@ public class ${className}DaoTest extends BaseDaoTest {
     @Test
     public void queryPage() {
         ${className}Query query = new ${className}Query();
-        query.setRootShopId("SHOP01");
+        query.setRootShopId(rootShopId);
         PageQuery result = dao.queryPage(1,100,query);
 
     }
