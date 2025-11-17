@@ -20,7 +20,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Collection;
 
-// import com.github.rapid.common.util.holder.BeanValidatorHolder;
 
 import ${basepackage}.entity.${namespace}.*;
 import ${basepackage}.query.${namespace}.*;
@@ -31,6 +30,7 @@ import ${basepackage}.service.${namespace}.*;
 import com.znyx.core.beetl.BeetSQLIService;
 import com.znyx.core.utils.ZnyxUtil;
 import org.beetl.sql.core.engine.PageQuery;
+import com.znyx.core.utils.BeanValidatorHolder;
 
 /**
  * [${table.tableAlias}] 的Service接口实现
@@ -58,7 +58,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
     /** 检查到有错误请直接抛异常，不要使用 return errorCode的方式 */
     public void check(${className} ${classNameLower}) {
     	// Bean Validator检查,属性检查失败将抛异常
-    	// BeanValidatorHolder.validateWithException(${classNameLower});
+    	BeanValidatorHolder.validateWithException(${classNameLower});
     }
     
 	/** 
