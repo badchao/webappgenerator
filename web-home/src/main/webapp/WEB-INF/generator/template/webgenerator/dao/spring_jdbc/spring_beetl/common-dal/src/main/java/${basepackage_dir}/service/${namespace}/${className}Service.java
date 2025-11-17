@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 import ${basepackage}.entity.${namespace}.*;
 import ${basepackage}.query.${namespace}.*;
-import ${basepackage}.dao.${namespace}.*;
+import ${basepackage}.beetldao.${namespace}.*;
 import ${basepackage}.service.${namespace}.*;
 
 import java.util.Arrays;

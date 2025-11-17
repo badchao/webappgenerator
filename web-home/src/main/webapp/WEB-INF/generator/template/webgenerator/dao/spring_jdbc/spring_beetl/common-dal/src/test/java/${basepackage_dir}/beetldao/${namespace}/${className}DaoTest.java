@@ -2,7 +2,7 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 
-package ${basepackage}.dao.${namespace};
+package ${basepackage}.beetldao.${namespace};
 
 import  ${basepackage}.query.${namespace}.${className}Query;
 
