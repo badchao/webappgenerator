@@ -6,6 +6,7 @@ package ${basepackage}.service.${namespace};
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Collection;
 
 // import com.github.rapid.common.util.holder.BeanValidatorHolder;
 
@@ -21,11 +26,6 @@ import ${basepackage}.entity.${namespace}.*;
 import ${basepackage}.query.${namespace}.*;
 import ${basepackage}.beetldao.${namespace}.*;
 import ${basepackage}.service.${namespace}.*;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Collection;
 
 
 import com.znyx.core.beetl.BeetSQLIService;
@@ -95,7 +95,13 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 		return super.updateById(${classNameLower});
     }
     
-
+	@Override
+	public int deleteById(Object id) {
+		AiDoc fromDb = unique(id);
+		fromDb.setDelFlag(-1);
+		return super.updateById(fromDb);
+	}
+	
     /**
      *  join取回${className}的关联对象,如一对多，多对一等的关联对象,如: user找到关联的 地址列表 
      */
