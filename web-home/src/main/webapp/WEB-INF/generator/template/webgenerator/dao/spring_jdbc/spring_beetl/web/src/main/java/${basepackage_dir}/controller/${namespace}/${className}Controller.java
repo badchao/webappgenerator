@@ -116,8 +116,8 @@ public class ${className}Controller  {
 	}
 	
 	@ApiOperation("分页查询")
-	@GetMapping("query")
-	public ResultBean query(${className}Query query){
+	@PostMapping("query")
+	public ResultBean query(@RequestBody ${className}Query query){
         String userId = ZnyxUtil.getUserId();
         String shopId = ZnyxUtil.getShopId();
         String rootShopId = ZnyxUtil.getRootShopId();
@@ -129,8 +129,8 @@ public class ${className}Controller  {
 	}
 	
 	@ApiOperation("导出下载")
-	@GetMapping("download")
-	public void download(${className}Query query)  {
+	@PostMapping("download")
+	public void download(@RequestBody ${className}Query query)  {
         String userId = ZnyxUtil.getUserId();
         String shopId = ZnyxUtil.getShopId();
         String rootShopId = ZnyxUtil.getRootShopId();
@@ -139,7 +139,7 @@ public class ${className}Controller  {
         query.setPageSize(1000);
         
         PageQuery<${className}> page = ${classNameLower}Service.query(query);
-//		writeExcel2Response(getResponse(),result.getItemList(),${className}.class);
+//		writeExcel2Response(getResponse(),page.getList(),AiDocCatalog.class);
 	}
 	
 }
