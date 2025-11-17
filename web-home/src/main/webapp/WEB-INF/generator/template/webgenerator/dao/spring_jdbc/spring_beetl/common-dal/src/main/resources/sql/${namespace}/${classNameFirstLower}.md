@@ -22,7 +22,6 @@ commonWhere
 ```sql
 	-- 条件未走索引容易有性能问题，按需打开所需要的条件
 			
-	/*
 	<#list table.columns as column>
 	<#if column.isDateTimeColumn>
 	@if(isNotEmpty(query.${column.columnNameLower}Begin)){
@@ -39,7 +38,6 @@ commonWhere
 	
 	</#if>
 	</#list>
-	*/
 
 ```
 
