@@ -65,7 +65,12 @@ public class ${className}ServiceImpl extends BeetSQLIService<${className}Dao,${c
 	@Override
 	public void insert(${className} ${classNameLower}) {
 	    Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
+		Assert.notNull(${classNameLower.getCreateUserId(),"createUserId must be not blank");
 
+		aiDocCatalog.setUpdateUserId(${classNameLower.getCreateUserId());
+		aiDocCatalog.setCreateDate(new Date());
+		aiDocCatalog.setUpdateDate(new Date());
+		
 	    //init default value
 	    
 	    check(${classNameLower});
@@ -79,6 +84,10 @@ public class ${className}ServiceImpl extends BeetSQLIService<${className}Dao,${c
 	@Override
     public int updateById(${className} ${classNameLower}) {
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
+        
+        ${classNameLower}.setUpdateDate(new Date());
+        Assert.notNull(${classNameLower}.getUpdateUserId(),"updateUserId must be not blank");
+        
         check(${classNameLower});
         
 		return super.updateById(${classNameLower});
