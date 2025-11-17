@@ -6,6 +6,7 @@ package ${basepackage}.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,19 +15,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.*;
 
 import ${basepackage}.entity.${className};
 import ${basepackage}.query.${className}Query;
 import ${basepackage}.service.${className}Service;
 
-import com.github.rapid.common.util.page.Page;
-
 import java.util.Map;
 import java.util.HashMap;
+
+import com.znyx.core.utils.ZnyxUtil;
+
 
 /**
  * [${table.tableAlias}] Controller
@@ -47,7 +49,7 @@ public class ${className}Controller  {
 		this.${classNameLower}Service = ${classNameLower}Service;
 	}
 	
-	@ApiOperation(summary = "元数据查询,得到所有相关枚举等元数据,返回所有搜索条件")
+	@ApiOperation("元数据查询,得到所有相关枚举等元数据,返回所有搜索条件")
 	@GetMapping("meta")
 	public ResultBean<Map<String,Object>> meta() {
 		
@@ -56,7 +58,7 @@ public class ${className}Controller  {
 		return ResultBean.success(result);
 	}
 	
-	@ApiOperation(summary = "创建")
+	@ApiOperation("创建")
 	@PostMapping("create")
 	public ResultBean<${className}> create(@RequestBody ${className} ${classNameLower}) {
         String userId = ZnyxUtil.getUserId();
@@ -69,7 +71,7 @@ public class ${className}Controller  {
 		return ResultBean.success(${classNameLower});
 	}
 	
-	@ApiOperation(summary = "修改")
+	@ApiOperation("修改")
 	@PostMapping("update")
 	public ResultBean<${className}> update(@RequestBody ${className} ${classNameLower}) {
         String userId = ZnyxUtil.getUserId();
@@ -82,7 +84,7 @@ public class ${className}Controller  {
 		return ResultBean.success(${classNameLower});
 	}
 	
-	@ApiOperation(summary = "根据ID删除")
+	@ApiOperation("根据ID删除")
 	@PostMapping("remove")
 	public ResultBean<Boolean> remove(@RequestBody ${className} ${classNameLower}) {
         String userId = ZnyxUtil.getUserId();
@@ -95,7 +97,7 @@ public class ${className}Controller  {
 		return ResultBean.success(true);
 	}
 
-	@ApiOperation(summary = "根据ID查找")
+	@ApiOperation("根据ID查找")
 	@GetMapping("getone")
 	public ResultBean<${className}> getone(${className} ${classNameLower}) {
         String userId = ZnyxUtil.getUserId();
@@ -109,7 +111,7 @@ public class ${className}Controller  {
 		return ResultBean.success(result);
 	}
 	
-	@ApiOperation(summary = "分页查询")
+	@ApiOperation("分页查询")
 	@GetMapping("query")
 	public ResultBean query(${className}Query query){
         String userId = ZnyxUtil.getUserId();
@@ -118,11 +120,11 @@ public class ${className}Controller  {
         
         query.setRootShopId(rootShopId);
         
-		PageQuery<AiRefPostEntity> page = ${classNameLower}Service.query(query);
+		PageQuery<${className}> page = ${classNameLower}Service.query(query);
 		return ResultBean.returnList(page);
 	}
 	
-	@ApiOperation(summary = "导出下载")
+	@ApiOperation("导出下载")
 	@GetMapping("download")
 	public void download(${className}Query query)  {
         String userId = ZnyxUtil.getUserId();
@@ -130,9 +132,10 @@ public class ${className}Controller  {
         String rootShopId = ZnyxUtil.getRootShopId();
         
         query.setRootShopId(rootShopId);
+        query.setPageSize(1000);
         
-        PageQuery<AiRefPostEntity> page = ${classNameLower}Service.query(query);
-		writeExcel2Response(getResponse(),result.getItemList(),${className}.class);
+        PageQuery<${className}> page = ${classNameLower}Service.query(query);
+//		writeExcel2Response(getResponse(),result.getItemList(),${className}.class);
 	}
 	
 }
