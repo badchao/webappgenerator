@@ -37,7 +37,7 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/${classNameLower}")
 @Api(tags = "${className}-${table.tableAlias}")
-public class ${className}Controller extends BaseController {
+public class ${className}Controller  {
 	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
     @Autowired
@@ -49,47 +49,55 @@ public class ${className}Controller extends BaseController {
 	
 	@ApiOperation(summary = "元数据查询,得到所有相关枚举等元数据,返回所有搜索条件")
 	@GetMapping("meta")
-	public Map<String,Object> meta() {
+	public ResultBean<Map<String,Object>> meta() {
 		
 		//key=columnName, value=column value
 		Map<String,Object> result = new HashMap<String,Object>();
-		return result;
+		return ResultBean.success(result);
 	}
 	
 	@ApiOperation(summary = "创建")
 	@PostMapping("create")
-	public void create(@RequestBody ${className} ${classNameLower}) {
+	public ResultBean<${className}> create(@RequestBody ${className} ${classNameLower}) {
         String userId = ZnyxUtil.getUserId();
         String shopId = ZnyxUtil.getShopId();
         String rootShopId = ZnyxUtil.getRootShopId();
         
+        ${classNameLower}.setCreateUserId(userId);
 		${classNameLower}Service.insert(${classNameLower});
+		
+		return ResultBean.success(${classNameLower});
 	}
 	
 	@ApiOperation(summary = "修改")
 	@PostMapping("update")
-	public void update(@RequestBody ${className} ${classNameLower}) {
+	public ResultBean<${className}> update(@RequestBody ${className} ${classNameLower}) {
         String userId = ZnyxUtil.getUserId();
         String shopId = ZnyxUtil.getShopId();
         String rootShopId = ZnyxUtil.getRootShopId();
         
+        ${classNameLower}.setUpdateUserId(userId);
 		${classNameLower}Service.updateById(${classNameLower});
+		
+		return ResultBean.success(${classNameLower});
 	}
 	
 	@ApiOperation(summary = "根据ID删除")
 	@PostMapping("remove")
-	public void remove(@RequestBody ${className} ${classNameLower}) {
+	public ResultBean<Boolean> remove(@RequestBody ${className} ${classNameLower}) {
         String userId = ZnyxUtil.getUserId();
         String shopId = ZnyxUtil.getShopId();
         String rootShopId = ZnyxUtil.getRootShopId();
         
         ${table.pkColumn.javaType} id = ${classNameLower}.id();
 		${classNameLower}Service.deleteById(id);
+		
+		return ResultBean.success(true);
 	}
 
 	@ApiOperation(summary = "根据ID查找")
 	@GetMapping("getone")
-	public ${className} getone(${className} ${classNameLower}) {
+	public ResultBean<${className}> getone(${className} ${classNameLower}) {
         String userId = ZnyxUtil.getUserId();
         String shopId = ZnyxUtil.getShopId();
         String rootShopId = ZnyxUtil.getRootShopId();
@@ -98,22 +106,20 @@ public class ${className}Controller extends BaseController {
 		${className} result = ${classNameLower}Service.unique(id);
 		${classNameLower}Service.join(result);
 		
-		return result;
+		return ResultBean.success(result);
 	}
 	
 	@ApiOperation(summary = "分页查询")
 	@GetMapping("query")
-	public Page<${className}> query(${className}Query query){
+	public ResultBean query(${className}Query query){
         String userId = ZnyxUtil.getUserId();
         String shopId = ZnyxUtil.getShopId();
         String rootShopId = ZnyxUtil.getRootShopId();
         
         query.setRootShopId(rootShopId);
         
-		Page<${className}> result = ${classNameLower}Service.query(query);
-		result.forEach(${classNameLower}Service::join);
-		
-		return result;
+		PageQuery<AiRefPostEntity> page = ${classNameLower}Service.query(query);
+		return ResultBean.returnList(page);
 	}
 	
 	@ApiOperation(summary = "导出下载")
@@ -123,7 +129,9 @@ public class ${className}Controller extends BaseController {
         String shopId = ZnyxUtil.getShopId();
         String rootShopId = ZnyxUtil.getRootShopId();
         
-		Page<${className}> result = query(query);
+        query.setRootShopId(rootShopId);
+        
+        PageQuery<AiRefPostEntity> page = ${classNameLower}Service.query(query);
 		writeExcel2Response(getResponse(),result.getItemList(),${className}.class);
 	}
 	

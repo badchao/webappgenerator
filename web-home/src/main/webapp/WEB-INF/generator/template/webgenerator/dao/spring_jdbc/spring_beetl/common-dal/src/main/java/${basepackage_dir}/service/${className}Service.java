@@ -30,6 +30,9 @@ import java.util.Date;
 import java.util.List;
 
 
+import com.znyx.core.utils.ZnyxUtil;
+import org.beetl.sql.core.engine.PageQuery;
+
 /**
  * [${table.tableAlias}] 的Service接口实现
  * 
@@ -65,11 +68,11 @@ public class ${className}ServiceImpl extends BeetSQLIService<${className}Dao,${c
 	@Override
 	public void insert(${className} ${classNameLower}) {
 	    Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
-		Assert.notNull(${classNameLower.getCreateUserId(),"createUserId must be not blank");
+		Assert.notNull(${classNameLower}.getCreateUserId(),"createUserId must be not blank");
 
-		aiDocCatalog.setUpdateUserId(${classNameLower.getCreateUserId());
-		aiDocCatalog.setCreateDate(new Date());
-		aiDocCatalog.setUpdateDate(new Date());
+		${classNameLower}.setUpdateUserId(${classNameLower.getCreateUserId());
+		${classNameLower}.setCreateDate(new Date());
+		${classNameLower}.setUpdateDate(new Date());
 		
 	    //init default value
 	    
