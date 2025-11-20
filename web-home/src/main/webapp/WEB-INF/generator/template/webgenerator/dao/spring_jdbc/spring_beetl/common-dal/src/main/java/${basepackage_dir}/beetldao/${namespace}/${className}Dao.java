@@ -21,7 +21,7 @@ import org.beetl.sql.core.engine.PageQuery;
 <#include "/java_description.include">
 */
 @Repository
-@SqlResource("${namespace}/${classNameLower}")
+@SqlResource("${namespace}.${classNameLower}")
 public interface ${className}Dao extends MyMapper<${className}>{
 	
 	  /**
