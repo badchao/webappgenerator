@@ -78,6 +78,13 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 		return searchStr.toString();
 	}
     
+	public void initCommonDefault(${className} item) {
+		join(doc);
+		
+		classNameLower.setDelFlag(0);
+		//item.setSearchStr(buildSearchStr(item));
+	}
+	
 	/** 
 	 * 创建${className}
 	 **/
@@ -113,13 +120,6 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
         
 		return super.updateById(${classNameLower});
     }
-    
-	public void initCommonDefault(${className} item) {
-		join(doc);
-		
-		classNameLower.setDelFlag(0);
-		//item.setSearchStr(buildSearchStr(item));
-	}
 	
 	@Override
 	public int deleteById(Object id) {
@@ -158,6 +158,8 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	@Transactional(readOnly=true)
 	public PageQuery<${className}> query(${className}Query query) {
 	    Assert.notNull(query,"'query' must be not null");
+	    Assert.hasText(query.getRootShopId(),"query.getRootShopId() must be not blank");
+	    
 	    PageQuery<${className}> page = ${classNameLower}Dao.queryPage(query.getPageNo(), query.getPageSize(), query);
 	    joinList(page.getList());
 	    return page;
