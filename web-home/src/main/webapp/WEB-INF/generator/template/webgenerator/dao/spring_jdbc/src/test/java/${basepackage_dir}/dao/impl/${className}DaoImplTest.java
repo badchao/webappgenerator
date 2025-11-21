@@ -34,6 +34,7 @@ public class ${className}DaoImplTest extends BaseDaoTestCase {
 	
 	private ${className}Dao dao;
 	
+	${className} item = ${className}DataFactory.new${className}();
 	private ${className} id = new ${className}(<@generateArgumentsWithRandomValue table.pkColumns/>);
 	
 	@Before
@@ -62,12 +63,14 @@ public class ${className}DaoImplTest extends BaseDaoTestCase {
 	
 	@Test
 	public void insert() {
-		dao.insert(${className}DataFactory.new${className}());
+		dao.deleteById(id);
+		
+		dao.insert(item);
 	}
 	
 	@Test
 	public void update() {
-		dao.update(${className}DataFactory.new${className}());
+		dao.update(item);
 	}
 	
 	@Test

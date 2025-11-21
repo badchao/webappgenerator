@@ -28,7 +28,9 @@ public class ${className}DaoTest extends BaseDaoTest {
 
     String rootShopId = "SHOP01";
     String shopId = "SHOP01";
-    String id = "test-${className}-1";
+    
+    ${className} item = {className}DataFactory.new${className}();
+    ${table.pkColumn.javaType} id = item.id();
 
     @Before
     public void before() throws Exception {
@@ -50,14 +52,12 @@ public class ${className}DaoTest extends BaseDaoTest {
     public void insert() {
         dao.deleteById(id);
 
-        ${className} item = {className}DataFactory.new${className}();
         item.setRootShopId(rootShopId);
         dao.insert(item);
     }
 
     @Test
     public void update() {
-    	${className} item = {className}DataFactory.new${className}();
         item.setRootShopId(rootShopId);
         dao.updateById(item);
     }
