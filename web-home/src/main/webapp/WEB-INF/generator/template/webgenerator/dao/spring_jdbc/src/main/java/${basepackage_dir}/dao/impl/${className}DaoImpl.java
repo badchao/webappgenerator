@@ -116,10 +116,14 @@ public class ${className}DaoImpl extends BaseDao implements ${className}Dao{
 		return  getExtNamedJdbcTemplate().update(sql,entity);
 	}
 
-	@Cacheable(key = CACHEKEY_PK)
-	public ${className} getone(${className} entity) {
+	public ${className} getone(${className} id) {
 		String sql = sqlGenerator.getSelectByPkSql();
-		return getExtNamedJdbcTemplate().queryOne(sql, entity,getEntityRowMapper());
+		return getExtNamedJdbcTemplate().queryOne(sql, id,getEntityRowMapper());
+	}
+	
+	@Cacheable(key = CACHEKEY_PK)
+	public ${className} getoneByLocalCache(${className} id){
+		return getone(id);
 	}
 	
 	<#list table.columns as column>

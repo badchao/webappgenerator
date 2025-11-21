@@ -37,9 +37,11 @@ public interface ${className}Service extends Service{
     public ${className} updateByManual(${className} ${classNameLower});
     
     /**
-     *  join取回${className}的关联对象,如一对多，多对一等的关联对象
+     *  join取回${className}的关联对象,如一对多，多对一等的关联对象,用于前端展现使用
      */
     public ${className} join(${className} ${classNameLower});
+    
+    public void joinList(Collection<${className}> list);
     
 	/** 
 	 * 删除${className}

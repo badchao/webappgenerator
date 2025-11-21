@@ -23,7 +23,9 @@ public interface ${className}Dao extends Dao {
 
 	public int deleteById(${className} entity);
 	
-	public ${className} getone(${className} entity);
+	public ${className} getone(${className} id);
+	
+	public ${className} getoneByLocalCache(${className} id);
 	
 	<#list table.columns as column>
 	<#if column.unique && !column.pk>

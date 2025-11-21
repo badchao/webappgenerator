@@ -121,6 +121,11 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
     	return ${classNameLower};
     }
     
+    public void joinList(Collection<${className}> list) {
+        if(list == null) return;
+        list.stream().forEach(item -> join(item));
+    }
+    
 	/** 
 	 * 删除${className}
 	 **/
