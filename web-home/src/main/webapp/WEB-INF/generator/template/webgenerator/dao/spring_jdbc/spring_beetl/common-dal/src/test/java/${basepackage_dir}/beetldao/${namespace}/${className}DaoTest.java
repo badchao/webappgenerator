@@ -66,5 +66,10 @@ public class ${className}DaoTest extends BaseDaoTest {
     public void deleteById() {
         dao.deleteById(id);
     }
+    
+    @Test
+    public void single() {
+        dao.single(id);
+    }
 
 }

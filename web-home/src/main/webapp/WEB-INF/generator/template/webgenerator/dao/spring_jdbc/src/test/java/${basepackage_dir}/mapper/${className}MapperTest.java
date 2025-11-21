@@ -40,6 +40,7 @@ public class ${className}MapperTest extends BaseDaoTestCase {
 
 	@Test
 	public void insert() {
+		deleteById();
 		${classNameLower}Mapper.insert(new${className}());
 	}
 
