@@ -11,7 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 
 import static org.junit.Assert.*;
 
@@ -24,6 +26,8 @@ public class ${className}DaoTest extends BaseDaoTest {
 
     static final Logger log = LoggerFactory.getLogger(${className}DaoTest.class);
 
+    @Rule public TestName testName = new TestName();
+    
     ${className}Dao dao = getZnyxDao(${className}Dao.class);
 
     String rootShopId = "SHOP01";
@@ -34,6 +38,7 @@ public class ${className}DaoTest extends BaseDaoTest {
 
     @Before
     public void before() throws Exception {
+    	System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
     }
 
     @After
