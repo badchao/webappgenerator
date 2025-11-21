@@ -18,11 +18,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 
-import ${basepackage}.model.${namespace}.*;
+import ${basepackage}.entity.${namespace}.*;
 import ${basepackage}.query.${namespace}.*;
 import ${basepackage}.service.${namespace}.*;
 
-import com.github.rapid.common.util.page.Page;
+
+import org.beetl.sql.core.engine.PageQuery;
+
 
 public class ${className}ControllerTest extends BaseControllerTestCase {
 
@@ -32,7 +34,7 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 	
 	@Rule public TestName testName = new TestName();
 	
-	private ${table.pkColumn.javaType} id = new${className}();
+	private ${className} id = new${className}();
 	
 	@Before
 	public void before() {
