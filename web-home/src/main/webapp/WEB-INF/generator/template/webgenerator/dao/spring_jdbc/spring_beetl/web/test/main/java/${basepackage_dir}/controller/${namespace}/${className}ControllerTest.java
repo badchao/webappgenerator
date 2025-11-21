@@ -32,7 +32,7 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 	
 	@Rule public TestName testName = new TestName();
 	
-	private ${table.pkColumn.javaType} id = new${className}().id();
+	private ${table.pkColumn.javaType} id = new${className}();
 	
 	@Before
 	public void before() {
