@@ -49,12 +49,12 @@ public class ${className}Controller extends BaseController {
 		this.${classNameLower}Service = ${classNameLower}Service;
 	}
 	
-	@Operation(summary = "元数据查询,返回所有搜索条件")
+	@Operation(summary = "元数据查询,返回所有枚举,返回所有搜索条件")
 	@GetMapping
 	public Map<String,Object> meta() {
 		checkEntityPermission(getRequest(),new ${className}(),READ);
 		
-		//key=columnName, value=column value
+		// Map<EnumClassName,Map<EnumName,EnumDesc>>
 		Map<String,Object> result = new HashMap<String,Object>();
 		return result;
 	}

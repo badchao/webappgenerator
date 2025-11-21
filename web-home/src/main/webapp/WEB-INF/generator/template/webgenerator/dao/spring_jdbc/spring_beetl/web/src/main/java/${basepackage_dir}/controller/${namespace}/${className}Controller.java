@@ -58,7 +58,7 @@ public class ${className}Controller  {
 	public ResultBean<Map<String,Object>> meta() {
 		String rootShopId = ZnyxUtil.getRootShopId();
 		
-		//key=columnName, value=column value
+		// Map<EnumClassName,Map<EnumName,EnumDesc>>
 		Map<String,Object> result = new HashMap<String,Object>();
 		return ResultBean.success(result);
 	}
