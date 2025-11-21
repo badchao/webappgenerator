@@ -56,6 +56,7 @@ public class ${className}Controller  {
 	@ApiOperation("元数据查询,得到所有相关枚举等元数据,返回所有搜索条件")
 	@GetMapping("meta")
 	public ResultBean<Map<String,Object>> meta() {
+		String rootShopId = ZnyxUtil.getRootShopId();
 		
 		//key=columnName, value=column value
 		Map<String,Object> result = new HashMap<String,Object>();
@@ -102,8 +103,8 @@ public class ${className}Controller  {
 	}
 
 	@ApiOperation("根据ID查找")
-	@GetMapping("getone")
-	public ResultBean<${className}> getone(${className} ${classNameLower}) {
+	@PostMapping("getone")
+	public ResultBean<${className}> getone(@RequestBody ${className} ${classNameLower}) {
         String userId = ZnyxUtil.getUserId();
         String shopId = ZnyxUtil.getShopId();
         String rootShopId = ZnyxUtil.getRootShopId();
