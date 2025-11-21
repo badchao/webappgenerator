@@ -61,7 +61,7 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 	public void remove() {
 		controller.remove(id);
 		
-		verify(${classNameLower}Service).deleteById(id); //验证执行了该语句
+		verify(${classNameLower}Service).deleteById(id.id()); //验证执行了该语句
 	}
 	
 	@Test
@@ -70,14 +70,14 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 		
 		controller.getone(id);
 		
-		verify(${classNameLower}Service).single(id); //验证执行了该语句
+		verify(${classNameLower}Service).unique(id.id()); //验证执行了该语句
 	}
 	
 	
 	@Test
 	public void query() {
 		${className}Query query = new${className}Query();
-		when(${classNameLower}Service.query(query)).thenReturn(new PageQuery<${className}>); // mock方法调用
+		when(${classNameLower}Service.query(query)).thenReturn(new PageQuery<${className}>()); // mock方法调用
 		
 		controller.query(query);
 		
@@ -87,7 +87,7 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 	@Test
 	public void download() {
 		${className}Query query = new${className}Query();
-		when(${classNameLower}Service.query(query)).thenReturn(new PageQuery<${className}>); // mock方法调用
+		when(${classNameLower}Service.query(query)).thenReturn(new PageQuery<${className}>()); // mock方法调用
 		
 		controller.download(query);
 		
