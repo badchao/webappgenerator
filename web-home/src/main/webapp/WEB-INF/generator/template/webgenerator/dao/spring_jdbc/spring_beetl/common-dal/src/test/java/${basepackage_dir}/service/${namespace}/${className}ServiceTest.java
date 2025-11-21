@@ -18,9 +18,9 @@ import static org.mockito.Mockito.*;
 
 
 import ${basepackage}.datafactory.${namespace}.${className}DataFactory;
-import ${basepackage}.model.${namespace}.*;
+import ${basepackage}.entity.${namespace}.*;
 import ${basepackage}.query.${namespace}.*;
-import ${basepackage}.dao.${namespace}.*;
+import ${basepackage}.beetldao.${namespace}.*;
 
 /**
 <#include "/java_description.include">
@@ -40,19 +40,20 @@ public class ${className}ServiceTest {
 	public void before() {
 		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
 		service.${classNameLower}Dao = ${classNameLower}Dao;
+		service.setDao(${classNameLower}Dao);
 	}
 	
 	@Test
 	public void insert() {
 		${className} obj = new${className}();
-		service.create(obj);
+		service.insert(obj);
 		
 		verify(${classNameLower}Dao).insert(obj); //验证执行了该语句
 	}
 	
 	@Test
 	public void updateById() {
-		when(${classNameLower}Dao.selectBy<@mybatisJavaIdMethod/>(id)).thenReturn(new${className}()); // mock方法调用
+		when(${classNameLower}Dao.single(id)).thenReturn(new${className}()); // mock方法调用
 		
 		${className} obj = new${className}();
 		service.updateById(obj);
@@ -62,6 +63,8 @@ public class ${className}ServiceTest {
 	
 	@Test
 	public void deleteById() {
+		when(${classNameLower}Dao.single(id)).thenReturn(new${className}()); // mock方法调用
+		
 		service.deleteById(id);
 		
 		verify(${classNameLower}Dao).deleteById(id); //验证执行了该语句
@@ -69,9 +72,9 @@ public class ${className}ServiceTest {
 	
 	@Test
 	public void single() {
-		when(${classNameLower}Dao.selectBy<@mybatisJavaIdMethod/>(id)).thenReturn(new${className}()); // mock方法调用
+		when(${classNameLower}Dao.single<@mybatisJavaIdMethod/>(id)).thenReturn(new${className}()); // mock方法调用
 		
-		${className} ${classNameLower} = service.getone(id);
+		${className} ${classNameLower} = service.single(id);
 		
 		verify(${classNameLower}Dao).single(id); //验证执行了该语句
 		assertNotNull(${classNameLower});

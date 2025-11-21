@@ -18,9 +18,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 
-import ${basepackage}.model.*;
-import ${basepackage}.query.*;
-import ${basepackage}.service.*;
+import ${basepackage}.model.${namespace}.*;
+import ${basepackage}.query.${namespace}.*;
+import ${basepackage}.service.${namespace}.*;
 
 import com.github.rapid.common.util.page.Page;
 
