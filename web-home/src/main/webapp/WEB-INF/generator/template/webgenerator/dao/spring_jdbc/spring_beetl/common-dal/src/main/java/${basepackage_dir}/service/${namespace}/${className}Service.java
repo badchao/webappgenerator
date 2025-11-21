@@ -90,6 +90,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 		${classNameLower}.setCreateDate(new Date());
 		${classNameLower}.setUpdateDate(new Date());
 		
+		
 	    //init default value
 		initCommonDefault(aiDoc);
 	    check(${classNameLower});
@@ -115,7 +116,8 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
     
 	public void initCommonDefault(${className} item) {
 		join(doc);
-
+		
+		classNameLower.setDelFlag(0);
 		//item.setSearchStr(buildSearchStr(item));
 	}
 	
