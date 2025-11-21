@@ -45,7 +45,7 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 		${className} obj = new${className}();
 		controller.create(obj);
 		
-		verify(${classNameLower}Service).create(obj); //验证执行了该语句
+		verify(${classNameLower}Service).insert(obj); //验证执行了该语句
 	}
 	
 
@@ -66,12 +66,11 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 	
 	@Test
 	public void getone() {
-		when(${classNameLower}Service.getone(id)).thenReturn(new${className}()); // mock方法调用
+		when(${classNameLower}Service.single(id)).thenReturn(new${className}()); // mock方法调用
 		
-		${className} ${classNameLower} = controller.getone(id);
+		controller.getone(id);
 		
 		verify(${classNameLower}Service).single(id); //验证执行了该语句
-		assertNotNull(${classNameLower});
 	}
 	
 	

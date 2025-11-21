@@ -31,7 +31,7 @@ import java.util.HashMap;
 import com.znyx.core.utils.ZnyxUtil;
 import com.znyx.core.common.ResultBean;
 import org.beetl.sql.core.engine.PageQuery;
-
+import org.beetl.sql.core.engine.PageQuery;
 
 /**
  * [${table.tableAlias}] Controller
@@ -49,9 +49,6 @@ public class ${className}Controller  {
     @Autowired
     ${className}Service ${classNameLower}Service;
 
-	public void set${className}Service(${className}Service ${classNameLower}Service) {
-		this.${classNameLower}Service = ${classNameLower}Service;
-	}
 	
 	@ApiOperation("元数据查询,得到所有相关枚举等元数据,返回所有搜索条件")
 	@GetMapping("meta")
