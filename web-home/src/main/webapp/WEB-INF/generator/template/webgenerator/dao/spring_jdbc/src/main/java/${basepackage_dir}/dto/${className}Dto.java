@@ -2,35 +2,35 @@
 <#include "/java_copyright.include">
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
-package ${basepackage}.model;
+package ${basepackage}.dto;
 
-import jakarta.validation.constraints.*;
 import java.util.*;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import org.hibernate.validator.constraints.Length;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
 
 /**
  * tableName: ${table.sqlName} [${table.tableAlias}] 
  * 
 <#include "/java_description.include">
  */
-@ApiModel(description = "${table.tableAlias}")
-public class ${className}  implements java.io.Serializable,Cloneable{
-	private static final long serialVersionUID = 1;
+@Data
+@Accessors(chain = true)
+@ApiModel(value = "${className}-${table.tableAlias}",description = "")
+public class ${className}Dto  implements java.io.Serializable,Cloneable{
+private static final long serialVersionUID = 1;
 	
 	//date formats
 	<#list table.columns as column>
@@ -45,22 +45,14 @@ public class ${className}  implements java.io.Serializable,Cloneable{
     /**
      * ${column.columnAlias!}       db_column: ${column.sqlName} 
      */
-	<#if column.pk>
-		<#if table.pkCount = 1>
-	@TableId
-		<#else>
-	@MppMultiId	
-		</#if>
-	</#if>
-	@ApiModelProperty(value = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}", example = "",notes = "", required = false)
+	@ApiModelProperty(name = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",notes = "")
 	${column.hibernateValidatorExprssion}
 	private ${column.javaType} ${column.columnNameLower};
 	
 	</#list>
 	//columns END
 
-<@generateConstructor className/>
-<@generateJavaColumns/>
+<@generateConstructor className+"Dto"/>
 <@generateJavaOneToMany/>
 <@generateJavaManyToOne/>
 
@@ -72,28 +64,9 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 		return ToStringBuilder.reflectionToString(this);
 	}
 	
-	public int hashCode() {
-		return new HashCodeBuilder()
-		<#list table.pkColumns as column>
-			.append(get${column.columnName}())
-		</#list>
-			.toHashCode();
-	}
-	
-	public boolean equals(Object obj) {
-		if(this == obj) return true;
-		if(obj instanceof ${className} == false) return false;
-		${className} other = (${className})obj;
-		return new EqualsBuilder()
-			<#list table.pkColumns as column>
-			.append(get${column.columnName}(),other.get${column.columnName}())
-			</#list>
-			.isEquals();
-	}
-	
-	public ${className} clone()  {
+	public ${className}Dto clone()  {
 		try {
-			return (${className})super.clone();
+			return (${className}Dto)super.clone();
 		} catch (CloneNotSupportedException e) {
 			throw new RuntimeException(e);
 		}
@@ -138,9 +111,8 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	<#assign fkPojoClass = fkSqlTable.className>
 	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
 	
-	@TableField(exist = false)
 	@JsonIgnore
-	@ApiModelProperty(hidden = true)
+	@Schema(hidden = true)
 	private Set ${fkPojoClassVar}s = new HashSet(0);
 	public Set<${fkPojoClass}> get${fkPojoClass}s() {
 		return ${fkPojoClassVar}s;
@@ -158,7 +130,6 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	<#assign fkPojoClass = fkSqlTable.className>
 	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
 	
-	@TableField(exist = false)
 	private ${fkPojoClass} ${fkPojoClassVar};
 	public ${fkPojoClass} get${fkPojoClass}() {
 		return ${fkPojoClassVar};

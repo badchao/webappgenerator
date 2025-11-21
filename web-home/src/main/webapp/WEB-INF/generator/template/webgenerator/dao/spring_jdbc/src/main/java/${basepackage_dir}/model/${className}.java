@@ -64,6 +64,10 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 <@generateJavaOneToMany/>
 <@generateJavaManyToOne/>
 
+	public ${table.pkColumn.javaType} id() {
+		return get${table.pkColumn.columnName}();
+	}
+
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}
