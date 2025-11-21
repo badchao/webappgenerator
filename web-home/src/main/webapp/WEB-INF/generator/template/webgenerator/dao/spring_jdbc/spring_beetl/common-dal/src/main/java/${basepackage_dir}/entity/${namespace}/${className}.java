@@ -18,6 +18,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.beetl.sql.core.annotatoin.AssignID;
 
 /**
  * tableName: ${table.sqlName} [${table.tableAlias}] 
@@ -45,6 +46,13 @@ public class ${className}  implements java.io.Serializable,Cloneable{
      */
 	@ApiModelProperty(name = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",notes = "")
 	${column.hibernateValidatorExprssion}
+	<#if column.pk>
+		<#if table.pkCount = 1>
+	@AssignID
+		<#else>
+	@AssignID	
+		</#if>
+	</#if>
 	private ${column.javaType} ${column.columnNameLower};
 	
 	</#list>
