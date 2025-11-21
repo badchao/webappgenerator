@@ -61,6 +61,23 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
     	BeanValidatorHolder.validateWithException(${classNameLower});
     }
     
+    /**
+     * 构建like搜索字符串，避免OR条件导致索引失效
+     * @return
+     */
+	public static String buildSearchStr(${className} item) {
+		StringBuilder searchStr = new StringBuilder();
+		searchStr.append(item.get${table.pkColumn.columnName}());
+		
+//		SafeDesignerDto designer = item.getDesigner();
+//		if(designer!= null) {
+//			searchStr.append(designer.getMobile());
+//			searchStr.append(designer.getName());
+//		}
+		
+		return searchStr.toString();
+	}
+    
 	/** 
 	 * 创建${className}
 	 **/
@@ -74,7 +91,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 		${classNameLower}.setUpdateDate(new Date());
 		
 	    //init default value
-	    
+		initCommonDefault(aiDoc);
 	    check(${classNameLower});
 	    
 	    super.insert(${classNameLower});
@@ -90,11 +107,18 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
         ${classNameLower}.setUpdateDate(new Date());
         Assert.notNull(${classNameLower}.getUpdateUserId(),"updateUserId must be not blank");
         
+        initCommonDefault(aiDoc);
         check(${classNameLower});
         
 		return super.updateById(${classNameLower});
     }
     
+	public void initCommonDefault(${className} item) {
+		join(doc);
+
+		//item.setSearchStr(buildSearchStr(item));
+	}
+	
 	@Override
 	public int deleteById(Object id) {
 		AiDoc fromDb = unique(id);
