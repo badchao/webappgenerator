@@ -62,6 +62,12 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
     	${classNameLower}.check();
     }
     
+	public void initCommonDefault(${className} item) {
+		//join(item);
+		//item.setSearchStr(buildSearchStr(item));
+		item.initDefault();
+	}
+	
 	/** 
 	 * 创建${className}
 	 **/
@@ -70,6 +76,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	    Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
 
 	    //init default value
+	    initCommonDefault(${classNameLower});
 	    
 	    check(${classNameLower});
 	    
@@ -83,6 +90,8 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	@Override
     public ${className} update(${className} ${classNameLower}) {
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
+        
+        initCommonDefault(${classNameLower});
         check(${classNameLower});
         
 		${classNameLower}Dao.update(${classNameLower});

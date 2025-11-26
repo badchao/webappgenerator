@@ -137,7 +137,7 @@ public class ${className}Controller  {
         query.setPageSize(1000);
         
         PageQuery<${className}> page = ${classNameLower}Service.query(query);
-//		writeExcel2Response(getResponse(),page.getList(),AiDocCatalog.class);
+//		writeExcel2Response(getResponse(),page.getList(),${className}.class);
 	}
 	
 }

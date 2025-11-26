@@ -101,7 +101,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 		
 		
 	    //init default value
-		initCommonDefault(aiDoc);
+		initCommonDefault(${classNameLower});
 	    check(${classNameLower});
 	    
 	    super.insert(${classNameLower});
@@ -117,7 +117,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
         ${classNameLower}.setUpdateDate(new Date());
         Assert.notNull(${classNameLower}.getUpdateUserId(),"updateUserId must be not blank");
         
-        initCommonDefault(aiDoc);
+        initCommonDefault(${classNameLower});
         check(${classNameLower});
         
 		return super.updateById(${classNameLower});
@@ -125,7 +125,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	
 	@Override
 	public int deleteById(Object id) {
-		AiDoc fromDb = unique(id);
+		${className} fromDb = unique(id);
 		fromDb.setDelFlag(-1);
 		return super.updateById(fromDb);
 	}

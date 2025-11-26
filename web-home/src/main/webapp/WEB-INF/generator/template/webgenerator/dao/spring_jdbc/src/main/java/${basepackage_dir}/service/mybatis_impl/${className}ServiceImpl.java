@@ -66,6 +66,12 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
     	${classNameLower}.check();
     }
     
+	public void initCommonDefault(${className} item) {
+		//join(item);
+		//item.setSearchStr(buildSearchStr(item));
+		item.initDefault();
+	}
+	
 	/** 
 	 * 创建${className}
 	 **/
