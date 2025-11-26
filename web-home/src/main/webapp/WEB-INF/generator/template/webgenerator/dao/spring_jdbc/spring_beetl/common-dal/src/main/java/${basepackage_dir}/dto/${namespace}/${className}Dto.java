@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.BeanUtils;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -20,6 +21,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ${basepackage}.entity.${namespace}.*;
 
 /**
  * tableName: ${table.sqlName} [${table.tableAlias}] 
@@ -58,6 +61,12 @@ private static final long serialVersionUID = 1;
 
 	public ${table.pkColumn.javaType} id() {
 		return get${table.pkColumn.columnName}();
+	}
+	
+	public ${className} toEntity() {
+		${className} result = new ${className}();
+		BeanUtils.copyProperties(this, result, null);
+		return result;
 	}
 
 	public String toString() {

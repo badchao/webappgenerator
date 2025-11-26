@@ -5,6 +5,8 @@
 package ${basepackage}.entity.${namespace};
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.BeanUtils;
+
 import java.util.*;
 
 import io.swagger.annotations.ApiModel;
@@ -19,6 +21,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.beetl.sql.core.annotatoin.AssignID;
+import ${basepackage}.dto.${namespace}.*;
 
 /**
  * tableName: ${table.sqlName} [${table.tableAlias}] 
@@ -68,6 +71,12 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
+	}
+	
+	public ${className}Dto toDto() {
+		${className}Dto dto = new ${className}Dto();
+		BeanUtils.copyProperties(this, dto, null);
+		return dto;
 	}
 	
 	public int hashCode() {
