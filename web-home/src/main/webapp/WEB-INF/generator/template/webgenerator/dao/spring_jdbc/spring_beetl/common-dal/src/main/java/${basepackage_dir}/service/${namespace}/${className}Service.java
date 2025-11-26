@@ -59,6 +59,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
     public void check(${className} ${classNameLower}) {
     	// Bean Validator检查,属性检查失败将抛异常
     	BeanValidatorHolder.validateWithException(${classNameLower});
+    	${classNameLower}.check();
     }
     
     /**
@@ -79,10 +80,11 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	}
     
 	public void initCommonDefault(${className} item) {
-		join(doc);
+		join(item);
 		
-		classNameLower.setDelFlag(0);
+		item.setDelFlag(0);
 		//item.setSearchStr(buildSearchStr(item));
+		item.initDefault();
 	}
 	
 	/** 

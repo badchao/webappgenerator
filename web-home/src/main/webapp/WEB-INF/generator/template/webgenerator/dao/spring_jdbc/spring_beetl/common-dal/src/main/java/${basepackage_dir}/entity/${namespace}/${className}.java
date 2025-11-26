@@ -68,6 +68,14 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	public ${table.pkColumn.javaType} id() {
 		return get${table.pkColumn.columnName}();
 	}
+	
+	//作属性检查
+	public void check() {
+	}
+	
+	//填充默认值
+	public void initDefault() {
+	}
 
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);

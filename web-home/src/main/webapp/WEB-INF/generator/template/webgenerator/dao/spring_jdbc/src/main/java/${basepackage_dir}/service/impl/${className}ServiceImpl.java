@@ -59,6 +59,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
     public void check(${className} ${classNameLower}) {
     	// Bean Validator检查,属性检查失败将抛异常
     	BeanValidatorHolder.validateWithException(${classNameLower});
+    	${classNameLower}.check();
     }
     
 	/** 
