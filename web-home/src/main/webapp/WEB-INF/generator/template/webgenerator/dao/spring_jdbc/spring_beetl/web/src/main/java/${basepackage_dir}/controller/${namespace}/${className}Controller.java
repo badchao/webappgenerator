@@ -116,6 +116,11 @@ public class ${className}Controller  {
 	@ApiOperation("分页查询")
 	@PostMapping("query")
 	public ResultBean query(@RequestBody ${className}Query query){
+		PageQuery<${className}> page = query0(query);
+		return ResultBean.returnList(page);
+	}
+	
+	PageQuery<${className}> query0(@RequestBody ${className}Query query){
         String userId = ZnyxUtil.getUserId();
         String shopId = ZnyxUtil.getShopId();
         String rootShopId = ZnyxUtil.getRootShopId();
@@ -123,20 +128,15 @@ public class ${className}Controller  {
         query.setRootShopId(rootShopId);
         
 		PageQuery<${className}> page = ${classNameLower}Service.query(query);
-		return ResultBean.returnList(page);
+		return page;
 	}
 	
 	@ApiOperation("导出下载")
 	@PostMapping("download")
 	public void download(@RequestBody ${className}Query query)  {
-        String userId = ZnyxUtil.getUserId();
-        String shopId = ZnyxUtil.getShopId();
-        String rootShopId = ZnyxUtil.getRootShopId();
-        
-        query.setRootShopId(rootShopId);
         query.setPageSize(1000);
         
-        PageQuery<${className}> page = ${classNameLower}Service.query(query);
+        PageQuery<${className}> page = query0(query);
 //		writeExcel2Response(getResponse(),page.getList(),${className}.class);
 	}
 	
