@@ -36,6 +36,8 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 
 	protected static final Logger logger = LoggerFactory.getLogger(${className}ServiceImpl.class);
 	
+	private static final int MAX_PAGE_SIZE = 10000;
+	
 	/*
 	* 请删除无用的方法，本代码生成器的理念是: 1. 一次生成，后期手工修改代码 2. 删除代码比手写重复代码快捷，所以请删除无用代码
 	*/
@@ -170,6 +172,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	@Transactional(readOnly=true)
 	public Page<${className}> query(${className}Query query) {
 	    Assert.notNull(query,"'query' must be not null");
+	    Assert.isTrue(query.getPageSize() <= MAX_PAGE_SIZE,"query.getPageSize() too large");
 	    Page<${className}> r = ${classNameLower}Dao.query(query);
 	    return r;
 	}
@@ -177,6 +180,7 @@ public class ${className}ServiceImpl extends BaseService implements ${className}
 	@Transactional(readOnly=true)
 	public List<${className}> findList(${className}Query query) {
 		Assert.notNull(query,"'query' must be not null");
+		Assert.isTrue(query.getPageSize() <= MAX_PAGE_SIZE,"query.getPageSize() too large");
 		List<${className}> r = ${classNameLower}Dao.findList(query);
 	    return r;
 	}

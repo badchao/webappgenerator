@@ -42,6 +42,8 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 
 	protected static final Logger logger = LoggerFactory.getLogger(${className}Service.class);
 	
+	private static final int MAX_PAGE_SIZE = 10000;
+	
 	@Autowired
 	${className}Dao ${classNameLower}Dao;
 	
@@ -161,6 +163,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	public PageQuery<${className}> query(${className}Query query) {
 	    Assert.notNull(query,"'query' must be not null");
 	    Assert.hasText(query.getRootShopId(),"query.getRootShopId() must be not blank");
+	    Assert.isTrue(query.getPageSize() <= MAX_PAGE_SIZE,"query.getPageSize() too large");
 	    
 	    PageQuery<${className}> page = ${classNameLower}Dao.queryPage(query.getPageNo(), query.getPageSize(), query);
 	    joinList(page.getList());
