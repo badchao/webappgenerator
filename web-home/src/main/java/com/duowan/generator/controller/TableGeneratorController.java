@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.TeeOutputStream;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateFormatUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.AntPathMatcher;
@@ -399,7 +399,7 @@ public class TableGeneratorController {
 			props.setProperty("projectId",projectId);
 			props.setProperty("basepackage",basepackage);
 			props.setProperty("tableRemovePrefixes",tableRemovePrefixes);
-			props.setProperty("generator_tools_class","cn.org.rapid_framework.generator.util.StringHelper,org.apache.commons.lang.StringUtils,com.duowan.generator.common.util.GeneratorColumnUtil,");
+			props.setProperty("generator_tools_class","cn.org.rapid_framework.generator.util.StringHelper,org.apache.commons.lang3.StringUtils,com.duowan.generator.common.util.GeneratorColumnUtil,");
 			
 			GeneratorContext.setGeneratorProperties(props);
 		}		
