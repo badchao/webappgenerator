@@ -28,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Data
 @Accessors(chain = true)
-@ApiModel(value = "${className}-${table.tableAlias}",description = "")
+@Schema(title = "${className}-${table.tableAlias}",description = "")
 public class ${className}Dto  implements java.io.Serializable,Cloneable{
 private static final long serialVersionUID = 1;
 	

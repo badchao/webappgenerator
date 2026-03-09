@@ -30,9 +30,9 @@ import java.util.HashMap;
 
 import com.znyx.core.utils.ZnyxUtil;
 import com.znyx.core.common.ResultBean;
-import org.beetl.sql.core.engine.PageQuery;
-import org.beetl.sql.core.engine.PageQuery;
 
+import org.beetl.sql.core.engine.PageQuery;
+import org.beetl.sql.core.page.PageResult; // beetl v3.0
 /**
  * [${table.tableAlias}] Controller
  * 
@@ -127,7 +127,7 @@ public class ${className}Controller  {
         
         query.setRootShopId(rootShopId);
         
-		PageQuery<${className}> page = ${classNameLower}Service.query(query);
+		PageResult<${className}> page = ${classNameLower}Service.query(query);
 		return page;
 	}
 	
@@ -136,7 +136,7 @@ public class ${className}Controller  {
 	public void download(@RequestBody ${className}Query query)  {
         query.setPageSize(1000);
         
-        PageQuery<${className}> page = query0(query);
+        PageResult<${className}> page = query0(query);
 //		writeExcel2Response(getResponse(),page.getList(),${className}.class);
 	}
 	

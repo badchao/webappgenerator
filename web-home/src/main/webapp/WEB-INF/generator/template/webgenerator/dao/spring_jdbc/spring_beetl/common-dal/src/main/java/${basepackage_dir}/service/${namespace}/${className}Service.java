@@ -30,6 +30,7 @@ import ${basepackage}.service.${namespace}.*;
 import com.znyx.core.beetl.BeetSQLIService;
 import com.znyx.core.utils.ZnyxUtil;
 import org.beetl.sql.core.engine.PageQuery;
+import org.beetl.sql.core.page.PageResult; // beetl v3.0
 import com.znyx.core.utils.BeanValidatorHolder;
 
 /**
@@ -160,12 +161,12 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	 * 分页查询
 	 **/      
 	@Transactional(readOnly=true)
-	public PageQuery<${className}> query(${className}Query query) {
+	public PageResult<${className}> query(${className}Query query) {
 	    Assert.notNull(query,"'query' must be not null");
 	    Assert.hasText(query.getRootShopId(),"query.getRootShopId() must be not blank");
 	    Assert.isTrue(query.getPageSize() <= MAX_PAGE_SIZE,"query.getPageSize() too large");
 	    
-	    PageQuery<${className}> page = ${classNameLower}Dao.queryPage(query.getPageNo(), query.getPageSize(), query);
+	    PageResult<${className}> page = ${classNameLower}Dao.queryPage(query.getPageNo(), query.getPageSize(), query);
 	    joinList(page.getList());
 	    return page;
 	}

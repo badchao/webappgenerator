@@ -30,7 +30,7 @@ import ${basepackage}.dto.${namespace}.*;
  */
 @Data
 @Accessors(chain = true)
-@ApiModel(value = "${className}-${table.tableAlias}",description = "")
+@Schema(title = "${className}-${table.tableAlias}",description = "")
 public class ${className}  implements java.io.Serializable,Cloneable{
 	private static final long serialVersionUID = 1;
 	
@@ -47,7 +47,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
     /**
      * ${column.columnAlias!}       db_column: ${column.sqlName} 
      */
-	@ApiModelProperty(name = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",notes = "")
+	@ApiModelProperty(title = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",notes = "")
 	${column.hibernateValidatorExprssion}
 	<#if column.pk>
 		<#if table.pkCount = 1>

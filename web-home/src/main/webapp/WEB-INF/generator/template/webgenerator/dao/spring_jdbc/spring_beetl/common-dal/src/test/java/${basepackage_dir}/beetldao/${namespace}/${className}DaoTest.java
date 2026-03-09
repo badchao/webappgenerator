@@ -18,6 +18,7 @@ import org.junit.rules.TestName;
 import static org.junit.Assert.*;
 
 import org.beetl.sql.core.engine.PageQuery;
+import org.beetl.sql.core.page.PageResult;
 import com.znyx.core.basetest.BaseDaoTest;
 
 
@@ -33,7 +34,7 @@ public class ${className}DaoTest extends BaseDaoTest {
     String rootShopId = "SHOP01";
     String shopId = "SHOP01";
     
-    ${className} item = {className}DataFactory.new${className}();
+    ${className} item = ${className}DataFactory.new${className}();
     ${table.pkColumn.javaType} id = item.id();
 
     @Before
@@ -47,10 +48,10 @@ public class ${className}DaoTest extends BaseDaoTest {
 
     @Test
     public void queryPage() {
-        ${className}Query query = {className}DataFactory.new${className}Query();
+        ${className}Query query = ${className}DataFactory.new${className}Query();
         query.setRootShopId(rootShopId);
         query.setKeyword("hello");
-        PageQuery result = dao.queryPage(1, 100, query);
+        PageResult result = dao.queryPage(1, 100, query);
     }
 
     @Test

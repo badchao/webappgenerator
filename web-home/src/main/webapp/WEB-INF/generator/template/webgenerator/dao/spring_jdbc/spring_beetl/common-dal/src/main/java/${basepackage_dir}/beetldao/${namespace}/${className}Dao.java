@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import com.znyx.core.beetl.MyMapper;
 import org.beetl.sql.core.annotatoin.SqlResource;
-import org.beetl.sql.core.engine.PageQuery;
+
+import org.beetl.sql.core.engine.PageQuery; // beetl v2.0
+import org.beetl.sql.core.page.PageResult; // beetl v3.0
 
 
 /**
@@ -27,7 +29,7 @@ public interface ${className}Dao extends MyMapper<${className}>{
 	  /**
 	   * 标准的分页查询,根据query动态where条件
 	   */
-	  PageQuery<${className}> queryPage(
+	PageResult<${className}> queryPage(
 	          Integer pageNo,
 	          Integer pageSize,
 	          ${className}Query query);

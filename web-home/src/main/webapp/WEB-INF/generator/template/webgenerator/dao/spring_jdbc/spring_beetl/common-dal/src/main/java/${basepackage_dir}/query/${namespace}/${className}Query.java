@@ -21,7 +21,7 @@ import com.modo.cloud.query.BaseQuery;
  * 
 <#include "/java_description.include">
  */
-@ApiModel(value="${className}Query-${table.tableAlias}-查询对象", description = "")
+@Schema(title="${className}Query-${table.tableAlias}-查询对象", description = "")
 @Data
 public class ${className}Query extends BaseQuery implements Serializable {
 	
@@ -54,7 +54,7 @@ public class ${className}Query extends BaseQuery implements Serializable {
 	private ${column.javaType} ${column.columnNameLower}Begin;
 	private ${column.javaType} ${column.columnNameLower}End;
 	<#else>
-	@ApiModelProperty(name = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",notes = "")
+	@ApiModelProperty(title = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",notes = "")
 	private ${column.javaType} ${column.columnNameLower};
 	</#if>
 	
