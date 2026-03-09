@@ -114,7 +114,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	 * 更新${className}
 	 **/
 	@Override
-    public int updateById(${className} ${classNameLower}) {
+    public boolean updateById(${className} ${classNameLower}) {
         Assert.notNull(${classNameLower},"'${classNameLower}' must be not null");
         
         ${classNameLower}.setUpdateDate(new Date());
@@ -127,7 +127,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
     }
 	
 	@Override
-	public int deleteById(Object id) {
+	public boolean deleteById(Object id) {
 		${className} fromDb = unique(id);
 		fromDb.setDelFlag(-1);
 		return super.updateById(fromDb);
