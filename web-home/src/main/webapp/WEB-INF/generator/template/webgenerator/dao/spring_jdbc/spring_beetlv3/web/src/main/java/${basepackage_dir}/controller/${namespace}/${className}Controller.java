@@ -120,7 +120,7 @@ public class ${className}Controller  {
 	@PostMapping("query")
 	public ResultBean query(@RequestBody ${className}Query query){
 		PageResult<${className}> page = query0(query);
-		return ResultBean.returnList(page);
+		return ResultBean.returnList(page.getTotalRow(),page.getList());
 	}
 	
 	PageResult<${className}> query0(@RequestBody ${className}Query query){
