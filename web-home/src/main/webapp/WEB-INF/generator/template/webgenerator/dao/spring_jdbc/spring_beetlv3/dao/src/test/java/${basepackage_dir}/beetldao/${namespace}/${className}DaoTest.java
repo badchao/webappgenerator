@@ -6,6 +6,7 @@ package ${basepackage}.beetldao.${namespace};
 
 import  ${basepackage}.query.${namespace}.${className}Query;
 import  ${basepackage}.datafactory.${namespace}.${className}DataFactory;
+import  ${basepackage}.entity.${namespace}.${className};
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,9 @@ import org.beetl.sql.core.engine.PageQuery;
 import org.beetl.sql.core.page.DefaultPageRequest;
 import org.beetl.sql.core.page.PageRequest;
 import org.beetl.sql.core.page.PageResult;
-import com.znyx.core.basetest.BaseDaoTest;
+
+import ${basepackage}.basetest.BaseDaoTest;
+
 
 
 
