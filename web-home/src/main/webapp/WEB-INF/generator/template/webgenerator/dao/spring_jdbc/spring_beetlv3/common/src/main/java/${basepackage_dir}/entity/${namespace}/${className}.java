@@ -9,8 +9,8 @@ import org.springframework.beans.BeanUtils;
 
 import java.util.*;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -47,8 +47,8 @@ public class ${className}  implements java.io.Serializable,Cloneable{
     /**
      * ${column.columnAlias!}       db_column: ${column.sqlName} 
      */
-	@ApiModelProperty(title = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",notes = "")
-	${column.hibernateValidatorExprssion}
+	@Schema(title = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}", description="")
+	// ${column.hibernateValidatorExprssion}
 	<#if column.pk>
 		<#if table.pkCount = 1>
 	@AssignID

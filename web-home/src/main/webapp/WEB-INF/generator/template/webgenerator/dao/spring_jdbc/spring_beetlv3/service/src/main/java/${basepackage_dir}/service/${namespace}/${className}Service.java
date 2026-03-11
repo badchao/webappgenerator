@@ -27,11 +27,9 @@ import ${basepackage}.beetldao.${namespace}.*;
 import ${basepackage}.service.${namespace}.*;
 
 
-import com.znyx.core.beetl.BeetSQLIService;
-import com.znyx.core.utils.ZnyxUtil;
-import org.beetl.sql.core.engine.PageQuery;
+import org.beetl.sql.core.engine.PageQuery; // beetl v2.0
 import org.beetl.sql.core.page.PageResult; // beetl v3.0
-import com.znyx.core.utils.BeanValidatorHolder;
+import com.modo.framework.common.util.validation.BeanValidatorHolder;
 
 /**
  * [${table.tableAlias}] 的Service接口实现
@@ -85,7 +83,8 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	public void initCommonDefault(${className} item) {
 		join(item);
 		
-		item.setDelFlag(0);
+//		item.setDelFlag(0);
+		item.setDeleted(0);
 		//item.setSearchStr(buildSearchStr(item));
 		item.initDefault();
 	}
@@ -127,9 +126,9 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
     }
 	
 	@Override
-	public boolean deleteById(Object id) {
-		${className} fromDb = unique(id);
-		fromDb.setDelFlag(-1);
+	public boolean deleteById(Serializable id) {
+		${className} fromDb = getById(id);
+		fromDb.setDeleted(1);
 		return super.updateById(fromDb);
 	}
 	

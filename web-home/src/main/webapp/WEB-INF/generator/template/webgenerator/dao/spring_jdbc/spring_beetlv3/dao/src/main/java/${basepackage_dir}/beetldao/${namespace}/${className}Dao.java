@@ -9,11 +9,11 @@ import ${basepackage}.query.${namespace}.${className}Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.znyx.core.beetl.MyMapper;
-import org.beetl.sql.core.annotatoin.SqlResource;
 
 import org.beetl.sql.core.engine.PageQuery; // beetl v2.0
 import org.beetl.sql.core.page.PageResult; // beetl v3.0
+import org.beetl.sql.mapper.annotation.SqlResource;
+import com.modo.cloud.beetl.mapper.MyMapper;
 
 
 /**

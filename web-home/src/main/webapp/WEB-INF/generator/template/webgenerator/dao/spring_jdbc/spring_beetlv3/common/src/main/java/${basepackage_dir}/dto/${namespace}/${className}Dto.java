@@ -6,11 +6,10 @@ package ${basepackage}.dto.${namespace};
 
 import java.util.*;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.BeanUtils;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -48,8 +47,8 @@ private static final long serialVersionUID = 1;
     /**
      * ${column.columnAlias!}       db_column: ${column.sqlName} 
      */
-	@ApiModelProperty(title = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",description = "")
-	${column.hibernateValidatorExprssion}
+	@Schema(title = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",description = "")
+	//${column.hibernateValidatorExprssion}
 	private ${column.javaType} ${column.columnNameLower};
 	
 	</#list>

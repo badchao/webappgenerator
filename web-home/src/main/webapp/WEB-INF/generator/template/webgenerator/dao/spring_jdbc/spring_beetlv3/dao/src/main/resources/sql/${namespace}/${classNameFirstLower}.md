@@ -25,15 +25,15 @@ commonWhere
 	<#list table.columns as column>
 	<#if column.isDateTimeColumn>
 	-- @if(isNotEmpty(query.${column.columnNameLower}Begin)){
-		AND main.${column.sqlName}=#query.${column.columnNameLower}Begin#
+		AND main.${column.sqlName}=${poundKey}{query.${column.columnNameLower}Begin}
 	-- @}
 	-- @if(isNotEmpty(query.${column.columnNameLower}End)){
-		AND main.${column.sqlName}=#query.${column.columnNameLower}End#
+		AND main.${column.sqlName}=${poundKey}{query.${column.columnNameLower}End}
 	-- @}
 	
 	<#else>
 	-- @if(isNotEmpty(query.${column.columnNameLower})){
-		AND main.${column.sqlName}=#query.${column.columnNameLower}#
+		AND main.${column.sqlName}=${poundKey}{query.${column.columnNameLower}
 	-- @}
 	
 	</#if>
@@ -48,13 +48,13 @@ queryPage
 ```sql
     select
         -- @pageTag(){
-            #{use("columns")}
+            ${poundKey}{use("columns")}
         -- @}
     FROM ${table.sqlName} main
     
     WHERE 1=1
     
-        #{use("commonWhere")}
+        ${poundKey}{use("commonWhere")}
         
     -- @pageIgnoreTag(){
         ORDER BY main.create_date desc

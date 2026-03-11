@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 import ${basepackage}.entity.${namespace}.${className};
 import ${basepackage}.query.${namespace}.${className}Query;
@@ -37,6 +35,8 @@ import org.beetl.sql.core.page.PageResult; // beetl v3.0
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import com.modo.app.core.service.util.AppContextUtil;
+import com.modo.cloud.common.result.ResultBean;
+
 /**
  * [${table.tableAlias}] Controller
  * 
@@ -57,7 +57,7 @@ public class ${className}Controller  {
 	@Operation(summary="元数据查询,得到所有相关枚举等元数据,返回所有搜索条件")
 	@GetMapping("meta")
 	public ResultBean<Map<String,Object>> meta() {
-		String rootShopId = AppContextUtil.getRootShopId();
+		String tenantId = AppContextUtil.getTenantId();
 		
 		// Map<EnumClassName,Map<EnumName,EnumDesc>>
 		Map<String,Object> result = new HashMap<String,Object>();
@@ -69,7 +69,7 @@ public class ${className}Controller  {
 	public ResultBean<${className}> create(@RequestBody ${className} ${classNameLower}) {
         String userId = AppContextUtil.getUserId();
         String shopId = AppContextUtil.getShopId();
-        String rootShopId = AppContextUtil.getRootShopId();
+        String tenantId = AppContextUtil.getTenantId();
         
         ${classNameLower}.setCreateUserId(userId);
 		${classNameLower}Service.insert(${classNameLower});
@@ -82,7 +82,7 @@ public class ${className}Controller  {
 	public ResultBean<${className}> update(@RequestBody ${className} ${classNameLower}) {
         String userId = AppContextUtil.getUserId();
         String shopId = AppContextUtil.getShopId();
-        String rootShopId = AppContextUtil.getRootShopId();
+        String tenantId = AppContextUtil.getTenantId();
         
         ${classNameLower}.setUpdateUserId(userId);
 		${classNameLower}Service.updateById(${classNameLower});
@@ -95,7 +95,7 @@ public class ${className}Controller  {
 	public ResultBean<Boolean> remove(@RequestBody ${className} ${classNameLower}) {
         String userId = AppContextUtil.getUserId();
         String shopId = AppContextUtil.getShopId();
-        String rootShopId = AppContextUtil.getRootShopId();
+        String tenantId = AppContextUtil.getTenantId();
         
         ${table.pkColumn.javaType} id = ${classNameLower}.id();
 		${classNameLower}Service.deleteById(id);
@@ -108,10 +108,10 @@ public class ${className}Controller  {
 	public ResultBean<${className}> getone(@RequestBody ${className} ${classNameLower}) {
         String userId = AppContextUtil.getUserId();
         String shopId = AppContextUtil.getShopId();
-        String rootShopId = AppContextUtil.getRootShopId();
+        String tenantId = AppContextUtil.getTenantId();
         
         ${table.pkColumn.javaType} id = ${classNameLower}.id();
-		${className} result = ${classNameLower}Service.unique(id);
+		${className} result = ${classNameLower}Service.getById(id);
 		${classNameLower}Service.join(result);
 		
 		return ResultBean.success(result);
@@ -127,9 +127,9 @@ public class ${className}Controller  {
 	PageResult<${className}> query0(@RequestBody ${className}Query query){
         String userId = AppContextUtil.getUserId();
         String shopId = AppContextUtil.getShopId();
-        String rootShopId = AppContextUtil.getRootShopId();
+        String tenantId = AppContextUtil.getTenantId();
         
-        query.setRootShopId(rootShopId);
+        query.setRootShopId(tenantId);
         
 		PageResult<${className}> page = ${classNameLower}Service.query(query);
 		return page;

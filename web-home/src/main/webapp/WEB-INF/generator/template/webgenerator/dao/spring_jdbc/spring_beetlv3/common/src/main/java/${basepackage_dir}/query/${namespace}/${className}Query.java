@@ -4,8 +4,7 @@
 <#assign classNameLower = className?uncap_first> 
 package ${basepackage}.query.${namespace};
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import lombok.Data;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -54,7 +53,7 @@ public class ${className}Query extends BaseQuery implements Serializable {
 	private ${column.javaType} ${column.columnNameLower}Begin;
 	private ${column.javaType} ${column.columnNameLower}End;
 	<#else>
-	@ApiModelProperty(title = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",notes = "")
+	@Schema(title = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}",description = "")
 	private ${column.javaType} ${column.columnNameLower};
 	</#if>
 	
