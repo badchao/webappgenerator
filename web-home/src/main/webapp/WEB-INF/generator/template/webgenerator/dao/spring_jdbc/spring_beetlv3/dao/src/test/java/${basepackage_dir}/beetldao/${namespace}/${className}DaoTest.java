@@ -18,6 +18,8 @@ import org.junit.rules.TestName;
 import static org.junit.Assert.*;
 
 import org.beetl.sql.core.engine.PageQuery;
+import org.beetl.sql.core.page.DefaultPageRequest;
+import org.beetl.sql.core.page.PageRequest;
 import org.beetl.sql.core.page.PageResult;
 import com.znyx.core.basetest.BaseDaoTest;
 
@@ -51,7 +53,10 @@ public class ${className}DaoTest extends BaseDaoTest {
         ${className}Query query = ${className}DataFactory.new${className}Query();
         query.setTenantId(tenantId);
         query.setKeyword("hello");
-        PageResult result = dao.queryPage(1, 100, query);
+        
+        PageRequest pr = DefaultPageRequest.of(1, 100);
+        PageResult result = dao.queryPage(query,pr);
+        System.out.println(result);
     }
 
     @Test

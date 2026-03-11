@@ -41,6 +41,7 @@ public class ${className}ServiceTest {
 	public void before() {
 		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
 		service.${classNameLower}Dao = ${classNameLower}Dao;
+		service.mapper = ${classNameLower}Dao;
 	}
 	
 	@Test
@@ -53,21 +54,21 @@ public class ${className}ServiceTest {
 	
 	@Test
 	public void updateById() {
-		when(${classNameLower}Dao.single(id)).thenReturn(new${className}()); // mock方法调用
+		when(${classNameLower}Dao.unique(id)).thenReturn(new${className}()); // mock方法调用
 		
 		${className} obj = new${className}();
 		service.updateById(obj);
 		
-		verify(${classNameLower}Dao).updateById(obj); //验证执行了该语句
+		verify(${classNameLower}Dao).updateTemplateById(obj); //验证执行了该语句
 	}
 	
 	@Test
 	public void deleteById() {
-		when(${classNameLower}Dao.single(id)).thenReturn(new${className}()); // mock方法调用
+		when(${classNameLower}Dao.unique(id)).thenReturn(new${className}()); // mock方法调用
 		
 		service.deleteById(id);
 		
-		verify(${classNameLower}Dao).deleteById(id); //验证执行了该语句
+		verify(${classNameLower}Dao).updateTemplateById(any()); //验证执行了该语句
 	}
 	
 	@Test

@@ -10,7 +10,7 @@ columns
 ===
 ```sql
 
-    <@generateSqlSelectColumns table.columns/>  
+    *
 
 ```
 
