@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Collection;
+import java.io.Serializable;
 
 
 import ${basepackage}.entity.${namespace}.*;

@@ -27,7 +27,6 @@ import java.util.Map;
 import java.util.HashMap;
 
 import com.modo.app.core.service.util.AppContextUtil;
-import com.znyx.core.common.ResultBean;
 
 import org.beetl.sql.core.engine.PageQuery;
 import org.beetl.sql.core.page.PageResult; // beetl v3.0
