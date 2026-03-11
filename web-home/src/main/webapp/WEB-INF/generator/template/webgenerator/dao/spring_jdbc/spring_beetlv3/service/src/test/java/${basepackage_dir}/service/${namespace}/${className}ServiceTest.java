@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import java.util.*;
 
+import java.io.Serializable;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -34,13 +35,12 @@ public class ${className}ServiceTest {
 	
 	@Rule public TestName testName = new TestName();
 	
-	private ${className} id = new${className}();
+	private Serializable id = new${className}().id();
 	
 	@Before
 	public void before() {
 		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
 		service.${classNameLower}Dao = ${classNameLower}Dao;
-		service.setDao(${classNameLower}Dao);
 	}
 	
 	@Test
@@ -71,12 +71,12 @@ public class ${className}ServiceTest {
 	}
 	
 	@Test
-	public void single() {
-		when(${classNameLower}Dao.single<@mybatisJavaIdMethod/>(id)).thenReturn(new${className}()); // mock方法调用
+	public void getById() {
+		when(${classNameLower}Dao.unique(id)).thenReturn(new${className}()); // mock方法调用
 		
-		${className} ${classNameLower} = service.single(id);
+		${className} ${classNameLower} = service.getById(id);
 		
-		verify(${classNameLower}Dao).single(id); //验证执行了该语句
+		verify(${classNameLower}Dao).unique(id); //验证执行了该语句
 		assertNotNull(${classNameLower});
 	}
 	

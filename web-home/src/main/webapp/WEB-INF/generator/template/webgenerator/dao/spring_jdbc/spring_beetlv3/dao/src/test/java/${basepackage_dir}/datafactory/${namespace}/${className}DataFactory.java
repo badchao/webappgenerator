@@ -17,7 +17,7 @@ import ${basepackage}.query.${namespace}.*;
  */
 public class ${className}DataFactory {
 	
-	String rootShopId = "SHOP01";
+	static String tenantId = "SHOP01";
 	
 	public static ${className}Query new${className}Query() {
 		${className}Query obj = new ${className}Query();
@@ -25,7 +25,7 @@ public class ${className}DataFactory {
 		obj.setPageSize(10);
 		
 		obj.setKeyword("1");
-		obj.setRootShopId(rootShopId);
+		obj.setTenantId(tenantId);
 		
 		<#list table.columns as column>
 	  		<#if column.isDateTimeColumn && !column.contains("begin,start,end")>

@@ -31,7 +31,7 @@ public class ${className}DaoTest extends BaseDaoTest {
     
     ${className}Dao dao = getZnyxDao(${className}Dao.class);
 
-    String rootShopId = "SHOP01";
+    String tenantId = "SHOP01";
     String shopId = "SHOP01";
     
     ${className} item = ${className}DataFactory.new${className}();
@@ -49,7 +49,7 @@ public class ${className}DaoTest extends BaseDaoTest {
     @Test
     public void queryPage() {
         ${className}Query query = ${className}DataFactory.new${className}Query();
-        query.setRootShopId(rootShopId);
+        query.setTenantId(tenantId);
         query.setKeyword("hello");
         PageResult result = dao.queryPage(1, 100, query);
     }
@@ -58,13 +58,13 @@ public class ${className}DaoTest extends BaseDaoTest {
     public void insert() {
         dao.deleteById(id);
 
-        item.setRootShopId(rootShopId);
+        item.setTenantId(tenantId);
         dao.insert(item);
     }
 
     @Test
     public void update() {
-        item.setRootShopId(rootShopId);
+        item.setTenantId(tenantId);
         dao.updateById(item);
     }
 

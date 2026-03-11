@@ -267,7 +267,7 @@ public class TableGeneratorController {
 				
 				FileUtils.writeStringToFile(new File(outRoot,"generator.log"), memoryConsole.toString());
 				
-				String date = DateFormatUtils.format(new Date(), "yyyy-MM-dd");
+				String date = DateFormatUtils.format(new Date(), "yyyy-MM-dd_HHmmss");
 				String downloadFilename = basepackage + "_generator_table_output_"+date+".zip";
 				response.setHeader("Content-Disposition", "attachment; filename=\"" + downloadFilename + "\"");
 				ZipHelper.zip(outRoot,response.getOutputStream());

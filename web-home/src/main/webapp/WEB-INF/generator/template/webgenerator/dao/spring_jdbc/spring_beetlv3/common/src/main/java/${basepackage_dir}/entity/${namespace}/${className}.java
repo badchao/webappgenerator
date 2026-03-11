@@ -20,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.beetl.sql.core.annotatoin.AssignID;
+import org.beetl.sql.annotation.entity.AssignID;
 import ${basepackage}.dto.${namespace}.*;
 
 /**
@@ -83,7 +83,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
 	
 	public ${className}Dto toDto() {
 		${className}Dto dto = new ${className}Dto();
-		BeanUtils.copyProperties(this, dto, null);
+		BeanUtils.copyProperties(this, dto, new String[] {});
 		return dto;
 	}
 	

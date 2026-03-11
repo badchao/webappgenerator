@@ -64,7 +64,7 @@ private static final long serialVersionUID = 1;
 	
 	public ${className} toEntity() {
 		${className} result = new ${className}();
-		BeanUtils.copyProperties(this, result, null);
+		BeanUtils.copyProperties(this, result, new String[] {});
 		return result;
 	}
 
