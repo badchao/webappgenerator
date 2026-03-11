@@ -28,7 +28,11 @@ import ${basepackage}.beetldao.${namespace}.*;
 import ${basepackage}.service.${namespace}.*;
 
 
-import org.beetl.sql.core.engine.PageQuery; // beetl v2.0
+import org.beetl.sql.core.engine.PageQuery;
+import org.beetl.sql.core.page.DefaultPageRequest;
+import org.beetl.sql.core.page.PageRequest;
+
+// beetl v2.0
 import org.beetl.sql.core.page.PageResult; // beetl v3.0
 import com.modo.framework.common.util.validation.BeanValidatorHolder;
 
@@ -166,7 +170,8 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	    Assert.hasText(query.getRootShopId(),"query.getRootShopId() must be not blank");
 	    Assert.isTrue(query.getPageSize() <= MAX_PAGE_SIZE,"query.getPageSize() too large");
 	    
-	    PageResult<${className}> page = ${classNameLower}Dao.queryPage(query.getPageNo(), query.getPageSize(), query);
+	    PageRequest pr = DefaultPageRequest.of((long)query.getPageNo(),(int)query.getPageSize());
+	    PageResult<${className}> page = ${classNameLower}Dao.queryPage(query,pr);
 	    joinList(page.getList());
 	    return page;
 	}
