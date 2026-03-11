@@ -27,7 +27,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 <#include "/java_description.include">
  */
 @Data
-@Accessors(chain = true)
 @Schema(title = "${className}-${table.tableAlias}",description = "")
 public class ${className}Dto  implements java.io.Serializable,Cloneable{
 private static final long serialVersionUID = 1;

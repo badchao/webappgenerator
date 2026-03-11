@@ -33,7 +33,7 @@ commonWhere
 	
 	<#else>
 	-- @if(isNotEmpty(query.${column.columnNameLower})){
-		AND main.${column.sqlName}=${poundKey}{query.${column.columnNameLower}
+		AND main.${column.sqlName}=${poundKey}{query.${column.columnNameLower}}
 	-- @}
 	
 	</#if>

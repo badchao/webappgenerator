@@ -29,7 +29,7 @@ public class ${className}DaoTest extends BaseDaoTest {
 
     @Rule public TestName testName = new TestName();
     
-    ${className}Dao dao = getZnyxDao(${className}Dao.class);
+    ${className}Dao dao = getDao(${className}Dao.class);
 
     String tenantId = "SHOP01";
     String shopId = "SHOP01";
