@@ -10,6 +10,12 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 import java.util.*;
 
 import java.io.Serializable;
@@ -37,9 +43,9 @@ public class ${className}ServiceTest {
 	
 	private Serializable id = new${className}().id();
 	
-	@Before
-	public void before() {
-		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
+	@BeforeEach
+	public void before(TestInfo testInfo) throws Exception {
+    	System.out.println("\n------------------ "+testInfo.getDisplayName()+" ----------------------\n");
 		service.${classNameLower}Dao = ${classNameLower}Dao;
 		service.mapper = ${classNameLower}Dao;
 	}
@@ -54,7 +60,7 @@ public class ${className}ServiceTest {
 	
 	@Test
 	public void updateById() {
-		when(${classNameLower}Dao.unique(id)).thenReturn(new${className}()); // mock方法调用
+		when(${classNameLower}Dao.getById(id)).thenReturn(new${className}()); // mock方法调用
 		
 		${className} obj = new${className}();
 		service.updateById(obj);
@@ -64,7 +70,7 @@ public class ${className}ServiceTest {
 	
 	@Test
 	public void deleteById() {
-		when(${classNameLower}Dao.unique(id)).thenReturn(new${className}()); // mock方法调用
+		when(${classNameLower}Dao.getById(id)).thenReturn(new${className}()); // mock方法调用
 		
 		service.deleteById(id);
 		
@@ -73,11 +79,11 @@ public class ${className}ServiceTest {
 	
 	@Test
 	public void getById() {
-		when(${classNameLower}Dao.unique(id)).thenReturn(new${className}()); // mock方法调用
+		when(${classNameLower}Dao.getById(id)).thenReturn(new${className}()); // mock方法调用
 		
 		${className} ${classNameLower} = service.getById(id);
 		
-		verify(${classNameLower}Dao).unique(id); //验证执行了该语句
+		verify(${classNameLower}Dao).getById(id); //验证执行了该语句
 		assertNotNull(${classNameLower});
 	}
 	

@@ -10,11 +10,12 @@ import  ${basepackage}.entity.${namespace}.${className};
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestName;
+
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 import static org.junit.Assert.*;
 
@@ -42,12 +43,12 @@ public class ${className}DaoTest extends BaseDaoTest {
     ${className} item = ${className}DataFactory.new${className}();
     ${table.pkColumn.javaType} id = item.id();
 
-    @Before
-    public void before() throws Exception {
-    	System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
+    @BeforeEach
+    public void before(TestInfo testInfo) throws Exception {
+    	System.out.println("\n------------------ "+testInfo.getDisplayName()+" ----------------------\n");
     }
 
-    @After
+    @AfterEach
     public void after() throws Exception {
     }
 

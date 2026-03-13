@@ -13,10 +13,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestName;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 import ${basepackage}.entity.${namespace}.*;
 import ${basepackage}.query.${namespace}.*;
@@ -32,13 +32,11 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 	
 	private ${className}Service ${classNameLower}Service = mock(${className}Service.class);
 	
-	@Rule public TestName testName = new TestName();
-	
 	private ${className} id = new${className}();
 	
-	@Before
-	public void before() {
-		System.out.println("\n------------------ "+testName.getMethodName()+" ----------------------\n");
+	@BeforeEach
+	public void before(TestInfo testInfo) throws Exception {
+    	System.out.println("\n------------------ "+testInfo.getDisplayName()+" ----------------------\n");
 		controller.${classNameLower}Service = ${classNameLower}Service;
 	}
 	
