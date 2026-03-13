@@ -7,7 +7,6 @@
 package ${basepackage}.controller.${namespace};
 
 
-import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -17,6 +16,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import static org.junit.jupiter.api.Assertions.*;
 
 import ${basepackage}.entity.${namespace}.*;
 import ${basepackage}.query.${namespace}.*;
