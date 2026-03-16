@@ -33,8 +33,6 @@ public class ${className}DaoTest extends BaseDaoTest {
 
     static final Logger log = LoggerFactory.getLogger(${className}DaoTest.class);
 
-    @Rule public TestName testName = new TestName();
-    
     ${className}Dao dao = getDao(${className}Dao.class);
 
     String tenantId = "SHOP01";

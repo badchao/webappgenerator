@@ -6,11 +6,6 @@
 
 package ${basepackage}.service.${namespace};
 
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestName;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,7 +34,6 @@ public class ${className}ServiceTest {
 	private ${className}Service service = new ${className}Service();
 	private ${className}Dao ${classNameLower}Dao = mock(${className}Dao.class);
 	
-	@Rule public TestName testName = new TestName();
 	
 	private Serializable id = new${className}().id();
 	
