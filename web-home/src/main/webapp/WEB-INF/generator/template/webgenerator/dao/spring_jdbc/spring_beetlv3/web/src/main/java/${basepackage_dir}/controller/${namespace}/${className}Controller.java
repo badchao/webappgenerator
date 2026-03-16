@@ -118,9 +118,9 @@ public class ${className}Controller  {
 	
 	@Operation(summary="分页查询")
 	@PostMapping("query")
-	public ResultBean query(@RequestBody ${className}Query query){
+	public ResultBean<PageResult<${className}>> query(@RequestBody ${className}Query query){
 		PageResult<${className}> page = query0(query);
-		return ResultBean.returnList(page.getTotalRow(),page.getList());
+		return ResultBean.success(page);
 	}
 	
 	PageResult<${className}> query0(@RequestBody ${className}Query query){
