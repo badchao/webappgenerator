@@ -46,7 +46,7 @@ commonWhere
 queryPage
 ===
 ```sql
-    select
+    SELECT
         -- @pageTag(){
             ${poundKey}{use("columns")}
         -- @}
