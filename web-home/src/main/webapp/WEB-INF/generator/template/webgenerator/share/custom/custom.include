@@ -16,6 +16,8 @@
 <#assign METHOD_UPLOAD = 'upload'>
 <#assign METHOD_META = 'meta'>
 
+<#assign TENANT_ID = 'tenantId'>
+
 <#-- lowerCamelCase or snake_case
 <#assign DTO_FIELD_NAME_TYPE = 'lowerCamelCase'>
 
