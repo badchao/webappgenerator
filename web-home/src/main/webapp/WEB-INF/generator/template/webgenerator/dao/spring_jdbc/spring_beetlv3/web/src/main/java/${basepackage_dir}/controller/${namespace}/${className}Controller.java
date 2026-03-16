@@ -128,7 +128,7 @@ public class ${className}Controller  {
         String shopId = AppContextUtil.getShopId();
         String tenantId = AppContextUtil.getTenantId();
         
-        query.setRootShopId(tenantId);
+        query.setTenantId(tenantId);
         
 		PageResult<${className}> page = ${classNameLower}Service.query(query);
 		return page;

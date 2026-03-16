@@ -167,7 +167,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	@Transactional(readOnly=true)
 	public PageResult<${className}> query(${className}Query query) {
 	    Assert.notNull(query,"'query' must be not null");
-	    Assert.hasText(query.getRootShopId(),"query.getRootShopId() must be not blank");
+	    Assert.hasText(query.getTenantId(),"query.getTenantId() must be not blank");
 	    Assert.isTrue(query.getPageSize() <= MAX_PAGE_SIZE,"query.getPageSize() too large");
 	    
 	    PageRequest pr = DefaultPageRequest.of((long)query.getPageNo(),(int)query.getPageSize());
