@@ -23,11 +23,12 @@ import ${basepackage}.datafactory.${namespace}.${className}DataFactory;
 import ${basepackage}.entity.${namespace}.*;
 import ${basepackage}.query.${namespace}.*;
 import ${basepackage}.beetldao.${namespace}.*;
+import ${basepackage}.basetest.BaseServiceTestCase;
 
 /**
 <#include "/java_description.include">
  */
-public class ${className}ServiceTest {
+public class ${className}ServiceTest extends BaseServiceTestCase {
 
 	//mock框架使用Mockito 具体使用请查看: http://code.google.com/p/mockito/wiki/MockitoVSEasyMock
 	
