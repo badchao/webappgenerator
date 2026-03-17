@@ -25,6 +25,8 @@ import ${basepackage}.service.${namespace}.*;
 
 import org.beetl.sql.core.engine.PageQuery;
 
+import ${basepackage}.basetest.BaseControllerTestCase;
+
 
 public class ${className}ControllerTest extends BaseControllerTestCase {
 
