@@ -47,7 +47,7 @@ public class ${className}  implements java.io.Serializable,Cloneable{
      * ${column.columnAlias!}       db_column: ${column.sqlName} 
      */
 	@Schema(title = "${column.columnAlias!}${column.pk?string(' - 主键ID','')}", description="")
-	// ${column.hibernateValidatorExprssion}
+	// ${column.hibernateValidatorExprssion?replace('@Max\\([^)]*\\)', '', 'r')}
 	<#if column.pk>
 		<#if table.pkCount = 1>
 	@AssignID
