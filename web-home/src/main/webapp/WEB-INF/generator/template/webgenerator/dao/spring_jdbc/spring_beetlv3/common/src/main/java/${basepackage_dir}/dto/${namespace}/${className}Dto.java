@@ -31,7 +31,7 @@ import ${basepackage}.entity.${namespace}.*;
 @Data
 @Schema(title = "${className}-${table.tableAlias}",description = "")
 public class ${className}Dto  implements java.io.Serializable,Cloneable{
-private static final long serialVersionUID = 1;
+	private static final long serialVersionUID = 1;
 	
 	//date formats
 	<#list table.columns as column>
