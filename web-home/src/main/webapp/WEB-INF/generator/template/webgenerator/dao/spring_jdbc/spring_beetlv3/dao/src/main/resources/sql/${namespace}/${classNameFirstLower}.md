@@ -3,17 +3,6 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>  
 
- 
-
-
-columns
-===
-```sql
-
-    *
-
-```
-
 
 
 
@@ -48,7 +37,7 @@ queryPage
 ```sql
     SELECT
         -- @pageTag(){
-            ${poundKey}{use("columns")}
+            *
         -- @}
     FROM ${table.sqlName} main
     
