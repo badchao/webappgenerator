@@ -36,13 +36,15 @@ import org.beetl.sql.core.page.PageRequest;
 import org.beetl.sql.core.page.PageResult; // beetl v3.0
 import com.modo.framework.common.util.validation.BeanValidatorHolder;
 
+import ${basepackage}.base.BaseService;
+
 /**
  * [${table.tableAlias}] 的Service接口实现
  * 
 <#include "/java_description.include">
  */
 @Service("${classNameLower}Service")
-public class ${className}Service extends BeetSQLIService<${className}Dao,${className}>{
+public class ${className}Service extends BaseService<${className}Dao,${className}>{
 
 	protected static final Logger logger = LoggerFactory.getLogger(${className}Service.class);
 	
