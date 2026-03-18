@@ -36,6 +36,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import com.modo.app.core.service.util.AppContextUtil;
 import com.modo.cloud.common.result.ResultBean;
 
+import ${basepackage}.base.BaseController;
+
 /**
  * [${table.tableAlias}] Controller
  * 
@@ -45,7 +47,7 @@ import com.modo.cloud.common.result.ResultBean;
 @RestController
 @RequestMapping("/${classNameLower}")
 @Tag(name = "${className}-${table.tableAlias}")
-public class ${className}Controller  {
+public class ${className}Controller  extends BaseController{
 	
 	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
