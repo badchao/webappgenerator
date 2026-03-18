@@ -88,7 +88,6 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	public void initCommonDefault(${className} item) {
 		join(item);
 		
-//		item.setDelFlag(0);
 		item.setDeleted(0);
 		//item.setSearchStr(buildSearchStr(item));
 		item.initDefault();
