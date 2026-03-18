@@ -52,7 +52,7 @@ public class ${className}Controller  extends BaseController{
 	private static Logger logger = LoggerFactory.getLogger(${className}Controller.class);
 	
     @Autowired
-    ${className}Service ${classNameLower}Service;
+    public ${className}Service ${classNameLower}Service;
 
 	
 	@Operation(summary="元数据查询,得到所有相关枚举等元数据,返回所有搜索条件")

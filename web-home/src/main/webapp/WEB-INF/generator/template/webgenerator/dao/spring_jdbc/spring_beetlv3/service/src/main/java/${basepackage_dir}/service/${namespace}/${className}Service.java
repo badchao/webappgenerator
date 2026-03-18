@@ -49,7 +49,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	private static final int MAX_PAGE_SIZE = 10000;
 	
 	@Autowired
-	${className}Dao ${classNameLower}Dao;
+	public ${className}Dao ${classNameLower}Dao;
 	
 	<#list table.importedKeys.associatedTables?values as foreignKey>
 	<#assign fkSqlTable = foreignKey.sqlTable>
@@ -57,7 +57,7 @@ public class ${className}Service extends BeetSQLIService<${className}Dao,${class
 	<#assign fkPojoClass = fkSqlTable.className>
 	<#assign fkPojoClassVar = fkPojoClass?uncap_first>
 	@Autowired
-	${fkPojoClass}Service ${fkPojoClassVar}Service;
+	public ${fkPojoClass}Service ${fkPojoClassVar}Service;
 	</#list> 
 	
 	
