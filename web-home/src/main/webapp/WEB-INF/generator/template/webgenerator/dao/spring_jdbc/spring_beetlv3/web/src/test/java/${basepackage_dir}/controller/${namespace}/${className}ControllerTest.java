@@ -68,11 +68,11 @@ public class ${className}ControllerTest extends BaseControllerTestCase {
 	
 	@Test
 	public void getone() {
-		when(${classNameLower}Service.single(id)).thenReturn(new${className}()); // mock方法调用
+		when(${classNameLower}Service.getById(id)).thenReturn(new${className}()); // mock方法调用
 		
 		controller.getone(id);
 		
-		verify(${classNameLower}Service).unique(id.id()); //验证执行了该语句
+		verify(${classNameLower}Service).getById(id.id()); //验证执行了该语句
 	}
 	
 	
